@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
-import { useSelector } from 'react-redux';
-import authSelectors from 'redux/auth/auth-selectors';
+
+import useUser from 'hooks/useUser';
 import SharedLayout from 'components/SharedLayout';
 
 const PrivateRoute = () => {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const { isLoggedIn } = useUser();
   const shouldRedirect = !isLoggedIn;
 
   return shouldRedirect ? (
