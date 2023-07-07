@@ -1,0 +1,27 @@
+:root {
+  /* palette */
+  --primary-color: #fafafa;
+  --secondary-color: #22252a;
+  --secondary-ligth-color: #2a2c36;
+  --accent-color: #8baa36;
+  --accent-light-color: #ebf3d4;
+}
+
+/* Themes */
+[data-theme='light'] {
+  --font-color: var(--secondary-color);
+  --menu-bg-color: var(--accent-light-color);
+  --search-btn-color: var(--secondary-color);
+  --footer-font-color: var(--primary-color);
+  --subscribe-btn-color: var(--accent-color);
+  --ingredients-bg-color: var(--accent-light-color);
+}
+
+[data-theme='dark'] {
+  --font-color: var(--primary-color);
+  --menu-bg-color: var(--secondary-color);
+  --search-btn-color: var(--accent-color);
+  --footer-font-color: var(--primary-color);
+  --subscribe-btn-color: var(--secondary-color);
+  --ingredients-bg-color: var(--secondary-light-color);
+}
