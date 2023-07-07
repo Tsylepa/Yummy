@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyummy=self.webpackChunkyummy||[]).push([[582],{582:function(u,e,n){n.r(e);var c=n(184);e.default=function(){return(0,c.jsx)("p",{children:"NoPage"})}}}]);
+//# sourceMappingURL=582.464a149a.chunk.js.map
