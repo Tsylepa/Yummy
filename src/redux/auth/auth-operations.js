@@ -58,11 +58,28 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
+// TOGGLE THEME
+const toggleTheme = createAsyncThunk(
+  'auth/toggleTheme',
+  async (theme, thunkAPI) => {
+    try {
+      const { data } = await axios.patch('user/theme', {
+        theme,
+      });
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const operations = {
   register,
   logOut,
   logIn,
   fetchCurrentUser,
+  toggleTheme,
 };
 
 export default operations;
