@@ -5,6 +5,12 @@
   --secondary-ligth-color: #2a2c36;
   --accent-color: #8baa36;
   --accent-light-color: #ebf3d4;
+
+  /* fonts */
+  --poppins-regular: 'Poppins Regular', sans-serif;
+  --poppins-bold: 'Poppins Bold', sans-serif;
+  --poppins-semiBold: 'Poppins SemiBold', sans-serif;
+  --poppins-medium: 'Poppins Medium', sans-serif;
 }
 
 /* Themes */
