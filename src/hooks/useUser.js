@@ -1,12 +1,18 @@
-import { getUser, getToken, getIsLoggedIn } from 'redux/auth/auth-selectors';
 import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth/authSelectors';
 
 const useUser = () => {
-  const user = useSelector(getUser);
-  const token = useSelector(getToken);
-  const isLoggedIn = useSelector(getIsLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.getIsLoading);
+  const user = useSelector(authSelectors.getUser);
+  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
+  const isLoading = useSelector(authSelectors.getIsLoading);
 
-  return { user, token, isLoggedIn };
+  return {
+    isLoggedIn,
+    user,
+    isRefreshing,
+    isLoading,
+  };
 };
 
 export default useUser;

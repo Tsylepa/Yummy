@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const token = {
   set(token) {
@@ -11,13 +12,36 @@ const token = {
 };
 
 // REGISTER
-const register = createAsyncThunk('auth/register', async credentials => {
-  try {
-    const { data } = await axios.post('users/signup', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {}
-});
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/auth/registration', credentials);
+      localStorage.setItem('userEmail', JSON.stringify(data.user.email));
+      toast.success(
+        'Congratulations! To verify your account, follow the link sent to your email',
+        {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        }
+      );
+      return data;
+    } catch (error) {
+      if (error.response.status === 409) {
+        toast.error('This email already exists');
+        return rejectWithValue(error.message);
+      }
+      toast.error('This email already exists');
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 // LOGIN
 const logIn = createAsyncThunk('auth/login', async credentials => {
