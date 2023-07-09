@@ -7,6 +7,7 @@ import imgBgDesktop from '../../images/desktop/register-page/bg-welcome.jpg';
 import imgBgDesktopRetina from '../../images/desktop/register-page/bg-welcome-2x.jpg';
 import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
 import { Container } from 'components/reusingComponents/Container/Container.styled';
+import variables from '../../css/variables.module.css';
 
 export const WelcomeWrapper = styled.div`
   display: flex;
@@ -76,6 +77,7 @@ export const LogoWrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.colors.accent};
+  ${variables['--poppins-semiBold']};
   margin-bottom: 28px;
 
   @media screen and (min-width: 768px) {
@@ -100,7 +102,7 @@ export const LogoIconStyled = styled(LogoIcon)`
 export const WelcomeTitle = styled.h1`
   margin-bottom: 14px;
 
-  font-family: PoppinsSemiBold;
+  font-family: ${variables['--poppins-semiBold']};
   font-weight: 600;
   font-size: 24px;
   line-height: 1;

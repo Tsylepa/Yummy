@@ -19,7 +19,7 @@ import {
 } from './RegisterForm.styled';
 import operations from 'redux/auth/authOperations';
 
-import { BgOrderFoodImg } from 'pages/Register/Register.styled';
+import { BgOrderFoodImg } from '../../pages/Register/Register.styled';
 
 const initialValue = {
   name: '',

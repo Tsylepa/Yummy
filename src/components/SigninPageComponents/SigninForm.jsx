@@ -1,9 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { FiUser, FiLock } from 'react-icons/fi';
-import { HiOutlineMail } from 'react-icons/hi';
-import { Formik, ErrorMessage, Form, Field } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
+import {
+  FormWrapper,
+  FormStyled,
+  LabelStyled,
+  FieldStyled,
+  FieldsWrapper,
+  EmailIcon,
+  PasswordIcon,
+  SubmitBtn,
+} from '../../components/RegisterPageComponents/RegisterForm.styled';
+import { BgOrderFoodImg } from '../../pages/Register/Register.styled';
+
+import { SigninTitle, LinkRegisterStyled } from './SigninForm.styled';
 import { signinSchema, ValidMessage } from './validationSignin';
 import operations from 'redux/auth/authOperations';
 
@@ -23,7 +34,8 @@ export const SigninForm = () => {
   };
 
   return (
-    <div>
+    <FormWrapper>
+      <BgOrderFoodImg></BgOrderFoodImg>
       <Formik
         initialValues={initialValue}
         validationSchema={signinSchema}
@@ -32,38 +44,43 @@ export const SigninForm = () => {
         validateOnBlur={false}
       >
         {({ errors, touched }) => (
-          <Form noValidate>
-            <h1>Sign In</h1>
-            <div>
-              <label htmlFor="email">
-                <Field type="email" name="email" placeholder="Email" required />
-                <HiOutlineMail />
+          <FormStyled noValidate>
+            <SigninTitle>Sign In</SigninTitle>
+            <FieldsWrapper>
+              <LabelStyled htmlFor="email">
+                <FieldStyled
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                />
+                <EmailIcon />
                 <ErrorMessage name="email" />
                 {touched.email && !errors.email && isSubmit && <ValidMessage />}
-              </label>
-              <label htmlFor="password">
-                <Field
+              </LabelStyled>
+              <LabelStyled htmlFor="password">
+                <FieldStyled
                   type="password"
                   name="password"
                   placeholder="Password"
                   required
                 />
-                <FiLock />
+                <PasswordIcon />
                 <ErrorMessage name="password" />
                 {touched.password && !errors.password && isSubmit && (
                   <ValidMessage>Password is secure</ValidMessage>
                 )}
-              </label>
-            </div>
+              </LabelStyled>
+            </FieldsWrapper>
 
-            <button type="submit" onClick={() => setIsSubmit(true)}>
+            <SubmitBtn type="submit" onClick={() => setIsSubmit(true)}>
               Sign in
-            </button>
-          </Form>
+            </SubmitBtn>
+          </FormStyled>
         )}
       </Formik>
 
-      <Link to={'/auth'}>Registration</Link>
-    </div>
+      <LinkRegisterStyled to={'/auth'}>Registration</LinkRegisterStyled>
+    </FormWrapper>
   );
 };

@@ -11,6 +11,11 @@
   --poppins-bold: 'Poppins Bold', sans-serif;
   --poppins-semiBold: 'Poppins SemiBold', sans-serif;
   --poppins-medium: 'Poppins Medium', sans-serif;
+  /* radius */
+  --radius-none: '0';
+  --radius-normal: '4px';
+  --radius-roundedSquare: '12px';
+  --radius-round: '50%';
 }
 
 /* Themes */
@@ -31,3 +36,9 @@
   --subscribe-btn-color: var(--secondary-color);
   --ingredients-bg-color: var(--secondary-light-color);
 }
+[data-radius] {
+    --radius-none: var(--radius-none);
+    --radius-normal: var(--radius-normal);
+    --radius-roundedSquare: var(--radius-roundedSquare);
+    --radius-round: var(--radius-round);
+  }

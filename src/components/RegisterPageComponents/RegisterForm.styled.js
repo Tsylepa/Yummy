@@ -6,6 +6,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { ReactComponent as ErrorIcon } from '../../images/svg/other/error-icon.svg';
 import { ReactComponent as WarningIcon } from '../../images/svg/other/warning-icon.svg';
 import { ReactComponent as CorrectIcon } from '../../images/svg/other/valid-icon.svg';
+import variables from '../../css/variables.module.css';
 
 export const FormWrapper = styled.div`
   position: relative;
@@ -33,7 +34,7 @@ export const FormStyled = styled(Form)`
 `;
 
 export const FormTitle = styled.h1`
-  font-family: PoppinsSemiBold;
+  font-family: ${variables['--poppins-semiBold']};
   font-weight: 600;
   font-size: 24px;
   line-height: 1.17;
@@ -82,7 +83,7 @@ export const FieldStyled = styled(Field)`
 
   &::placeholder {
     color: #fafafa;
-    font-family: PoppinsRegular;
+    font-family: ${variables['--poppins-regular']};
     font-weight: 400;
     font-size: 14px;
     line-height: 1.5;

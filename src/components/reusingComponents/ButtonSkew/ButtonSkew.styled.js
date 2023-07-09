@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import variables from '../../../css/variables.module.css';
 
 export const ButtonSkewStyled = styled.button`
   background-color: ${props => {
@@ -16,7 +17,7 @@ export const ButtonSkewStyled = styled.button`
     return props.width ? props.width : '141px';
   }};
 
-  font-family: PoppinsRegular;
+  font-family: ${variables['--poppins-regular']};
   font-weight: 400;
   font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.5;
@@ -62,7 +63,7 @@ export const LinkSkewStyled = styled(NavLink)`
   padding: 12px 32px;
   width: 141px;
 
-  font-family: PoppinsRegular;
+  font-family: ${variables['--poppins-regular']};
   font-weight: 400;
   font-size: ${props => props.theme.fontSizes.s};
   line-height: 1.5;
