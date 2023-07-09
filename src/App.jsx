@@ -3,8 +3,6 @@ import { lazy } from 'react';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 
-import { HiOutlineMenu } from 'react-icons/hi';
-
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
 const Home = lazy(() => import('./pages/Home'));
