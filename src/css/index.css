@@ -1,6 +1,10 @@
 @import-normalize; /* bring in normalize.css styles */
 @import url('./variables.module.css');
 
+body * {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
