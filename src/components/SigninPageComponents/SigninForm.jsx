@@ -35,19 +35,6 @@ export const SigninForm = () => {
           <Form noValidate>
             <h1>Sign In</h1>
             <div>
-              <label htmlFor="name">
-                <Field
-                  type="text"
-                  name="name"
-                  title="Name may contain only letters, apostrophe, dash and spaces."
-                  required
-                  pattern="^[a-zA-Z0-9а-яА-Я]+(([' -][a-zA-Z0-9а-яА-Я ])?[a-zA-Z0-9а-яА-Я]*)*$"
-                  placeholder="Name"
-                />
-                <FiUser />
-                <ErrorMessage name="name" />
-                {touched.name && !errors.name && isSubmit && <ValidMessage />}
-              </label>
               <label htmlFor="email">
                 <Field type="email" name="email" placeholder="Email" required />
                 <HiOutlineMail />
