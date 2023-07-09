@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import { StyledContainer } from './CategoriesCardsList.styled';
+
 import RecipesCard from 'components/RecipesCard/RecipesCard';
 
 import recipesJS from '../../../src/recipes.json';
@@ -15,7 +17,7 @@ export const CategoriesCardsList = () => {
   return (
     <div>
       <h2>{categoryName}</h2>
-      <ul>{<RecipesCard recipes={newRecipes} />}</ul>
+      <StyledContainer>{<RecipesCard recipes={newRecipes} />}</StyledContainer>
     </div>
   );
 };

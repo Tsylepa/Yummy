@@ -1,13 +1,26 @@
+import {
+  StyledCards,
+  StyledCardsList,
+  StyledCardsWrapper,
+  StyledCardsImg,
+  StyledCardsTextWrapper,
+  StyledCardsText,
+} from './RecipesCard.styles';
+
 export const RecipesCard = ({ recipes }) => {
   return (
-    <ul>
+    <StyledCards>
       {recipes.map(({ _id, title, preview }) => (
-        <li key={_id.$oid}>
-          <p>{title}</p>
-          <img src={preview} alt={title} />
-        </li>
+        <StyledCardsList key={_id.$oid}>
+          <StyledCardsWrapper>
+            <StyledCardsImg src={preview} alt={title} />
+            <StyledCardsTextWrapper>
+              <StyledCardsText>{title}</StyledCardsText>
+            </StyledCardsTextWrapper>
+          </StyledCardsWrapper>
+        </StyledCardsList>
       ))}
-    </ul>
+    </StyledCards>
   );
 };
 export default RecipesCard;

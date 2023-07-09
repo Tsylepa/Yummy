@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react';
 
 import CategoriesList from 'components/CategoriesList/CategoriesList';
 import CategoriesCardsList from 'components/CategoriesCardsList/CategoriesCardsList';
+import {
+  StyledCategories,
+  StyledContainer,
+  StyledText,
+} from './Categories.styled';
 
 const Categories = () => {
   const [categories, setCategories] = useState([
@@ -98,8 +103,12 @@ const Categories = () => {
   ]);
   return (
     <div>
-      <h2>Categories</h2>
-      <ul>{<CategoriesList categories={categories} />}</ul>
+      <StyledText>Categories</StyledText>
+      <StyledContainer>
+        <StyledCategories>
+          {<CategoriesList categories={categories} />}
+        </StyledCategories>
+      </StyledContainer>
       <ul>{<CategoriesCardsList categories={categories} />}</ul>
     </div>
   );

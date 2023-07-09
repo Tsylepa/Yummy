@@ -1,17 +1,19 @@
 import { Link, useLocation } from 'react-router-dom';
 
+import { StyledCategoriesList, StyledContainer } from './CategoriesList.styled';
+
 const CategoriesList = ({ categories }) => {
   const location = useLocation();
   return (
-    <div>
+    <StyledContainer>
       {categories.map(categorie => (
-        <li key={categorie._id.$oid}>
+        <StyledCategoriesList key={categorie._id.$oid}>
           <Link to={`/categories/${categorie.name}`} state={{ from: location }}>
             {categorie.name}
           </Link>
-        </li>
+        </StyledCategoriesList>
       ))}
-    </div>
+    </StyledContainer>
   );
 };
 export default CategoriesList;
