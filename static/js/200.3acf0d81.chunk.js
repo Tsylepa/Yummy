@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkyummy=self.webpackChunkyummy||[]).push([[200],{200:function(u,e,n){n.r(e);var t=n(184);e.default=function(){return(0,t.jsx)("p",{children:"Auth page"})}}}]);
-//# sourceMappingURL=200.3acf0d81.chunk.js.map
