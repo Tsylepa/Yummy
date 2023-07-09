@@ -1,6 +1,33 @@
 @import-normalize; /* bring in normalize.css styles */
 @import url('./variables.module.css');
 
+body {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+img,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+}
+li {
+  list-style: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
 body * {
   box-sizing: border-box;
 }
