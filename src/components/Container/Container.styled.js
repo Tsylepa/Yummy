@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import mediaRule from 'utils/mediaRule';
 
 export const StyledContainer = styled.div`
-  width: var(--mobile);
+  width: 100%;
   margin: 0 auto;
   padding: 0 16px;
 
