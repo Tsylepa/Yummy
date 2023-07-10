@@ -15,11 +15,6 @@
   --poppins-bold: 'Poppins Bold', sans-serif;
   --poppins-semiBold: 'Poppins SemiBold', sans-serif;
   --poppins-medium: 'Poppins Medium', sans-serif;
-  /* radius */
-  --radius-none: '0';
-  --radius-normal: '4px';
-  --radius-roundedSquare: '12px';
-  --radius-round: '50%';
 }
 
 /* Themes */
@@ -50,9 +45,3 @@
   --input-text-color: var(--primary-color);
   --input-bg-color: hsla(0, 0%, 98%, 0.2);
 }
-[data-radius] {
-    --radius-none: var(--radius-none);
-    --radius-normal: var(--radius-normal);
-    --radius-roundedSquare: var(--radius-roundedSquare);
-    --radius-round: var(--radius-round);
-  }

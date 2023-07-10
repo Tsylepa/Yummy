@@ -6,7 +6,7 @@ import imgBgTabletRetina from '../../images/tablet/register-page/bg-welcome-2x.j
 import imgBgDesktop from '../../images/desktop/register-page/bg-welcome.jpg';
 import imgBgDesktopRetina from '../../images/desktop/register-page/bg-welcome-2x.jpg';
 import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
-import { Container } from 'components/reusingComponents/Container/Container.styled';
+import { ContainerStyled } from 'components/reusingComponents/Container/Container.styled';
 import variables from '../../css/variables.module.css';
 
 export const WelcomeWrapper = styled.div`
@@ -58,7 +58,7 @@ export const SectionWelcome = styled.section`
   padding: 15px;
 `;
 
-export const ContainerWelcomeStyled = styled(Container)`
+export const ContainerWelcomeStyled = styled(ContainerStyled)`
   display: flex;
   flex-direction: column;
   align-items: center;
