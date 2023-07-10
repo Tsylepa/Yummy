@@ -2,6 +2,37 @@
 @import url('./variables.module.css');
 
 body {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+img,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+}
+li {
+  list-style: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
@@ -15,4 +46,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.app {
+  background-color: var(--body-color);
 }
