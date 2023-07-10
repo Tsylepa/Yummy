@@ -6,7 +6,7 @@ import { StyledContainer } from './CategoriesCardsList.styled';
 import RecipesCard from 'components/RecipesCard/RecipesCard';
 
 import recipesJS from '../../../src/recipes.json';
-console.log(recipesJS);
+// console.log(recipesJS);
 
 export const CategoriesCardsList = () => {
   const [recipes, setRecipes] = useState(recipesJS);

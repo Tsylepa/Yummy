@@ -6,6 +6,7 @@ import {
   StyledCategories,
   StyledContainer,
   StyledText,
+  StyledCategoriesPagesWraper,
 } from './Categories.styled';
 
 const Categories = () => {
@@ -102,7 +103,7 @@ const Categories = () => {
     },
   ]);
   return (
-    <div>
+    <StyledCategoriesPagesWraper>
       <StyledText>Categories</StyledText>
       <StyledContainer>
         <StyledCategories>
@@ -110,7 +111,7 @@ const Categories = () => {
         </StyledCategories>
       </StyledContainer>
       <ul>{<CategoriesCardsList categories={categories} />}</ul>
-    </div>
+    </StyledCategoriesPagesWraper>
   );
 };
 
