@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://so-yummy-api-jvk2.onrender.com/api';
+axios.defaults.baseURL = 'https://soyummy-backend-kmc6.onrender.com';
 
 const token = {
   set(token) {
