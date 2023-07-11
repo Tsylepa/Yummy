@@ -5,7 +5,7 @@ import PublicRoute from './routes/PublicRoute';
 
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
-const Home = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import('./pages/Home/Home'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
 const NoRoute = lazy(() => import('./pages/404'));
