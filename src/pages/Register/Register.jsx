@@ -1,12 +1,14 @@
+import { AuthPagesSection, ContainerAuthPageStyled } from './Register.styled';
+
 import { RegisterForm } from 'components/RegisterPageComponents/RegisterForm';
 
 const Register = () => {
   return (
-    <section>
-      <div>
+    <AuthPagesSection>
+      <ContainerAuthPageStyled>
         <RegisterForm />
-      </div>
-    </section>
+      </ContainerAuthPageStyled>
+    </AuthPagesSection>
   );
 };
 

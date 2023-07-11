@@ -1,5 +1,12 @@
 import * as Yup from 'yup';
 
+import {
+  ErrorValidation,
+  ErrorValidationIcon,
+  CorrectValidation,
+  CorrectIconValidationIcon,
+} from './RegisterForm.styled';
+
 const nameRules =
   /^[a-zA-Z0-9а-яА-Я]+((['-](?=[a-zA-Z0-9а-яА-Я])|(?=[a-zA-Z0-9а-яА-Я]))?[a-zA-Z0-9а-яА-Я]*)*$/;
 const emailRules =
@@ -10,7 +17,8 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])[a-zA-Z0-9]{6,255}$/;
 const errorMessage = msg => {
   return (
     <div className="error">
-      <span>{msg}</span>
+      <ErrorValidation>{msg}</ErrorValidation>
+      <ErrorValidationIcon />
     </div>
   );
 };
@@ -18,7 +26,8 @@ const errorMessage = msg => {
 export const ValidMessage = ({ children }) => {
   return (
     <div className="valid">
-      <span>{children}</span>
+      <CorrectValidation>{children}</CorrectValidation>
+      <CorrectIconValidationIcon />
     </div>
   );
 };

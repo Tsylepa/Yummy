@@ -1,11 +1,25 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
-import { FiUser, FiLock } from 'react-icons/fi';
-import { HiOutlineMail } from 'react-icons/hi';
-import { Formik, ErrorMessage, Form, Field } from 'formik';
+
+import { Formik, ErrorMessage } from 'formik';
 import { signupSchema, ValidMessage } from './validationRegister';
+import {
+  FormWrapper,
+  FormStyled,
+  LabelStyled,
+  FieldStyled,
+  FormTitle,
+  FieldsWrapper,
+  UserIcon,
+  EmailIcon,
+  PasswordIcon,
+  SubmitBtn,
+  LinkStyled,
+} from './RegisterForm.styled';
 import operations from 'redux/auth/authOperations';
+
+import { BgOrderFoodImg } from '../../pages/Register/Register.styled';
 
 const initialValue = {
   name: '',
@@ -23,7 +37,8 @@ export const RegisterForm = () => {
   };
 
   return (
-    <div>
+    <FormWrapper>
+      <BgOrderFoodImg></BgOrderFoodImg>
       <Formik
         initialValues={initialValue}
         validationSchema={signupSchema}
@@ -32,11 +47,11 @@ export const RegisterForm = () => {
         validateOnBlur={false}
       >
         {({ errors, touched }) => (
-          <Form noValidate>
-            <h1>Registration</h1>
-            <div>
-              <label htmlFor="name">
-                <Field
+          <FormStyled noValidate>
+            <FormTitle>Registration</FormTitle>
+            <FieldsWrapper>
+              <LabelStyled htmlFor="name">
+                <FieldStyled
                   type="text"
                   name="name"
                   title="Name may contain only letters, apostrophe, dash and spaces."
@@ -44,39 +59,44 @@ export const RegisterForm = () => {
                   pattern="^[a-zA-Z0-9а-яА-Я]+(([' -][a-zA-Z0-9а-яА-Я ])?[a-zA-Z0-9а-яА-Я]*)*$"
                   placeholder="Name"
                 />
-                <FiUser />
+                <UserIcon />
                 <ErrorMessage name="name" />
                 {touched.name && !errors.name && isSubmit && <ValidMessage />}
-              </label>
-              <label htmlFor="email">
-                <Field type="email" name="email" placeholder="Email" required />
-                <HiOutlineMail />
+              </LabelStyled>
+              <LabelStyled htmlFor="email">
+                <FieldStyled
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                />
+                <EmailIcon />
                 <ErrorMessage name="email" />
                 {touched.email && !errors.email && isSubmit && <ValidMessage />}
-              </label>
-              <label htmlFor="password">
-                <Field
+              </LabelStyled>
+              <LabelStyled htmlFor="password">
+                <FieldStyled
                   type="password"
                   name="password"
                   placeholder="Password"
                   required
                 />
-                <FiLock />
+                <PasswordIcon />
                 <ErrorMessage name="password" />
                 {touched.password && !errors.password && isSubmit && (
                   <ValidMessage>Password is secure</ValidMessage>
                 )}
-              </label>
-            </div>
+              </LabelStyled>
+            </FieldsWrapper>
 
-            <button type="submit" onClick={() => setIsSubmit(true)}>
+            <SubmitBtn type="submit" onClick={() => setIsSubmit(true)}>
               Sign up
-            </button>
-          </Form>
+            </SubmitBtn>
+          </FormStyled>
         )}
       </Formik>
 
-      <Link to={'/signin'}>Sign in</Link>
-    </div>
+      <LinkStyled to={'/signin'}>Sign in</LinkStyled>
+    </FormWrapper>
   );
 };
