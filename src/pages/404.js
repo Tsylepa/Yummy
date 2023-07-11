@@ -1,5 +1,11 @@
-const NoPage = () => {
-  return <p>NoPage</p>;
-};
+import { NotFound } from "components/NotFound/NotFound";
 
-export default NoPage;
+const NoPage = () => {
+    return (
+        <>
+        <NotFound />
+        </>
+    );
+  };
+  
+  export default NoPage;
