@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledCategoriesList = styled.li`
@@ -9,9 +10,6 @@ export const StyledCategoriesList = styled.li`
   text-transform: capitalize;
   color: #e0e0e0;
   padding: 10px;
-  &:hover {
-    color: red;
-  }
 `;
 
 export const StyledContainer = styled.div`
@@ -20,13 +18,10 @@ export const StyledContainer = styled.div`
   flex-direction: row;
 `;
 
-// export const StyledLink = styled.Link`
-//   color: var(--accent-color);
-//   background-color: var(--white-color);
-//   border: 1px solid;
-//   border-radius: 20px;
-//   outline: none;
-//   padding: 8px 22px;
-//   font-size: 12px;
-//   line-height: 1.33333;
-// `;
+export const BaseNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: #e0e0e0;
+  &:hover {
+    color: var(--accent-color);
+  }
+`;

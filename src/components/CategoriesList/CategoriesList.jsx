@@ -1,6 +1,10 @@
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
-import { StyledCategoriesList, StyledContainer } from './CategoriesList.styled';
+import {
+  StyledCategoriesList,
+  StyledContainer,
+  BaseNavLink,
+} from './CategoriesList.styled';
 
 const CategoriesList = ({ categories }) => {
   const location = useLocation();
@@ -8,9 +12,12 @@ const CategoriesList = ({ categories }) => {
     <StyledContainer>
       {categories.map(categorie => (
         <StyledCategoriesList key={categorie._id.$oid}>
-          <Link to={`/categories/${categorie.name}`} state={{ from: location }}>
+          <BaseNavLink
+            to={`/categories/${categorie.name}`}
+            state={{ from: location }}
+          >
             {categorie.name}
-          </Link>
+          </BaseNavLink>
         </StyledCategoriesList>
       ))}
     </StyledContainer>

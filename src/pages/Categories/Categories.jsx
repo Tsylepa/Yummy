@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import CategoriesList from 'components/CategoriesList/CategoriesList';
 import CategoriesCardsList from 'components/CategoriesCardsList/CategoriesCardsList';
@@ -9,7 +10,7 @@ import {
   StyledCategoriesPagesWraper,
 } from './Categories.styled';
 
-const Categories = () => {
+const Categories = ({ categoriesFirst }) => {
   const [categories, setCategories] = useState([
     {
       _id: {
@@ -106,11 +107,9 @@ const Categories = () => {
     <StyledCategoriesPagesWraper>
       <StyledText>Categories</StyledText>
       <StyledContainer>
-        <StyledCategories>
-          {<CategoriesList categories={categories} />}
-        </StyledCategories>
+        <>{<CategoriesList categories={categories} />}</>
       </StyledContainer>
-      <ul>{<CategoriesCardsList categories={categories} />}</ul>
+      <Outlet />
     </StyledCategoriesPagesWraper>
   );
 };
