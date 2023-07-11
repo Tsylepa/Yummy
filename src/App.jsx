@@ -11,6 +11,10 @@ const Home = lazy(() => import('./pages/Home'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
 const NoRoute = lazy(() => import('./pages/404'));
+const CategoriesPage = lazy(() => import('./pages/Categories/Categories'));
+const CategoriesRecepiesPage = lazy(() =>
+  import('./components/CategoriesCardsList/CategoriesCardsList')
+);
 
 
 
@@ -28,6 +32,17 @@ export const App = () => {
         <Route path="/" element={<PublicRoute />}>
           <Route exact index element={<Navigate to="/welcome" />} />
           <Route path="/welcome" element={<Welcome />} />
+          <Route
+            path="/categories"
+            categoriesFirst={'Beef'}
+            element={<CategoriesPage />}
+          >
+            <Route
+              path="/categories/:categoryName"
+              element={<CategoriesRecepiesPage />}
+            />
+          </Route>
+
           <Route path="/auth" element={<Auth />} />
           <Route path="/signin" element={<Sigin />} />
         </Route>
