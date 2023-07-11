@@ -17,7 +17,7 @@ const handleRejected = (state, action) => {
 const initialState = {
   user: { name: null, email: null, theme: 'light' },
   token: null,
-  isLoggedIn: true,
+  isLoggedIn: false,
   error: null,
   isRefreshing: false,
 };
@@ -31,7 +31,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true;
+        state.isLoggedIn = false;
       })
       .addCase(register.pending, handlePending)
       .addCase(register.rejected, handleRejected)
@@ -40,7 +40,7 @@ const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true;
+        state.isLoggedIn = false;
       })
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.rejected, handleRejected)
@@ -57,7 +57,7 @@ const authSlice = createSlice({
       // FETCH CURRENT USER
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoggedIn = true;
+        state.isLoggedIn = false;
       })
       .addCase(fetchCurrentUser.pending, handlePending)
       .addCase(fetchCurrentUser.rejected, handleRejected)
