@@ -1,10 +1,14 @@
 :root {
   /* palette */
   --primary-color: #fafafa;
+  --primary-dark-color: #1e1f28;
   --secondary-color: #22252a;
   --secondary-ligth-color: #2a2c36;
   --accent-color: #8baa36;
   --accent-light-color: #ebf3d4;
+  --border-color: #e0e0e0;
+  --border-dark-color: rgba(250, 250, 250, 0.3);
+  --error: #d70101;
 
   /* fonts */
   --poppins-regular: 'Poppins Regular', sans-serif;
@@ -15,19 +19,29 @@
 
 /* Themes */
 [data-theme='light'] {
+  --body-color: var(--primary-color);
   --font-color: var(--secondary-color);
   --menu-bg-color: var(--accent-light-color);
   --search-btn-color: var(--secondary-color);
   --footer-font-color: var(--primary-color);
   --subscribe-btn-color: var(--accent-color);
   --ingredients-bg-color: var(--accent-light-color);
+  --input-border-color: var(--border-color);
+  --selector-border-color: hsla(0, 0%, 20%, 0.3);
+  --input-text-color: #000;
+  --input-bg-color: #d9d9d9;
 }
 
 [data-theme='dark'] {
+  --body-color: var(--primary-dark-color);
   --font-color: var(--primary-color);
   --menu-bg-color: var(--secondary-color);
   --search-btn-color: var(--accent-color);
   --footer-font-color: var(--primary-color);
   --subscribe-btn-color: var(--secondary-color);
   --ingredients-bg-color: var(--secondary-light-color);
+  --input-border-color: var(--border-dark-color);
+  --selector-border-color: var(--primary-color);
+  --input-text-color: var(--primary-color);
+  --input-bg-color: hsla(0, 0%, 98%, 0.2);
 }
