@@ -6,8 +6,9 @@ import imgBgTabletRetina from '../../images/tablet/register-page/bg-welcome-2x.j
 import imgBgDesktop from '../../images/desktop/register-page/bg-welcome.jpg';
 import imgBgDesktopRetina from '../../images/desktop/register-page/bg-welcome-2x.jpg';
 import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
-import { ContainerStyled } from 'components/reusingComponents/Container/Container.styled';
+import { StyledContainer } from 'components/Container/Container.styled';
 import variables from '../../css/variables.module.css';
+// import mediaRule from 'utils/mediaRule';
 
 export const WelcomeWrapper = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ export const SectionWelcome = styled.section`
   padding: 15px;
 `;
 
-export const ContainerWelcomeStyled = styled(ContainerStyled)`
+export const ContainerWelcomeStyled = styled(StyledContainer)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,13 +72,13 @@ export const ContainerWelcomeStyled = styled(ContainerStyled)`
 export const LogoWrapper = styled.div`
   width: 54px;
   height: 54px;
-  border-radius: ${props => props.theme.radius.roundedSquare};
+  border-radius: 12px;
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.theme.colors.accent};
-  ${variables['--poppins-semiBold']};
+  background-color: var(--accent-color);
+  font-family: ${variables['--poppins-semiBold']};
   margin-bottom: 28px;
 
   @media screen and (min-width: 768px) {
@@ -91,7 +92,7 @@ export const LogoWrapper = styled.div`
 export const LogoIconStyled = styled(LogoIcon)`
   width: 37px;
   height: 37px;
-  stroke: ${props => props.theme.colors.textWhite};
+  stroke: var(--primary-color);
 
   @media screen and (min-width: 768px) {
     width: 44px;
@@ -101,16 +102,13 @@ export const LogoIconStyled = styled(LogoIcon)`
 
 export const WelcomeTitle = styled.h1`
   margin-bottom: 14px;
-
   font-family: ${variables['--poppins-semiBold']};
   font-weight: 600;
   font-size: 24px;
   line-height: 1;
-
   letter-spacing: -0.02em;
   font-feature-settings: 'liga' off;
-
-  color: ${props => props.theme.colors.textWhite};
+  color: var(--primary-color);
 
   @media screen and (min-width: 768px) {
     font-size: 28px;
@@ -128,7 +126,7 @@ export const WelcomeDesc = styled.p`
   text-align: center;
   letter-spacing: -0.02em;
 
-  color: ${props => props.theme.colors.textWhite};
+  color: var(--primary-color);
 
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;

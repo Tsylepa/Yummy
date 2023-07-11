@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LinkSkewStyled } from 'components/reusingComponents/ButtonSkew/ButtonSkew.styled';
+import { LinkSkewStyled } from 'components/ButtonSkew/ButtonSkew.styled';
 
 export const AuthNavList = styled.ul`
   display: flex;
@@ -12,13 +12,13 @@ export const AuthNavList = styled.ul`
 
 export const AuthNavLink = styled(LinkSkewStyled)`
   padding: 12px 24px;
-  font-size: ${props => props.theme.fontSizes.s};
+  font-size: 14px;
   line-height: 1.5;
   border-radius: 2.2rem;
 
   @media screen and (min-width: 768px) {
     padding: 22px 44px;
-    font-size: ${props => props.theme.fontSizes.m};
+    font-size: 16px;
     line-height: 1.3;
   }
 `;
@@ -28,24 +28,24 @@ export const AuthNavLinkSignIn = styled(LinkSkewStyled)`
   background-color: transparent;
   border: 2px solid;
   border-radius: 2.2rem;
-  border-color: ${props => props.theme.colors.textWhite};
-  font-size: ${props => props.theme.fontSizes.s};
+  border-color: var(--primary-color);
+  font-size: 14px;
   line-height: 1.5;
 
-  transition: border-color ${props => props.theme.effects.mainEffect},
-    color ${props => props.theme.effects.mainEffect},
-    background-color ${props => props.theme.effects.mainEffect};
+  transition: border-color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover,
   :focus {
-    background-color: ${props => props.theme.colors.textWhite};
-    color: ${props => props.theme.colors.accent};
-    border-color: ${props => props.theme.colors.accent};
+    /* background-color: var(--primary-color); */
+    color: var(--accent-color);
+    /* border-color: var(--primary-color); */
   }
 
   @media screen and (min-width: 768px) {
     padding: 20px 40px;
-    font-size: ${props => props.theme.fontSizes.m};
+    font-size: 16px;
     line-height: 1.3;
   }
 `;

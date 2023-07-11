@@ -21,7 +21,7 @@ export const FormStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   padding: 32px 28px 40px;
-  background-color: ${props => props.theme.colors.bgBlackLight};
+  background-color: #2a2c36;
   box-shadow: 0px 4px 48px rgba(0, 0, 0, 0.1);
   border-radius: 30px;
   max-width: 335px;
@@ -41,7 +41,7 @@ export const FormTitle = styled.h1`
 
   letter-spacing: -0.02em;
   font-feature-settings: 'liga' off;
-  color: ${props => props.theme.colors.textWhite};
+  color: var(--primary-color);
 
   margin-bottom: 18px;
 
@@ -76,10 +76,10 @@ export const FieldStyled = styled(Field)`
   font-size: 14px;
   line-height: 1.5;
   letter-spacing: -0.02em;
-  color: ${props => props.theme.colors.textWhite};
+  color: var(--primary-color);
   background-color: transparent;
 
-  transition: border-color ${props => props.theme.effects.mainEffect};
+  transition: border-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &::placeholder {
     color: #fafafa;
@@ -97,31 +97,31 @@ export const FieldStyled = styled(Field)`
     background-color: transparent;
 
     + svg {
-      color: ${props => props.theme.colors.textWhite};
+      color: var(--primary-color);
     }
   }
 
   label:has(div.error) & {
-    border-color: ${props => props.theme.colors.validateRed};
+    border-color: #e74a3b;
 
     + svg {
-      color: ${props => props.theme.colors.validateRed};
+      color: #e74a3b;
     }
   }
 
   label:has(div.warning) & {
-    border-color: ${props => props.theme.colors.validateYellow};
+    border-color: #f6c23e;
 
     + svg {
-      color: ${props => props.theme.colors.validateYellow};
+      color: #f6c23e;
     }
   }
 
   label:has(div.valid) & {
-    border-color: ${props => props.theme.colors.validateGreen};
+    border-color: #3cbc81;
 
     + svg {
-      color: ${props => props.theme.colors.validateGreen};
+      color: #3cbc81;
     }
   }
 
@@ -146,7 +146,7 @@ export const UserIcon = styled(FiUser)`
   top: 13px;
   left: 15px;
   color: rgba(250, 250, 250, 0.8);
-  transition: color ${props => props.theme.effects.mainEffect};
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
   width: 18px;
   height: 18px;
 
@@ -164,7 +164,7 @@ export const EmailIcon = styled(HiOutlineMail)`
   top: 19px;
   left: 18px;
   color: rgba(250, 250, 250, 0.8);
-  transition: color ${props => props.theme.effects.mainEffect};
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   top: 15px;
   left: 14px;
@@ -183,7 +183,7 @@ export const PasswordIcon = styled(FiLock)`
   top: 19px;
   left: 18px;
   color: rgba(250, 250, 250, 0.8);
-  transition: color ${props => props.theme.effects.mainEffect};
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   top: 15px;
   left: 14px;
@@ -199,15 +199,15 @@ export const PasswordIcon = styled(FiLock)`
 
 export const SubmitBtn = styled.button`
   width: 100%;
-  color: ${props => props.theme.colors.textWhite};
-  background-color: ${props => props.theme.colors.accent};
+  color: var(--primary-color);
+  background-color: var(--accent-color);
   padding: 12px;
   border: none;
   border-radius: 6px;
-  transition: color ${props => props.theme.effects.mainEffect};
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover {
-    color: ${props => props.theme.colors.bgBlackDark};
+    color: var(--secondary-color);
   }
 
   @media screen and (min-width: 768px) {
@@ -224,7 +224,7 @@ export const ErrorValidation = styled.span`
   font-family: inherit;
   font-size: 14px;
   line-height: 1.5;
-  color: ${props => props.theme.colors.validateRed};
+  color: #e74a3b;
 
   @media screen and (min-width: 768px) {
     position: absolute;
@@ -234,11 +234,11 @@ export const ErrorValidation = styled.span`
 `;
 
 export const WarningValidation = styled(ErrorValidation)`
-  color: ${props => props.theme.colors.validateYellow};
+  color: #f6c23e;
 `;
 
 export const CorrectValidation = styled(ErrorValidation)`
-  color: ${props => props.theme.colors.validateGreen};
+  color: #3cbc81;
 `;
 
 export const ErrorValidationIcon = styled(ErrorIcon)`
@@ -291,14 +291,14 @@ export const LinkStyled = styled(Link)`
   text-decoration: underline;
 
   display: block;
-  color: ${props => props.theme.colors.textWhite};
+  color: var(--primary-color);
   padding: 5px;
   width: fit-content;
   margin-top: 18px;
-  transition: color ${props => props.theme.effects.mainEffect};
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
   :hover {
-    color: ${props => props.theme.colors.accent};
+    color: var(--accent-color);
   }
 
   @media screen and (min-width: 768px) {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ContainerStyled } from 'components/reusingComponents/Container/Container.styled';
+import { StyledContainer } from 'components/Container/Container.styled';
 import imgAuthMobile from '../../images/mobile/register-page/bg-register-dark.png';
 import imgAuthMobileRetina from '../../images/mobile/register-page/bg-register-dark-2x.png';
 import imgAuthTablet from '../../images/tablet/register-page/bg-register-dark.png';
@@ -103,7 +103,7 @@ export const BgOrderFoodImg = styled.div`
   }
 `;
 
-export const ContainerAuthPageStyled = styled(ContainerStyled)`
+export const ContainerAuthPageStyled = styled(StyledContainer)`
   /* position: absolute; */
   /* bottom: 180px; */
   display: flex;

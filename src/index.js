@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../src/theme/theme';
 import { App } from 'App';
 import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
@@ -15,10 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/Yummy">
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <App />
-          </ThemeProvider>
+          <GlobalStyle />
+          <App />
         </BrowserRouter>
       </PersistGate>
     </Provider>
