@@ -1,12 +1,13 @@
 import { SigninForm } from 'components/SigninPageComponents/SigninForm';
+import { ContainerSigninPage, SigninPageSection } from './SigninPage.styled';
 
 const Signin = () => {
   return (
-    <section>
-      <div>
+    <SigninPageSection>
+      <ContainerSigninPage>
         <SigninForm />
-      </div>
-    </section>
+      </ContainerSigninPage>
+    </SigninPageSection>
   );
 };
 
