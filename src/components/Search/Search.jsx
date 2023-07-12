@@ -1,8 +1,10 @@
+import { Button } from "./Search.styled";
+
 const Search = () => {
     return (
       <>
       <input type="text" placeholder="Beaf"/>
-      <button>Search</button>
+      <Button>Search</Button>
       </>
     );
   };

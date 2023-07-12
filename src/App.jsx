@@ -5,7 +5,7 @@ import PublicRoute from './routes/PublicRoute';
 
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
-const Home = lazy(() => import('./pages/Home/Home'));
+const Main = lazy(() => import('./pages/Main/Main'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
 const NoRoute = lazy(() => import('./pages/404'));
@@ -15,8 +15,8 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
-          <Route exact index element={<Navigate to="/home" />} />
-          <Route path="home" element={<Home />}></Route>
+          <Route exact index element={<Navigate to="/main" />} />
+          <Route path="main" element={<Main />}></Route>
           <Route path="recipe" element={<AddRecipe />} />
         </Route>
 
