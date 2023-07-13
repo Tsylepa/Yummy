@@ -1,11 +1,25 @@
-import { Button } from "./Search.styled";
+import {InputButtonContainer, Button, Input } from "./Search.styled";
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+
+  const [searchValue, setSearchValue] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchValue.trim() !== '') {
+      navigate(`/search?query=${encodeURIComponent(searchValue)}`);
+    }
+  };
     return (
-      <>
-      <input type="text" placeholder="Beaf"/>
-      <Button>Search</Button>
-      </>
+      <InputButtonContainer>
+      <Input type="text" value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        placeholder="Beaf"/>
+       <Button onClick={handleSearch}>Search</Button>
+      </InputButtonContainer>
     );
   };
   

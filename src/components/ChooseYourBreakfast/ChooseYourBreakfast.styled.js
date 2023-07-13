@@ -5,7 +5,7 @@ import mediaRule from "utils/mediaRule";
 const Container = styled.div`
 width: 225px;
 height: 92px;
-margin: 137px 14px 90px 70px;
+margin: 137px 14px 115px 70px;
 
 padding: 8px 8px 30px 8px;
 border-radius: 8px;
@@ -16,6 +16,12 @@ margin-top: 18px;
 margin-right: 43px;
 margin-bottom: 240 px;
 margin-left: 475px;
+`)};
+${mediaRule("desktop", "", `
+margin-top: 24px;
+margin-right: 43px;
+margin-bottom: 240 px;
+margin-left: 759px;
 `)};`
 
 

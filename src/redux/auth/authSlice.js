@@ -24,7 +24,7 @@ const initialState = {
     theme: 'light',
   },
   token: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
   isRefreshing: false,
   isLoading: false,
   error: null,
