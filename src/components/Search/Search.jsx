@@ -15,7 +15,8 @@ const Search = () => {
   };
     return (
       <InputButtonContainer>
-      <Input type="text" value={searchValue}
+      <Input type="text" 
+      value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
         placeholder="Beaf"/>
        <Button onClick={handleSearch}>Search</Button>

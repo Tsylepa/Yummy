@@ -10,26 +10,31 @@ const CardList = styled.ul`
   justify-content: space-between;
 `;
 
+const CategoryTitle = styled.h3`
+margin-bottom: 30px`
 
 const CardItem = styled.li`
 width: 100%;
+height: 445px;
 
 ${mediaRule("tablet", "desktop", `
   width: 336px;
+  // width: 50%;
   gap: 32px;
 `)}
 
 ${mediaRule("desktop", "", `
   width: 260px;
+  // width: 25%;
   gap: 14px;
 `)};`
 
 const CardImage = styled.img`
   width: 100%;
-  height: 200px; /* Задайте бажану висоту фотографії */
+  height: 200px;
 
   object-fit: cover;
 `;
 
 
-export {CardList, CardItem, CardImage};
+export {CardList,CategoryTitle, CardItem, CardImage};
