@@ -17,7 +17,7 @@ const handleRejected = (state, action) => {
 const initialState = {
   user: { name: null, email: null, theme: 'light' },
   token: null,
-  isLoggedIn: false,
+  isLoggedIn: true,
   error: null,
   isRefreshing: false,
 };

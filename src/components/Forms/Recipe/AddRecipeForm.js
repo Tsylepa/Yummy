@@ -24,8 +24,11 @@ import {
   IngredientsList,
   InstructionsError,
 } from './AddRecipeForm.styled';
-import operations from 'redux/recipes/recipesOperations';
-import ingredients from './ingredients.json';
+import {
+  getIngredientsList,
+  getAllRecipes,
+  getCategoriesList,
+} from 'redux/recipes/recipesSelectors';
 
 const categoryOptions = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -39,10 +42,6 @@ const timeOptions = [
   { value: '90 min', label: '90 min' },
 ];
 
-const ingredientsOptions = ingredients.map(i => {
-  return { value: i._id.$oid, label: i.name };
-});
-
 const measureOptions = [
   { value: 'tbs', label: 'tbs' },
   { value: 'g', label: 'g' },
@@ -54,11 +53,16 @@ const AddRecipeForm = () => {
   const [ingredientsQty, setIngredientsQty] = useState(3);
   // const [ingredients, setIngredients] = useState([]);
   const dispatch = useDispatch();
+  const ingredients = useSelector(getAllRecipes);
+  console.log(ingredients);
 
   const onChange = imageList => {
     setImage(imageList[0]);
-    console.log(image.dataURL);
   };
+
+  const ingredientsOptions = ingredients.map(i => {
+    return { value: i._id.$oid, label: i.name };
+  });
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
@@ -86,41 +90,6 @@ const AddRecipeForm = () => {
 
     return errors;
   };
-
-  // useEffect(() => {
-  //   dispatch(operations.getAllRecipes());
-  // }, [dispatch]);
-
-  // const recipes = useSelector(state => state.recipes.all);
-
-  // console.log(recipes);
-
-  // const handleDelete = i => {
-  //   setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
-  //   setShouldUpdateIngredientsQty(true);
-  // };
-
-  // const [shouldUpdateIngredientsQty, setShouldUpdateIngredientsQty] =
-  //   useState(false);
-  // const [shouldUpdateIngredients, setShouldUpdateIngredients] = useState(false);
-
-  // useEffect(() => {
-  //   if (shouldUpdateIngredientsQty) {
-  //     setIngredientsQty(ingredients.length);
-  //     setShouldUpdateIngredientsQty(false);
-  //   }
-  // }, [ingredients.length, shouldUpdateIngredientsQty]);
-
-  // useEffect(() => {
-  //   if (shouldUpdateIngredients) {
-  //     setIngredients(Array.from({ length: ingredientsQty }, (_, i) => i));
-  //     setShouldUpdateIngredients(false);
-  //   }
-  // }, [ingredientsQty, shouldUpdateIngredients]);
-
-  // useEffect(() => {
-  //   setIngredients(Array.from({ length: ingredientsQty }, (_, i) => i));
-  // }, [ingredientsQty]);
 
   return (
     <Formik

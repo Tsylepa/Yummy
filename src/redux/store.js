@@ -22,7 +22,7 @@ const authPersistConfig = {
 const recipesPersistConfig = {
   key: 'recipes',
   storage,
-  whitelist: ['all'],
+  // whitelist: ['all'],
 };
 
 export const store = configureStore({
