@@ -14,7 +14,15 @@ export const AuthNavLink = styled(LinkSkewStyled)`
   padding: 12px 24px;
   font-size: 14px;
   line-height: 1.5;
+  border: 2px solid;
   border-radius: 2.2rem;
+  border-color: var(--primary-color);
+  :hover,
+  :focus {
+    /* background-color: var(--primary-color); */
+    color: var(--accent-color);
+    /* border-color: var(--primary-color); */
+  }
 
   @media screen and (min-width: 768px) {
     padding: 22px 44px;
@@ -25,10 +33,10 @@ export const AuthNavLink = styled(LinkSkewStyled)`
 
 export const AuthNavLinkSignIn = styled(LinkSkewStyled)`
   padding: 10px 24px;
-  background-color: transparent;
+  background-color: var(--accent-color);
   border: 2px solid;
   border-radius: 2.2rem;
-  border-color: var(--primary-color);
+
   font-size: 14px;
   line-height: 1.5;
 
