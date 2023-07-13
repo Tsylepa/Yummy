@@ -206,7 +206,8 @@ export const SubmitBtn = styled.button`
   border-radius: 6px;
   transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  :hover {
+  &:hover,
+  &:focus {
     color: var(--secondary-color);
   }
 

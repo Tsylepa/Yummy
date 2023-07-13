@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/registration', credentials);
+      const { data } = await axios.post('/auth/register', credentials);
       localStorage.setItem('userEmail', JSON.stringify(data.user.email));
       toast.success(
         'Congratulations! To verify your account, follow the link sent to your email',
@@ -30,7 +30,7 @@ export const register = createAsyncThunk(
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: 'dark',
+          // theme: 'dark',
         }
       );
       return data;
@@ -45,16 +45,40 @@ export const register = createAsyncThunk(
   }
 );
 
-// LOGIN
-const logIn = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const { data } = await axios.post('users/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    throw new Error(error.message);
+export const verification = createAsyncThunk(
+  'auth/verification',
+  async ({ email, vCode }, { rejectWithValue }) => {
+    try {
+      const {
+        data: { data },
+      } = await axios.post(`/auth/verify/${vCode}`, { email });
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
-});
+);
+
+// LOGIN
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const {
+        data: { data },
+      } = await axios.post('/auth/login', credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.error('Email or password is wrong');
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 // LOGOUT
 const logOut = createAsyncThunk('auth/logout', async credentials => {
