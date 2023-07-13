@@ -10,14 +10,22 @@ const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
 const NoRoute = lazy(() => import('./pages/404'));
 
+const SharedLayout = lazy(() => import ('./components/SharedLayout/SharedLayout'))
+
 export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<PrivateRoute />}>
+        <Route path="/" element={<PublicRoute />}>
           <Route exact index element={<Navigate to="/home" />} />
-          <Route path="home" element={<Home />}></Route>
-          <Route path="recipe" element={<AddRecipe />} />
+          
+          <Route path="/" element={<SharedLayout />} >
+            <Route path="home" element={<Home />}></Route>
+            <Route path="recipe" element={<AddRecipe />} />
+
+            <Route path="*" element={<NoRoute />} />
+          </Route>
+
         </Route>
 
         <Route path="/" element={<PublicRoute />}>
@@ -27,7 +35,7 @@ export const App = () => {
           <Route path="/signin" element={<Sigin />} />
         </Route>
 
-        <Route path="*" element={<NoRoute />} />
+        
       </Routes>
     </>
   );
