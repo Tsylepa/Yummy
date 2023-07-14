@@ -6,6 +6,8 @@ import { fetchCurrentUser } from 'redux/auth/authOperations';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import Favorites from 'pages/Favorites/Favoites';
+import useUser from 'hooks/useUser';
+import { Loader } from 'components/Loader/Loader';
 
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
@@ -27,32 +29,35 @@ export const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route exact index element={<Navigate to="/main" />} />
-          <Route path="main" element={<Main />}></Route>
-          <Route path="/recipe" element={<AddRecipe />} />
-          <Route path="/favorite" element={<Favorites />} />
-          <Route
-            path="/categories"
-            categoriesFirst={'Beef'}
-            element={<CategoriesPage />}
-          >
+      {useUser.isLoading && <Loader />}
+      <div className={useUser.isLoading ? 'blured' : ''}>
+        <Routes>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route exact index element={<Navigate to="/main" />} />
+            <Route path="main" element={<Main />}></Route>
+            <Route path="/recipe" element={<AddRecipe />} />
+            <Route path="/favorite" element={<Favorites />} />
             <Route
-              path="/categories/:categoryName"
-              element={<CategoriesRecepiesPage />}
-            />
+              path="/categories"
+              categoriesFirst={'Beef'}
+              element={<CategoriesPage />}
+            >
+              <Route
+                path="/categories/:categoryName"
+                element={<CategoriesRecepiesPage />}
+              />
+            </Route>
           </Route>
-        </Route>
 
-        <Route path="/" element={<PublicRoute />}>
-          <Route path="/welcome" index element={<Welcome />} />
-          <Route path="/register" element={<Auth />} />
-          <Route path="/signin" element={<Sigin />} />
-        </Route>
+          <Route path="/" element={<PublicRoute />}>
+            <Route path="/welcome" index element={<Welcome />} />
+            <Route path="/register" element={<Auth />} />
+            <Route path="/signin" element={<Sigin />} />
+          </Route>
 
-        <Route path="*" element={<NoRoute />} />
-      </Routes>
+          <Route path="*" element={<NoRoute />} />
+        </Routes>
+      </div>
     </>
   );
 };
