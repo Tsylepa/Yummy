@@ -29,7 +29,8 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<PrivateRoute />} restricted>
-          <Route path="/main" index element={<Home />}></Route>
+          <Route exact index element={<Navigate to="/main" />} />
+          <Route path="/main" index element={<Home />} />
           <Route path="/recipe" element={<AddRecipe />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route
