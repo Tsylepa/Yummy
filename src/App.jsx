@@ -1,8 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { lazy } from 'react';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
-
 import Favorites from 'pages/Favorites/Favoites';
 
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
@@ -16,22 +18,20 @@ const CategoriesRecepiesPage = lazy(() =>
   import('./components/CategoriesCardsList/CategoriesCardsList')
 );
 
-
-
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route exact index element={<Navigate to="/home" />} />
-          <Route path="home" element={<Home />}></Route>
-          <Route path="recipe" element={<AddRecipe />} />
-          <Route path='favorite' element={<Favorites/>} />
-        </Route>
-
-        <Route path="/" element={<PublicRoute />}>
-          <Route exact index element={<Navigate to="/welcome" />} />
-          <Route path="/welcome" element={<Welcome />} />
+        <Route path="/" element={<PrivateRoute />} restricted>
+          <Route path="/main" index element={<Home />}></Route>
+          <Route path="/recipe" element={<AddRecipe />} />
+          <Route path="/favorite" element={<Favorites />} />
           <Route
             path="/categories"
             categoriesFirst={'Beef'}
@@ -42,8 +42,11 @@ export const App = () => {
               element={<CategoriesRecepiesPage />}
             />
           </Route>
+        </Route>
 
-          <Route path="/auth" element={<Auth />} />
+        <Route path="/" element={<PublicRoute />}>
+          <Route path="/welcome" index element={<Welcome />} />
+          <Route path="/register" element={<Auth />} />
           <Route path="/signin" element={<Sigin />} />
         </Route>
 
