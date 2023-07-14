@@ -9,7 +9,7 @@ import Favorites from 'pages/Favorites/Favoites';
 
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
-const Home = lazy(() => import('./pages/Home'));
+const Main = lazy(() => import('./pages/Main/Main'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
 const NoRoute = lazy(() => import('./pages/404'));
@@ -28,9 +28,9 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<PrivateRoute />} restricted>
+        <Route path="/" element={<PrivateRoute />}>
           <Route exact index element={<Navigate to="/main" />} />
-          <Route path="/main" index element={<Home />} />
+          <Route path="main" element={<Main />}></Route>
           <Route path="/recipe" element={<AddRecipe />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route
