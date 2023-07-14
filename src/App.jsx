@@ -27,7 +27,7 @@ export const App = () => {
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-  console.log(isLoading);
+
   return (
     <>
       {isLoading && <Loader />}
