@@ -14,39 +14,37 @@ import {
   LogoIconStyled,
   OpenButton,
   CloseButton,
-
-  ThemeTogglerWrapper
-} from './Header.styled'
+  ThemeTogglerWrapper,
+} from './Header.styled';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hideOrShow, setHideOrShow] = useState({});
-  
+
   const handleMenu = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen(prev => !prev);
     if (isOpen) {
       setHideOrShow(() => {
-        return {}
-      })
+        return {};
+      });
     } else {
       setHideOrShow(() => {
-        return { transform: "translateY(0)" }
-      })
+        return { transform: 'translateY(0)' };
+      });
     }
-  }
+  };
 
   return (
     <>
       <Burger style={hideOrShow}>
-        <BurgerHeader >
-          <Link to="/home" onClick={handleMenu}>
+        <BurgerHeader>
+          <Link to="/main" onClick={handleMenu}>
             <LogoIconStyled />
           </Link>
-          
-          <CloseButton onClick={handleMenu} >
-			    	<Icon name="icon-Exit" width="14px" height="14px"></Icon>
-          </CloseButton>
 
+          <CloseButton onClick={handleMenu}>
+            <Icon name="icon-Exit" width="14px" height="14px"></Icon>
+          </CloseButton>
         </BurgerHeader>
 
         <BurgerNav>
@@ -55,11 +53,18 @@ const Header = () => {
           <NavLinkStyled to="/myrecipes">My recipes</NavLinkStyled>
           <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
           <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
-          <NavLinkStyled to="/search"><Icon name="icon-search" fill="transparent" width="24px" height="24px"></Icon> Search</NavLinkStyled>
+          <NavLinkStyled to="/search">
+            <Icon
+              name="icon-search"
+              fill="transparent"
+              width="24px"
+              height="24px"
+            ></Icon>{' '}
+            Search
+          </NavLinkStyled>
         </BurgerNav>
-        
+
         <ThemeToggler />
-        
       </Burger>
 
       <HeaderWraper>
@@ -73,24 +78,28 @@ const Header = () => {
           <NavLinkStyled to="/myrecipe">My recipes</NavLinkStyled>
           <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
           <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
-          <NavLinkStyled to="/search"><Icon name="icon-search" fill="transparent" width="24px" height="24px"></Icon></NavLinkStyled>
+          <NavLinkStyled to="/search">
+            <Icon
+              name="icon-search"
+              fill="transparent"
+              width="24px"
+              height="24px"
+            ></Icon>
+          </NavLinkStyled>
         </HeaderNav>
 
-        <User>
-           User 
-        </User>
-         
+        <User>User</User>
+
         <ThemeTogglerWrapper>
-          <ThemeToggler  />
+          <ThemeToggler />
         </ThemeTogglerWrapper>
-        
-          
+
         <OpenButton onClick={handleMenu}>
           <Icon name="icon-Burger_menu" width="24px" height="16px"></Icon>
         </OpenButton>
       </HeaderWraper>
     </>
-  )
+  );
 };
 
 export default Header;
