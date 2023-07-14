@@ -3,113 +3,106 @@ import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
 import { NavLink } from 'react-router-dom';
 
 export const Burger = styled.div`
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 300;
-    width: 100%;
-    height: 100%;
-    padding-top: 18px;
-    padding-right: 16px;
-    padding-bottom: 18px;
-    padding-left: 16px;
-    background-color: var(--accent-light-color);
-    transform: translateY(-150%);
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 300;
+  width: 100%;
+  height: 100%;
+  padding-top: 18px;
+  padding-right: 16px;
+  padding-bottom: 18px;
+  padding-left: 16px;
+  background-color: var(--accent-light-color);
+  transform: translateY(-150%);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 22px;
-    letter-spacing: 0em;
-    text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 export const BurgerHeader = styled.div`
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    margin: auto;
-    justify-content: space-between;
-    width: 288px;
-    
-@media screen and (min-width: 768px) {
-    width: 704px;
-    }
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin: auto;
+  justify-content: space-between;
+  width: 288px;
 
-@media screen and (min-width: 1280px) {
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1280px) {
     width: 1280px;
-    }
+  }
 `;
 
 export const CloseButton = styled.button`
-    width: 28px;
-    height: 28px;
-    padding: 4px 7px 4px 7px;
-    background-color: transparent;
-    border: transparent;
+  width: 28px;
+  height: 28px;
+  padding: 4px 7px 4px 7px;
+  background-color: transparent;
+  border: transparent;
 `;
 
 export const BurgerNav = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 32px;
-       
-    margin: auto;
-    margin-top: 124px;
-    margin-bottom: 203px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
 
-    font-family: Poppins;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 18px;
-    letter-spacing: -0.02em;
+  margin: auto;
+  margin-top: 124px;
+  margin-bottom: 203px;
 
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
 `;
 
 export const NavLinkStyled = styled(NavLink)`
-    &.active {
+  &.active {
     color: var(--accent-color);
-    }
+  }
 `;
 
 export const HeaderWraper = styled.div`
-    display: flex;
-    align-items: center;
-    width: auto;
-    height: 40px;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  justify-content: space-between;
 
-    margin-top: 14px;
-    margin-bottom: 50px;
+  margin-top: 14px;
+  margin-bottom: 50px;
 `;
 
 export const LogoIconStyled = styled(LogoIcon)`
-    width: 22px;
-    height: 22px;
-    stroke: var(--primary-color);
-    background-color: var(--accent-color);
-    border-radius: 6px;
-    padding: 6px;
-  
-@media screen and (min-width: 768px) {
+  width: 22px;
+  height: 22px;
+  stroke: var(--primary-color);
+  background-color: var(--accent-color);
+  border-radius: 6px;
+  padding: 6px;
+
+  @media screen and (min-width: 768px) {
     width: 30px;
     height: 30px;
-    padding:7px;
+    padding: 7px;
     border-radius: 12px;
-    }
+  }
 `;
 
 export const HeaderNav = styled.div`
     display: none;
-
-    font-family: Poppins;
     font-size: 14px;
-    font-weight: 500;
     line-height: 22px;
     letter-spacing: 0em;
 
@@ -126,17 +119,17 @@ export const HeaderNav = styled.div`
 `;
 
 export const User = styled.div`
-    width: 46px;
-    margin-left: auto;
+  width: 46px;
+  margin-left: auto;
 
-    border-radius: 12px;
-    background-color: yellow;
+  border-radius: 12px;
+  background-color: yellow;
 `;
 
 export const ThemeTogglerWrapper = styled.div`
-    display: none;
+  display: none;
 
-@media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     display: block;
     width: 61px;
     height: 27px;
@@ -144,7 +137,7 @@ export const ThemeTogglerWrapper = styled.div`
 
     border-radius: 12px;
     background-color: yellow;
-    }
+  }
 `;
 
 export const OpenButton = styled.button`
