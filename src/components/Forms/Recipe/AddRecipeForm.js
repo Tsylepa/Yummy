@@ -24,24 +24,14 @@ import {
   IngredientsList,
   InstructionsError,
 } from './AddRecipeForm.styled';
-import operations from 'redux/recipes/recipesOperations';
-import ingredients from './ingredients.json';
-
-const categoryOptions = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
+import { getIngredients, getCategories } from 'api/addRecipe';
+import Icon from 'components/IconComponent/Icon';
 
 const timeOptions = [
   { value: '30 min', label: '30 min' },
   { value: '60 min', label: '60 min' },
   { value: '90 min', label: '90 min' },
 ];
-
-const ingredientsOptions = ingredients.map(i => {
-  return { value: i._id.$oid, label: i.name };
-});
 
 const measureOptions = [
   { value: 'tbs', label: 'tbs' },
@@ -52,17 +42,47 @@ const measureOptions = [
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
   const [ingredientsQty, setIngredientsQty] = useState(3);
-  // const [ingredients, setIngredients] = useState([]);
-  const dispatch = useDispatch();
+  const [ingredients, setIngredients] = useState(
+    Array.from({ length: ingredientsQty }, (_, i) => {
+      return { id: '', name: '', measure: '' };
+    })
+  );
+  const [ingredientsList, setIngredientsList] = useState([]);
+  const [categoriesList, setCategoriesList] = useState([]);
+
+  useEffect(() => {
+    const runEffect = async () => {
+      try {
+        const fetchedIngredientsList = await getIngredients();
+        const fetchedCategoriesList = await getCategories();
+
+        setIngredientsList(fetchedIngredientsList);
+        setCategoriesList(fetchedCategoriesList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    runEffect();
+  }, []);
 
   const onChange = imageList => {
     setImage(imageList[0]);
-    console.log(image.dataURL);
   };
+
+  const categoriesOptions = categoriesList.map(ctg => {
+    return { value: ctg._id, label: ctg.name };
+  });
+
+  const ingredientsOptions = ingredientsList.map(i => {
+    return { value: i._id.$oid, label: i.name };
+  });
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
-    console.log(values);
+  };
+
+  const handleDeleteIngredient = i => {
+    setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
   };
 
   const validateForm = values => {
@@ -87,180 +107,150 @@ const AddRecipeForm = () => {
     return errors;
   };
 
-  // useEffect(() => {
-  //   dispatch(operations.getAllRecipes());
-  // }, [dispatch]);
-
-  // const recipes = useSelector(state => state.recipes.all);
-
-  // console.log(recipes);
-
-  // const handleDelete = i => {
-  //   setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
-  //   setShouldUpdateIngredientsQty(true);
-  // };
-
-  // const [shouldUpdateIngredientsQty, setShouldUpdateIngredientsQty] =
-  //   useState(false);
-  // const [shouldUpdateIngredients, setShouldUpdateIngredients] = useState(false);
-
-  // useEffect(() => {
-  //   if (shouldUpdateIngredientsQty) {
-  //     setIngredientsQty(ingredients.length);
-  //     setShouldUpdateIngredientsQty(false);
-  //   }
-  // }, [ingredients.length, shouldUpdateIngredientsQty]);
-
-  // useEffect(() => {
-  //   if (shouldUpdateIngredients) {
-  //     setIngredients(Array.from({ length: ingredientsQty }, (_, i) => i));
-  //     setShouldUpdateIngredients(false);
-  //   }
-  // }, [ingredientsQty, shouldUpdateIngredients]);
-
-  // useEffect(() => {
-  //   setIngredients(Array.from({ length: ingredientsQty }, (_, i) => i));
-  // }, [ingredientsQty]);
-
   return (
     <Formik
       initialValues={{
-        thumb: '',
+        thumb: null,
         title: '',
         description: '',
         category: '',
         time: '',
-        ingredients: [],
+        ingredients,
         instructions: '',
       }}
       validate={validateForm}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, values }) => (
-        <StyledForm>
-          <Info>
+      {({ isSubmitting, values }) => {
+        values.thumb = image ? image.dataURL : null;
+
+        return (
+          <StyledForm>
+            <Info>
+              <div>
+                <ImageUploading onChange={onChange}>
+                  {({ onImageUpdate }) => (
+                    <ImageWrapper onClick={onImageUpdate}>
+                      {image ? (
+                        <img src={values.thumb} alt="" />
+                      ) : (
+                        <UploadBtn>
+                          <Icon name="camera" width="64" height="64" />
+                        </UploadBtn>
+                      )}
+                    </ImageWrapper>
+                  )}
+                </ImageUploading>
+              </div>
+              <Desc>
+                <DescField>
+                  <DescLabel htmlFor="title">Enter item title</DescLabel>
+                  <Input type="text" id="title" name="title" />
+                  <ErrorMessage name="title" component={Error} />
+                </DescField>
+
+                <DescField>
+                  <DescLabel htmlFor="description">
+                    Enter about recipe
+                  </DescLabel>
+                  <Input id="description" name="description" />
+                  <ErrorMessage name="description" component={Error} />
+                </DescField>
+
+                <DescField>
+                  <DescLabel>Category</DescLabel>
+                  <DescSelect
+                    id="category"
+                    name="category"
+                    options={categoriesOptions}
+                    onChange={selected => (values.category = selected.value)}
+                  />
+                </DescField>
+
+                <DescField>
+                  <DescLabel>Cooking time</DescLabel>
+                  <DescSelect
+                    id="time"
+                    options={timeOptions}
+                    onChange={selected => (values.time = selected.value)}
+                  />
+                </DescField>
+              </Desc>
+            </Info>
+
             <div>
-              <ImageUploading onChange={onChange}>
-                {({
-                  imageList,
-                  onImageUpload,
-                  onImageRemoveAll,
-                  onImageUpdate,
-                  onImageRemove,
-                  isDragging,
-                  dragProps,
-                }) => (
-                  <ImageWrapper onClick={onImageUpdate}>
-                    {(values.thumb = image ? image.dataURL : '')}
-                    {image ? <img src={values.thumb} alt="" /> : <UploadBtn />}
-                  </ImageWrapper>
-                )}
-              </ImageUploading>
-            </div>
-            <Desc>
-              <DescField>
-                <DescLabel htmlFor="title">Enter item title</DescLabel>
-                <Input type="text" id="title" name="title" />
-                <ErrorMessage name="title" component={Error} />
-              </DescField>
-
-              <DescField>
-                <DescLabel htmlFor="description">Enter about recipe</DescLabel>
-                <Input id="description" name="description" />
-                <ErrorMessage name="description" component={Error} />
-              </DescField>
-
-              <DescField>
-                <DescLabel>Category</DescLabel>
-                <DescSelect
-                  id="category"
-                  name="category"
-                  options={categoryOptions}
-                  onChange={selected => (values.category = selected.value)}
-                />
-              </DescField>
-
-              <DescField>
-                <DescLabel>Cooking time</DescLabel>
-                <DescSelect
-                  id="time"
-                  options={timeOptions}
-                  onChange={selected => (values.time = selected.value)}
-                />
-              </DescField>
-            </Desc>
-          </Info>
-
-          <div>
-            <IngredientsHeader>
-              <FormTitle>Ingredients</FormTitle>
-              <QtySelector>
-                <span onClick={() => setIngredientsQty(prevQty => prevQty - 1)}>
-                  -
-                </span>
-                <span>{ingredientsQty}</span>
-                <span onClick={() => setIngredientsQty(prevQty => prevQty + 1)}>
-                  +
-                </span>
-              </QtySelector>
-            </IngredientsHeader>
-            <IngredientsList>
-              {Array.from({ length: ingredientsQty }, (_, i) => (
-                <IngredientContainer key={i}>
-                  <Ingredient
-                    id={`ingredients[${i}]`}
-                    options={ingredientsOptions}
-                    onChange={selected => {
-                      values.ingredients[i] = {
-                        id: selected.value,
-                        name: selected.label,
-                      };
-                      console.log(values);
-                    }}
-                  />
-                  <ErrorMessage
-                    name={`ingredientsError[${i}]`}
-                    component={Error}
-                  />
-
-                  <Select
-                    id={`measure[${i}]`}
-                    options={measureOptions}
-                    onChange={selected => {
-                      values.ingredients[i].measure = selected.value;
-                      console.log(values);
-                    }}
-                  />
-                  <ErrorMessage name={`measureError[${i}]`} component={Error} />
-
-                  <button
-                    type="button"
-                    // onClick={() => handleDelete(i)}
+              <IngredientsHeader>
+                <FormTitle>Ingredients</FormTitle>
+                <QtySelector>
+                  <span
+                    onClick={() => setIngredientsQty(prevQty => prevQty - 1)}
                   >
-                    X
-                  </button>
-                </IngredientContainer>
-              ))}
-            </IngredientsList>
-          </div>
+                    -
+                  </span>
+                  <span>{ingredientsQty}</span>
+                  <span
+                    onClick={() => setIngredientsQty(prevQty => prevQty + 1)}
+                  >
+                    +
+                  </span>
+                </QtySelector>
+              </IngredientsHeader>
+              <IngredientsList>
+                {Array.from({ length: ingredientsQty }, (_, i) => (
+                  <IngredientContainer key={i}>
+                    <Ingredient
+                      id={`ingredients[${i}]`}
+                      options={ingredientsOptions}
+                      onChange={selected => {
+                        values.ingredients[i] = {
+                          id: selected.value,
+                          name: selected.label,
+                        };
+                        console.log(values);
+                      }}
+                    />
+                    <ErrorMessage
+                      name={`ingredientsError[${i}]`}
+                      component={Error}
+                    />
 
-          <Preparation>
-            <FormTitle htmlFor="instructions">Recipe Preparation</FormTitle>
-            <Instructions
-              as="textarea"
-              id="instructions"
-              name="instructions"
-              placeholder="Enter recipe"
-              rows="5"
-            />
-            <ErrorMessage name="instructions" component={InstructionsError} />
-          </Preparation>
+                    <Select
+                      id={`measure[${i}]`}
+                      options={measureOptions}
+                      onChange={selected => {
+                        values.ingredients[i].measure = selected.value;
+                        console.log(values);
+                      }}
+                    />
+                    <ErrorMessage
+                      name={`measureError[${i}]`}
+                      component={Error}
+                    />
 
-          <button type="submit" disabled={isSubmitting}>
-            Add Recipe
-          </button>
-        </StyledForm>
-      )}
+                    <button type="button">X</button>
+                  </IngredientContainer>
+                ))}
+              </IngredientsList>
+            </div>
+
+            <Preparation>
+              <FormTitle htmlFor="instructions">Recipe Preparation</FormTitle>
+              <Instructions
+                as="textarea"
+                id="instructions"
+                name="instructions"
+                placeholder="Enter recipe"
+                rows="5"
+              />
+              <ErrorMessage name="instructions" component={InstructionsError} />
+            </Preparation>
+
+            <button type="submit" disabled={isSubmitting}>
+              Add Recipe
+            </button>
+          </StyledForm>
+        );
+      }}
     </Formik>
   );
 };

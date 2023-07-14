@@ -3,10 +3,11 @@ import { Suspense } from 'react';
 import useUser from 'hooks/useUser';
 
 const PublicRoute = () => {
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, isLoading } = useUser();
+  const shouldRedirect = !isLoading && isLoggedIn;
 
-  return isLoggedIn ? (
-    <Navigate to="/home" />
+  return shouldRedirect ? (
+    <Navigate to="/main" />
   ) : (
     <Suspense fallback={<p>Loading...</p>}>
       <Outlet />
