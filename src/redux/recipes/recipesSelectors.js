@@ -1,1 +1,1 @@
-export const getAllRecipes = state => state;
+export const getRecipeIsLoading = state => state.recipe.isLoading;

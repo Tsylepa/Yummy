@@ -5,8 +5,8 @@ import useUser from 'hooks/useUser';
 import SharedLayout from 'components/SharedLayout';
 
 const PrivateRoute = () => {
-  const { isLoggedIn } = useUser();
-  const shouldRedirect = !isLoggedIn;
+  const { isLoggedIn, isLoading } = useUser();
+  const shouldRedirect = !isLoading && !isLoggedIn;
 
   return shouldRedirect ? (
     <Navigate to="/welcome" />

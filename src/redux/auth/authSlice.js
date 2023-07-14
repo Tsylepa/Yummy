@@ -6,26 +6,18 @@ const { register, logIn, logOut, verification, fetchCurrentUser, toggleTheme } =
 
 const handlePending = state => {
   state.error = null;
-  state.isRefreshing = true;
+  state.isLoading = true;
 };
 
 const handleRejected = (state, action) => {
   state.error = action.payload;
-  state.isRefreshing = false;
+  state.isLoading = false;
 };
 
 const initialState = {
-  user: {
-    name: null,
-    email: null,
-    avatarUrl: null,
-    createdAt: null,
-    verify: false,
-    theme: 'light',
-  },
+  user: null,
   token: null,
-  isLoggedIn: true,
-  isRefreshing: false,
+  isLoggedIn: false,
   isLoading: false,
   error: null,
 };
@@ -67,37 +59,44 @@ const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.user = payload;
         state.isLoggedIn = true;
         state.token = payload.token;
-        state.user = payload.user;
       })
       .addCase(logIn.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
       // LOGOUT
-      .addCase(logOut.pending, state => {
-        state.isLoading = true;
-      })
+      .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         state.isLoggedIn = false;
         state.token = null;
         state.error = payload;
+        state.isLoading = false;
       })
       .addCase(logOut.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+        state.isLoading = false;
       })
 
       // FETCH CURRENT USER
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoggedIn = false;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(fetchCurrentUser.pending, handlePending)
-      .addCase(fetchCurrentUser.rejected, handleRejected)
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        handleRejected(state, action);
+        state.token = null;
+        state.isLoggedIn = false;
+        state.user = null;
+      })
 
       // TOGGLE THEME
       .addCase(toggleTheme.fulfilled, (state, action) => {
