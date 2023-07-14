@@ -38,7 +38,7 @@ const Header = () => {
     <>
       <Burger style={hideOrShow}>
         <BurgerHeader>
-          <Link to="/main" onClick={handleMenu}>
+          <Link to="/home" onClick={handleMenu}>
             <LogoIconStyled />
           </Link>
 
@@ -48,12 +48,12 @@ const Header = () => {
         </BurgerHeader>
 
         <BurgerNav>
-          <NavLinkStyled to="/categories">Categories</NavLinkStyled>
-          <NavLinkStyled to="/recipe">Add recipes</NavLinkStyled>
-          <NavLinkStyled to="/myrecipes">My recipes</NavLinkStyled>
-          <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
-          <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
-          <NavLinkStyled to="/search">
+          <NavLinkStyled to="/categories" onClick={handleMenu}>Categories</NavLinkStyled>
+          <NavLinkStyled to="/addrecipe" onClick={handleMenu}>Add recipes</NavLinkStyled>
+          <NavLinkStyled to="/myrecipes" onClick={handleMenu}>My recipes</NavLinkStyled>
+          <NavLinkStyled to="/favorites" onClick={handleMenu}>Favorites</NavLinkStyled>
+          <NavLinkStyled to="/shopping" onClick={handleMenu}>Shopping list</NavLinkStyled>
+          <NavLinkStyled to="/search" onClick={handleMenu}>
             <Icon
               name="icon-search"
               fill="transparent"
@@ -68,13 +68,13 @@ const Header = () => {
       </Burger>
 
       <HeaderWraper>
-        <Link to="/main">
+        <Link to="/home">
           <LogoIconStyled />
         </Link>
 
         <HeaderNav>
           <NavLinkStyled to="/categories">Categories</NavLinkStyled>
-          <NavLinkStyled to="/recipe">Add recipes</NavLinkStyled>
+          <NavLinkStyled to="/addrecipe">Add recipes</NavLinkStyled>
           <NavLinkStyled to="/myrecipe">My recipes</NavLinkStyled>
           <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
           <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
