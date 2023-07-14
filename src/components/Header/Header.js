@@ -68,7 +68,7 @@ const Header = () => {
       </Burger>
 
       <HeaderWraper>
-        <Link to="/home">
+        <Link to="/main">
           <LogoIconStyled />
         </Link>
 
