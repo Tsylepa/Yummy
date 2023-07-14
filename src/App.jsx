@@ -19,7 +19,7 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<PublicRoute />}>
+        <Route path="/" element={<PrivateRoute />}>
           <Route exact index element={<Navigate to="/home" />} />
 
           <Route path="/" element={<SharedLayout />} >
