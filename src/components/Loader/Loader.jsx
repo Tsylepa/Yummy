@@ -1,22 +1,32 @@
 import { ThreeCircles } from 'react-loader-spinner';
+import { Backdrop } from './Loader.styled';
 
 export const Loader = () => {
   return (
-    <ThreeCircles
-      height="80"
-      width="80"
-      color="#8AA936"
-      wrapperStyle={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '120',
-      }}
-      wrapperClass=""
-      visible={true}
-      ariaLabel="three-circles-rotating"
-      outerCircleColor=""
-      innerCircleColor=""
-      middleCircleColor=""
-    />
+    <>
+      <Backdrop />
+      <ThreeCircles
+        height="120"
+        width="120"
+        color="var(--accent-color)"
+        filter="none"
+        wrapperStyle={{
+          position: 'absolute',
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          filter: 'none',
+          zIndex: 1000,
+        }}
+        wrapperClass=""
+        visible={true}
+        ariaLabel="three-circles-rotating"
+        outerCircleColor=""
+        innerCircleColor=""
+        middleCircleColor=""
+      />
+    </>
   );
 };

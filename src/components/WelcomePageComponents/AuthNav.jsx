@@ -4,7 +4,7 @@ export const AuthNav = () => {
     <nav>
       <AuthNavList>
         <li>
-          <AuthNavLink to={'/auth'}>
+          <AuthNavLink to={'/register'}>
             <div className="inner">Registration</div>
           </AuthNavLink>
         </li>

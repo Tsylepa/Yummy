@@ -1,20 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import recipesOperations from 'redux/recipes/recipesOperations';
-
-const { getAllRecipes } = recipesOperations;
+import { addRecipe, deleteRecipe } from 'redux/recipes/recipesOperations';
 
 const handlePending = state => {
   state.error = null;
-  state.isRefreshing = true;
+  state.isLoading = true;
 };
 
 const handleRejected = (state, action) => {
   state.error = action.payload;
-  state.isRefreshing = false;
+  state.isLoading = false;
 };
 
 const initialState = {
-  all: ['sss'],
+  isLoading: false,
+  error: null,
 };
 
 const recipesSlice = createSlice({
@@ -22,12 +21,22 @@ const recipesSlice = createSlice({
   initialState,
   extraReducers: builder =>
     builder
-      // GET ALL RECIPES
-      .addCase(getAllRecipes.fulfilled, (state, action) => {
-        state.all = action.payload;
+      // ADD RECIPE
+      .addCase(addRecipe.fulfilled, (state, action) => {
+        state.all = [...state.all, action.payload];
+        state.error = null;
+        state.isLoading = false;
       })
-      .addCase(getAllRecipes.pending, handlePending)
-      .addCase(getAllRecipes.rejected, handleRejected),
+      .addCase(addRecipe.pending, handlePending)
+      .addCase(addRecipe.rejected, handleRejected)
+
+      // DELETE RECIPE
+      .addCase(deleteRecipe.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(deleteRecipe.pending, handlePending)
+      .addCase(deleteRecipe.rejected, handleRejected),
 });
 
 const recipesReducer = recipesSlice.reducer;

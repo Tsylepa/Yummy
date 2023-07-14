@@ -3,16 +3,17 @@ import { Suspense } from 'react';
 
 import useUser from 'hooks/useUser';
 import SharedLayout from 'components/SharedLayout';
+import { Loader } from 'components/Loader/Loader';
 
 const PrivateRoute = () => {
-  const { isLoggedIn } = useUser();
-  const shouldRedirect = !isLoggedIn;
+  const { isLoggedIn, isLoading } = useUser();
+  const shouldRedirect = !isLoading && !isLoggedIn;
 
   return shouldRedirect ? (
     <Navigate to="/welcome" />
   ) : (
     <SharedLayout>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </SharedLayout>
