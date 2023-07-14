@@ -59,8 +59,7 @@ ${mediaRule("tablet", "desktop", `
  height: 640px; 
 `)};
 ${mediaRule("desktop", "", `
-margin-bottom: 100px;
- background-image: url(${imgDesk});
+background-image: url(${imgDesk});
  background-size: contain;
  background-repeat: no-repeat;
  height: 800px;
