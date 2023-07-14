@@ -101,21 +101,21 @@ export const LogoIconStyled = styled(LogoIcon)`
 `;
 
 export const HeaderNav = styled.div`
-    display: none;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: 0em;
+  display: none;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0em;
 
-
-@media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     align-items: center;
     display: flex;
     gap: 30px;
     margin-left: 231px;
-    }
+  }
 
-    :hover {
+  :hover {
     color: var(--accent-color);
+  }
 `;
 
 export const User = styled.div`
@@ -141,18 +141,18 @@ export const ThemeTogglerWrapper = styled.div`
 `;
 
 export const OpenButton = styled.button`
-    display: flex;
-    margin-left: 24px;
-    background-color: transparent;
-    border: transparent;
+  display: flex;
+  margin-left: 24px;
+  background-color: transparent;
+  border: transparent;
 
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 32px;
     height: 32px;
     padding: 7px 3px;
     margin-left: 50px;
-
-@media screen and (min-width: 1280px) {
+  }
+  @media screen and (min-width: 1280px) {
     display: none;
-    }
+  }
 `;
