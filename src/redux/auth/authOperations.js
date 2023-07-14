@@ -77,7 +77,7 @@ export const logIn = createAsyncThunk(
 );
 
 // LOGOUT
-const logOut = createAsyncThunk(
+export const logOut = createAsyncThunk(
   'auth/logout',
   async (credentials, { rejectWithValue }) => {
     try {
@@ -112,13 +112,11 @@ export const fetchCurrentUser = createAsyncThunk(
 );
 
 // TOGGLE THEME
-const toggleTheme = createAsyncThunk(
+export const toggleTheme = createAsyncThunk(
   'auth/toggleTheme',
-  async (theme, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
-      const { data } = await instance.patch('/users/theme', {
-        theme,
-      });
+      const { data } = await instance.patch('/users/changeTheme', credentials);
 
       return data;
     } catch (error) {

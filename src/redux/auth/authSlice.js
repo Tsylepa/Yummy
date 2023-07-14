@@ -104,6 +104,7 @@ const authSlice = createSlice({
       })
       .addCase(toggleTheme.pending, handlePending)
       .addCase(toggleTheme.rejected, (state, action) => {
+        handleRejected(state, action);
         state.user.theme = action.meta.arg;
       }),
 });
