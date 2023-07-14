@@ -105,6 +105,7 @@ margin-top: 32px;
 
 const OtherCategoriesBtn = styled(Link)`
 margin-top: 40px;
+margin-bottom: 100px;
 margin-right: auto;
 margin-left: auto;
 display: flex;
@@ -126,6 +127,10 @@ height: 61px;
 font-size: 16px;
 font-style: normal;
 line-height: 1,5;
+`)};
+
+${mediaRule("desktop", "", `
+margin-bottom: 118px;
 `)};
 `
 
