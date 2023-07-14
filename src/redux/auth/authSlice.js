@@ -18,7 +18,7 @@ const initialState = {
   user: null,
   token: null,
   isLoggedIn: false,
-  isLoading: true,
+  isLoading: false,
   error: null,
 };
 
@@ -91,8 +91,8 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchCurrentUser.pending, handlePending)
-      .addCase(fetchCurrentUser.rejected, state => {
-        handleRejected();
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        handleRejected(state, action);
         state.token = null;
         state.isLoggedIn = false;
         state.user = null;
