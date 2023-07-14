@@ -22,15 +22,16 @@ const CategoriesRecepiesPage = lazy(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useUser();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-
+  console.log(isLoading);
   return (
     <>
-      {useUser.isLoading && <Loader />}
-      <div className={useUser.isLoading ? 'blured' : ''}>
+      {isLoading && <Loader />}
+      <div className={isLoading ? 'blured' : ''}>
         <Routes>
           <Route path="/" element={<PrivateRoute />}>
             <Route exact index element={<Navigate to="/main" />} />

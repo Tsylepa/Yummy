@@ -4,7 +4,7 @@ import { Backdrop } from './Loader.styled';
 export const Loader = () => {
   return (
     <>
-      {/* <Backdrop /> */}
+      <Backdrop />
       <ThreeCircles
         height="120"
         width="120"
