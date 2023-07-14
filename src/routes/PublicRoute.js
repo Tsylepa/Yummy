@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import useUser from 'hooks/useUser';
+import { Loader } from 'components/Loader/Loader';
 
 const PublicRoute = () => {
   const { isLoggedIn, isLoading } = useUser();
@@ -9,7 +10,7 @@ const PublicRoute = () => {
   return shouldRedirect ? (
     <Navigate to="/main" />
   ) : (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={<Loader />}>
       <Outlet />
     </Suspense>
   );

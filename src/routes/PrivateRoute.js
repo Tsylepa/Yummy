@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 
 import useUser from 'hooks/useUser';
 import SharedLayout from 'components/SharedLayout';
+import { Loader } from 'components/Loader/Loader';
 
 const PrivateRoute = () => {
   const { isLoggedIn, isLoading } = useUser();
@@ -12,7 +13,7 @@ const PrivateRoute = () => {
     <Navigate to="/welcome" />
   ) : (
     <SharedLayout>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </SharedLayout>
