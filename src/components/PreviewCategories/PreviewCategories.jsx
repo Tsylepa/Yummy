@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import {Container, CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, SeeAllBtn, SeeAllContainer,} from "./PrewiewCategories.styled";
+import {Container, CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, SeeAllBtn, SeeAllContainer,} from "./PreviewCategories.styled";
 
 
 import obj from "../../components/PreviewCategories/obj"
