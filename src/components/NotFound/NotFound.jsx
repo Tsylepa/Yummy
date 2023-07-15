@@ -3,8 +3,9 @@ import NotFoundPic from '../../images/404.svg';
 import { Section } from './NotFound.styled';
 import { BoldText, Image, Text, TextContainer } from './NotFound.styled';
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
+
     <Section>
       <StyledContainer>
         <Image
@@ -16,6 +17,8 @@ export const NotFound = () => {
         </TextContainer>
       </StyledContainer>
     </Section>
+
   );
 };
 
+export default NotFound;
