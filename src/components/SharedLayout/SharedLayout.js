@@ -5,6 +5,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import useUser from 'hooks/useUser';
 import Container from 'components/Container';
+import { Loader } from 'components/Loader/Loader';
 
 function SharedLayout() {
   const { user } = useUser();
@@ -14,7 +15,7 @@ function SharedLayout() {
       <Container>
         <Header />
       </Container>
-      <Suspense>
+      <Suspense fallback={<Loader />}>
         <Container>
           <Outlet />
         </Container>

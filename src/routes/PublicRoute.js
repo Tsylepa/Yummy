@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import useUser from 'hooks/useUser';
 import { Loader } from 'components/Loader/Loader';
 
-const PublicRoute = () => {
+const PublicRoute = ({ children }) => {
   const { isLoggedIn, isLoading } = useUser();
   const shouldRedirect = !isLoading && isLoggedIn;
 
@@ -11,6 +11,7 @@ const PublicRoute = () => {
     <Navigate to="/main" />
   ) : (
     <Suspense fallback={<Loader />}>
+      {children}
       <Outlet />
     </Suspense>
   );
