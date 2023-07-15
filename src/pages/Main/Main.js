@@ -2,7 +2,7 @@ import ChooseYourBreakfast from "components/ChooseYourBreakfast/ChooseYourBreakf
 import PreviewCategories from "components/PreviewCategories/PreviewCategories";
 import Search from "components/Search/Search";
 import {BackgroundWrapper, MainTitle, Paragraph, TitleSpan, OtherCategoriesBtn, OtherCategoriesContainer} from "./Main.styled";
-import { Link } from "react-router-dom";
+
 
 
 
@@ -17,7 +17,7 @@ const Main = () => {
     </BackgroundWrapper>
     <PreviewCategories />
     <OtherCategoriesContainer>
-        <OtherCategoriesBtn to = "/categories/:categoryName">Other categories</OtherCategoriesBtn>
+        <OtherCategoriesBtn to = "/categories/Beef">Other categories</OtherCategoriesBtn>
     </OtherCategoriesContainer>
     </>
   );
