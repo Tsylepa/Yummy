@@ -6,7 +6,7 @@ import { Input, Slider, Switch } from './ThemeToggler.styled';
 const ThemeToggler = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
-  const currentTheme = user && user.theme;
+  const currentTheme = user?.theme;
 
   const updateTheme = () => {
     const updatedTheme = currentTheme === 'light' ? 'dark' : 'light';
