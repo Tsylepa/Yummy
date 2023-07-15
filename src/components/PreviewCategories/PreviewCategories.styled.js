@@ -2,11 +2,30 @@ import styled from "styled-components"
 import mediaRule from "utils/mediaRule"
 import { Link } from "react-router-dom";
 
+const Container = styled.div`
+margin-top: 786px;
+
+${mediaRule("tablet", "desktop", `
+margin-top: 648pxpx;
+`)}
+
+${mediaRule("desktop", "", `
+margin-top: 838px;
+`)};
+`
 
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  ${mediaRule("tablet", "desktop", `
+   gap: 32px;
+  `)}
+
+${mediaRule("desktop", "", `
+       gap: 10px;
+      `)};
 `;
 
 const CategoryTitle = styled.h3`
@@ -19,23 +38,18 @@ margin-bottom: 32px
 `)};`
 
 const CardItem = styled.li`
-position: relative;
-width: 100%;
+  position: relative;
+  width: 100%;
 
+  ${mediaRule("tablet", "desktop", `
+    width: 336px;
+   `)}
 
-
-${mediaRule("tablet", "desktop", `
-  width: 336px;
-  // width: 50%;
-  gap: 32px;
-`)}
-
-${mediaRule("desktop", "", `
-  width: 260px;
-  // width: 25%;
-  gap: 14px;
-  height: 300px;
-`)};`
+  ${mediaRule("desktop", "", `
+    width: 260px;
+    height: 300px;
+  `)};
+`;
 
 const CardImage = styled.img`
   width: 100%;
@@ -61,6 +75,7 @@ line-height: 20px;
 letter-spacing: -0.24px;
 padding-left: 16px;
 padding-top: 10px;
+
 
 ${mediaRule("desktop", "", `
  position: absolute;
@@ -109,4 +124,8 @@ margin-top: 50px;
 `)};`
 
 
-export { CardList,CategoryTitle, CardItem, CardImage, RecipeTitle, SeeAllBtn, SeeAllContainer};
+
+export {Container, CardList,CategoryTitle, CardItem, CardImage, RecipeTitle, SeeAllBtn, SeeAllContainer};
+
+
+

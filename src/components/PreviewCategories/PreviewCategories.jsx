@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, SeeAllBtn, SeeAllContainer,} from "./PrewiewCategories.styled";
+
+import {Container, CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, SeeAllBtn, SeeAllContainer,} from "./PreviewCategories.styled";
+
 
 import obj from "../../components/PreviewCategories/obj"
 
@@ -45,7 +47,7 @@ import obj from "../../components/PreviewCategories/obj"
         }, []);
       
       return (
-        <div>
+        <Container>
       {Object.entries(obj).map(([category, recipes]) => (
         <div key={category}>
           <CategoryTitle>{category}</CategoryTitle>
@@ -63,7 +65,7 @@ import obj from "../../components/PreviewCategories/obj"
           
         </div>
       ))}
-    </div>
+    </Container>
       );
     };
 

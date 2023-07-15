@@ -8,7 +8,26 @@ import  {Link}  from "react-router-dom"
 
 
 
-// width: ${mediaRule('', 'mobile', 'width: 320px;')}`
+
+
+const BackgroundPicture = styled.div`
+position: absolute;
+top: 0px;
+    left: 0px;
+background-image: url(${img});
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 100vw;
+
+${mediaRule("tablet", "desktop", `
+ background-image: url(${imgTab});
+ `)};
+ 
+ ${mediaRule("desktop", "", `
+background-image: url(${imgDesk});
+`)};`
+
 
 
 const MainTitle = styled.h2`
@@ -32,8 +51,8 @@ letter-spacing: -0.36px;
 `)};
 
 ${mediaRule("desktop", "", `
- padding-top: 140px;
- margin-left: 90px;
+ padding-top: 175px;
+ margin-left: 135px;
  width: 505px;
  text-align: left;
  font-style: normal;
@@ -52,14 +71,13 @@ margin-bottom: 73px;
 position: relative;
 width: 100%;
 height: 777px;
-background-image: url(${img});
+
 background-size: contain;
 ${mediaRule("tablet", "desktop", `
- background-image: url(${imgTab});
  height: 640px; 
 `)};
 ${mediaRule("desktop", "", `
-background-image: url(${imgDesk});
+
  background-size: contain;
  background-repeat: no-repeat;
  height: 800px;
@@ -87,7 +105,7 @@ height: 54px;
 `)};
 
 ${mediaRule("desktop", "", `
-margin-left: 90px;
+margin-left: 135px;
 width: 364px;
 height: 72px;
 font-style: normal;
@@ -137,4 +155,4 @@ margin-bottom: 118px;
 
 
 
-export {BackgroundWrapper, MainTitle, TitleSpan, Paragraph, OtherCategoriesBtn, OtherCategoriesContainer}
+export {BackgroundPicture, BackgroundWrapper, MainTitle, TitleSpan, Paragraph, OtherCategoriesBtn, OtherCategoriesContainer}

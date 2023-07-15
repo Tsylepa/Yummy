@@ -18,10 +18,10 @@ margin-bottom: 240 px;
 margin-left: 475px;
 `)};
 ${mediaRule("desktop", "", `
-margin-top: 24px;
+margin-top: 93px;
 margin-right: 43px;
 margin-bottom: 240 px;
-margin-left: 759px;
+margin-left: 973px;
 `)};`
 
 
