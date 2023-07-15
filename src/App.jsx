@@ -16,6 +16,7 @@ const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
 const NoRoute = lazy(() => import('./pages/404'));
 const CategoriesPage = lazy(() => import('./pages/Categories/Categories'));
+const RecipePage = lazy(() => import('./pages/RecipePage/RecipePage'));
 const CategoriesRecepiesPage = lazy(() =>
   import('./components/CategoriesCardsList/CategoriesCardsList')
 );
@@ -37,7 +38,9 @@ export const App = () => {
             <Route exact index element={<Navigate to="/main" />} />
             <Route path="main" element={<Main />}></Route>
             <Route path="/recipe" element={<AddRecipe />} />
+            <Route path="/recipe/:recipeId" element={<RecipePage />} />
             <Route path="/favorite" element={<Favorites />} />
+            
             <Route
               path="/categories"
               categoriesFirst={'Beef'}
