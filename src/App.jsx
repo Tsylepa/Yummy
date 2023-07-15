@@ -35,14 +35,14 @@ export const App = () => {
           <Route path="/recipe" element={<AddRecipe />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/search" element={<SearchPage />} />
-          <Route
-            path="/categories"
-            categoriesFirst={'Beef'}
-            element={<CategoriesPage />}
-          >
+          <Route path="/categories" element={<CategoriesPage />}>
             <Route
               path="/categories/:categoryName"
               element={<CategoriesRecepiesPage />}
+            />
+            <Route
+              path="/categories"
+              element={<Navigate to="Beef" replace />}
             />
           </Route>
           <Route path="*" element={<NoPage />} />
@@ -52,7 +52,6 @@ export const App = () => {
           <Route path="/welcome" index element={<Welcome />} />
           <Route path="/register" element={<Auth />} />
           <Route path="/signin" element={<Sigin />} />
-          <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
     </Suspense>
