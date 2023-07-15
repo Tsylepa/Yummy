@@ -18,6 +18,14 @@ const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  ${mediaRule("tablet", "desktop", `
+   gap: 32px;
+  `)}
+
+${mediaRule("desktop", "", `
+       gap: 10px;
+      `)};
 `;
 
 const CategoryTitle = styled.h3`
@@ -30,23 +38,18 @@ margin-bottom: 32px
 `)};`
 
 const CardItem = styled.li`
-position: relative;
-width: 100%;
+  position: relative;
+  width: 100%;
 
+  ${mediaRule("tablet", "desktop", `
+    width: 336px;
+   `)}
 
-
-${mediaRule("tablet", "desktop", `
-  width: 336px;
-  // width: 50%;
-  gap: 32px;
-`)}
-
-${mediaRule("desktop", "", `
-  width: 260px;
-  // width: 25%;
-  gap: 14px;
-  height: 300px;
-`)};`
+  ${mediaRule("desktop", "", `
+    width: 260px;
+    height: 300px;
+  `)};
+`;
 
 const CardImage = styled.img`
   width: 100%;

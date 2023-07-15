@@ -2,8 +2,6 @@ import ChooseYourBreakfast from "components/ChooseYourBreakfast/ChooseYourBreakf
 import PreviewCategories from "components/PreviewCategories/PreviewCategories";
 import Search from "components/Search/Search";
 
-import { Link } from "react-router-dom";
-
 import {BackgroundPicture, BackgroundWrapper, MainTitle, Paragraph, TitleSpan, OtherCategoriesBtn, OtherCategoriesContainer} from "./Main.styled";
 
 

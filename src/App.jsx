@@ -28,15 +28,20 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {isLoading && <Loader />}
-      <div className={isLoading ? 'blured' : ''}>
-        <Routes>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route exact index element={<Navigate to="/main" />} />
-            <Route path="main" element={<Main />}></Route>
-            <Route path="/recipe" element={<AddRecipe />} />
-            <Route path="/favorite" element={<Favorites />} />
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<PrivateRoute />}>
+          <Route exact index element={<Navigate to="/main" />} />
+          <Route path="/main" element={<Main />}></Route>
+          <Route path="/recipe" element={<AddRecipe />} />
+          <Route path="/recipe/recipeId" element={<RecipePage />}/>
+          <Route path="/favorite" element={<Favorites />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/categories" element={<CategoriesPage />}>
+            <Route
+              path="/categories/:categoryName"
+              element={<CategoriesRecepiesPage />}
+            />
             <Route
               path="/categories"
               element={<Navigate to="Beef" replace />}

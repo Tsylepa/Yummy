@@ -15,8 +15,9 @@ position: absolute;
 top: 0px;
     left: 0px;
 background-image: url(${img});
-background-size: cover;
+background-size: contain;
 background-position: center;
+background-repeat: no-repeat;
 width: 100vw;
 
 ${mediaRule("tablet", "desktop", `
@@ -50,8 +51,8 @@ letter-spacing: -0.36px;
 `)};
 
 ${mediaRule("desktop", "", `
- padding-top: 140px;
- margin-left: 90px;
+ padding-top: 175px;
+ margin-left: 135px;
  width: 505px;
  text-align: left;
  font-style: normal;
@@ -104,7 +105,7 @@ height: 54px;
 `)};
 
 ${mediaRule("desktop", "", `
-margin-left: 90px;
+margin-left: 135px;
 width: 364px;
 height: 72px;
 font-style: normal;

@@ -26,8 +26,8 @@ const InputButtonContainer = styled.div`
 
 ${mediaRule("desktop", "", `
 position: absolute;
- top: 360px;
-    left: 90px;
+ top: 462px;
+    left: 135px;
     padding: 10px;
     width: 426px;
     height: 52px;
