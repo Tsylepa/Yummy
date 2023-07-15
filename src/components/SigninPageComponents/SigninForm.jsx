@@ -19,7 +19,6 @@ import { signinSchema, ValidMessage } from './validationSignin';
 import operations from 'redux/auth/authOperations';
 
 const initialValue = {
-  name: '',
   email: '',
   password: '',
 };
@@ -80,7 +79,7 @@ export const SigninForm = () => {
         )}
       </Formik>
 
-      <LinkRegisterStyled to={'/auth'}>Registration</LinkRegisterStyled>
+      <LinkRegisterStyled to={'/register'}>Registration</LinkRegisterStyled>
     </FormWrapper>
   );
 };

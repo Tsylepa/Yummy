@@ -2,16 +2,16 @@ import { useSelector } from 'react-redux';
 import { authSelectors } from 'redux/auth/authSelectors';
 
 const useUser = () => {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const user = useSelector(authSelectors.getUser);
-  const isRefreshing = useSelector(authSelectors.getIsRefreshing);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const isLoading = useSelector(authSelectors.getIsLoading);
+  // const userTheme = useSelector(authSelectors.getTheme);
 
   return {
-    isLoggedIn,
     user,
-    isRefreshing,
+    isLoggedIn,
     isLoading,
+    // userTheme,
   };
 };
 
