@@ -5,18 +5,19 @@ import useUser from 'hooks/useUser';
 import SharedLayout from 'components/SharedLayout';
 import { Loader } from 'components/Loader/Loader';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children }) => {
   const { isLoggedIn, isLoading } = useUser();
   const shouldRedirect = !isLoading && !isLoggedIn;
 
   return shouldRedirect ? (
     <Navigate to="/welcome" />
   ) : (
-    <SharedLayout>
-      <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader />}>
+      <SharedLayout>
+        {children}
         <Outlet />
-      </Suspense>
-    </SharedLayout>
+      </SharedLayout>
+    </Suspense>
   );
 };
 

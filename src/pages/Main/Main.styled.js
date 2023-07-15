@@ -8,7 +8,7 @@ import  {Link}  from "react-router-dom"
 
 
 
-// width: ${mediaRule('', 'mobile', 'width: 320px;')}`
+
 
 const BackgroundPicture = styled.div`
 position: absolute;
@@ -26,6 +26,7 @@ ${mediaRule("tablet", "desktop", `
  ${mediaRule("desktop", "", `
 background-image: url(${imgDesk});
 `)};`
+
 
 
 const MainTitle = styled.h2`
@@ -65,7 +66,7 @@ const TitleSpan = styled.span`
 color: var(--accent-color)`
 
 const BackgroundWrapper = styled.div`
-/* margin-bottom: 73px; */
+margin-bottom: 73px;
 position: relative;
 width: 100%;
 height: 777px;
@@ -75,15 +76,9 @@ ${mediaRule("tablet", "desktop", `
  height: 640px; 
 `)};
 ${mediaRule("desktop", "", `
-<<<<<<< Updated upstream
-margin-bottom: 100px;
- background-image: url(${imgDesk});
+
  background-size: contain;
  background-repeat: no-repeat;
-=======
-//  background-size: contain;
-//  background-repeat: no-repeat;
->>>>>>> Stashed changes
  height: 800px;
 `)};`
 
@@ -127,6 +122,7 @@ margin-top: 32px;
 
 const OtherCategoriesBtn = styled(Link)`
 margin-top: 40px;
+margin-bottom: 100px;
 margin-right: auto;
 margin-left: auto;
 display: flex;
@@ -148,6 +144,10 @@ height: 61px;
 font-size: 16px;
 font-style: normal;
 line-height: 1,5;
+`)};
+
+${mediaRule("desktop", "", `
+margin-bottom: 118px;
 `)};
 `
 

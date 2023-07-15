@@ -1,13 +1,13 @@
 import ChooseYourBreakfast from "components/ChooseYourBreakfast/ChooseYourBreakfast";
 import PreviewCategories from "components/PreviewCategories/PreviewCategories";
 import Search from "components/Search/Search";
-<<<<<<< Updated upstream
-import {BackgroundWrapper, MainTitle, Paragraph, TitleSpan, OtherCategoriesBtn, OtherCategoriesContainer} from "./Main.styled";
+
 import { Link } from "react-router-dom";
-=======
+
 import {BackgroundPicture, BackgroundWrapper, MainTitle, Paragraph, TitleSpan, OtherCategoriesBtn, OtherCategoriesContainer} from "./Main.styled";
 
->>>>>>> Stashed changes
+
+
 
 
 
@@ -23,7 +23,7 @@ const Main = () => {
     </BackgroundPicture>
     <PreviewCategories />
     <OtherCategoriesContainer>
-        <OtherCategoriesBtn to = "/categories/:categoryName">Other categories</OtherCategoriesBtn>
+        <OtherCategoriesBtn to = "/categories/Beef">Other categories</OtherCategoriesBtn>
     </OtherCategoriesContainer>
     </>
   );

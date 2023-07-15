@@ -6,8 +6,6 @@ export const getToken = state => state.auth.token;
 
 export const getIsLoading = state => state.auth.isLoading;
 
-export const getTheme = state => state.auth.user.theme;
-
 export const authSelectors = {
   getIsLoggedIn,
   getUser,
