@@ -10,6 +10,23 @@ import  {Link}  from "react-router-dom"
 
 // width: ${mediaRule('', 'mobile', 'width: 320px;')}`
 
+const BackgroundPicture = styled.div`
+position: absolute;
+top: 0px;
+    left: 0px;
+background-image: url(${img});
+background-size: cover;
+background-position: center;
+width: 100vw;
+
+${mediaRule("tablet", "desktop", `
+ background-image: url(${imgTab});
+ `)};
+ 
+ ${mediaRule("desktop", "", `
+background-image: url(${imgDesk});
+`)};`
+
 
 const MainTitle = styled.h2`
 margin-bottom:14px;
@@ -48,21 +65,25 @@ const TitleSpan = styled.span`
 color: var(--accent-color)`
 
 const BackgroundWrapper = styled.div`
-margin-bottom: 73px;
+/* margin-bottom: 73px; */
 position: relative;
 width: 100%;
 height: 777px;
-background-image: url(${img});
+
 background-size: contain;
 ${mediaRule("tablet", "desktop", `
- background-image: url(${imgTab});
  height: 640px; 
 `)};
 ${mediaRule("desktop", "", `
+<<<<<<< Updated upstream
 margin-bottom: 100px;
  background-image: url(${imgDesk});
  background-size: contain;
  background-repeat: no-repeat;
+=======
+//  background-size: contain;
+//  background-repeat: no-repeat;
+>>>>>>> Stashed changes
  height: 800px;
 `)};`
 
@@ -133,4 +154,4 @@ line-height: 1,5;
 
 
 
-export {BackgroundWrapper, MainTitle, TitleSpan, Paragraph, OtherCategoriesBtn, OtherCategoriesContainer}
+export {BackgroundPicture, BackgroundWrapper, MainTitle, TitleSpan, Paragraph, OtherCategoriesBtn, OtherCategoriesContainer}

@@ -12,6 +12,7 @@ const InputButtonContainer = styled.div`
     height: 52px;
     border: 1px solid #BDBDBD;
     border-radius: 24px 44px;
+    background-color: var(--primary-color);
 
     ${mediaRule("tablet", "desktop", `
     position: absolute;

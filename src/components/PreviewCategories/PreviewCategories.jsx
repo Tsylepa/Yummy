@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
+<<<<<<< Updated upstream
 import { CardList, CardItem, CardImage, CategoryTitle } from "./PrewiewCategories.styled";
+=======
+import {Container, CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, SeeAllBtn, SeeAllContainer,} from "./PrewiewCategories.styled";
+
+>>>>>>> Stashed changes
 import obj from "../../components/PreviewCategories/obj"
 
        const PreviewCategories = () => {
@@ -26,7 +31,7 @@ import obj from "../../components/PreviewCategories/obj"
         }, []);
       
       return (
-        <div>
+        <Container>
       {Object.entries(obj).map(([category, recipes]) => (
         <div key={category}>
           <CategoryTitle>{category}</CategoryTitle>
@@ -42,7 +47,7 @@ import obj from "../../components/PreviewCategories/obj"
           <button>See all</button>
         </div>
       ))}
-    </div>
+    </Container>
       );
     };
 
