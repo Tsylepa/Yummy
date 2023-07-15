@@ -44,10 +44,6 @@ export const Input = styled.input`
     background-color: var(--accent-color);
   }
 
-  &:focus + ${Slider} {
-    box-shadow: 0 0 1px #2196f3;
-  }
-
   &:checked + ${Slider}:before {
     -webkit-transform: translateX(34px);
     -ms-transform: translateX(34px);
