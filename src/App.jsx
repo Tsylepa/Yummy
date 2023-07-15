@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { lazy } from 'react';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
@@ -14,7 +13,8 @@ const Auth = lazy(() => import('./pages/Register/Register'));
 const Main = lazy(() => import('./pages/Main/Main'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
-const NoRoute = lazy(() => import('./pages/404'));
+const NoPage = lazy(() => import('./pages/404'));
+const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
 const CategoriesPage = lazy(() => import('./pages/Categories/Categories'));
 const CategoriesRecepiesPage = lazy(() =>
   import('./components/CategoriesCardsList/CategoriesCardsList')
@@ -38,6 +38,7 @@ export const App = () => {
             <Route path="main" element={<Main />}></Route>
             <Route path="/recipe" element={<AddRecipe />} />
             <Route path="/favorite" element={<Favorites />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route
               path="/categories"
               categoriesFirst={'Beef'}
@@ -56,7 +57,7 @@ export const App = () => {
             <Route path="/signin" element={<Sigin />} />
           </Route>
 
-          <Route path="*" element={<NoRoute />} />
+          <Route path="*" element={<NoPage />} />
         </Routes>
       </div>
     </>
