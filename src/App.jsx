@@ -1,11 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import Favorites from 'pages/Favorites/Favoites';
-import useUser from 'hooks/useUser';
 import { Loader } from 'components/Loader/Loader';
 
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
@@ -22,44 +21,40 @@ const CategoriesRecepiesPage = lazy(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useUser();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <>
-      {isLoading && <Loader />}
-      <div className={isLoading ? 'blured' : ''}>
-        <Routes>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route exact index element={<Navigate to="/main" />} />
-            <Route path="main" element={<Main />}></Route>
-            <Route path="/recipe" element={<AddRecipe />} />
-            <Route path="/favorite" element={<Favorites />} />
-            <Route path="/search" element={<SearchPage />} />
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<PrivateRoute />}>
+          <Route exact index element={<Navigate to="/main" />} />
+          <Route path="/main" element={<Main />}></Route>
+          <Route path="/recipe" element={<AddRecipe />} />
+          <Route path="/favorite" element={<Favorites />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route
+            path="/categories"
+            categoriesFirst={'Beef'}
+            element={<CategoriesPage />}
+          >
             <Route
-              path="/categories"
-              categoriesFirst={'Beef'}
-              element={<CategoriesPage />}
-            >
-              <Route
-                path="/categories/:categoryName"
-                element={<CategoriesRecepiesPage />}
-              />
-            </Route>
+              path="/categories/:categoryName"
+              element={<CategoriesRecepiesPage />}
+            />
           </Route>
-
-          <Route path="/" element={<PublicRoute />}>
-            <Route path="/welcome" index element={<Welcome />} />
-            <Route path="/register" element={<Auth />} />
-            <Route path="/signin" element={<Sigin />} />
-          </Route>
-
           <Route path="*" element={<NoPage />} />
-        </Routes>
-      </div>
-    </>
+        </Route>
+
+        <Route path="/" element={<PublicRoute />}>
+          <Route path="/welcome" index element={<Welcome />} />
+          <Route path="/register" element={<Auth />} />
+          <Route path="/signin" element={<Sigin />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
