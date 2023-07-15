@@ -9,6 +9,8 @@
   --border-color: #e0e0e0;
   --border-dark-color: rgba(250, 250, 250, 0.3);
   --error: #d70101;
+  --toggler-color: #efefef;
+  --toggler-circle: linear-gradient(#ffffff, #e8eaea);
 
   /* fonts */
   --poppins-regular: 'Poppins Regular', sans-serif;

@@ -11,7 +11,7 @@ function SharedLayout() {
   const { user } = useUser();
 
   return (
-    <div className="app" data-theme="">
+    <div className="app" data-theme={user.theme}>
       <Container>
         <Header />
       </Container>

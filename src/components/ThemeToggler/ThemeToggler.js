@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from 'redux/auth/authOperations';
-import { getTheme } from 'redux/auth/authSelectors';
+import { getUser } from 'redux/auth/authSelectors';
+import { Input, Slider, Switch } from './ThemeToggler.styled';
 
 const ThemeToggler = () => {
   const dispatch = useDispatch();
-  const currentTheme = useSelector(getTheme);
+  const user = useSelector(getUser);
+  const currentTheme = user && user.theme;
 
   const updateTheme = () => {
     const updatedTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -13,9 +15,14 @@ const ThemeToggler = () => {
 
   return (
     <>
-      <button type="button" onClick={updateTheme}>
-        Theme
-      </button>
+      <Switch>
+        <Input
+          type="checkbox"
+          checked={currentTheme === 'dark'}
+          onChange={updateTheme}
+        />
+        <Slider />
+      </Switch>
     </>
   );
 };

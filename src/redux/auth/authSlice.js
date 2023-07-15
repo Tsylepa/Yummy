@@ -99,14 +99,13 @@ const authSlice = createSlice({
       })
 
       // TOGGLE THEME
-      .addCase(toggleTheme.fulfilled, (state, action) => {
-        state.user.theme = action.payload.theme;
+      .addCase(toggleTheme.fulfilled, state => {
+        state.isLoading = false;
       })
-      .addCase(toggleTheme.pending, handlePending)
-      .addCase(toggleTheme.rejected, (state, action) => {
-        handleRejected(state, action);
-        state.user.theme = action.meta.arg;
-      }),
+      .addCase(toggleTheme.pending, (state, action) => {
+        state.user.theme = action.meta.arg.theme;
+      })
+      .addCase(toggleTheme.rejected, handleRejected),
 });
 
 const authReducer = authSlice.reducer;
