@@ -37,7 +37,7 @@ margin-top: 100px;
 margin-bottom: 32px
 `)};`
 
-const CardItem = styled.li`
+const CardItem = styled(Link)`
   position: relative;
   width: 100%;
 
