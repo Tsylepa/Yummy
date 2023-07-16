@@ -29,7 +29,7 @@ const Header = () => {
       });
     } else {
       setHideOrShow(() => {
-        return { transform: 'translateY(0)' };
+        return { position: 'fixed', transform: 'translateY(0)' };
       });
     }
   };
