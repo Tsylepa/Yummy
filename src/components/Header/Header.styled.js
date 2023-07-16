@@ -82,6 +82,7 @@ export const HeaderWraper = styled.div`
 
   margin-top: 14px;
   margin-bottom: 50px;
+  z-index: 100;
 `;
 
 export const LogoIconStyled = styled(LogoIcon)`
