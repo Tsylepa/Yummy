@@ -9,7 +9,7 @@ import {
   CloseIcon,
 } from './LogoutModal.styled';
 import { useDispatch } from 'react-redux';
-import operations from '../../redux/auth/authOperations';
+import operations from '../../../../redux/auth/authOperations';
 
 export const LogoutModal = ({ show, hide }) => {
   const dispatch = useDispatch();
