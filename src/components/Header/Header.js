@@ -2,7 +2,7 @@ import ThemeToggler from 'components/ThemeToggler';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Icon from 'components/IconComponent/Icon';
-
+import { UserLogo } from 'components/UserLogo/UserLogo';
 import {
   Burger,
   BurgerHeader,
@@ -88,7 +88,7 @@ const Header = () => {
           </NavLinkStyled>
         </HeaderNav>
 
-        <User>User</User>
+        <UserLogo />
 
         <ThemeTogglerWrapper>
           <ThemeToggler />

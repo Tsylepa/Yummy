@@ -1,6 +1,7 @@
 import { instance } from 'api/APIconfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const token = {
   set(token) {
@@ -81,7 +82,7 @@ export const logOut = createAsyncThunk(
   'auth/logout',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post('users/logout', credentials);
+      const { data } = await instance.post('auth/logout', credentials);
       token.unset();
       return data;
     } catch (error) {
@@ -125,12 +126,26 @@ export const toggleTheme = createAsyncThunk(
   }
 );
 
+// UPDATE USER
+export const updateUserInfo = createAsyncThunk(
+  'auth/updateUserInfo',
+  async (userInfo, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch('/user', userInfo);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const operations = {
   register,
   logOut,
   logIn,
   fetchCurrentUser,
   toggleTheme,
+  updateUserInfo,
 };
 
 export default operations;

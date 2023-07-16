@@ -13,10 +13,9 @@ export const ContainerSigninPage = styled(ContainerAuthPageStyled)`
 `;
 
 export const SigninPageSection = styled(AuthPagesSection)`
-  padding-top: 305px;
   padding-bottom: 172px;
   @media screen and (min-width: 768px) {
-    padding-top: 443px;
+    padding-top: 96px;
     padding-bottom: 180px;
   }
 

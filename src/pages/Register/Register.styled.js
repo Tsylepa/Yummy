@@ -16,7 +16,6 @@ export const AuthPagesSection = styled.section`
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: 100% 490px;
-  padding-top: 305px;
   padding-bottom: 140px;
 
   @media (min-device-pixel-ratio: 2),
@@ -30,7 +29,7 @@ export const AuthPagesSection = styled.section`
   @media screen and (min-width: 768px) {
     background-image: url(${imgAuthTablet});
     background-size: 100% 606px;
-    padding-top: 443px;
+    padding-top: 96px;
     padding-bottom: 120px;
 
     @media (min-device-pixel-ratio: 2),
