@@ -59,11 +59,7 @@ export const DescLabel = styled.label`
   line-height: normal;
 `;
 
-export const DescSelect = styled(Select)`
-  .control {
-    border: none;
-  }
-`;
+export const DescSelect = styled(Select)``;
 
 export const Input = styled(Field)`
   font: inherit;
@@ -94,7 +90,7 @@ export const IngredientsHeader = styled.div`
 export const IngredientsList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 14px;
   margin-top: 24px;
 `;
 
@@ -107,6 +103,7 @@ export const QtySelector = styled.div`
 `;
 
 export const IngredientContainer = styled.li`
+  position: relative;
   display: flex;
   gap: 32px;
   width: 100%;
