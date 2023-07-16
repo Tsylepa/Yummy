@@ -15,7 +15,7 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
-  user: null,
+  user: {},
   token: null,
   isLoggedIn: false,
   isLoading: true,
@@ -69,18 +69,18 @@ const authSlice = createSlice({
       })
       // LOGOUT
       .addCase(logOut.pending, handlePending)
-      .addCase(logOut.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
+      .addCase(logOut.fulfilled, state => {
+        state.user = {};
         state.isLoggedIn = false;
-        state.token = null;
-        state.error = payload;
         state.isLoading = false;
+        state.token = null;
       })
       .addCase(logOut.rejected, (state, { payload }) => {
+        state.user = {};
+        state.isLoggedIn = false;
         state.isLoading = false;
+        state.token = null;
         state.error = payload;
-        state.isLoading = false;
       })
 
       // FETCH CURRENT USER
@@ -93,9 +93,9 @@ const authSlice = createSlice({
       .addCase(fetchCurrentUser.pending, handlePending)
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         handleRejected(state, action);
-        state.token = null;
+        state.user = {};
         state.isLoggedIn = false;
-        state.user = null;
+        state.token = null;
       })
 
       // TOGGLE THEME
