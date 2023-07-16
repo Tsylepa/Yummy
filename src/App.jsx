@@ -11,6 +11,7 @@ const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
 const Main = lazy(() => import('./pages/Main/Main'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
+const Verification = lazy(() => import('./pages/Verification/Verification'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe'));
 const NoPage = lazy(() => import('./pages/404'));
 const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
@@ -34,7 +35,8 @@ export const App = () => {
           <Route exact index element={<Navigate to="/main" />} />
           <Route path="/main" element={<Main />}></Route>
           <Route path="/recipe" element={<AddRecipe />} />
-          <Route path="/recipe/recipeId" element={<RecipePage />}/>
+          <Route path="/verification" element={<Verification />} />
+          <Route path="/recipe/recipeId" element={<RecipePage />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/categories" element={<CategoriesPage />}>
