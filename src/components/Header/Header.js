@@ -76,7 +76,7 @@ const Header = () => {
           <NavLinkStyled to="/categories">Categories</NavLinkStyled>
           <NavLinkStyled to="/recipe">Add recipes</NavLinkStyled>
           <NavLinkStyled to="/myrecipe">My recipes</NavLinkStyled>
-          <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
+          <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
           <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
           <NavLinkStyled to="/search">
             <Icon
