@@ -1,8 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
 
-const { register, logIn, logOut, verification, fetchCurrentUser, toggleTheme } =
-  authOperations;
+const {
+  register,
+  logIn,
+  logOut,
+  fetchCurrentUser,
+  updateUserInfo,
+  toggleTheme,
+} = authOperations;
 
 const handlePending = state => {
   state.error = null;
@@ -39,18 +45,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      // VERIFICATION
-      // .addCase(verification.fulfilled, (state, { payload }) => {
-      //   state.isLoading = false;
-      //   state.error = null;
-      //   state.user = payload.user;
-      //   state.token = payload.token;
-      //   state.isLoggedIn = true;
-      // })
-      // .addCase(verification.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.payload;
-      // })
+
       // LOGIN
 
       .addCase(logIn.pending, state => {
@@ -96,6 +91,19 @@ const authSlice = createSlice({
         state.user = {};
         state.isLoggedIn = false;
         state.token = null;
+      })
+      // UPDATE USER
+      .addCase(updateUserInfo.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = payload.user;
+      })
+      .addCase(updateUserInfo.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       })
 
       // TOGGLE THEME

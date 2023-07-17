@@ -8,7 +8,7 @@ export const ModalContainer = styled(Modal)`
   }
   .modal-content {
     width: 330px;
-
+    position: relative;
     padding: 32px 24px;
     background: var(--primary-color);
     box-shadow: 0px 4px 48px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@ export const ModalCloseBtn = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1;
 
   @media screen and (min-width: 768px) {
     top: 24px;
