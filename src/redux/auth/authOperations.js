@@ -46,11 +46,13 @@ export const register = createAsyncThunk(
 
 export const verification = createAsyncThunk(
   'auth/verification',
-  async ({ email, vCode }, { rejectWithValue }) => {
+  async ({ email, verificationCode }, { rejectWithValue }) => {
     try {
       const {
         data: { data },
-      } = await instance.post(`/auth/verify/${vCode}`, { email });
+      } = await instance.post(`/auth/verification/${verificationCode}`, {
+        email,
+      });
       token.set(data.token);
       return data;
     } catch (error) {
@@ -131,7 +133,7 @@ export const updateUserInfo = createAsyncThunk(
   'auth/updateUserInfo',
   async (userInfo, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('/user', userInfo);
+      const { data } = await axios.patch('/users/changeAvatar', userInfo);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

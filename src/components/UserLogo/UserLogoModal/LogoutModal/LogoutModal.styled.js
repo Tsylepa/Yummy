@@ -10,6 +10,7 @@ export const ModalContainer = styled(Modal)`
     width: 330px;
     height: 179px;
     margin: 0 auto;
+    position: relative;
 
     padding: 44px 24px;
     background: var(--primary-color);
