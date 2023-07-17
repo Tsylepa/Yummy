@@ -1,7 +1,5 @@
 import css from './MyRecipes.module.css';
 import { BiTrash } from 'react-icons/bi';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 
 import { ContainerBG } from 'components/ContainerBG/ContainerBG';
 
@@ -13,7 +11,6 @@ const MyRecipes = () => {
     'We threw a ladies Melbourne Cup lunch and this was our dessert. Super quick to prepare using store bought pastry.';
   return (
     <ContainerBG>
-      <Header />
       <div>
         <h1 className={css.title}>My recipes</h1>
         <ul>
@@ -36,10 +33,8 @@ const MyRecipes = () => {
               </button>
             </div>
           </li>
-        
         </ul>
       </div>
-      <Footer />
     </ContainerBG>
   );
 };

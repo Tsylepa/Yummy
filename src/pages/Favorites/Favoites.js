@@ -1,7 +1,5 @@
 import css from './Favorites.module.css';
 import { BiTrash } from 'react-icons/bi';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 
 import { ContainerBG } from 'components/ContainerBG/ContainerBG';
 
@@ -13,7 +11,6 @@ const Favorites = () => {
     'Studies have shown a number of potential health benefits to seafood rich in omega-3 fatty acids, which include salmon eggs.';
   return (
     <>
-      <Header />
       <ContainerBG>
         <h1 className={css.title}>Favorites</h1>
         <ul>
@@ -38,7 +35,6 @@ const Favorites = () => {
           </li>
         </ul>
       </ContainerBG>
-      <Footer />
     </>
   );
 };
