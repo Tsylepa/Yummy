@@ -1,6 +1,6 @@
-import { LinkSkewStyled } from 'components/ButtonSkew/ButtonSkew.styled';
-import { AuthNavList, AuthNavLink, AuthNavLinkSignIn } from './AuthNav.styled';
-import { LinkRegisterStyled } from 'components/SigninPageComponents/SigninForm.styled';
+
+import { AuthNavList, AuthNavLink } from './AuthNav.styled';
+
 export const AuthNav = () => {
   return (
     <nav>
