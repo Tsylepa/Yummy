@@ -48,12 +48,22 @@ const Header = () => {
         </BurgerHeader>
 
         <BurgerNav>
-          <NavLinkStyled to="/categories">Categories</NavLinkStyled>
-          <NavLinkStyled to="/recipe">Add recipes</NavLinkStyled>
-          <NavLinkStyled to="/myrecipes">My recipes</NavLinkStyled>
-          <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
-          <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
-          <NavLinkStyled to="/search">
+          <NavLinkStyled to="/categories" onClick={handleMenu}>
+            Categories
+          </NavLinkStyled>
+          <NavLinkStyled to="/add" onClick={handleMenu}>
+            Add recipes
+          </NavLinkStyled>
+          <NavLinkStyled to="/my" onClick={handleMenu}>
+            My recipes
+          </NavLinkStyled>
+          <NavLinkStyled to="/favorites" onClick={handleMenu}>
+            Favorites
+          </NavLinkStyled>
+          <NavLinkStyled to="/shopping-list" onClick={handleMenu}>
+            Shopping list
+          </NavLinkStyled>
+          <NavLinkStyled to="/search" onClick={handleMenu}>
             <Icon
               name="icon-search"
               fill="transparent"
@@ -74,10 +84,10 @@ const Header = () => {
 
         <HeaderNav>
           <NavLinkStyled to="/categories">Categories</NavLinkStyled>
-          <NavLinkStyled to="/recipe">Add recipes</NavLinkStyled>
-          <NavLinkStyled to="/myrecipe">My recipes</NavLinkStyled>
+          <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
+          <NavLinkStyled to="/my">My recipes</NavLinkStyled>
           <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
-          <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
+          <NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled>
           <NavLinkStyled to="/search">
             <Icon
               name="icon-search"
@@ -90,9 +100,7 @@ const Header = () => {
 
         <UserLogo />
 
-        <ThemeTogglerWrapper>
-          <ThemeToggler />
-        </ThemeTogglerWrapper>
+        <ThemeToggler />
 
         <OpenButton onClick={handleMenu}>
           <Icon name="icon-Burger_menu" width="24px" height="16px"></Icon>

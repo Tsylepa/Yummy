@@ -34,7 +34,7 @@ export const App = () => {
         <Route path="/" element={<PrivateRoute />}>
           <Route exact index element={<Navigate to="/main" />} />
           <Route path="/main" element={<Main />}></Route>
-          <Route path="/recipe" element={<AddRecipe />} />
+          <Route path="/add" element={<AddRecipe />} />
           <Route path="/verification" element={<Verification />} />
           <Route path="/recipe/:recipeId" element={<RecipePage />} />
           <Route path="/favorite" element={<Favorites />} />

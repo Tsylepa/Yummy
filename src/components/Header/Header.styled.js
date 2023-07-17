@@ -127,20 +127,6 @@ export const User = styled.div`
   background-color: yellow;
 `;
 
-export const ThemeTogglerWrapper = styled.div`
-  display: none;
-
-  @media screen and (min-width: 1280px) {
-    display: block;
-    width: 61px;
-    height: 27px;
-    margin-left: 50px;
-
-    border-radius: 12px;
-    background-color: yellow;
-  }
-`;
-
 export const OpenButton = styled.button`
   display: flex;
   margin-left: 24px;
