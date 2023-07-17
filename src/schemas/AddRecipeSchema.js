@@ -11,8 +11,8 @@ export const recipeSchema = Yup.object().shape({
   ingredients: Yup.array()
     .of(
       Yup.object().shape({
-        id: Yup.string().required('Please select an ingredient'),
-        measure: Yup.string().required('Please select a measure'),
+        // id: Yup.string().required('Please select an ingredient'),
+        measure: Yup.array().required('Please select a measure'),
       })
     )
     .min(1, 'Please enter at least one ingredient'),

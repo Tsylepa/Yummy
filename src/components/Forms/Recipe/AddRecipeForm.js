@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
 import ImageUploading from 'react-images-uploading';
 import {
   StyledForm,
@@ -150,11 +151,12 @@ const AddRecipeForm = () => {
   const [ingredientsQty, setIngredientsQty] = useState(3);
   const [ingredients, setIngredients] = useState(
     Array.from({ length: ingredientsQty }, (_, i) => {
-      return { id: '', name: '', measure: '' };
+      return { id: '', measure: [] };
     })
   );
   const [ingredientsList, setIngredientsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const runEffect = async () => {
@@ -188,6 +190,9 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
+    console.log('hghfjf', values.ingredients);
+    values.ingredients.map(ingr => (ingr.measure = ingr.measure.join(' ')));
+
     formData.append('file', image.file);
     formData.append('title', values.title);
     formData.append('description', values.description);
@@ -197,6 +202,7 @@ const AddRecipeForm = () => {
     formData.append('instructions', values.instructions);
     dispatch(addRecipe(formData));
     console.log('formData', formData);
+    navigate('/my');
   };
 
   const handleDeleteIngredient = i => {
@@ -321,26 +327,57 @@ const AddRecipeForm = () => {
                       }}
                       options={ingredientsOptions}
                       onChange={selected => {
-                        setFieldValue(`ingredients[${i}].id`, selected.value);
+                        setIngredients(prev =>
+                          prev.map((ing, idx) => {
+                            if (idx !== i) return ing;
+                            {
+                              return { ...ing, id: selected.value };
+                            }
+                          })
+                        );
                       }}
                       styles={ingredientsSelectorStyles}
                     />
 
-                    <Ingredient
-                      id={`measure[${i}]`}
-                      options={measureOptions}
-                      classNames={{
-                        valueContainer: () => 'valueContainer',
-                        menu: () => 'menu',
-                      }}
-                      onChange={selected => {
-                        setFieldValue(
-                          `ingredients[${i}].measure`,
-                          selected.value
-                        );
-                      }}
-                      styles={measureSelectorStyles}
-                    />
+                    <div>
+                      <Field
+                        name="measureValue"
+                        onChange={({ target }) => {
+                          setIngredients(prev =>
+                            prev.map((ing, idx) => {
+                              if (idx !== i) return ing;
+                              {
+                                const newArr = ing.measure;
+                                newArr[0] = target.value;
+                                return { ...ing, measure: newArr };
+                              }
+                            })
+                          );
+                        }}
+                      />
+                      <Ingredient
+                        id={`measure[${i}]`}
+                        options={measureOptions}
+                        classNames={{
+                          valueContainer: () => 'valueContainer',
+                          menu: () => 'menu',
+                        }}
+                        onChange={selected => {
+                          setIngredients(prev =>
+                            prev.map((ing, idx) => {
+                              if (idx !== i) return ing;
+                              {
+                                const newArr = ing.measure;
+                                newArr[1] = selected.value;
+                                return { ...ing, measure: newArr };
+                              }
+                            })
+                          );
+                          console.log(values.ingredients);
+                        }}
+                        styles={measureSelectorStyles}
+                      />
+                    </div>
 
                     <ErrorMessage
                       name={`ingredients[${i}].id`}
