@@ -38,7 +38,7 @@ const Header = () => {
     <>
       <Burger style={hideOrShow}>
         <BurgerHeader>
-          <Link to="/home" onClick={handleMenu}>
+          <Link to="/main" onClick={handleMenu}>
             <LogoIconStyled />
           </Link>
 
@@ -78,7 +78,7 @@ const Header = () => {
       </Burger>
 
       <HeaderWraper>
-        <Link to="/home">
+        <Link to="/main">
           <LogoIconStyled />
         </Link>
 
