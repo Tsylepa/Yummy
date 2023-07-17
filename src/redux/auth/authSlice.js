@@ -1,32 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
 
-const { register, logIn, logOut, verification, fetchCurrentUser, toggleTheme } =
-  authOperations;
+const {
+  register,
+  logIn,
+  logOut,
+  fetchCurrentUser,
+  updateUserInfo,
+  toggleTheme,
+} = authOperations;
 
 const handlePending = state => {
   state.error = null;
-  state.isRefreshing = true;
+  state.isLoading = true;
 };
 
 const handleRejected = (state, action) => {
   state.error = action.payload;
-  state.isRefreshing = false;
+  state.isLoading = false;
 };
 
 const initialState = {
-  user: {
-    name: null,
-    email: null,
-    avatarUrl: null,
-    createdAt: null,
-    verify: false,
-    theme: 'light',
-  },
+  user: {},
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 
@@ -47,18 +45,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      // VERIFICATION
-      // .addCase(verification.fulfilled, (state, { payload }) => {
-      //   state.isLoading = false;
-      //   state.error = null;
-      //   state.user = payload.user;
-      //   state.token = payload.token;
-      //   state.isLoggedIn = true;
-      // })
-      // .addCase(verification.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.payload;
-      // })
+
       // LOGIN
 
       .addCase(logIn.pending, state => {
@@ -67,46 +54,66 @@ const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
+        state.user = payload;
         state.isLoggedIn = true;
         state.token = payload.token;
-        state.user = payload.user;
       })
       .addCase(logIn.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
       // LOGOUT
-      .addCase(logOut.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(logOut.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
+      .addCase(logOut.pending, handlePending)
+      .addCase(logOut.fulfilled, state => {
+        state.user = {};
         state.isLoggedIn = false;
+        state.isLoading = false;
         state.token = null;
-        state.error = payload;
       })
       .addCase(logOut.rejected, (state, { payload }) => {
+        state.user = {};
+        state.isLoggedIn = false;
         state.isLoading = false;
+        state.token = null;
         state.error = payload;
       })
 
       // FETCH CURRENT USER
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoggedIn = false;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(fetchCurrentUser.pending, handlePending)
-      .addCase(fetchCurrentUser.rejected, handleRejected)
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        handleRejected(state, action);
+        state.user = {};
+        state.isLoggedIn = false;
+        state.token = null;
+      })
+      // UPDATE USER
+      .addCase(updateUserInfo.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = payload.user;
+      })
+      .addCase(updateUserInfo.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
 
       // TOGGLE THEME
-      .addCase(toggleTheme.fulfilled, (state, action) => {
-        state.user.theme = action.payload.theme;
+      .addCase(toggleTheme.fulfilled, state => {
+        state.isLoading = false;
       })
-      .addCase(toggleTheme.pending, handlePending)
-      .addCase(toggleTheme.rejected, (state, action) => {
-        state.user.theme = action.meta.arg;
-      }),
+      .addCase(toggleTheme.pending, (state, action) => {
+        state.user.theme = action.meta.arg.theme;
+      })
+      .addCase(toggleTheme.rejected, handleRejected),
 });
 
 const authReducer = authSlice.reducer;

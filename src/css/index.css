@@ -51,3 +51,7 @@ code {
 .app {
   background-color: var(--body-color);
 }
+
+.blured {
+  filter: blur(2px);
+}

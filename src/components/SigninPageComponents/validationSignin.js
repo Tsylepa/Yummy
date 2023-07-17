@@ -32,14 +32,6 @@ export const ValidMessage = ({ children }) => {
 };
 
 export const signinSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(1, errorMessage('Name is too short'))
-    .max(16, errorMessage('Name is too long'))
-    .matches(nameRules, {
-      message: errorMessage('Invalid name'),
-      excludeEmptyString: true,
-    })
-    .required(errorMessage('This field is required')),
   email: Yup.string()
     .email(errorMessage('Invalid email format'))
     .matches(emailRules, {

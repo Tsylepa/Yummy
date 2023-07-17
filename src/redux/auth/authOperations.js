@@ -1,15 +1,14 @@
-import axios from 'axios';
+import { instance } from 'api/APIconfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-
-axios.defaults.baseURL = 'https://soyummy-backend-kmc6.onrender.com';
+import axios from 'axios';
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = '';
+    instance.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -18,7 +17,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/register', credentials);
+      const { data } = await instance.post('/auth/register', credentials);
       localStorage.setItem('userEmail', JSON.stringify(data.user.email));
       toast.success(
         'Congratulations! To verify your account, follow the link sent to your email',
@@ -47,11 +46,13 @@ export const register = createAsyncThunk(
 
 export const verification = createAsyncThunk(
   'auth/verification',
-  async ({ email, vCode }, { rejectWithValue }) => {
+  async ({ email, verificationCode }, { rejectWithValue }) => {
     try {
       const {
         data: { data },
-      } = await axios.post(`/auth/verify/${vCode}`, { email });
+      } = await instance.post(`/auth/verification/${verificationCode}`, {
+        email,
+      });
       token.set(data.token);
       return data;
     } catch (error) {
@@ -65,9 +66,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const {
-        data: { data },
-      } = await axios.post('/auth/login', credentials);
+      const { data } = await instance.post('/auth/login', credentials);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -81,16 +80,21 @@ export const logIn = createAsyncThunk(
 );
 
 // LOGOUT
-const logOut = createAsyncThunk('auth/logout', async credentials => {
-  try {
-    const { data } = await axios.post('users/logout', credentials);
-    token.unset();
-    return data;
-  } catch (error) {}
-});
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.post('auth/logout', credentials);
+      token.unset();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 // FETCH CURRENT USER
-const fetchCurrentUser = createAsyncThunk(
+export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
@@ -102,24 +106,37 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await instance.get('/users/current');
       return data;
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue();
+    }
   }
 );
 
 // TOGGLE THEME
-const toggleTheme = createAsyncThunk(
+export const toggleTheme = createAsyncThunk(
   'auth/toggleTheme',
-  async (theme, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.patch('user/theme', {
-        theme,
-      });
+      const { data } = await instance.patch('/users/changeTheme', credentials);
 
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// UPDATE USER
+export const updateUserInfo = createAsyncThunk(
+  'auth/updateUserInfo',
+  async (userInfo, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch('/users/changeAvatar', userInfo);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -130,6 +147,7 @@ const operations = {
   logIn,
   fetchCurrentUser,
   toggleTheme,
+  updateUserInfo,
 };
 
 export default operations;
