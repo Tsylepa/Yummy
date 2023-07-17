@@ -15,10 +15,10 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
-  user: null,
+  user: {},
   token: null,
   isLoggedIn: false,
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 
@@ -69,18 +69,18 @@ const authSlice = createSlice({
       })
       // LOGOUT
       .addCase(logOut.pending, handlePending)
-      .addCase(logOut.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
+      .addCase(logOut.fulfilled, state => {
+        state.user = {};
         state.isLoggedIn = false;
-        state.token = null;
-        state.error = payload;
         state.isLoading = false;
+        state.token = null;
       })
       .addCase(logOut.rejected, (state, { payload }) => {
+        state.user = {};
+        state.isLoggedIn = false;
         state.isLoading = false;
+        state.token = null;
         state.error = payload;
-        state.isLoading = false;
       })
 
       // FETCH CURRENT USER
@@ -93,19 +93,19 @@ const authSlice = createSlice({
       .addCase(fetchCurrentUser.pending, handlePending)
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         handleRejected(state, action);
-        state.token = null;
+        state.user = {};
         state.isLoggedIn = false;
-        state.user = null;
+        state.token = null;
       })
 
       // TOGGLE THEME
-      .addCase(toggleTheme.fulfilled, (state, action) => {
-        state.user.theme = action.payload.theme;
+      .addCase(toggleTheme.fulfilled, state => {
+        state.isLoading = false;
       })
-      .addCase(toggleTheme.pending, handlePending)
-      .addCase(toggleTheme.rejected, (state, action) => {
-        state.user.theme = action.meta.arg;
-      }),
+      .addCase(toggleTheme.pending, (state, action) => {
+        state.user.theme = action.meta.arg.theme;
+      })
+      .addCase(toggleTheme.rejected, handleRejected),
 });
 
 const authReducer = authSlice.reducer;

@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { verification } from 'redux/auth/authOperations';
 import { useUser } from 'hooks/useUser';
 import { Loader } from 'components/Loader/Loader';
-
-export const VerificationPage = () => {
+const VerificationPage = () => {
   const dispatch = useDispatch();
   const { vCode } = useParams();
   const email = JSON.parse(localStorage.getItem('userEmail'));
@@ -23,3 +22,5 @@ export const VerificationPage = () => {
     </div>
   );
 };
+
+export default VerificationPage;

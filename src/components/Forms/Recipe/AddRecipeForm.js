@@ -12,6 +12,7 @@ import {
   DescLabel,
   DescSelect,
   Input,
+  Hidden,
   Error,
   FormTitle,
   IngredientsHeader,
@@ -24,8 +25,10 @@ import {
   IngredientsList,
   InstructionsError,
 } from './AddRecipeForm.styled';
-import { getIngredients, getCategories } from 'api/addRecipe';
+import { getIngredients, getCategories } from 'api/recipes';
 import Icon from 'components/IconComponent/Icon';
+import { recipeSchema } from 'schemas/AddRecipeSchema';
+import { addRecipe } from 'redux/recipes/recipesOperations';
 
 const timeOptions = [
   { value: '30 min', label: '30 min' },
@@ -38,6 +41,80 @@ const measureOptions = [
   { value: 'g', label: 'g' },
   { value: 'kg', label: 'kg' },
 ];
+
+const selectorStyles = {
+  container: () => ({
+    flex: 1,
+    position: 'relative',
+  }),
+  control: () => ({
+    display: 'flex',
+    width: '100%',
+    border: 'none',
+    cursor: 'pointer',
+  }),
+  valueContainer: baseStyles => ({
+    ...baseStyles,
+    textAlign: 'right',
+    fontSize: 12,
+    fontWeight: 400,
+  }),
+  singleValue: baseStyles => ({
+    ...baseStyles,
+    padding: '0 3px',
+  }),
+  input: baseStyles => ({
+    ...baseStyles,
+    textAlign: 'right',
+    justifySelf: 'right',
+  }),
+  placeholder: baseStyles => ({
+    ...baseStyles,
+    margin: 0,
+  }),
+  indicatorSeparator: () => ({ display: 'none' }),
+  dropdownIndicator: () => ({
+    display: 'flex',
+    alignItems: 'center',
+    color: 'var(--accent-color)',
+  }),
+  menu: baseStyles => ({
+    ...baseStyles,
+    position: 'absolute',
+    width: 'initial',
+    top: 24,
+    right: 0,
+    boxShadow:
+      '0px 6.518518447875977px 7.8222222328186035px 0px rgba(0, 0, 0, 0.03)',
+  }),
+  menuList: baseStyles => ({
+    ...baseStyles,
+    gap: 4,
+    padding: '8px 26px 8px 14px',
+  }),
+  option: (_, state) => ({
+    color: state.isFocused && 'var(--accent-color)',
+    borderRadius: 4,
+    fontSize: 12,
+    opacity: 0.5,
+    cursor: 'pointer',
+  }),
+};
+
+const ingredientsSelectorStyles = {
+  ...selectorStyles,
+  container: baseStyles => ({
+    ...baseStyles,
+    backgroundColor: '#d9d9d9',
+    borderRadius: 4,
+    padding: 16,
+  }),
+  menu: baseStyles => ({ ...baseStyles, padding: 16 }),
+  valueContainer: baseStyles => ({ ...baseStyles }),
+  input: baseStyles => ({
+    ...baseStyles,
+  }),
+};
 
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
@@ -70,41 +147,31 @@ const AddRecipeForm = () => {
   };
 
   const categoriesOptions = categoriesList.map(ctg => {
-    return { value: ctg._id, label: ctg.name };
+    return { value: ctg.name, label: ctg.name };
   });
 
   const ingredientsOptions = ingredientsList.map(i => {
-    return { value: i._id.$oid, label: i.name };
+    return { value: i._id, label: i.name };
   });
+
+  const dispatch = useDispatch();
+  const formData = new FormData();
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
+    formData.append('file', image.file);
+    formData.append('title', values.title);
+    formData.append('description', values.description);
+    formData.append('category', values.category);
+    formData.append('time', values.time);
+    formData.append('ingredients', JSON.stringify(values.ingredients));
+    formData.append('instructions', values.instructions);
+    dispatch(addRecipe(formData));
+    console.log('formData', formData);
   };
 
   const handleDeleteIngredient = i => {
     setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
-  };
-
-  const validateForm = values => {
-    const errors = {};
-
-    if (!values.title) {
-      errors.title = 'Please enter a title for the recipe';
-    }
-
-    if (!values.description) {
-      errors.description = 'Please enter a description for the recipe';
-    }
-
-    if (!values.ingredients || values.ingredients.length === 0) {
-      errors.ingredients = 'Please enter at least one ingredient';
-    }
-
-    // if (!values.instructions) {
-    //   errors.instructions = 'Please enter the recipe instructions';
-    // }
-
-    return errors;
   };
 
   return (
@@ -118,11 +185,11 @@ const AddRecipeForm = () => {
         ingredients,
         instructions: '',
       }}
-      validate={validateForm}
+      validationSchema={recipeSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, values }) => {
-        values.thumb = image ? image.dataURL : null;
+      {({ isSubmitting, handleChange, setFieldValue, values }) => {
+        values.thumb = image || null;
 
         return (
           <StyledForm>
@@ -132,7 +199,7 @@ const AddRecipeForm = () => {
                   {({ onImageUpdate }) => (
                     <ImageWrapper onClick={onImageUpdate}>
                       {image ? (
-                        <img src={values.thumb} alt="" />
+                        <img src={values.thumb.dataURL} alt="" />
                       ) : (
                         <UploadBtn>
                           <Icon name="camera" width="64" height="64" />
@@ -141,6 +208,7 @@ const AddRecipeForm = () => {
                     </ImageWrapper>
                   )}
                 </ImageUploading>
+                <ErrorMessage name="thumb" component={Error} />
               </div>
               <Desc>
                 <DescField>
@@ -160,11 +228,13 @@ const AddRecipeForm = () => {
                 <DescField>
                   <DescLabel>Category</DescLabel>
                   <DescSelect
-                    id="category"
-                    name="category"
                     options={categoriesOptions}
-                    onChange={selected => (values.category = selected.value)}
+                    onChange={selected => {
+                      setFieldValue('category', selected.value);
+                    }}
+                    styles={selectorStyles}
                   />
+                  <ErrorMessage name="category" component={Error} />
                 </DescField>
 
                 <DescField>
@@ -172,8 +242,12 @@ const AddRecipeForm = () => {
                   <DescSelect
                     id="time"
                     options={timeOptions}
-                    onChange={selected => (values.time = selected.value)}
+                    onChange={selected => {
+                      setFieldValue('time', selected.value);
+                    }}
+                    styles={selectorStyles}
                   />
+                  <ErrorMessage name="time" component={Error} />
                 </DescField>
               </Desc>
             </Info>
@@ -202,28 +276,32 @@ const AddRecipeForm = () => {
                       id={`ingredients[${i}]`}
                       options={ingredientsOptions}
                       onChange={selected => {
-                        values.ingredients[i] = {
-                          id: selected.value,
-                          name: selected.label,
-                        };
-                        console.log(values);
+                        setFieldValue(`ingredients[${i}].id`, selected.value);
+                        setFieldValue(`ingredients[${i}].name`, selected.label);
                       }}
-                    />
-                    <ErrorMessage
-                      name={`ingredientsError[${i}]`}
-                      component={Error}
+                      styles={{
+                        ...ingredientsSelectorStyles,
+                      }}
                     />
 
                     <Select
                       id={`measure[${i}]`}
                       options={measureOptions}
                       onChange={selected => {
-                        values.ingredients[i].measure = selected.value;
-                        console.log(values);
+                        setFieldValue(
+                          `ingredients[${i}].measure`,
+                          selected.value
+                        );
                       }}
+                      styles={ingredientsSelectorStyles}
+                    />
+
+                    <ErrorMessage
+                      name={`ingredients[${i}].id`}
+                      component={Error}
                     />
                     <ErrorMessage
-                      name={`measureError[${i}]`}
+                      name={`ingredients[${i}].measure`}
                       component={Error}
                     />
 
@@ -240,6 +318,7 @@ const AddRecipeForm = () => {
                 id="instructions"
                 name="instructions"
                 placeholder="Enter recipe"
+                onChange={handleChange}
                 rows="5"
               />
               <ErrorMessage name="instructions" component={InstructionsError} />
