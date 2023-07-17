@@ -134,6 +134,8 @@ height: 182px;
 `)};`
 
 const IngredientImage = styled.img`
+width: 40px;
+height: 40px;
 margin-left: 10px;
 margin-right: 10px;
 
@@ -143,6 +145,8 @@ margin-right: 40px;
 `)}
 
 ${mediaRule("desktop", "", `
+width: 70px;
+height: 70px;
 margin-left: 48px;
 margin-right: 30px;
 `)};

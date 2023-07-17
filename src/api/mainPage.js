@@ -1,16 +1,15 @@
-import { instance } from './APIconfig';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { instance } from './APIconfig';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchMainPageData = createAsyncThunk(
-    'mainPage/fetchData',
-    async (_, thunkAPI) => {
-      try {
-        const response = await instance.get('/api/mainPage');
-        return response.data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
-
+// export const getRecipeById = createAsyncThunk(
+//     'recipes/fetchdataforMainPage',
+//     async ({recipeId}, thunkAPI) => {
+//       try {
+//         const { data } = await instance.get(`/mainPage`);
   
+//         return data;
+//       } catch (error) {
+//         return thunkAPI.rejectWithValue(error.message);
+//       }
+//     }
+//   );
