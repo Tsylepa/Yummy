@@ -5,6 +5,7 @@ import { fetchCurrentUser } from 'redux/auth/authOperations';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import Favorites from 'pages/Favorites/Favoites';
+import MyRecipes from 'pages/MyRecipes/MyRecipes';
 import { Loader } from 'components/Loader/Loader';
 
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
@@ -37,6 +38,7 @@ export const App = () => {
           <Route exact index element={<Navigate to="/main" />} />
           <Route path="/main" element={<Main />}></Route>
           <Route path="/add" element={<AddRecipe />} />
+          <Route path="/my" element={<MyRecipes />} />
           <Route path="/verification" element={<VerificationPage />} />
           <Route path="/recipe/:recipeId" element={<RecipePage />} />
           <Route path="/favorite" element={<Favorites />} />
