@@ -8,7 +8,8 @@ export const Burger = styled.div`
   left: 0px;
   z-index: 300;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 1000px;
   padding-top: 18px;
   padding-right: 16px;
   padding-bottom: 18px;
@@ -53,9 +54,7 @@ export const CloseButton = styled.button`
 export const BurgerNav = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
   gap: 32px;
 
   margin: auto;
