@@ -12,6 +12,7 @@ import imgBackgroundModileFirstDesktop from '../../images/leaves-menu@3x_320-min
 import imgBackgroundModileSecondDesktop from '../../images/leaves-footer@3x_320-min.png';
 
 export const Footerwrapper = styled.div`
+    color: var(--footer-font-color);
     position: absolute;
     width: 100%;
     left: 0;
@@ -20,33 +21,32 @@ export const Dolbaniylistochek = styled.div`
     position: absolute;
     background-image: url(${imgBackgroundModileFirstMobile});
     background-repeat: no-repeat;
-    background-size: 70%, cover;
+    background-size: 100%, cover;
     transform: rotate(90deg);
-    z-index: -100;
+    z-index: 0;
     width: 256px;
     height: 392px;
-    top: -246px;
-    left: -135px;
+    top: -324px;
+    left: -50px;
     
 @media screen and (min-width: 768px) {
     background-image: url(${imgBackgroundModileFirstTablet});
     width: 423px;
     height: 646px;
-    top: -407px;
-    left: -218px;
+    top: -534px;
+    left: -85px;
     }
 
 @media screen and (min-width: 1280px) {
     background-image: url(${imgBackgroundModileFirstDesktop});
     width: 558px;
     height: 852px;
-    top: -535px;
-    left: -290px;
+    top: -705px;
+    left: -110px;
     }
 `;
 export const Footerbackground = styled.div`
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    background-color: var(--search-btn-color);
     padding-top: 28px;
     padding-bottom: 18px;
 
@@ -79,7 +79,7 @@ export const Footerstyled = styled.div`
 @media screen and (min-width: 1280px) {
     flex-wrap: nowrap;
     padding-bottom: 41px;
-    width: auto;
+    width: 1280px;
     }
 `;
 
@@ -91,7 +91,6 @@ export const LogoPlus = styled.div`
     }
 
 @media screen and (min-width: 1280px) {
-    margin-right: 160px;
     margin-bottom: 0;
     }
 
@@ -217,8 +216,9 @@ export const FormStyled = styled(Form)`
     flex-direction: column;
     align-content: flex-start;
     gap: 0;
-    margin-right: 0;
+    margin-left: 0;
     width: 340px;
+    max-width: 340px;
     }
 `;
 export const Sudscribeheader = styled.h2`
@@ -354,11 +354,13 @@ export const FieldStyled = styled(Field)`
     }
 `;
 export const SubmitBtn = styled.button`
+  color: var(--footer-font-color);
+  background-color: var(--subscribe-btn-color);
+
   width: 205px;
   height: 38px;
   
-  color: var(--primary-color);
-  background-color: var(--accent-color);
+
   padding: 12px;
   border: none;
   border-radius: 6px;
@@ -397,17 +399,19 @@ export const SocialLinkslist = styled.ul`
   display: flex;
   justify-content: center;
   gap: 14px;
-  fill: var(--accent-color);
+  
 
 @media screen and (min-width: 768px) {
     gap:18px;
 }
 `;
 export const SocialLinks = styled(NavLink)`
-  fill: var(--accent-color);
+  fill: var(--footer-sociallink-color);
 `;
 
 export const Underfooter = styled.div`
+    background-color: var(--body-color);
+
     display: flex;
     align-items: center;
     justify-content: center;

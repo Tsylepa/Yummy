@@ -5,6 +5,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 export const ModalContainer = styled(Modal)`
   .modal-body {
     padding: 0;
+    z-index: 10;
   }
   .modal-content {
     width: 330px;
