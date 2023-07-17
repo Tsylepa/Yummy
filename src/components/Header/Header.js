@@ -84,8 +84,8 @@ const Header = () => {
 
         <HeaderNav>
           <NavLinkStyled to="/categories">Categories</NavLinkStyled>
-          <NavLinkStyled to="/addrecipe">Add recipes</NavLinkStyled>
-          <NavLinkStyled to="/myrecipe">My recipes</NavLinkStyled>
+          <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
+          <NavLinkStyled to="/my">My recipes</NavLinkStyled>
           <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
           <NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled>
           <NavLinkStyled to="/search">
