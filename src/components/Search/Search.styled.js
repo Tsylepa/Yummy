@@ -46,6 +46,11 @@ background-color: transparent;
 font-size: 16px;
 color: #BDBDBD;
 
+&:focus {
+    outline: none; 
+   border: none;
+  }
+
 ${mediaRule("tablet", "desktop", `
  width: 208px;
     height: 30px;

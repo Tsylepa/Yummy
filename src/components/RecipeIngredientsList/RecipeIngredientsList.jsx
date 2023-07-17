@@ -18,13 +18,13 @@ const RecipeIngredientsList = ({ingredients}) =>{
             <AddToListSpan>Add to list</AddToListSpan></RecipeIngredientListSubtitle>
         <IngredientList>
         {ingredients.map((ingredient) => (
-          <IngredientItem key={ingredient.id}>
-            {ingredient.image ? (
-              <IngredientImage src={ingredient.image} alt={ingredient.title} />
-            ) : (
-              <IngredientImage src={img} alt="Placeholder" /> 
-            )}
-            <IngredientTitle>{ingredient.title || 'ingredient'}</IngredientTitle>
+          <IngredientItem key={ingredient._id}>
+           {ingredient.img ? (
+  <IngredientImage src={ingredient.img} alt={ingredient.name} />
+) : (
+  <IngredientImage src={img} alt="Placeholder" /> 
+)}
+            <IngredientTitle>{ingredient.name || 'ingredient'}</IngredientTitle>
             <IngredientMeasure>{ingredient.measure}</IngredientMeasure>
             <IngredientCheckbox type="checkbox" onChange={() => handleCheckboxClick(ingredient.id)} />
           </IngredientItem>
@@ -33,5 +33,8 @@ const RecipeIngredientsList = ({ingredients}) =>{
     </div>
     )
 }
+
+
+
 
 export default RecipeIngredientsList;
