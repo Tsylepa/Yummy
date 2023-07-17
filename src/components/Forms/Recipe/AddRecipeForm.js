@@ -17,6 +17,7 @@ import {
   FormTitle,
   IngredientsHeader,
   QtySelector,
+  IngredientsWrapper,
   IngredientContainer,
   Ingredient,
   Preparation,
@@ -24,11 +25,14 @@ import {
   ImageWrapper,
   IngredientsList,
   InstructionsError,
+  Delete,
+  IngredientsButton,
 } from './AddRecipeForm.styled';
 import { getIngredients, getCategories } from 'api/recipes';
 import Icon from 'components/IconComponent/Icon';
 import { recipeSchema } from 'schemas/AddRecipeSchema';
 import { addRecipe } from 'redux/recipes/recipesOperations';
+import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
 
 const timeOptions = [
   { value: '30 min', label: '30 min' },
@@ -44,7 +48,6 @@ const measureOptions = [
 
 const selectorStyles = {
   container: () => ({
-    flex: 1,
     position: 'relative',
   }),
   control: () => ({
@@ -58,15 +61,15 @@ const selectorStyles = {
     textAlign: 'right',
     fontSize: 12,
     fontWeight: 400,
-  }),
-  singleValue: baseStyles => ({
-    ...baseStyles,
-    padding: '0 3px',
+    padding: '0 8px',
+    lineHeight: 1,
   }),
   input: baseStyles => ({
     ...baseStyles,
     textAlign: 'right',
     justifySelf: 'right',
+    padding: 0,
+    margin: 0,
   }),
   placeholder: baseStyles => ({
     ...baseStyles,
@@ -81,7 +84,7 @@ const selectorStyles = {
   menu: baseStyles => ({
     ...baseStyles,
     position: 'absolute',
-    width: 'initial',
+    width: '100%',
     top: 24,
     right: 0,
     boxShadow:
@@ -103,18 +106,44 @@ const selectorStyles = {
 
 const ingredientsSelectorStyles = {
   ...selectorStyles,
-  container: baseStyles => ({
-    ...baseStyles,
-    backgroundColor: '#d9d9d9',
+  container: () => ({
+    ...selectorStyles.container(),
+    backgroundColor: 'var(--input-bg-color)',
     borderRadius: 4,
+    fontSize: 14,
+    padding: 16,
+    flex: 3,
+  }),
+  menu: baseStyles => ({
+    ...baseStyles,
+    ...selectorStyles.menu(),
+    position: 'absolute',
+    top: 60,
+    right: 0,
     padding: 16,
   }),
-  menu: baseStyles => ({ ...baseStyles, padding: 16 }),
-  valueContainer: baseStyles => ({ ...baseStyles }),
+  valueContainer: baseStyles => ({
+    ...baseStyles,
+    padding: 0,
+  }),
   input: baseStyles => ({
     ...baseStyles,
+    margin: 0,
+    padding: 0,
   }),
 };
+
+const measureSelectorStyles = {
+  ...ingredientsSelectorStyles,
+  container: () => ({
+    ...ingredientsSelectorStyles.container(),
+    position: 'relative',
+    flex: 0,
+    width: 84,
+  }),
+};
+
+console.log(ingredientsSelectorStyles);
 
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
@@ -228,11 +257,20 @@ const AddRecipeForm = () => {
                 <DescField>
                   <DescLabel>Category</DescLabel>
                   <DescSelect
+                    classNames={{
+                      valueContainer: () => 'valueContainer',
+                    }}
                     options={categoriesOptions}
                     onChange={selected => {
                       setFieldValue('category', selected.value);
                     }}
-                    styles={selectorStyles}
+                    styles={{
+                      ...selectorStyles,
+                      container: () => ({
+                        position: 'relative',
+                        width: 123,
+                      }),
+                    }}
                   />
                   <ErrorMessage name="category" component={Error} />
                 </DescField>
@@ -241,6 +279,9 @@ const AddRecipeForm = () => {
                   <DescLabel>Cooking time</DescLabel>
                   <DescSelect
                     id="time"
+                    classNames={{
+                      valueContainer: () => 'valueContainer',
+                    }}
                     options={timeOptions}
                     onChange={selected => {
                       setFieldValue('time', selected.value);
@@ -252,21 +293,21 @@ const AddRecipeForm = () => {
               </Desc>
             </Info>
 
-            <div>
+            <IngredientsWrapper>
               <IngredientsHeader>
                 <FormTitle>Ingredients</FormTitle>
                 <QtySelector>
-                  <span
+                  <IngredientsButton
                     onClick={() => setIngredientsQty(prevQty => prevQty - 1)}
                   >
-                    -
-                  </span>
+                    <Icon name="icon-minus" width="14" height="14" />
+                  </IngredientsButton>
                   <span>{ingredientsQty}</span>
-                  <span
+                  <IngredientsButton
                     onClick={() => setIngredientsQty(prevQty => prevQty + 1)}
                   >
-                    +
-                  </span>
+                    <Icon name="icon-plus" width="14" height="14" />
+                  </IngredientsButton>
                 </QtySelector>
               </IngredientsHeader>
               <IngredientsList>
@@ -274,26 +315,31 @@ const AddRecipeForm = () => {
                   <IngredientContainer key={i}>
                     <Ingredient
                       id={`ingredients[${i}]`}
+                      classNames={{
+                        valueContainer: () => 'valueContainer',
+                        menu: () => 'menu',
+                      }}
                       options={ingredientsOptions}
                       onChange={selected => {
                         setFieldValue(`ingredients[${i}].id`, selected.value);
-                        setFieldValue(`ingredients[${i}].name`, selected.label);
                       }}
-                      styles={{
-                        ...ingredientsSelectorStyles,
-                      }}
+                      styles={ingredientsSelectorStyles}
                     />
 
-                    <Select
+                    <Ingredient
                       id={`measure[${i}]`}
                       options={measureOptions}
+                      classNames={{
+                        valueContainer: () => 'valueContainer',
+                        menu: () => 'menu',
+                      }}
                       onChange={selected => {
                         setFieldValue(
                           `ingredients[${i}].measure`,
                           selected.value
                         );
                       }}
-                      styles={ingredientsSelectorStyles}
+                      styles={measureSelectorStyles}
                     />
 
                     <ErrorMessage
@@ -305,11 +351,13 @@ const AddRecipeForm = () => {
                       component={Error}
                     />
 
-                    <button type="button">X</button>
+                    <Delete type="button">
+                      <Icon name="cross" width="18" height="18" />
+                    </Delete>
                   </IngredientContainer>
                 ))}
               </IngredientsList>
-            </div>
+            </IngredientsWrapper>
 
             <Preparation>
               <FormTitle htmlFor="instructions">Recipe Preparation</FormTitle>
@@ -324,9 +372,9 @@ const AddRecipeForm = () => {
               <ErrorMessage name="instructions" component={InstructionsError} />
             </Preparation>
 
-            <button type="submit" disabled={isSubmitting}>
-              Add Recipe
-            </button>
+            <ButtonSkew type="submit" variant="primary" disabled={isSubmitting}>
+              Add
+            </ButtonSkew>
           </StyledForm>
         );
       }}
