@@ -1,0 +1,446 @@
+import styled from 'styled-components';
+import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
+import { NavLink } from 'react-router-dom';
+import { HiOutlineMail } from 'react-icons/hi';
+import { Form, Field } from 'formik';
+import variables from '../../css/variables.module.css';
+import imgBackgroundModileFirstMobile from '../../images/leaves-menu@1x_320-min.png';
+import imgBackgroundModileSecondMobile from '../../images/leaves-footer@1x_320-min.png';
+import imgBackgroundModileFirstTablet from '../../images/leaves-menu@2x_320-min.png';
+import imgBackgroundModileSecondTablet from '../../images/leaves-footer@2x_320-min.png';
+import imgBackgroundModileFirstDesktop from '../../images/leaves-menu@3x_320-min.png';
+import imgBackgroundModileSecondDesktop from '../../images/leaves-footer@3x_320-min.png';
+
+export const Footerwrapper = styled.div`
+    position: absolute;
+    width: 100%;
+    left: 0;
+`;
+export const Dolbaniylistochek = styled.div`
+    position: absolute;
+    background-image: url(${imgBackgroundModileFirstMobile});
+    background-repeat: no-repeat;
+    background-size: 70%, cover;
+    transform: rotate(90deg);
+    z-index: -100;
+    width: 256px;
+    height: 392px;
+    top: -246px;
+    left: -135px;
+    
+@media screen and (min-width: 768px) {
+    background-image: url(${imgBackgroundModileFirstTablet});
+    width: 423px;
+    height: 646px;
+    top: -407px;
+    left: -218px;
+    }
+
+@media screen and (min-width: 1280px) {
+    background-image: url(${imgBackgroundModileFirstDesktop});
+    width: 558px;
+    height: 852px;
+    top: -535px;
+    left: -290px;
+    }
+`;
+export const Footerbackground = styled.div`
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding-top: 28px;
+    padding-bottom: 18px;
+
+@media screen and (min-width: 768px) {
+    padding-top: 50px;
+    padding-left: 32px;
+    padding-bottom: 24px;
+    padding-right: 94px;
+    }
+
+@media screen and (min-width: 1280px) {
+    padding-top: 64px;
+    padding-left: 100px;
+    padding-bottom: 50px;
+    padding-right: 100px;
+    }
+`;
+export const Footerstyled = styled.div`
+    padding-bottom: 44px;
+
+@media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 38px;
+    width: 768px;
+    }
+
+@media screen and (min-width: 1280px) {
+    flex-wrap: nowrap;
+    padding-bottom: 41px;
+    width: auto;
+    }
+`;
+
+export const LogoPlus = styled.div`
+    margin-bottom: 32px;
+
+@media screen and (min-width: 768px) {
+    margin-bottom: 72px;
+    }
+
+@media screen and (min-width: 1280px) {
+    margin-right: 160px;
+    margin-bottom: 0;
+    }
+
+`;
+export const Logo = styled.div`
+    display: flex;
+    justify-content: center;
+    
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.015em;
+    
+@media screen and (min-width: 768px) {
+    display: block;
+    margin-bottom: 24px;
+    
+    font-size: 28px;
+    line-height: 28px;
+    }
+
+@media screen and (min-width: 1280px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    }
+`;
+export const LogoIconStyled = styled(LogoIcon)`
+    width: 22px;
+    height: 22px;
+    stroke: var(--accent-color);
+    background-color: var(--accent-light-color);
+    border-radius: 6px;
+    padding: 6px;
+    margin-right: 8px;
+  
+@media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+    padding:7px;
+    border-radius: 12px;
+    margin-right: 12px;
+    }
+`;
+export const Benefitslist = styled.ul`
+    display: none;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    
+@media screen and (min-width: 768px) {
+    display: block;
+    }
+
+@media screen and (min-width: 1280px) {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    }
+`;
+export const Li = styled.li`
+@media screen and (min-width: 768px) {
+    list-style: inside;
+    margin-bottom: 10px;
+    }
+
+@media screen and (min-width: 1280px) {
+    margin-bottom: 12px;
+    }
+`;
+
+export const Footernav = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+
+@media screen and (min-width: 768px) {
+    margin-left: auto;
+    margin-right: 95px;
+    gap: 20px;
+    align-items: flex-start;
+    }
+
+@media screen and (min-width: 1280px) {
+    margin-left: auto;
+    margin-right: auto;
+    }
+`;
+export const NavLinkStyled = styled(NavLink)`
+    &.active {
+    color: var(--accent-color);
+    }
+`;
+
+export const FormStyled = styled(Form)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 335px;
+    
+@media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 0px;
+    width: 458px;
+    height: 50px;
+    max-width: 768px;
+    }
+
+@media screen and (min-width: 1280px) {
+    flex-direction: column;
+    align-content: flex-start;
+    gap: 0;
+    margin-right: 0;
+    width: 340px;
+    }
+`;
+export const Sudscribeheader = styled.h2`
+    display: none;
+
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0em;
+    
+@media screen and (min-width: 1280px) {
+    display: inline;
+    margin-bottom: 14px;
+    }
+`;
+export const Sudscribepage = styled.p`
+    display: none;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+    text-align: left;
+
+@media screen and (min-width: 1280px) {
+    display: inline;
+    margin-bottom: 28px;
+    }
+`;
+export const EmailIcon = styled(HiOutlineMail)`
+    position: absolute;
+    color: rgba(250, 250, 250, 0.8);
+    transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    top: 10px;
+    left: 14px;
+
+@media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+
+    top: 12px;
+    left: 18px;
+    }
+
+@media screen and (min-width: 1280px) {
+    top: 18px;
+    left: 18px;
+    }
+`;
+export const FieldStyled = styled(Field)`
+  outline: none;
+  position: relative;
+  width: 205px;
+  height: 38px;
+  border: 1px solid;
+  border-color: rgba(250, 250, 250, 0.3);
+  border-radius: 6px;
+  padding: 12px 40px;
+  margin-bottom: 8px;
+ 
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--primary-color);
+  background-color: transparent;
+
+  transition: border-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::placeholder {
+    color: #fafafa;
+    font-family: ${variables['--poppins-regular']};
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    opacity: 0.8;
+  }
+
+  :hover,
+  :focus {
+    border-color: #fff;
+    background-color: transparent;
+
+    + svg {
+      color: var(--primary-color);
+    }
+  }
+
+  label:has(div.error) & {
+    border-color: #e74a3b;
+
+    + svg {
+      color: #e74a3b;
+    }
+  }
+
+  label:has(div.warning) & {
+    border-color: #f6c23e;
+
+    + svg {
+      color: #f6c23e;
+    }
+  }
+
+  label:has(div.valid) & {
+    border-color: #3cbc81;
+
+    + svg {
+      color: #3cbc81;
+    }
+  }
+
+@media screen and (min-width: 768px) {
+    padding: 16px 50px;
+    width: 260px;
+    height: 50px;
+    margin-bottom: 0px;
+
+    font-size: 18px;
+    line-height: 1.5;
+
+    &::placeholder {
+      font-size: 18px;
+    }
+    }
+
+@media screen and (min-width: 1280px) {
+    padding: 16px 50px;
+    width: 340px;
+    height: 60px;
+    margin-bottom: 16px;
+    }
+`;
+export const SubmitBtn = styled.button`
+  width: 205px;
+  height: 38px;
+  
+  color: var(--primary-color);
+  background-color: var(--accent-color);
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+
+  &:hover,
+  &:focus {
+    color: var(--secondary-color);
+  }
+
+@media screen and (min-width: 768px) {
+    width: 100%;
+    height: 50px;
+    padding: 20px;
+
+    font-size: 16px;
+    line-height: 18px;
+}
+
+@media screen and (min-width: 1280px) {
+    padding: 16px 50px;
+    width: 340px;
+    height: 60px;
+    }
+`;
+export const LabelStyled = styled.label`
+  position: relative;
+`;
+
+export const SocialLinkslist = styled.ul`
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  fill: var(--accent-color);
+
+@media screen and (min-width: 768px) {
+    gap:18px;
+}
+`;
+export const SocialLinks = styled(NavLink)`
+  fill: var(--accent-color);
+`;
+
+export const Underfooter = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    height: 56px;
+    
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 10px;
+    letter-spacing: -0.01em;
+    text-align: left;
+
+    background-image: url(${imgBackgroundModileSecondMobile});
+    background-size: 172px 160px;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+
+@media screen and (min-width: 768px) {
+    height: 78px;
+    
+    background-image: url(${imgBackgroundModileSecondTablet});
+    background-size: 313px 290px;
+    background-repeat: no-repeat;
+    
+    font-size: 14px;
+    line-height: 14px;
+    }
+
+@media screen and (min-width: 1280px) {
+    height: 114px;
+    
+    background-image: url(${imgBackgroundModileSecondDesktop});
+    background-size: 474px 438px;
+    background-repeat: no-repeat;
+    }
+`;

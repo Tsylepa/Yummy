@@ -29,7 +29,7 @@ const Header = () => {
       });
     } else {
       setHideOrShow(() => {
-        return { transform: 'translateY(0)' };
+        return { position: 'fixed', transform: 'translateY(0)' };
       });
     }
   };
@@ -38,7 +38,7 @@ const Header = () => {
     <>
       <Burger style={hideOrShow}>
         <BurgerHeader>
-          <Link to="/main" onClick={handleMenu}>
+          <Link to="/home" onClick={handleMenu}>
             <LogoIconStyled />
           </Link>
 
@@ -78,14 +78,14 @@ const Header = () => {
       </Burger>
 
       <HeaderWraper>
-        <Link to="/main">
+        <Link to="/home">
           <LogoIconStyled />
         </Link>
 
         <HeaderNav>
           <NavLinkStyled to="/categories">Categories</NavLinkStyled>
-          <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
-          <NavLinkStyled to="/my">My recipes</NavLinkStyled>
+          <NavLinkStyled to="/addrecipe">Add recipes</NavLinkStyled>
+          <NavLinkStyled to="/myrecipe">My recipes</NavLinkStyled>
           <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
           <NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled>
           <NavLinkStyled to="/search">
