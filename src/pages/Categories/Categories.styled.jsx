@@ -37,7 +37,7 @@ export const StyledCategoriesPagesWraper = styled.div`
 
   @media screen and (min-width: 1440px) {
     width: 1440px;
-    padding-left: 100px;
-    padding-right: 100px;
+    // padding-left: 100px;
+    // padding-right: 100px;
   }
 `;
