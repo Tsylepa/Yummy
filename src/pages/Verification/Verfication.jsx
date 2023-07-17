@@ -6,15 +6,15 @@ import { useUser } from 'hooks/useUser';
 import { Loader } from 'components/Loader/Loader';
 const VerificationPage = () => {
   const dispatch = useDispatch();
-  const { vCode } = useParams();
+  const { verificationCode } = useParams();
   const email = JSON.parse(localStorage.getItem('userEmail'));
   const { isLoggedIn } = useUser();
 
   useEffect(() => {
-    if (vCode && !isLoggedIn) {
-      dispatch(verification({ email, vCode }));
+    if (verificationCode && !isLoggedIn) {
+      dispatch(verification({ email, verificationCode }));
     }
-  }, [dispatch, email, vCode, isLoggedIn]);
+  }, [dispatch, email, verificationCode, isLoggedIn]);
 
   return (
     <div>

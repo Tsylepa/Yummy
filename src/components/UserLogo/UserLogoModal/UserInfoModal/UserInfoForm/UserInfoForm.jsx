@@ -20,7 +20,7 @@ import operations from '../../../../../redux/auth/authOperations';
 export const UserInfoForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const {
-    user: { name, avatarUrl },
+    user: { name, avatar },
   } = useUser();
   const [avatarFile, setAvatarFile] = useState(null);
   const initialValue = { name, image: avatarFile };
@@ -57,11 +57,11 @@ export const UserInfoForm = ({ closeModal }) => {
             />
 
             <UserPhotoWrapper>
-              {(values.image || avatarUrl) && (
-                <PreviewPhoto photo={values.image} avatarUrl={avatarUrl} />
+              {(values.image || avatar) && (
+                <PreviewPhoto photo={values.image} avatarFile={avatar} />
               )}
 
-              {!values.image && !avatarUrl && (
+              {!values.image && !avatar && (
                 <FiUser size={47} color={'#C4C4C4'} />
               )}
 

@@ -1,18 +1,18 @@
-import css from './Favorites.module.css';
+import css from './MyRecipes.module.css';
 import { BiTrash } from 'react-icons/bi';
 
 import { ContainerBG } from 'components/ContainerBG/ContainerBG';
 
-const Favorites = () => {
-  const sectionTitle = 'Salmon Eggs Benedict';
+const MyRecipes = () => {
+  const sectionTitle = 'Apple Frangipan Tart';
   const info =
-    ' Salmon eggs are rich in essential nutrients, low in calories,and recommended as part of a healthy diet. Including salmon in abalanced diet can help decrease the chances of heart disease,  ease inflammation, and more.';
+    'Apple Frangipane Tart is a classic and elegant treat fit for any dessert table. A crisp, sweet-crust is filled with rich almond frangipane filling, baked with sliced apples and finished with apricot preserves.';
   const studies =
-    'Studies have shown a number of potential health benefits to seafood rich in omega-3 fatty acids, which include salmon eggs.';
+    'We threw a ladies Melbourne Cup lunch and this was our dessert. Super quick to prepare using store bought pastry.';
   return (
-    <>
-      <ContainerBG>
-        <h1 className={css.title}>Favorites</h1>
+    <ContainerBG>
+      <div>
+        <h1 className={css.title}>My recipes</h1>
         <ul>
           <li className={css.item}>
             <img className={css.img} alt=""></img>
@@ -34,9 +34,9 @@ const Favorites = () => {
             </div>
           </li>
         </ul>
-      </ContainerBG>
-    </>
+      </div>
+    </ContainerBG>
   );
 };
 
-export default Favorites;
+export default MyRecipes;

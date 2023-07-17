@@ -2,18 +2,29 @@ import { instance } from './APIconfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // GET ALL RECIPES
-export const getAllRecipes = createAsyncThunk(
-  'recipes/getAllrecipes',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await instance.get('recipes');
+// export const getAllRecipes = createAsyncThunk(
+//   'recipes/getAllrecipes',
+//   async (_, thunkAPI) => {
+//     try {
+//       const { data } = await instance.get(`recipes`);
 
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+export const getAllRecipes = async () => {
+  try {
+    const { data } = await instance.get('/recipes');
+
+    return data;
+  } catch (error) {
+    console.log(error);
   }
-);
+};
+
 
 // GET RECIPES BY INGREDIENT
 export const getRecipesByIngredient = createAsyncThunk(
