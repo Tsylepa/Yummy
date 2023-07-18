@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, ErrorMessage, Field } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ImageUploading from 'react-images-uploading';
 import {
@@ -13,7 +12,6 @@ import {
   DescLabel,
   DescSelect,
   Input,
-  Hidden,
   Error,
   FormTitle,
   IngredientsHeader,
@@ -21,6 +19,8 @@ import {
   IngredientsWrapper,
   IngredientContainer,
   Ingredient,
+  Measure,
+  MeasureInput,
   Preparation,
   Instructions,
   ImageWrapper,
@@ -119,7 +119,8 @@ const ingredientsSelectorStyles = {
     ...baseStyles,
     ...selectorStyles.menu(),
     position: 'absolute',
-    top: 60,
+    backgroundColor: 'var(--selector-menu-color)',
+    top: 50,
     right: 0,
     padding: 16,
   }),
@@ -138,13 +139,23 @@ const measureSelectorStyles = {
   ...ingredientsSelectorStyles,
   container: () => ({
     ...ingredientsSelectorStyles.container(),
-    position: 'relative',
-    flex: 0,
-    width: 84,
+    position: 'static',
+    backgroundColor: 'transparent',
+    flex: 0.5,
+    width: 50,
+    padding: 0,
+  }),
+  input: () => ({
+    display: 'none',
+  }),
+
+  singleValue: () => ({
+    width: 20,
+  }),
+  placeholder: () => ({
+    display: 'none',
   }),
 };
-
-console.log(ingredientsSelectorStyles);
 
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
@@ -190,7 +201,7 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
-    console.log('hghfjf', values.ingredients);
+
     values.ingredients.map(ingr => (ingr.measure = ingr.measure.join(' ')));
 
     formData.append('file', image.file);
@@ -201,7 +212,7 @@ const AddRecipeForm = () => {
     formData.append('ingredients', JSON.stringify(values.ingredients));
     formData.append('instructions', values.instructions);
     dispatch(addRecipe(formData));
-    console.log('formData', formData);
+
     navigate('/my');
   };
 
@@ -221,6 +232,8 @@ const AddRecipeForm = () => {
         instructions: '',
       }}
       validationSchema={recipeSchema}
+      validateOnBlur={false}
+      validateOnChange={false}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, handleChange, setFieldValue, values }) => {
@@ -339,9 +352,10 @@ const AddRecipeForm = () => {
                       styles={ingredientsSelectorStyles}
                     />
 
-                    <div>
-                      <Field
+                    <Measure>
+                      <MeasureInput
                         name="measureValue"
+                        autoComplete="off"
                         onChange={({ target }) => {
                           setIngredients(prev =>
                             prev.map((ing, idx) => {
@@ -377,7 +391,7 @@ const AddRecipeForm = () => {
                         }}
                         styles={measureSelectorStyles}
                       />
-                    </div>
+                    </Measure>
 
                     <ErrorMessage
                       name={`ingredients[${i}].id`}
@@ -388,7 +402,7 @@ const AddRecipeForm = () => {
                       component={Error}
                     />
 
-                    <Delete type="button">
+                    <Delete type="button" onClick={handleDeleteIngredient}>
                       <Icon name="cross" width="18" height="18" />
                     </Delete>
                   </IngredientContainer>
