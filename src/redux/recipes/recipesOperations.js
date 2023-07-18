@@ -67,6 +67,19 @@ export const deleteFavorite = createAsyncThunk(
   }
 );
 
+// GET POPULAR RECIPES
+export const getPopularRecipes = createAsyncThunk(
+  'recipes/popular',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`recipes/popular`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 // Add to ShoppingList
 export const addToShoppingList = createAsyncThunk(
   'recipes/addToShoppingList',
