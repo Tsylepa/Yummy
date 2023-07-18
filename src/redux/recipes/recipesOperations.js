@@ -20,7 +20,19 @@ export const deleteRecipe = createAsyncThunk(
   async ({ recipeId }, thunkAPI) => {
     try {
       const { data } = await instance.delete(`recipes/${recipeId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
+// GET MY RECIPE LIST - add by Oleg.
+export const getRecipeList = createAsyncThunk(
+  'recipes',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`recipes`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -34,7 +46,6 @@ export const getRecipeById = createAsyncThunk(
   async ({ recipeId }, thunkAPI) => {
     try {
       const { data } = await instance.get(`recipes/${recipeId}`);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -53,6 +64,21 @@ export const addToFavorite = createAsyncThunk(
     }
   }
 );
+
+
+// GET MY FAVORITES LIST - add by Oleg.
+export const getFavoritesList = createAsyncThunk(
+  'recipes',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`recipes`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 
 // Remove from Favorite byId
 export const deleteFavorite = createAsyncThunk(
@@ -79,6 +105,7 @@ export const getPopularRecipes = createAsyncThunk(
     }
   }
 );
+
 
 // Add to ShoppingList
 export const addToShoppingList = createAsyncThunk(
