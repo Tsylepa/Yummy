@@ -25,7 +25,6 @@ export const getAllRecipes = async () => {
   }
 };
 
-
 // GET RECIPES BY INGREDIENT
 export const getRecipesByIngredient = createAsyncThunk(
   'recipes/getRecipesByIngredient',
@@ -89,3 +88,16 @@ export const getIngredients = async () => {
     console.log(error);
   }
 };
+
+// GET POPULAR RECIPES
+export const getPopularRecipes = createAsyncThunk(
+  'recipes/popular',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`recipes/popular`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

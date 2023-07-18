@@ -46,6 +46,9 @@ export const Dolbaniylistochek = styled.div`
   }
 `;
 export const Footerbackground = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--search-btn-color);
   padding-top: 28px;
   padding-bottom: 18px;
@@ -391,19 +394,6 @@ export const SubmitBtn = styled.button`
 `;
 export const LabelStyled = styled.label`
   position: relative;
-`;
-
-export const SocialLinkslist = styled.ul`
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-
-  @media screen and (min-width: 768px) {
-    gap: 18px;
-  }
-`;
-export const SocialLinks = styled(NavLink)`
-  fill: var(--footer-sociallink-color);
 `;
 
 export const Underfooter = styled.div`

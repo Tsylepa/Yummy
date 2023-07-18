@@ -6,6 +6,7 @@ import mediaRule from 'utils/mediaRule';
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 44px;
 `;
 
@@ -140,6 +141,27 @@ export const Ingredient = styled(Select)`
     ${mediaRule('tablet', 'desktop', 'font-size:12px')}
     ${mediaRule('desktop', '', 'font-size:14px')}
   }
+`;
+
+export const Measure = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 4px;
+  background-color: var(--input-bg-color);
+`;
+
+export const MeasureInput = styled(Field)`
+  background-color: transparent;
+  height: 27px;
+  width: 30px;
+  flex: 0.5;
+  padding: 0;
+  text-align: right;
+  border: none;
+  font: inherit;
 `;
 
 export const IngredientsButton = styled.button`
