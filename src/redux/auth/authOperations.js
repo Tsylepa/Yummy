@@ -29,7 +29,6 @@ export const register = createAsyncThunk(
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          // theme: 'dark',
         }
       );
       return data;
@@ -133,7 +132,7 @@ export const updateUserInfo = createAsyncThunk(
   'auth/updateUserInfo',
   async (userInfo, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('/users/changeAvatar', userInfo);
+      const { data } = await axios.patch('/users/changeName', userInfo);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
