@@ -1,11 +1,17 @@
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { ButtonSkew } from '../../../ButtonSkew/ButtonSkew';
+import { ButtonSkewStyled } from '../../../ButtonSkew/ButtonSkew.styled';
 
 export const LogoutBtn = ({ onClick }) => {
   return (
-    <ButtonSkew data-variant="primary-accent" onClick={onClick} isShadow={true}>
-      Log out
-      <AiOutlineArrowRight size={18} color={'#fafafa'} />
-    </ButtonSkew>
+    <ButtonSkewStyled
+      data-variant="primary-accent"
+      onClick={onClick}
+      isshadow={true}
+    >
+      <div className="inner">
+        Log out
+        <AiOutlineArrowRight size={18} color={'#fafafa'} />
+      </div>
+    </ButtonSkewStyled>
   );
 };

@@ -31,9 +31,9 @@ export const UserInfoForm = ({ closeModal }) => {
     const formData = new FormData();
     formData.append('name', name);
 
-    if (avatarFile) {
-      formData.append('image', avatarFile);
-    }
+    // if (avatar) {
+    //   formData.append('avatar', avatar[0]);
+    // }
 
     dispatch(operations.updateUserInfo(formData));
     resetForm();
