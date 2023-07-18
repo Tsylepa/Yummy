@@ -1,6 +1,5 @@
 import { instance } from 'api/APIconfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from '../../api/APIconfig';
 
 // ADD NEW RECIPE
 export const addRecipe = createAsyncThunk(
@@ -32,7 +31,7 @@ export const deleteRecipe = createAsyncThunk(
 // GET RECIPEBYID
 export const getRecipeById = createAsyncThunk(
   'recipes/getRecipeById',
-  async ({recipeId}, thunkAPI) => {
+  async ({ recipeId }, thunkAPI) => {
     try {
       const { data } = await instance.get(`recipes/${recipeId}`);
 
@@ -44,7 +43,7 @@ export const getRecipeById = createAsyncThunk(
 );
 // Add To Favorite byId
 export const addToFavorite = createAsyncThunk(
-  "recipes/addFavorite",
+  'recipes/addFavorite',
   async (recipeId, thunkAPI) => {
     try {
       const response = await instance.post(`favorite/${recipeId}`);
@@ -57,7 +56,7 @@ export const addToFavorite = createAsyncThunk(
 
 // Remove from Favorite byId
 export const deleteFavorite = createAsyncThunk(
-  "recipes/deleteFavorite",
+  'recipes/deleteFavorite',
   async (recipeId, thunkAPI) => {
     try {
       const response = await instance.delete(`favorite/${recipeId}`);
@@ -70,7 +69,7 @@ export const deleteFavorite = createAsyncThunk(
 
 // Add to ShoppingList
 export const addToShoppingList = createAsyncThunk(
-  "recipes/addToShoppingList",
+  'recipes/addToShoppingList',
   async ({ ingredient, recipeId, measure }, thunkAPI) => {
     try {
       const response = await instance.post(`shoppingList`, {
@@ -78,7 +77,6 @@ export const addToShoppingList = createAsyncThunk(
         recipeId,
         measure,
       });
-      console.log("addToShoppingList response:", response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
