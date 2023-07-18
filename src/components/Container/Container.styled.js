@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import mediaRule from 'utils/mediaRule';
 
 export const StyledContainer = styled.div`
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   width: 100%;

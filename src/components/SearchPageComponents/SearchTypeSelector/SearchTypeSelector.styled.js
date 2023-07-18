@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Select from 'react-select';
 
-export const SearchTypeWrapper = styled.div`
+export const SearchTypeContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +22,7 @@ export const SearchTypeWrapper = styled.div`
 export const SearchTypeText = styled.p`
   margin-right: 15px;
 
-  color: #001833;
+  color: var(--input-text-color);
   font-family: var(--poppins-regular);
   font-size: 12px;
   font-style: normal;
@@ -48,7 +48,7 @@ export const SelectControl = styled(Select)`
 
     padding-left: 8px;
     padding-right: 8px;
-    background-color: rgba(217, 217, 217, 0.16);
+    background-color: var(--input-bg-color);
 
     font-family: var(--poppins-regular);
     font-style: normal;
@@ -58,9 +58,9 @@ export const SelectControl = styled(Select)`
     letter-spacing: -0.24px;
     opacity: 0.5;
 
-    color: #000;
+    color: var(--input-text-color);
     border-radius: 6px 6px 6px 6px;
-    border-color: black;
+
     border: none;
     box-shadow: none;
     cursor: pointer;
@@ -86,9 +86,10 @@ export const SelectControl = styled(Select)`
     margin-top: 0;
     margin-bottom: 0;
     padding: 4px 8px;
+   
 
     box-shadow: none;
-    background-color: var(--primary-color);
+    background-color: var(--input-bg-color);
 
     height: 76px;
     border-radius: 6px 6px 6px 6px;

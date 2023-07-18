@@ -48,6 +48,6 @@
   --input-border-color: var(--border-dark-color);
   --selector-border-color: var(--primary-color);
   --input-text-color: var(--primary-color);
-  --input-bg-color: hsla(0, 0%, 98%, 0.2);
+  --input-bg-color: #1e1f28;
   --footer-sociallink-color: var(--primary-color);
 }

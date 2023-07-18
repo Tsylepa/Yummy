@@ -31,7 +31,7 @@ export const SearchNotFoundText = styled.p`
   letter-spacing: -0.28px;
   font-feature-settings: 'liga' off;
 
-  color: #000000;
+  color: var(--input-text-color);
   opacity: 0.5;
 
   @media screen and (min-width: 768px) {

@@ -42,7 +42,7 @@ export const Form = styled.form`
 
   border: none;
 
-  background-color: #fff;
+  background-color: var(--input-bg-color);
   clip-path: inset(1px 1px 1px 1px round 20px 50px 20px 50px);
 
   @media screen and (min-width: 320px) {
@@ -70,6 +70,7 @@ export const Form = styled.form`
 export const SearchFormField = styled.input`
   display: inline-block;
   background: transparent;
+  
 
   padding-left: 4px;
   padding-right: 4px;
@@ -81,6 +82,7 @@ export const SearchFormField = styled.input`
   border-color: transparent;
   outline: none;
   cursor: pointer;
+  color: var(--input-text-color);
 
   &:focus {
     background: transparent;
@@ -91,7 +93,7 @@ export const SearchFormField = styled.input`
     font-family: var(--poppins-regular);
     font-weight: 400;
     font-size: 12px;
-    color: #3E4462;
+    color: var(--input-text-color);
     line-height: normal;
     background: transparent;
     background-color: transparent;
@@ -105,13 +107,6 @@ export const SearchFormField = styled.input`
     }
   }
 
-  &[value] {
-    font-family: var(--poppins-regular);
-    font-weight: 400;
-    font-size: 12px;
-    color: #3E4462;;
-    line-height: normal;
-    background-color: transparent;
 
     @media screen and (min-width: 768px) {
       width: 135px;
@@ -126,7 +121,7 @@ export const SearchFormField = styled.input`
 
       font-size: 16px;
     }
-  }
+  
 `;
 
 export const SearchFormButton = styled.button`
