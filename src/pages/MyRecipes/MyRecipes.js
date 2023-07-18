@@ -28,7 +28,6 @@ const MyRecipes = () => {
                   <div className={css.text}>
                     <p className={css.text__info}> {recipe.description}</p>
                     <p className={css.text__studies}> {recipe.instructions}</p>
-                    <span>{recipe._id}</span>
                     <span className={css.block}>{recipe.time}</span>
                   </div>
 
