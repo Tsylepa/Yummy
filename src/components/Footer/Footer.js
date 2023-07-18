@@ -54,7 +54,7 @@ const Footer = () => {
         <Footerstyled>
         <LogoPlus>
           <Logo>
-            <Link to="/home">
+            <Link to="/main">
               <LogoIconStyled />
                   So Yummy
               </Link>
@@ -69,8 +69,8 @@ const Footer = () => {
             
           <Footernav>
             <NavLinkStyled to="/ingredients">Ingredients</NavLinkStyled>
-            <NavLinkStyled to="/addrecipe">Add recipes</NavLinkStyled>
-            <NavLinkStyled to="/myrecipe">My recipes</NavLinkStyled>
+            <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
+            <NavLinkStyled to="/recipe">My recipes</NavLinkStyled>
             <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
             <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
           </Footernav>

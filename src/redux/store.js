@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
 import recipesReducer from './recipes/recipesSlice';
+import mainPageReducer from './mainPage/mainPageSlice'
 
 const authPersistConfig = {
   key: 'auth',
@@ -23,11 +24,16 @@ const recipesPersistConfig = {
   key: 'recipes',
   storage,
 };
+const mainPagePersistConfig = {
+  key: 'mainPage',
+  storage,
+};
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     recipes: persistReducer(recipesPersistConfig, recipesReducer),
+    mainPage: persistReducer(mainPagePersistConfig, mainPageReducer)
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

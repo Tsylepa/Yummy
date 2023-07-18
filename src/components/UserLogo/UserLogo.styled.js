@@ -4,6 +4,8 @@ import variables from '../../css/variables.module.css';
 export const UserLogoBtnWrapper = styled.div`
   position: relative;
   z-index: 2;
+
+  margin-left: auto;
 `;
 
 export const UserLogoBtn = styled.button`
@@ -20,15 +22,7 @@ export const UserLogoBtn = styled.button`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.7;
-  color: var(--primary-color);
-
-  @media screen and (max-width: 1279px) {
-    color: var(--primary-dark-color);
-  }
-
-  @media screen and (min-width: 1720px) {
-    color: var(--primary-dark-color);
-  }
+  color: var(--font-color);
 `;
 
 export const UserAvatarWrapper = styled.div`

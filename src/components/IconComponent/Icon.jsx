@@ -4,7 +4,7 @@ import sprite from 'images/svg/sprite.svg';
 const Icon = ({ name, className, ...rest }) => {
   return (
     <svg
-      className={`icon ${className}`}
+      className={className ? `icon ${className}` : 'icon'}
       {...rest}
       style={{ stroke: 'currentColor' }}
     >
