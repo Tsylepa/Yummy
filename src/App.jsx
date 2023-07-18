@@ -15,7 +15,7 @@ const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
 const VerificationPage = lazy(() =>
   import('./pages/Verification/Verification')
 );
-const AddRecipe = lazy(() => import('./pages/AddRecipe'));
+const AddRecipe = lazy(() => import('./pages/AddRecipe/AddRecipe'));
 const NoPage = lazy(() => import('./pages/404'));
 const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
 const CategoriesPage = lazy(() => import('./pages/Categories/Categories'));
