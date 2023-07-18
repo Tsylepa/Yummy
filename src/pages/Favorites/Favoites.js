@@ -2,8 +2,16 @@ import css from './Favorites.module.css';
 import { BiTrash } from 'react-icons/bi';
 
 import { ContainerBG } from 'components/ContainerBG/ContainerBG';
+import { useSelector } from 'react-redux';
+// import { selectRecipeList } from 'redux/recipes/recipesSelectors';
+import { selectFavoriteList } from 'redux/recipes/recipesSelectors';
 
 const Favorites = () => {
+
+  const favorite = useSelector(selectFavoriteList)
+  // const favorite = useSelector(selectRecipeList);
+  
+  console.log(favorite)
   const sectionTitle = 'Salmon Eggs Benedict';
   const info =
     ' Salmon eggs are rich in essential nutrients, low in calories,and recommended as part of a healthy diet. Including salmon in abalanced diet can help decrease the chances of heart disease,  ease inflammation, and more.';

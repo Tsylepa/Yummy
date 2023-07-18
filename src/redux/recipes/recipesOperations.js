@@ -65,6 +65,21 @@ export const addToFavorite = createAsyncThunk(
   }
 );
 
+
+// GET MY FAVORITES LIST - add by Oleg.
+export const getFavoritesList = createAsyncThunk(
+  'recipes',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`recipes`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
 // Remove from Favorite byId
 export const deleteFavorite = createAsyncThunk(
   'recipes/deleteFavorite',
@@ -77,6 +92,7 @@ export const deleteFavorite = createAsyncThunk(
     }
   }
 );
+
 
 // Add to ShoppingList
 export const addToShoppingList = createAsyncThunk(
