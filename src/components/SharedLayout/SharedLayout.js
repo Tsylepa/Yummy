@@ -20,9 +20,8 @@ function SharedLayout() {
           <Outlet />
         </Container>
       </Suspense>
-      <Container>
-        <Footer />
-      </Container>
+
+      <Footer />
     </div>
   );
 }
