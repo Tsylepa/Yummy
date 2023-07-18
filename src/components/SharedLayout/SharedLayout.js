@@ -2,10 +2,11 @@ import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 
 import Header from 'components/Header/Header';
-import Footer from 'components/Footer';
+import Footer from 'components/Footer/Footer';
 import useUser from 'hooks/useUser';
 import Container from 'components/Container';
 import { Loader } from 'components/Loader/Loader';
+import { Main } from './SharedLayout.styled';
 
 function SharedLayout() {
   const { user } = useUser();
@@ -17,7 +18,9 @@ function SharedLayout() {
       </Container>
       <Suspense fallback={<Loader />}>
         <Container>
-          <Outlet />
+          <Main>
+            <Outlet />
+          </Main>
         </Container>
       </Suspense>
 
