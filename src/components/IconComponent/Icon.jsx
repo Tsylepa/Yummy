@@ -1,10 +1,13 @@
 import React from 'react';
-import sprite from "images/sprite.svg"
+import sprite from 'images/svg/sprite.svg';
 
 const Icon = ({ name, className, ...rest }) => {
-
   return (
-    <svg className={`icon ${className}`} {...rest} style={ {stroke: 'currentColor'} }>
+    <svg
+      className={`icon ${className}`}
+      {...rest}
+      style={{ stroke: 'currentColor' }}
+    >
       <use href={`${sprite}#${name}`} />
     </svg>
   );
