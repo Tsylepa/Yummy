@@ -42,3 +42,46 @@ export const getRecipeById = createAsyncThunk(
     }
   }
 );
+// Add To Favorite byId
+export const addToFavorite = createAsyncThunk(
+  "recipes/addFavorite",
+  async (recipeId, thunkAPI) => {
+    try {
+      const response = await instance.post(`favorite/${recipeId}`);
+      return response.data.recipe;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// Remove from Favorite byId
+export const deleteFavorite = createAsyncThunk(
+  "recipes/deleteFavorite",
+  async (recipeId, thunkAPI) => {
+    try {
+      const response = await instance.delete(`favorite/${recipeId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// Add to ShoppingList
+export const addToShoppingList = createAsyncThunk(
+  "recipes/addToShoppingList",
+  async ({ ingredient, recipeId, measure }, thunkAPI) => {
+    try {
+      const response = await instance.post(`shoppingList`, {
+        ingredient,
+        recipeId,
+        measure,
+      });
+      console.log("addToShoppingList response:", response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

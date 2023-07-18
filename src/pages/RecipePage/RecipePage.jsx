@@ -36,10 +36,10 @@ const RecipePage = ()=> {
     }
   
     
-    const { title, description, time, ingredients, preview, instructions } = recipe[recipeId];
+    const { title, description, time, ingredients, preview, instructions, favorites } = recipe[recipeId];
     return (
         <>
-        <RecipePageHero title={title} description={description} time={time}/>
+        <RecipePageHero title={title} description={description} time={time} recipeId = {recipeId} favorites = {favorites}/>
        <RecipeIngredientsList ingredients={ingredients}/>
         <RecipePreparation image={preview} preparationSteps={instructions.split('\r\n')}/>
     </>
