@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { RecipePageButton, RecipePageContainer, RecipePageDescription, RecipePageTime, RecipePageTitle } from "./RecipePageHero.styled";
 import Icon from "components/IconComponent/Icon";
-import {addToFavorite, deleteFavorite} from "../../redux/recipes/recipesOperations";
+import {addToFavorite, deleteFromFavorite} from "../../redux/auth/authOperations";
 
 
-const RecipePageHero =({title, description, time, recipeId, favorites})=>{
-    
-    
-      const dispatch = useDispatch();
+const RecipePageHero =({title, description, time, recipeId})=>{
+   const dispatch = useDispatch();
 
-      const handleClickBtn = () => {
-        if (favorites === undefined) {
-          return;
-        }
-        if (favorites.length !== 0) {
-          dispatch(deleteFavorite(recipeId));
-         
-          return;
-        } else {
-          dispatch(addToFavorite(recipeId));
-          
-        }
-      };
+ // Отримати стан зі store, використовуючи useSelector
+ const favorites = useSelector((state) => state.auth.user.favorite);
+//  const isFavorite = favorites && favorites.includes(recipeId);
+const [liked, setLiked] = useState(Boolean(favorites.includes(recipeId)));
+ const handleClickBtn = () => {
+   if (liked) {
+     dispatch(deleteFromFavorite(recipeId));
+   } else {
+     dispatch(addToFavorite(recipeId));
+   }
+   setLiked(!liked);
+ };
+
         
       return (
         <RecipePageContainer>
@@ -30,9 +29,7 @@ const RecipePageHero =({title, description, time, recipeId, favorites})=>{
                 <RecipePageTitle>{title}</RecipePageTitle>
                 <RecipePageDescription>{description}</RecipePageDescription>
                 <RecipePageButton type="button" onClick={handleClickBtn}>
-        {favorites && favorites.length !== 0
-          ? "Remove from favorite"
-          : "Add to favorite recipes"}
+                {liked ? "Remove from favorite" : "Add to favorite recipes"}
       </RecipePageButton>
                 <RecipePageTime><Icon name="icon-Clock" width="14px" height="14px" fill="transparent"/>{time} min</RecipePageTime>
             </div>

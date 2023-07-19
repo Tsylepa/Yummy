@@ -125,12 +125,74 @@ export const toggleTheme = createAsyncThunk(
   }
 );
 
+// Add To Favorite byId
+export const addToFavorite = createAsyncThunk(
+  "auth/addToFavorite",
+  async (recipeId, thunkAPI) => {
+    try {
+      console.log("Starting addToFavorite request");
+      await instance.post(`favorite/${recipeId}`);
+    
+      return recipeId;
+    } catch (error) {
+      console.error("addToFavorite error:", error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// Remove from Favorite byId
+export const deleteFromFavorite = createAsyncThunk(
+  "auth/deleteFromFavorite",
+  async (recipeId, thunkAPI) => {
+    try {
+      await instance.delete(`favorite/${recipeId}`);
+      return recipeId;
+    } catch (error) {
+      console.error("deleteFromFavorite error:", error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+// Add to ShoppingList
+export const addToShoppingList = createAsyncThunk(
+  "auth/addToShoppingList",
+  async (data, thunkAPI) => {
+    try {
+      await instance.post('shoppingList', data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//Remove from ShoppingList
+export const removeFromShoppingList = createAsyncThunk(
+  "auth/removeFromShoppingList",
+  async (data, thunkAPI) => {
+    try {
+      await instance.delete('shoppingList', {data});
+      console.log(data.ingredient._id)
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const operations = {
   register,
   logOut,
   logIn,
   fetchCurrentUser,
   toggleTheme,
+  addToFavorite,
+  deleteFromFavorite,
+  addToShoppingList,
+  removeFromShoppingList
 };
 
 export default operations;
