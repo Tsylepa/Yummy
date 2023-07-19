@@ -35,11 +35,9 @@ import { recipeSchema } from 'schemas/AddRecipeSchema';
 import { addRecipe } from 'redux/recipes/recipesOperations';
 import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
 
-const timeOptions = [
-  { value: '30 min', label: '30 min' },
-  { value: '60 min', label: '60 min' },
-  { value: '90 min', label: '90 min' },
-];
+const timeOptions = Array.from({ length: 24 }, (_, i) => {
+  return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
+});
 
 const measureOptions = [
   { value: 'tbs', label: 'tbs' },
@@ -94,6 +92,7 @@ const selectorStyles = {
   menuList: baseStyles => ({
     ...baseStyles,
     gap: 4,
+    maxHeight: 150,
     padding: '8px 26px 8px 14px',
   }),
   option: (_, state) => ({
@@ -184,6 +183,17 @@ const AddRecipeForm = () => {
     runEffect();
   }, []);
 
+  useEffect(() => {
+    const addIngrderientField = () => {
+      if (ingredients.length < ingredientsQty) {
+        console.log('newArr');
+        const newArr = ingredients.push({ id: '', measure: [] });
+        setIngredients(newArr);
+      }
+    };
+    addIngrderientField();
+  }, [ingredientsQty, ingredients]);
+
   const onChange = imageList => {
     setImage(imageList[0]);
   };
@@ -217,7 +227,9 @@ const AddRecipeForm = () => {
   };
 
   const handleDeleteIngredient = i => {
-    setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
+    const updatedIngredients = ingredients.filter((_, index) => index !== i);
+    setIngredients(updatedIngredients);
+    setIngredientsQty(updatedIngredients.length);
   };
 
   return (
@@ -300,6 +312,8 @@ const AddRecipeForm = () => {
                     id="time"
                     classNames={{
                       valueContainer: () => 'valueContainer',
+                      menuList: () => 'menu-list',
+                      input: () => 'input',
                     }}
                     options={timeOptions}
                     onChange={selected => {
@@ -401,7 +415,10 @@ const AddRecipeForm = () => {
                       component={Error}
                     />
 
-                    <Delete type="button" onClick={handleDeleteIngredient}>
+                    <Delete
+                      type="button"
+                      onClick={() => handleDeleteIngredient(i)}
+                    >
                       <Icon name="cross" width="18" height="18" />
                     </Delete>
                   </IngredientContainer>

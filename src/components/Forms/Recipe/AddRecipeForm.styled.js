@@ -72,6 +72,19 @@ export const DescSelect = styled(Select)`
   & .valueContainer {
     ${mediaRule('tablet', '', 'font-size: 14px')}
   }
+
+  & .input {
+    display: none;
+  }
+
+  & .menu-list {
+    width: 100px;
+    height: 85px;
+
+    &::-webkit-scrollbar {
+      background-color: transparent;
+    }
+  }
 `;
 
 export const Input = styled(Field)`
@@ -184,6 +197,7 @@ export const Delete = styled(IngredientsButton)`
   width: 18px;
   height: 18px;
   margin-left: 18px;
+  color: var(--font-color);
   opacity: 1;
 `;
 
@@ -198,6 +212,7 @@ export const Instructions = styled(Field)`
   margin-top: 24px;
   padding: 10px 16px;
   font: inherit;
+  color: var(--primary-color);
   resize: none;
   border: none;
   border-radius: 6px;
