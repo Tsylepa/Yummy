@@ -1,7 +1,6 @@
 import { instance } from 'api/APIconfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
 const token = {
   set(token) {

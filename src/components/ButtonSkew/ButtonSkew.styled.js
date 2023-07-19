@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import variables from '../../css/variables.module.css';
 
 const commonStyles = css`
   display: inline-block;

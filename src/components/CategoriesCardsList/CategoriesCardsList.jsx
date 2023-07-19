@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAllRecipes, getCategories } from '../../api/recipes';
+import { getAllRecipes } from '../../api/recipes';
 import { useDispatch } from 'react-redux';
 
 import { StyledContainer } from './CategoriesCardsList.styled';

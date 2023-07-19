@@ -28,9 +28,6 @@ import {
   FieldStyled,
   SubmitBtn,
   EmailIcon,
-  SocialLinkslist,
-  SocialLinks,
-  SocialList,
 } from './Footer.styled';
 import Socials from 'components/Socials';
 
