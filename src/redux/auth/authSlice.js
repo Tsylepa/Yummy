@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
 
 
-const { register, logIn, logOut, verification, fetchCurrentUser, toggleTheme, addToFavorite,  deleteFromFavorite, 
+
+const { register, logIn, logOut, fetchCurrentUser, toggleTheme, addToFavorite,  deleteFromFavorite, 
   addToShoppingList, removeFromShoppingList} =
   authOperations;
 

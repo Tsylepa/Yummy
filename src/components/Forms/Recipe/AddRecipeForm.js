@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, ErrorMessage } from 'formik';
+
+
+import Select from 'react-select';
+
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import ImageUploading from 'react-images-uploading';
 import {
   StyledForm,
@@ -159,7 +164,7 @@ const measureSelectorStyles = {
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
   const [ingredientsQty, setIngredientsQty] = useState(3);
-  const [ingredients, setIngredients] = useState(
+  const [ingredients, ] = useState(
     Array.from({ length: ingredientsQty }, (_, i) => {
       return { id: '', measure: [] };
     })
@@ -212,7 +217,24 @@ const AddRecipeForm = () => {
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
 
+
+  // const handleDeleteIngredient = i => {
+  //   setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
+  // };
+
+  const validateForm = values => {
+    const errors = {};
+
+    if (!values.title) {
+      errors.title = 'Please enter a title for the recipe';
+    }
+
+    if (!values.description) {
+      errors.description = 'Please enter a description for the recipe';
+    }
+
     values.ingredients.map(ingr => (ingr.measure = ingr.measure.join(' ')));
+
 
     formData.append('file', image.file);
     formData.append('title', values.title);
