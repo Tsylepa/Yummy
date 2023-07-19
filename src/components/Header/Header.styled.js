@@ -3,17 +3,21 @@ import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
 import { NavLink } from 'react-router-dom';
 
 export const Burger = styled.div`
+  background-color: var(--menu-bg-color);
+  color: var(--font-color);
+
   position: absolute;
   top: 0px;
   left: 0px;
   z-index: 300;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 1000px;
   padding-top: 18px;
   padding-right: 16px;
   padding-bottom: 18px;
   padding-left: 16px;
-  background-color: var(--accent-light-color);
+  
   transform: translateY(-150%);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -23,39 +27,32 @@ export const Burger = styled.div`
   letter-spacing: 0em;
   text-align: left;
 `;
-
-export const BurgerHeader = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 40px;
+export const Burgerwrapper = styled.div`
   margin: auto;
-  justify-content: space-between;
   width: 288px;
 
   @media screen and (min-width: 768px) {
     width: 704px;
   }
-
-  @media screen and (min-width: 1280px) {
-    width: 1280px;
-  }
 `;
-
+export const BurgerHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 export const CloseButton = styled.button`
+  color: var(--font-color);
+
   width: 28px;
   height: 28px;
   padding: 4px 7px 4px 7px;
   background-color: transparent;
   border: transparent;
 `;
-
-export const BurgerNav = styled.div`
+export const BurgerNav = styled.ul`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
   gap: 32px;
 
   margin: auto;
@@ -74,16 +71,25 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 
 export const HeaderWraper = styled.div`
+  color: var(--input-text-color);
+
   display: flex;
   align-items: center;
-  width: auto;
+  width: 288px;
   height: 40px;
   justify-content: space-between;
-
   margin-top: 14px;
   margin-bottom: 50px;
-`;
+  z-index: 1;
 
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 1080px;
+  }
+`;
 export const LogoIconStyled = styled(LogoIcon)`
   width: 22px;
   height: 22px;
@@ -98,49 +104,39 @@ export const LogoIconStyled = styled(LogoIcon)`
     padding: 7px;
     border-radius: 12px;
   }
-`;
 
-export const HeaderNav = styled.div`
+  @media screen and (min-width: 1280px) {
+    width: 44px;
+    height: 44px;
+  }
+`;
+export const HeaderNav = styled.ul`
   display: none;
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0em;
-
+  
   @media screen and (min-width: 1280px) {
-    align-items: center;
     display: flex;
+    margin-left: auto;
+    align-items: center;
     gap: 30px;
-    margin-left: 231px;
   }
 
   :hover {
     color: var(--accent-color);
   }
 `;
-
-export const User = styled.div`
-  width: 46px;
-  margin-left: auto;
-
-  border-radius: 12px;
-  background-color: yellow;
-`;
-
-export const ThemeTogglerWrapper = styled.div`
+export const ThemeTogglerwrapper = styled.div`
   display: none;
 
   @media screen and (min-width: 1280px) {
     display: block;
-    width: 61px;
-    height: 27px;
-    margin-left: 50px;
-
-    border-radius: 12px;
-    background-color: yellow;
   }
 `;
-
 export const OpenButton = styled.button`
+  color: var(--font-color)
+
   display: flex;
   margin-left: 24px;
   background-color: transparent;

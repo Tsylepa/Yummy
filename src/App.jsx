@@ -4,14 +4,18 @@ import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
-import Favorites from 'pages/Favorites/Favoites';
-import { Loader } from 'components/Loader/Loader';
 
+import { Loader } from 'components/Loader/Loader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
 const Main = lazy(() => import('./pages/Main/Main'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
-const AddRecipe = lazy(() => import('./pages/AddRecipe'));
+const VerificationPage = lazy(() =>
+  import('./pages/Verification/Verification')
+);
+const AddRecipe = lazy(() => import('./pages/AddRecipe/AddRecipe'));
 const NoPage = lazy(() => import('./pages/404'));
 const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
 const CategoriesPage = lazy(() => import('./pages/Categories/Categories'));
@@ -19,6 +23,9 @@ const RecipePage = lazy(() => import('./pages/RecipePage/RecipePage'));
 const CategoriesRecepiesPage = lazy(() =>
   import('./components/CategoriesCardsList/CategoriesCardsList')
 );
+
+const Favorites = lazy(()=> import("./pages/Favorites/Favoites"))
+const MyRecipes = lazy(()=> import("./pages/MyRecipes/MyRecipes"))
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -29,13 +36,27 @@ export const App = () => {
 
   return (
     <Suspense fallback={<Loader />}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         <Route path="/" element={<PrivateRoute />}>
           <Route exact index element={<Navigate to="/main" />} />
           <Route path="/main" element={<Main />}></Route>
-          <Route path="/recipe" element={<AddRecipe />} />
-          <Route path="/recipe/:recipeId" element={<RecipePage />}/>
+          <Route path="/add" element={<AddRecipe />} />
+          <Route path="/my" element={<MyRecipes />} />  
+          <Route path="/verification" element={<VerificationPage />} />
+          <Route path="/recipe/:recipeId" element={<RecipePage />} />
           <Route path="/favorite" element={<Favorites />} />
+          <Route path="/recipe" element={<MyRecipes />} />  
           <Route path="/search" element={<SearchPage />} />
           <Route path="/categories" element={<CategoriesPage />}>
             <Route

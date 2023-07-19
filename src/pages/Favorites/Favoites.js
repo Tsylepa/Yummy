@@ -1,43 +1,74 @@
 import css from './Favorites.module.css';
-
 import { BiTrash } from 'react-icons/bi';
+import { ContainerBG } from 'components/ContainerBG/ContainerBG';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import {
+  deleteFavorite,
+  getFavoriteRecipeById,
+  getFavoritesList,
+} from 'redux/favorite/favoriteOperations';
 
 const Favorites = () => {
-  const title = 'Salmon Eggs Benedict';
-  const info =
-    ' Salmon eggs are rich in essential nutrients, low in calories,and recommended as part of a healthy diet. Including salmon in abalanced diet can help decrease the chances of heart disease,  ease inflammation, and more.';
-  const studies =
-    'Studies have shown a number of potential health benefits to seafood rich in omega-3 fatty acids, which include salmon eggs.';
-  return (
-    <div>
-      <section>
-        <h1>Favorites</h1>
-        <ul>
-          <li className={css.container}>
-            <img
-              className={css.img}
-              src={`https://via.placeholder.com/324x318`}
-              alt=""
-              // height={'324px'}
-              // width={'318px'}
-            ></img>
-            <h2 className={css.title}>{title}</h2>
-            <div className={css.text}>
-              <p>{info}</p>
-              <p>{studies} </p>
-            </div>
-            <p className={css.block}>24 min </p>
-            <button className={css.btn} type="button">
-              See recipe
-            </button>
-            <button className={css.trash} type="button">
-              <BiTrash style={{ height: '24px', width: '24px' }} />
-            </button>
-          </li>
-        </ul>
-      </section>
-    </div>
-  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFavoritesList())
+      .then(myFavoriteRecipes => setMyFavoriteRecipes(myFavoriteRecipes))
+      .catch(err => console.log(err.message));
+  }, [dispatch]);
+
+  const [myFavoriteRecipes, setMyFavoriteRecipes] = useState([]);
+  // console.log(`favorite.js/payload:`,myFavoriteRecipes.payload)
+  // console.log(`favorite.js/payload:`,myFavoriteRecipes.payload.recipes)
+  // console.log(`page favorite:`,myFavoriteRecipes)
+
+  if (myFavoriteRecipes.payload !== undefined) {
+    return (
+      <ContainerBG>
+        <div>
+          <h1 className={css.title}>My Favorites recipes</h1>
+          <ul>
+            {myFavoriteRecipes.payload.recipes.map(recipe => (
+              // {/* {recipes.myRecipe.map(recipe => ( */}
+              <li key={recipe._id} className={css.item}>
+                <img className={css.img} src={recipe.preview} alt=""></img>
+                <div className={css.text__container}>
+                  <h2 className={css.section__title}>{recipe.title}</h2>
+                  <div className={css.text}>
+                    <p className={css.text__info}> {recipe.description}</p>
+                    <p className={css.text__studies}> {recipe.instructions}</p>
+                    <span className={css.block}>{recipe.time}</span>
+                  </div>
+
+                  <button
+                    className={css.BiTrash__btn}
+                    type="button"
+                    onClick={() => dispatch(deleteFavorite(recipe._id))}
+                  >
+                    <BiTrash style={{ width: '24px', height: '24px' }} />
+                  </button>
+
+                  <button
+                    className={css.btn}
+                    type="button"
+                    onClick={() => dispatch(getFavoriteRecipeById(recipe._id))}
+                  >
+                    See recipe
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </ContainerBG>
+    );
+  } else {
+    return (
+      <p style={{ height: '50vw', margin: '50px' }}>
+        you have not added any favorite recipe
+      </p>
+    );
+  }
 };
 
 export default Favorites;

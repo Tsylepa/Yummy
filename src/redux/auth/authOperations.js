@@ -28,7 +28,6 @@ export const register = createAsyncThunk(
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          // theme: 'dark',
         }
       );
       return data;
@@ -45,12 +44,14 @@ export const register = createAsyncThunk(
 
 export const verification = createAsyncThunk(
   'auth/verification',
-  async ({ email, vCode }, { rejectWithValue }) => {
+  async ({ email, verificationCode }, { rejectWithValue }) => {
     try {
       const {
         data: { data },
-      } = await instance.post(`/auth/verify/${vCode}`, { email });
-      token.set(data.token);
+      } = await instance.post(`/auth/verification/${verificationCode}`, {
+        email,
+      });
+      token.set(data.accessToken);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -64,7 +65,10 @@ export const logIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/auth/login', credentials);
-      token.set(data.token);
+      token.set(data.accessToken);
+
+      localStorage.setItem('refreshToken1', data.refreshToken);
+      localStorage.setItem('accessToken1', data.accessToken);
       return data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -81,7 +85,7 @@ export const logOut = createAsyncThunk(
   'auth/logout',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post('users/logout', credentials);
+      const { data } = await instance.post('auth/logout', credentials);
       token.unset();
       return data;
     } catch (error) {
@@ -92,18 +96,13 @@ export const logOut = createAsyncThunk(
 
 // FETCH CURRENT USER
 export const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
+  'auth/current',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue();
-    }
-
+    const persistedToken = localStorage.getItem('accessToken1');
     token.set(persistedToken);
     try {
       const { data } = await instance.get('/users/current');
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue();
@@ -124,6 +123,7 @@ export const toggleTheme = createAsyncThunk(
     }
   }
 );
+
 
 // Add To Favorite byId
 export const addToFavorite = createAsyncThunk(
@@ -165,9 +165,21 @@ export const addToShoppingList = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+=======
+// UPDATE USER NAME
+export const updateUserName = createAsyncThunk(
+  'auth/changeName',
+  async (name, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.patch('/users/changeName', name);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+
     }
   }
 );
+
 
 //Remove from ShoppingList
 export const removeFromShoppingList = createAsyncThunk(
@@ -179,6 +191,17 @@ export const removeFromShoppingList = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+
+// UPDATE USER AVATAR
+export const updateUserAvatar = createAsyncThunk(
+  'auth/changeAvatar',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.patch('/users/changeAvatar', formData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+
     }
   }
 );
@@ -189,10 +212,15 @@ const operations = {
   logIn,
   fetchCurrentUser,
   toggleTheme,
+
   addToFavorite,
   deleteFromFavorite,
   addToShoppingList,
   removeFromShoppingList
+
+  updateUserName,
+  updateUserAvatar,
+
 };
 
 export default operations;

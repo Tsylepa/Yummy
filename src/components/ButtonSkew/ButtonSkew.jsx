@@ -1,23 +1,8 @@
 import { ButtonSkewStyled } from './ButtonSkew.styled';
 
-export const ButtonSkew = ({
-  onClick,
-  color,
-  hoverColor,
-  width,
-  padding,
-  children,
-  isShadow,
-}) => {
+export const ButtonSkew = ({ children, variant }) => {
   return (
-    <ButtonSkewStyled
-      onClick={onClick}
-      color={color}
-      hoverColor={hoverColor}
-      width={width}
-      padding={padding}
-      isShadow={isShadow}
-    >
+    <ButtonSkewStyled data-variant={variant}>
       <div className="inner">{children}</div>
     </ButtonSkewStyled>
   );

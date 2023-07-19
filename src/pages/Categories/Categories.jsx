@@ -1,14 +1,16 @@
 import {  useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { getCategories } from '../../api/recipes';
 
 import CategoriesList from 'components/CategoriesList/CategoriesList';
 
 import {
- 
+
   StyledContainer,
   StyledText,
   StyledCategoriesPagesWraper,
 } from './Categories.styled';
+
 
 const Categories = ({ categoriesFirst }) => {
   const [categories, ] = useState([
@@ -103,6 +105,8 @@ const Categories = ({ categoriesFirst }) => {
       name: 'Soup',
     },
   ]);
+
+
   return (
     <StyledCategoriesPagesWraper>
       <StyledText>Categories</StyledText>

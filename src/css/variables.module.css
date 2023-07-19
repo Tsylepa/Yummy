@@ -8,6 +8,7 @@
   --accent-light-color: #ebf3d4;
   --border-color: #e0e0e0;
   --border-dark-color: rgba(250, 250, 250, 0.3);
+  --recipe-border-color: #707070;
   --error: #d70101;
   --toggler-color: #efefef;
   --toggler-circle: linear-gradient(#ffffff, #e8eaea);
@@ -31,7 +32,12 @@
   --input-border-color: var(--border-color);
   --selector-border-color: hsla(0, 0%, 20%, 0.3);
   --input-text-color: #000;
-  --input-bg-color: #d9d9d9;
+  --footer-sociallink-color: var(--accent-color);
+  --input-bg-color: #f5f5f5;
+  --selector-menu-color: #fff;
+
+  --bg-recipe-color: white;
+
   /* --secondary-ligth-color:var(--secondary-light-color); */
 }
 
@@ -47,4 +53,8 @@
   --selector-border-color: var(--primary-color);
   --input-text-color: var(--primary-color);
   --input-bg-color: hsla(0, 0%, 98%, 0.2);
+  --footer-sociallink-color: var(--primary-color);
+  --selector-menu-color: var(--accent-color);
+
+  --bg-recipe-color: #2A2C36;
 }

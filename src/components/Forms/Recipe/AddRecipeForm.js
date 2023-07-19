@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 
+
 import Select from 'react-select';
+
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import ImageUploading from 'react-images-uploading';
 import {
   StyledForm,
@@ -16,22 +21,28 @@ import {
   FormTitle,
   IngredientsHeader,
   QtySelector,
+  IngredientsWrapper,
   IngredientContainer,
   Ingredient,
+  Measure,
+  MeasureInput,
   Preparation,
   Instructions,
   ImageWrapper,
   IngredientsList,
   InstructionsError,
+  Delete,
+  IngredientsButton,
 } from './AddRecipeForm.styled';
-import { getIngredients, getCategories } from 'api/addRecipe';
+import { getIngredients, getCategories } from 'api/recipes';
 import Icon from 'components/IconComponent/Icon';
+import { recipeSchema } from 'schemas/AddRecipeSchema';
+import { addRecipe } from 'redux/recipes/recipesOperations';
+import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
 
-const timeOptions = [
-  { value: '30 min', label: '30 min' },
-  { value: '60 min', label: '60 min' },
-  { value: '90 min', label: '90 min' },
-];
+const timeOptions = Array.from({ length: 24 }, (_, i) => {
+  return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
+});
 
 const measureOptions = [
   { value: 'tbs', label: 'tbs' },
@@ -39,16 +50,128 @@ const measureOptions = [
   { value: 'kg', label: 'kg' },
 ];
 
+const selectorStyles = {
+  container: () => ({
+    position: 'relative',
+  }),
+  control: () => ({
+    display: 'flex',
+    width: '100%',
+    border: 'none',
+    cursor: 'pointer',
+  }),
+  valueContainer: baseStyles => ({
+    ...baseStyles,
+    textAlign: 'right',
+    fontSize: 12,
+    fontWeight: 400,
+    padding: '0 8px',
+    lineHeight: 1,
+  }),
+  input: baseStyles => ({
+    ...baseStyles,
+    textAlign: 'right',
+    justifySelf: 'right',
+    padding: 0,
+    margin: 0,
+  }),
+  placeholder: baseStyles => ({
+    ...baseStyles,
+    margin: 0,
+  }),
+  indicatorSeparator: () => ({ display: 'none' }),
+  dropdownIndicator: () => ({
+    display: 'flex',
+    alignItems: 'center',
+    color: 'var(--accent-color)',
+  }),
+  menu: baseStyles => ({
+    ...baseStyles,
+    position: 'absolute',
+    width: '100%',
+    top: 24,
+    right: 0,
+    boxShadow:
+      '0px 6.518518447875977px 7.8222222328186035px 0px rgba(0, 0, 0, 0.03)',
+  }),
+  menuList: baseStyles => ({
+    ...baseStyles,
+    gap: 4,
+    maxHeight: 150,
+    padding: '8px 26px 8px 14px',
+  }),
+  option: (_, state) => ({
+    color: state.isFocused && 'var(--accent-color)',
+    borderRadius: 4,
+    fontSize: 12,
+    opacity: 0.5,
+    cursor: 'pointer',
+  }),
+};
+
+const ingredientsSelectorStyles = {
+  ...selectorStyles,
+  container: () => ({
+    ...selectorStyles.container(),
+    backgroundColor: 'var(--input-bg-color)',
+    borderRadius: 4,
+    fontSize: 14,
+    padding: 16,
+    flex: 3,
+  }),
+  menu: baseStyles => ({
+    ...baseStyles,
+    ...selectorStyles.menu(),
+    position: 'absolute',
+    backgroundColor: 'var(--selector-menu-color)',
+    top: 50,
+    right: 0,
+    padding: 16,
+  }),
+  valueContainer: baseStyles => ({
+    ...baseStyles,
+    padding: 0,
+  }),
+  input: baseStyles => ({
+    ...baseStyles,
+    margin: 0,
+    padding: 0,
+  }),
+};
+
+const measureSelectorStyles = {
+  ...ingredientsSelectorStyles,
+  container: () => ({
+    ...ingredientsSelectorStyles.container(),
+    position: 'static',
+    backgroundColor: 'transparent',
+    flex: 0.5,
+    width: 50,
+    padding: 0,
+  }),
+  input: () => ({
+    display: 'none',
+  }),
+
+  singleValue: () => ({
+    width: 20,
+  }),
+  placeholder: () => ({
+    display: 'none',
+  }),
+};
+
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
   const [ingredientsQty, setIngredientsQty] = useState(3);
   const [ingredients, ] = useState(
     Array.from({ length: ingredientsQty }, (_, i) => {
-      return { id: '', name: '', measure: '' };
+      return { id: '', measure: [] };
     })
   );
   const [ingredientsList, setIngredientsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const runEffect = async () => {
@@ -65,21 +188,35 @@ const AddRecipeForm = () => {
     runEffect();
   }, []);
 
+  useEffect(() => {
+    const addIngrderientField = () => {
+      if (ingredients.length < ingredientsQty) {
+        console.log('newArr');
+        const newArr = ingredients.push({ id: '', measure: [] });
+        setIngredients(newArr);
+      }
+    };
+    addIngrderientField();
+  }, [ingredientsQty, ingredients]);
+
   const onChange = imageList => {
     setImage(imageList[0]);
   };
 
   const categoriesOptions = categoriesList.map(ctg => {
-    return { value: ctg._id, label: ctg.name };
+    return { value: ctg.name, label: ctg.name };
   });
 
   const ingredientsOptions = ingredientsList.map(i => {
-    return { value: i._id.$oid, label: i.name };
+    return { value: i._id, label: i.name };
   });
+
+  const dispatch = useDispatch();
+  const formData = new FormData();
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
-  };
+
 
   // const handleDeleteIngredient = i => {
   //   setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
@@ -96,15 +233,25 @@ const AddRecipeForm = () => {
       errors.description = 'Please enter a description for the recipe';
     }
 
-    if (!values.ingredients || values.ingredients.length === 0) {
-      errors.ingredients = 'Please enter at least one ingredient';
-    }
+    values.ingredients.map(ingr => (ingr.measure = ingr.measure.join(' ')));
 
-    // if (!values.instructions) {
-    //   errors.instructions = 'Please enter the recipe instructions';
-    // }
 
-    return errors;
+    formData.append('file', image.file);
+    formData.append('title', values.title);
+    formData.append('description', values.description);
+    formData.append('category', values.category);
+    formData.append('time', values.time);
+    formData.append('ingredients', JSON.stringify(values.ingredients));
+    formData.append('instructions', values.instructions);
+    dispatch(addRecipe(formData));
+
+    navigate('/my');
+  };
+
+  const handleDeleteIngredient = i => {
+    const updatedIngredients = ingredients.filter((_, index) => index !== i);
+    setIngredients(updatedIngredients);
+    setIngredientsQty(updatedIngredients.length);
   };
 
   return (
@@ -118,11 +265,13 @@ const AddRecipeForm = () => {
         ingredients,
         instructions: '',
       }}
-      validate={validateForm}
+      validationSchema={recipeSchema}
+      validateOnBlur={false}
+      validateOnChange={false}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, values }) => {
-        values.thumb = image ? image.dataURL : null;
+      {({ isSubmitting, handleChange, setFieldValue, values }) => {
+        values.thumb = image || null;
 
         return (
           <StyledForm>
@@ -132,7 +281,7 @@ const AddRecipeForm = () => {
                   {({ onImageUpdate }) => (
                     <ImageWrapper onClick={onImageUpdate}>
                       {image ? (
-                        <img src={values.thumb} alt="" />
+                        <img src={values.thumb.dataURL} alt="" />
                       ) : (
                         <UploadBtn>
                           <Icon name="camera" width="64" height="64" />
@@ -141,6 +290,7 @@ const AddRecipeForm = () => {
                     </ImageWrapper>
                   )}
                 </ImageUploading>
+                <ErrorMessage name="thumb" component={Error} />
               </div>
               <Desc>
                 <DescField>
@@ -160,39 +310,59 @@ const AddRecipeForm = () => {
                 <DescField>
                   <DescLabel>Category</DescLabel>
                   <DescSelect
-                    id="category"
-                    name="category"
+                    classNames={{
+                      valueContainer: () => 'valueContainer',
+                    }}
                     options={categoriesOptions}
-                    onChange={selected => (values.category = selected.value)}
+                    onChange={selected => {
+                      setFieldValue('category', selected.value);
+                    }}
+                    styles={{
+                      ...selectorStyles,
+                      container: () => ({
+                        position: 'relative',
+                        width: 123,
+                      }),
+                    }}
                   />
+                  <ErrorMessage name="category" component={Error} />
                 </DescField>
 
                 <DescField>
                   <DescLabel>Cooking time</DescLabel>
                   <DescSelect
                     id="time"
+                    classNames={{
+                      valueContainer: () => 'valueContainer',
+                      menuList: () => 'menu-list',
+                      input: () => 'input',
+                    }}
                     options={timeOptions}
-                    onChange={selected => (values.time = selected.value)}
+                    onChange={selected => {
+                      setFieldValue('time', selected.value);
+                    }}
+                    styles={selectorStyles}
                   />
+                  <ErrorMessage name="time" component={Error} />
                 </DescField>
               </Desc>
             </Info>
 
-            <div>
+            <IngredientsWrapper>
               <IngredientsHeader>
                 <FormTitle>Ingredients</FormTitle>
                 <QtySelector>
-                  <span
+                  <IngredientsButton
                     onClick={() => setIngredientsQty(prevQty => prevQty - 1)}
                   >
-                    -
-                  </span>
+                    <Icon name="icon-minus" width="14" height="14" />
+                  </IngredientsButton>
                   <span>{ingredientsQty}</span>
-                  <span
+                  <IngredientsButton
                     onClick={() => setIngredientsQty(prevQty => prevQty + 1)}
                   >
-                    +
-                  </span>
+                    <Icon name="icon-plus" width="14" height="14" />
+                  </IngredientsButton>
                 </QtySelector>
               </IngredientsHeader>
               <IngredientsList>
@@ -200,38 +370,83 @@ const AddRecipeForm = () => {
                   <IngredientContainer key={i}>
                     <Ingredient
                       id={`ingredients[${i}]`}
+                      classNames={{
+                        valueContainer: () => 'valueContainer',
+                        menu: () => 'menu',
+                      }}
                       options={ingredientsOptions}
                       onChange={selected => {
-                        values.ingredients[i] = {
-                          id: selected.value,
-                          name: selected.label,
-                        };
-                        console.log(values);
+                        setIngredients(prev =>
+                          prev.map((ing, idx) => {
+                            if (idx !== i) return ing;
+
+                            return { ...ing, id: selected.value };
+                          })
+                        );
                       }}
+                      styles={ingredientsSelectorStyles}
+                    />
+
+                    <Measure>
+                      <MeasureInput
+                        name="measureValue"
+                        autoComplete="off"
+                        onChange={({ target }) => {
+                          setIngredients(prev =>
+                            prev.map((ing, idx) => {
+                              if (idx !== i) return ing;
+                              {
+                                const newArr = ing.measure;
+                                newArr[0] = target.value;
+                                return { ...ing, measure: newArr };
+                              }
+                            })
+                          );
+                        }}
+                      />
+                      <Ingredient
+                        id={`measure[${i}]`}
+                        options={measureOptions}
+                        classNames={{
+                          valueContainer: () => 'valueContainer',
+                          menu: () => 'menu',
+                        }}
+                        onChange={selected => {
+                          setIngredients(prev =>
+                            prev.map((ing, idx) => {
+                              if (idx !== i) return ing;
+                              {
+                                const newArr = ing.measure;
+                                newArr[1] = selected.value;
+                                return { ...ing, measure: newArr };
+                              }
+                            })
+                          );
+                          console.log(values.ingredients);
+                        }}
+                        styles={measureSelectorStyles}
+                      />
+                    </Measure>
+
+                    <ErrorMessage
+                      name={`ingredients[${i}].id`}
+                      component={Error}
                     />
                     <ErrorMessage
-                      name={`ingredientsError[${i}]`}
+                      name={`ingredients[${i}].measure`}
                       component={Error}
                     />
 
-                    <Select
-                      id={`measure[${i}]`}
-                      options={measureOptions}
-                      onChange={selected => {
-                        values.ingredients[i].measure = selected.value;
-                        console.log(values);
-                      }}
-                    />
-                    <ErrorMessage
-                      name={`measureError[${i}]`}
-                      component={Error}
-                    />
-
-                    <button type="button">X</button>
+                    <Delete
+                      type="button"
+                      onClick={() => handleDeleteIngredient(i)}
+                    >
+                      <Icon name="cross" width="18" height="18" />
+                    </Delete>
                   </IngredientContainer>
                 ))}
               </IngredientsList>
-            </div>
+            </IngredientsWrapper>
 
             <Preparation>
               <FormTitle htmlFor="instructions">Recipe Preparation</FormTitle>
@@ -240,14 +455,15 @@ const AddRecipeForm = () => {
                 id="instructions"
                 name="instructions"
                 placeholder="Enter recipe"
+                onChange={handleChange}
                 rows="5"
               />
               <ErrorMessage name="instructions" component={InstructionsError} />
             </Preparation>
 
-            <button type="submit" disabled={isSubmitting}>
-              Add Recipe
-            </button>
+            <ButtonSkew type="submit" variant="primary" disabled={isSubmitting}>
+              Add
+            </ButtonSkew>
           </StyledForm>
         );
       }}
