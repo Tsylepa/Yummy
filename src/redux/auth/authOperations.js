@@ -51,7 +51,7 @@ export const verification = createAsyncThunk(
       } = await instance.post(`/auth/verification/${verificationCode}`, {
         email,
       });
-      token.set(data.token);
+      token.set(data.accessToken);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -65,7 +65,10 @@ export const logIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await instance.post('/auth/login', credentials);
-      token.set(data.token);
+      token.set(data.accessToken);
+
+      localStorage.setItem('refreshToken1', data.refreshToken);
+      localStorage.setItem('accessToken1', data.accessToken);
       return data;
     } catch (error) {
       if (error.response.status === 401) {
@@ -93,18 +96,13 @@ export const logOut = createAsyncThunk(
 
 // FETCH CURRENT USER
 export const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
+  'auth/current',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue();
-    }
-
+    const persistedToken = localStorage.getItem('accessToken1');
     token.set(persistedToken);
     try {
       const { data } = await instance.get('/users/current');
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue();
