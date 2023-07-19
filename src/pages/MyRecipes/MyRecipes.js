@@ -1,7 +1,7 @@
 import css from './MyRecipes.module.css';
 import { BiTrash } from 'react-icons/bi';
 import { ContainerBG } from 'components/ContainerBG/ContainerBG';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   deleteRecipe,
   getRecipeById,
@@ -15,7 +15,7 @@ const MyRecipes = () => {
     dispatch(getRecipeList())
       .then(myRecipes => setMyRecipes(myRecipes))
       .catch(err => console.log(err.message));
-  }, []);
+  }, [dispatch]);
 
   const [myRecipes, setMyRecipes] = useState([]);
   // console.log(`page myRecipes: `, myRecipes);
