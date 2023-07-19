@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:3001/api',
+  baseURL: 'https://soyummy-backend-kmc6.onrender.com/api',
 });
 
 instance.interceptors.response.use(
@@ -26,7 +26,7 @@ instance.interceptors.response.use(
       localStorage.setItem('refreshToken1', '');
       localStorage.setItem('accessToken1', '');
       instance.defaults.headers.common.Authorization = '';
-      window.location.replace('http://localhost:3000/Yummy/signin');
+      window.location.replace('https://tsylepa.github.io/Yummy/signin');
     }
 
     return Promise.reject(error);
