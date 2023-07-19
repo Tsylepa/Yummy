@@ -1,7 +1,6 @@
 import { instance } from 'api/APIconfig';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 
 const token = {
   set(token) {
@@ -127,12 +126,25 @@ export const toggleTheme = createAsyncThunk(
   }
 );
 
-// UPDATE USER
-export const updateUserInfo = createAsyncThunk(
-  'auth/updateUserInfo',
-  async (userInfo, { rejectWithValue }) => {
+// UPDATE USER NAME
+export const updateUserName = createAsyncThunk(
+  'auth/changeName',
+  async (name, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch('/users/changeName', userInfo);
+      const { data } = await instance.patch('/users/changeName', name);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// UPDATE USER AVATAR
+export const updateUserAvatar = createAsyncThunk(
+  'auth/changeAvatar',
+  async (formData, { rejectWithValue }) => {
+    try {
+      const { data } = await instance.patch('/users/changeAvatar', formData);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -146,7 +158,8 @@ const operations = {
   logIn,
   fetchCurrentUser,
   toggleTheme,
-  updateUserInfo,
+  updateUserName,
+  updateUserAvatar,
 };
 
 export default operations;

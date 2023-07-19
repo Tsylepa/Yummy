@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, ErrorMessage, Field } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ImageUploading from 'react-images-uploading';
@@ -343,9 +343,8 @@ const AddRecipeForm = () => {
                         setIngredients(prev =>
                           prev.map((ing, idx) => {
                             if (idx !== i) return ing;
-                            {
-                              return { ...ing, id: selected.value };
-                            }
+
+                            return { ...ing, id: selected.value };
                           })
                         );
                       }}

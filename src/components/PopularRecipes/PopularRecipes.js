@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { getPopularRecipes } from 'redux/recipes/recipesOperations';
 import {
   Image,
@@ -8,7 +7,6 @@ import {
   RecipeDescription,
   RecipeItem,
   RecipeLink,
-  RecipeTitle,
   Title,
 } from './PopularRecipes.styled';
 
