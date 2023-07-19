@@ -12,13 +12,12 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
 import recipesReducer from './recipes/recipesSlice';
-import mainPageReducer from './mainPage/mainPageSlice'
+import mainPageReducer from './mainPage/mainPageSlice';
 import favoriteReducer from './favorite/favoriteSlice';
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
 };
 
 const recipesPersistConfig = {
