@@ -55,46 +55,6 @@ export const getRecipeById = createAsyncThunk(
     }
   }
 );
-// Add To Favorite byId
-export const addToFavorite = createAsyncThunk(
-  'recipes/addFavorite',
-  async (recipeId, thunkAPI) => {
-    try {
-      const response = await instance.post(`favorite/${recipeId}`);
-      return response.data.recipe;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-
-// GET MY FAVORITES LIST - add by Oleg.
-export const getFavoritesList = createAsyncThunk(
-  'recipes',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await instance.get(`recipes`);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-
-// Remove from Favorite byId
-export const deleteFavorite = createAsyncThunk(
-  'recipes/deleteFavorite',
-  async (recipeId, thunkAPI) => {
-    try {
-      const response = await instance.delete(`favorite/${recipeId}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
 
 // GET POPULAR RECIPES
 export const getPopularRecipes = createAsyncThunk(

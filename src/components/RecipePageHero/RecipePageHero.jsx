@@ -2,23 +2,30 @@ import React from 'react';
 import { useDispatch } from "react-redux";
 import { RecipePageButton, RecipePageContainer, RecipePageDescription, RecipePageTime, RecipePageTitle } from "./RecipePageHero.styled";
 import Icon from "components/IconComponent/Icon";
-import {addToFavorite, deleteFavorite} from "../../redux/recipes/recipesOperations";
+import { addToFavorite, deleteFavorite } from 'redux/favorite/favoriteOperations';
 
 
 const RecipePageHero =({title, description, time, recipeId, favorites})=>{
+  console.log(favorites)
     
     
       const dispatch = useDispatch();
+      // хз откуда оно берет фейворит. чекните плз!Кнопка добавляет в фаворит но не меняет содержимое ибо undefined
 
       const handleClickBtn = () => {
         if (favorites === undefined) {
+          // dispatch(addToFavorite(recipeId)); -добавить.
+          // dispatch(deleteFavorite(recipeId)); - удалить.
+          console.log(`undef`)
           return;
         }
         if (favorites.length !== 0) {
+          console.log(`lenght!==0`)
           dispatch(deleteFavorite(recipeId));
          
           return;
         } else {
+          console.log(`else`)
           dispatch(addToFavorite(recipeId));
           
         }

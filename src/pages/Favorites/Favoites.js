@@ -3,7 +3,7 @@ import { BiTrash } from 'react-icons/bi';
 import { ContainerBG } from 'components/ContainerBG/ContainerBG';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getFavoritesList } from 'redux/favorite/favoriteOperations';
+import {  deleteFavorite, getFavoriteRecipeById, getFavoritesList } from 'redux/favorite/favoriteOperations';
 
 const Favorites = () => {
 
@@ -40,14 +40,15 @@ if( myFavoriteRecipes.payload !== undefined ) {
                 <button
                   className={css.BiTrash__btn}
                   type="button"
-                  // onClick={() => dispatch(deleteRecipe(recipe._id))}
+                  onClick={() => dispatch(deleteFavorite(recipe._id))}
                 >
                   <BiTrash style={{ width: '24px', height: '24px' }} />
                 </button>
+                
                 <button
                   className={css.btn}
                   type="button"
-                  // onClick={() => dispatch(getRecipeById(recipe._id))}
+                  onClick={() => dispatch(getFavoriteRecipeById(recipe._id))}
                 >
                   See recipe
                 </button>
