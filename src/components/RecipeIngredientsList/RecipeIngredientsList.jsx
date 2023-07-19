@@ -1,42 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {AddToListSpan, IngredientCheckbox, IngredientImage, IngredientItem, IngredientList, IngredientMeasure, IngredientSpan, IngredientTitle, NumberSpan, RecipeIngredientListSubtitle} from "./RecipeIngredientList.styled"
-import {addToShoppingList, removeFromShoppingList } from "../../redux/auth/authOperations"
+import {addToShoppingList } from "../../redux/recipes/recipesOperations"
 import img from "../../images/mobile/image_Ingredient_320.png";
-import { getShoppingList } from "redux/auth/authSelectors";
 
 
-const RecipeIngredientsList = ({ingredients, recipeId}) =>{
+const RecipeIngredientsList = ({ingredients}) =>{
   const dispatch = useDispatch();
-  const cart = useSelector(getShoppingList);
-  const cartItems = cart.map(item => item.ingredient._id)
-  
-
-// const handleChange = {
-//   if (e.target.checked) {
-//   dispatchEvent(видалення)
-//   return
-// }
-
-// dispatch(додавання)
-// } Операція на компоненті
-
-    const handleCheckboxClick = (ingredient, measure, e) => {
-     
-      if(e.target.checked){
-        dispatch(addToShoppingList({
-          ingredient,
-          recipeId,
-          measure, 
-        }));
-       }  else {dispatch(removeFromShoppingList({
-        ingredient,
-        recipeId,
-        })) }
+    const handleCheckboxClick = (ingredientId, measure) => {
+      dispatch(addToShoppingList({
+        ingredientId,
+        measure,
+      }));
       };
-
-
-      
-
 
     return(
        <div>
@@ -53,7 +28,7 @@ const RecipeIngredientsList = ({ingredients, recipeId}) =>{
 )}
             <IngredientTitle>{ingredient.name || 'ingredient'}</IngredientTitle>
             <IngredientMeasure>{ingredient.measure}</IngredientMeasure>
-            <IngredientCheckbox type="checkbox" checked={cartItems.includes(ingredient._id)} onChange={(e) => handleCheckboxClick(ingredient, ingredient.measure, e)} />
+            <IngredientCheckbox type="checkbox" onChange={() => handleCheckboxClick(ingredient._id, ingredient.measure)} />
           </IngredientItem>
         ))}
       </IngredientList>
@@ -61,12 +36,7 @@ const RecipeIngredientsList = ({ingredients, recipeId}) =>{
     )
 }
 
-// {cartItems.includes(ingredient._id) && "checked"}
 
-// checked={Boolean(cartItems.includes(ingredient._id)) ? "checked" : ""}
 
-// checked={Boolean(cartItems.includes(ingredient._id))}
-// {cartItems.includes(ingredient._id) ? true : false}
-// {cartItems.includes(ingredient.__id) }
 
 export default RecipeIngredientsList;
