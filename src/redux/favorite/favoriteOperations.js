@@ -15,3 +15,43 @@ export const getFavoritesList = createAsyncThunk(
       }
     }
   );
+
+  // Remove from Favorite byId
+export const deleteFavorite = createAsyncThunk(
+  'favorite/deleteFavorite',
+  async (recipeId, thunkAPI) => {
+    try {
+      const response = await instance.delete(`favorite/${recipeId}`);
+      console.log(`delete favorite recipe`)
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+// add to favorite
+export const addToFavorite = createAsyncThunk(
+  'favorite/addFavorite',
+  async (recipeId, thunkAPI) => {
+    try {
+      const response = await instance.post(`favorite/${recipeId}`);
+      console.log(`add to favorite`)
+      return response.data.recipe;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+// GET favorite RECIPEBYID
+export const getFavoriteRecipeById = createAsyncThunk(
+  'favorite/getRecipeById',
+  async ({ recipeId }, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`favorite/${recipeId}`);
+      console.log(`get favorite recipe by ID`,data)
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

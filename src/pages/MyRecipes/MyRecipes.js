@@ -8,6 +8,7 @@ import {
   getRecipeList,
 } from 'redux/recipes/recipesOperations';
 import { useEffect, useState } from 'react';
+import { addToFavorite } from 'redux/favorite/favoriteOperations';
 const MyRecipes = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,7 +27,7 @@ const MyRecipes = () => {
         <div>
           <h1 className={css.title}>My recipes</h1>
           <ul>
-            { myRecipes.payload.recipes.map(recipe => (
+            {myRecipes.payload.recipes.map(recipe => (
               // {/* {recipes.myRecipe.map(recipe => ( */}
               <li key={recipe._id} className={css.item}>
                 <img className={css.img} src={recipe.preview} alt=""></img>
@@ -45,6 +46,16 @@ const MyRecipes = () => {
                   >
                     <BiTrash style={{ width: '24px', height: '24px' }} />
                   </button>
+
+                  <button
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      backgroundColor: 'red',
+                    }}
+                    type="button"
+                    onClick={() => dispatch(addToFavorite(recipe._id))}
+                  ></button>
                   <button
                     className={css.btn}
                     type="button"
