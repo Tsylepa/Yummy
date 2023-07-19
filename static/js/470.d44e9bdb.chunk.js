@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkyummy=self.webpackChunkyummy||[]).push([[470],{4470:function(e,c,i){e.exports=i.p+"static/media/Verification.31d6cfe0d16ae931b73c"}}]);

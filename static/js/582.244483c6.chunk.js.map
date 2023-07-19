@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/582.244483c6.chunk.js","mappings":"uHAIA,UAJe,WACb,OAAOA,EAAAA,EAAAA,KAAA,KAAAC,SAAG,UACZ,C","sources":["pages/404.js"],"sourcesContent":["const NoPage = () => {\n  return <p>NoPage</p>;\n};\n\nexport default NoPage;\n"],"names":["_jsx","children"],"sourceRoot":""}
