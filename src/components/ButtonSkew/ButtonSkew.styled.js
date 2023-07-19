@@ -1,29 +1,60 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import variables from '../../css/variables.module.css';
 
-export const ButtonSkewStyled = styled.button`
-  background-color: var(--accent-color);
-  /* border: none; */
-  border: 2px solid;
+const commonStyles = css`
+  display: inline-block;
   transform: skew(15deg, 0);
+  align-self: start;
   border-radius: 1.7rem;
-  /* border-color: var(--primary-color); */
-  cursor: pointer;
+  border: none;
   padding: 12px 32px;
-  width: 141px;
-  font-family: ${variables['--poppins-regular']};
+  font-family: var(--poppins-regular);
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: normal;
+  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 
-  color: var(--primary-color);
-  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  &[data-variant='primary'] {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
 
-  &:hover {
-    /* background-color: var(--secondary-color); */
-    border: var(--secondary-color);
-    /* color: var(--accent-color); */
+    &:hover {
+      background-color: var(--accent-color);
+    }
+  }
+
+  &[data-variant='primary-accent'] {
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+
+    &:hover {
+      background-color: var(--secondary-color);
+    }
+  }
+
+  &[data-variant='transparent-primary'] {
+    color: var(--primary-color);
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+
+    &:hover {
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+  }
+
+  &[data-variant='transparent-accent'] {
+    color: var(--accent-color);
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+
+    &:hover {
+      color: var(--primary-color);
+      background-color: var(--accent-color);
+    }
   }
 
   .inner {
@@ -38,44 +69,12 @@ export const ButtonSkewStyled = styled.button`
     width: 125px;
     padding: 12px 24px;
   }
+`;
 
-  @media screen and (min-width: 768px) {
-    box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.3);
-  }
+export const ButtonSkewStyled = styled.button`
+  ${commonStyles}
 `;
 
 export const LinkSkewStyled = styled(NavLink)`
-  display: block;
-  background-color: var(--accent-color);
-  border-radius: 1.7rem;
-  border-color: var(--primary-color);
-  transform: skew(15deg, 0);
-  border-radius: 1.7rem;
-  cursor: pointer;
-  padding: 12px 32px;
-  width: 141px;
-
-  font-family: ${variables['--poppins-regular']};
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.5;
-  text-decoration: none;
-
-  color: var(--primary-color);
-  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    color: var(--accent-color);
-    background-color: var(--primary-color);
-    border-color: var(--accent-color);
-  }
-
-  .inner {
-    transform: skew(-15deg, 0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-  }
+  ${commonStyles}
 `;

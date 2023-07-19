@@ -1,9 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './authOperations';
 
+
 const { register, logIn, logOut, verification, fetchCurrentUser, toggleTheme, addToFavorite,  deleteFromFavorite, 
   addToShoppingList, removeFromShoppingList} =
   authOperations;
+
+const {
+  register,
+  logIn,
+  logOut,
+  fetchCurrentUser,
+  updateUserName,
+  updateUserAvatar,
+  toggleTheme,
+} = authOperations;
+
 
 const handlePending = state => {
   state.error = null;
@@ -16,9 +28,15 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
+
   token: null,
+=======
+  user: {},
+  accessToken: null,
+  refreshToken: null,
+
   isLoggedIn: false,
-  isLoading: false,
+  isLoading: true,
   error: null,
   user: {
     id: '', 
@@ -30,6 +48,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    setIsLoggedin(state) {
+      state.isLoggedIn = false;
+    },
+  },
   extraReducers: builder =>
     builder
       // REGISTER
@@ -44,18 +67,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      // VERIFICATION
-      // .addCase(verification.fulfilled, (state, { payload }) => {
-      //   state.isLoading = false;
-      //   state.error = null;
-      //   state.user = payload.user;
-      //   state.token = payload.token;
-      //   state.isLoggedIn = true;
-      // })
-      // .addCase(verification.rejected, (state, action) => {
-      //   state.isLoading = false;
-      //   state.error = action.payload;
-      // })
+
       // LOGIN
 
       .addCase(logIn.pending, state => {
@@ -66,7 +78,8 @@ const authSlice = createSlice({
         state.error = null;
         state.user = payload;
         state.isLoggedIn = true;
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
       })
       .addCase(logIn.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -74,34 +87,57 @@ const authSlice = createSlice({
       })
       // LOGOUT
       .addCase(logOut.pending, handlePending)
-      .addCase(logOut.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
+      .addCase(logOut.fulfilled, state => {
+        state.user = {};
         state.isLoggedIn = false;
-        state.token = null;
-        state.error = payload;
         state.isLoading = false;
+        state.accessToken = null;
+        state.refreshToken = null;
       })
       .addCase(logOut.rejected, (state, { payload }) => {
+        state.user = {};
+        state.isLoggedIn = false;
         state.isLoading = false;
+        state.accessToken = null;
+        state.refreshToken = null;
         state.error = payload;
-        state.isLoading = false;
       })
 
       // FETCH CURRENT USER
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.token = action.payload.token;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(fetchCurrentUser.pending, handlePending)
       .addCase(fetchCurrentUser.rejected, (state, action) => {
         handleRejected(state, action);
-        state.token = null;
+        state.user = {};
         state.isLoggedIn = false;
-        state.user = null;
+        state.accessToken = null;
+        state.refreshToken = null;
       })
+      // UPDATE USER NAME
+      .addCase(updateUserName.pending, handlePending)
+      .addCase(updateUserName.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        console.log(payload);
+        state.user = payload;
+      })
+      .addCase(updateUserName.rejected, handleRejected)
+
+      // UPDATE USER AVATAR
+      .addCase(updateUserAvatar.pending, handlePending)
+      .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        console.log(payload);
+        state.user = payload;
+      })
+      .addCase(updateUserAvatar.rejected, handleRejected)
 
       // TOGGLE THEME
       .addCase(toggleTheme.fulfilled, state => {
@@ -172,5 +208,10 @@ const authSlice = createSlice({
 
 
 
+
+=======
+export const { setIsLoggedin } = authSlice.actions;
+
 const authReducer = authSlice.reducer;
+
 export default authReducer;

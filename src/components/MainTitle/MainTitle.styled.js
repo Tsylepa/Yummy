@@ -1,20 +1,20 @@
 import styled from 'styled-components';
+import mediaRule from 'utils/mediaRule';
 
 export const MainTitleBox = styled.div`
   position: relative;
+  width: 100%;
+  margin-bottom: 72px;
+
+  ${mediaRule('tablet', '', 'margin-bottom:100px;')}
 `;
 
 export const MainTitleStyled = styled.h1`
   margin-top: 35px;
   margin-bottom: 0;
-  font-family: PoppinsSemiBold;
   font-weight: 600;
   font-size: 28px;
   line-height: 1;
-  color: ${props =>
-    props.theme.darkTheme
-      ? props.theme.colors.textWhite
-      : props.theme.colors.textTitleDark};
 
   @media screen and (min-width: 768px) {
     margin-top: 54px;
@@ -34,7 +34,7 @@ export const DecorBoxLeft = styled.span`
   left: 104px;
   width: 8px;
   height: 8px;
-  background-color: ${props => props.theme.colors.accent};
+  background-color: var(--accent-color);
   border-radius: 3px;
   transform: rotate(-25deg);
 
@@ -58,10 +58,7 @@ export const DecorBoxCenter = styled.span`
   top: 27px;
   width: 6px;
   height: 6px;
-  background-color: ${props =>
-    props.theme.darkTheme
-      ? props.theme.colors.textWhite
-      : props.theme.colors.textTitleDark};
+  background-color: var(--secondary-color);
   border-radius: 3px;
   transform: rotate(-25deg);
 
@@ -84,7 +81,7 @@ export const DecorBoxRight = styled.span`
   left: 333px;
   width: 8px;
   height: 8px;
-  background-color: ${props => props.theme.colors.accent};
+  background-color: var(--accent-color);
   border-radius: 3px;
   transform: rotate(-25deg);
 
