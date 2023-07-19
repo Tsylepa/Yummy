@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import CategoriesList from 'components/CategoriesList/CategoriesList';
-import CategoriesCardsList from 'components/CategoriesCardsList/CategoriesCardsList';
+
 import {
-  StyledCategories,
+ 
   StyledContainer,
   StyledText,
   StyledCategoriesPagesWraper,
 } from './Categories.styled';
 
 const Categories = ({ categoriesFirst }) => {
-  const [categories, setCategories] = useState([
+  const [categories, ] = useState([
     {
       _id: {
         $oid: '6462a6cd4c3d0ddd28897f8a',

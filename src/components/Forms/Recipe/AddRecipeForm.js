@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, ErrorMessage } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+
 import Select from 'react-select';
 import ImageUploading from 'react-images-uploading';
 import {
@@ -42,7 +42,7 @@ const measureOptions = [
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
   const [ingredientsQty, setIngredientsQty] = useState(3);
-  const [ingredients, setIngredients] = useState(
+  const [ingredients, ] = useState(
     Array.from({ length: ingredientsQty }, (_, i) => {
       return { id: '', name: '', measure: '' };
     })
@@ -81,9 +81,9 @@ const AddRecipeForm = () => {
     setSubmitting(false);
   };
 
-  const handleDeleteIngredient = i => {
-    setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
-  };
+  // const handleDeleteIngredient = i => {
+  //   setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
+  // };
 
   const validateForm = values => {
     const errors = {};
