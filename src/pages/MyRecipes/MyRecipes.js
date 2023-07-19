@@ -8,7 +8,9 @@ import {
   getRecipeList,
 } from 'redux/recipes/recipesOperations';
 import { useEffect, useState } from 'react';
-import { addToFavorite } from 'redux/favorite/favoriteOperations';
+// import { addToFavorite } from 'redux/favorite/favoriteOperations';
+
+
 const MyRecipes = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,7 +49,7 @@ const MyRecipes = () => {
                     <BiTrash style={{ width: '24px', height: '24px' }} />
                   </button>
 
-                  <button
+                  {/* <button
                     style={{
                       width: '24px',
                       height: '24px',
@@ -55,7 +57,7 @@ const MyRecipes = () => {
                     }}
                     type="button"
                     onClick={() => dispatch(addToFavorite(recipe._id))}
-                  ></button>
+                  ></button> */}
                   <button
                     className={css.btn}
                     type="button"

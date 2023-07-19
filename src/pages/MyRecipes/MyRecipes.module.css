@@ -4,14 +4,13 @@
   border-radius: 8px;
 }
 .item {
-  background-color: var(--bg-recipe-color
-  ) ;
+  background-color: var(--bg-recipe-color);
 }
 .block {
   position: absolute;
   bottom: 0;
 
-  color: var( --input-text-color);
+  color: var(--input-text-color);
 
   /* Body / Small Text - Medium */
   font-family: Poppins;
@@ -26,17 +25,16 @@
   margin-top: 100px;
   margin-bottom: 100px;
 
-  color: var( --input-text-color);
+  color: var(--input-text-color);
 }
 
 .section__title {
-color: var(--input-text-color);
+  color: var(--input-text-color);
 }
 
 .text {
-  color: var(--input-text-color); 
+  color: var(--input-text-color);
 }
-
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .img {
@@ -93,7 +91,7 @@ color: var(--input-text-color);
     flex-shrink: 0;
 
     overflow: hidden;
- 
+
     text-overflow: ellipsis;
     whitespace: nowrap;
     font-family: Poppins;
@@ -175,7 +173,6 @@ color: var(--input-text-color);
 
     margin-bottom: 40px;
     border-radius: 8px;
-
   }
 
   .text__container {
@@ -210,7 +207,6 @@ color: var(--input-text-color);
   .text__info {
     width: 353px;
 
-  
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -223,7 +219,7 @@ color: var(--input-text-color);
     height: 21px;
 
     overflow: hidden;
-  
+
     text-overflow: ellipsis;
     whitespace: nowrap;
     font-family: Poppins;
@@ -299,6 +295,8 @@ color: var(--input-text-color);
     margin-bottom: 50px;
     border-radius: 8px;
     gap: 14px;
+
+    width: 1240px;
   }
   .text__container {
     position: relative;
@@ -330,8 +328,7 @@ color: var(--input-text-color);
     margin-right: 22px;
 
     width: 806px;
-
-
+    max-height: 185px;
   }
   .text__info {
     font-family: Poppins;
