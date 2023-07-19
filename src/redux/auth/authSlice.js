@@ -6,7 +6,8 @@ const {
   logIn,
   logOut,
   fetchCurrentUser,
-  updateUserInfo,
+  updateUserName,
+  updateUserAvatar,
   toggleTheme,
 } = authOperations;
 
@@ -92,19 +93,25 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.token = null;
       })
-      // UPDATE USER
-      .addCase(updateUserInfo.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
+      // UPDATE USER NAME
+      .addCase(updateUserName.pending, handlePending)
+      .addCase(updateUserName.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.user = payload.user;
+        console.log(payload);
+        state.user = payload;
       })
-      .addCase(updateUserInfo.rejected, (state, { payload }) => {
+      .addCase(updateUserName.rejected, handleRejected)
+
+      // UPDATE USER AVATAR
+      .addCase(updateUserAvatar.pending, handlePending)
+      .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload;
+        state.error = null;
+        console.log(payload);
+        state.user = payload;
       })
+      .addCase(updateUserAvatar.rejected, handleRejected)
 
       // TOGGLE THEME
       .addCase(toggleTheme.fulfilled, state => {

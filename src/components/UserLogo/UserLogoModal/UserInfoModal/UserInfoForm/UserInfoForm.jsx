@@ -14,28 +14,29 @@ import {
 import { PreviewPhoto } from './PreviewPhoto/PreviewPhoto';
 import { FiUser } from 'react-icons/fi';
 import { IoAdd } from 'react-icons/io5';
-import useUser from '../../../../../hooks/useUser';
-import operations from '../../../../../redux/auth/authOperations';
+import useUser from 'hooks/useUser';
+import operations from 'redux/auth/authOperations';
 
 export const UserInfoForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const {
-    user: { name, avatar },
+    user: { name: currentName, avatar: currentAvatar },
   } = useUser();
-  const [avatarFile, setAvatarFile] = useState(null);
-  const initialValue = { name, image: avatarFile };
+  const [newAvatar, setNewAvatar] = useState(null);
+
+  const initialValue = { name: currentName, image: currentAvatar };
 
   const fileRef = useRef(null);
 
   const handleSubmit = ({ name }, { resetForm }) => {
-    const formData = new FormData();
-    formData.append('name', name);
+    if (newAvatar) {
+      const formData = new FormData();
 
-    // if (avatar) {
-    //   formData.append('avatar', avatar[0]);
-    // }
+      formData.append('file', newAvatar);
+      dispatch(operations.updateUserAvatar(formData));
+    }
 
-    dispatch(operations.updateUserInfo(formData));
+    name !== currentName && dispatch(operations.updateUserName({ name }));
     resetForm();
     closeModal();
   };
@@ -52,16 +53,16 @@ export const UserInfoForm = ({ closeModal }) => {
               name="image"
               onChange={e => {
                 setFieldValue('image', e.target.files[0]);
-                setAvatarFile(e.target.files[0]);
+                setNewAvatar(e.target.files[0]);
               }}
             />
 
             <UserPhotoWrapper>
-              {(values.image || avatar) && (
-                <PreviewPhoto photo={values.image} avatarFile={avatar} />
+              {(values.image || currentAvatar) && (
+                <PreviewPhoto photo={newAvatar} avatar={currentAvatar} />
               )}
 
-              {!values.image && !avatar && (
+              {!currentAvatar && !newAvatar && (
                 <FiUser size={47} color={'#C4C4C4'} />
               )}
 
