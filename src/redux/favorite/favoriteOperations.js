@@ -8,7 +8,7 @@ export const getFavoritesList = createAsyncThunk(
     async (_, thunkAPI) => {
       try {
         const { data } = await instance.get(`favorite`);
-        console.log(`1111`,data)
+        console.log(`favOperation`,data)
         return data;
       } catch (error) {
         return thunkAPI.rejectWithValue(error.message);
