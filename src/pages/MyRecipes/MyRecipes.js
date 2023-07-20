@@ -4,12 +4,12 @@ import { ContainerBG } from 'components/ContainerBG/ContainerBG';
 import { useDispatch } from 'react-redux';
 import {
   deleteRecipe,
-  getRecipeById,
+  // getRecipeById,
   getRecipeList,
 } from 'redux/recipes/recipesOperations';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // import { addToFavorite } from 'redux/favorite/favoriteOperations';
-
 
 const MyRecipes = () => {
   const dispatch = useDispatch();
@@ -22,6 +22,10 @@ const MyRecipes = () => {
   const [myRecipes, setMyRecipes] = useState([]);
   // console.log(`page myRecipes: `, myRecipes);
   // console.log(`page myRecipes/payload: `, myRecipes.payload);
+
+  const handleClickBtn = () => {
+    console.log(`handleCLick!`);
+  };
 
   if (myRecipes.payload !== undefined) {
     return (
@@ -46,7 +50,7 @@ const MyRecipes = () => {
                     type="button"
                     onClick={() => dispatch(deleteRecipe(recipe._id))}
                   >
-                    <BiTrash style={{ width: '24px', height: '24px' }} />
+                    <BiTrash className={css.BiTrash} />
                   </button>
 
                   {/* <button
@@ -58,13 +62,21 @@ const MyRecipes = () => {
                     type="button"
                     onClick={() => dispatch(addToFavorite(recipe._id))}
                   ></button> */}
-                  <button
-                    className={css.btn}
-                    type="button"
-                    onClick={() => dispatch(getRecipeById(recipe._id))}
-                  >
-                    See recipe
-                  </button>
+
+           
+                  <Link to={`/recipe/${recipe._id}`}>
+                    <button
+                      className={css.btn}
+                      type="button"
+                      // onClick={() =>
+                      //   dispatch(getFavoriteRecipeById(recipe._id))
+                      // }
+                    >
+                      See recipe
+                    </button>
+                  </Link>
+
+           
                 </div>
               </li>
             ))}

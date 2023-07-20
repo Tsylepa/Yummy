@@ -1,4 +1,8 @@
 /* color: var(--input-text-color); */
+.BiTrash {
+  width: 24px;
+  height: 24px;
+}
 
 .img {
   border-radius: 8px;
@@ -30,10 +34,15 @@
 
 .section__title {
   color: var(--input-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 650px;
+
 }
 
 .text {
   color: var(--input-text-color);
+  overflow: hidden;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -50,6 +59,9 @@
     justify-content: center;
     align-items: center;
     gap: 14px;
+
+    width: 343px;
+    height: 152px;
 
     /* border: 1px solid red; */
   }
@@ -87,7 +99,8 @@
   }
 
   .text__info {
-    width: 163px;
+    width: 153px;
+    max-height: 50px;
     flex-shrink: 0;
 
     overflow: hidden;
@@ -105,13 +118,17 @@
     display: none;
   }
   .block {
-    color: var(--color-text-primary, #3e4462);
+    color: var(--color-text-primary);
     font-family: Poppins;
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
     line-height: 14px; /* 140% */
     letter-spacing: -0.24px;
+  }
+  .BiTrash {
+    width: 18px;
+    height: 24px;
   }
 
   .BiTrash__btn {
@@ -199,13 +216,18 @@
     display: flex;
     margin-left: 16px;
     width: 404px;
+    max-height: 125px;
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
+
+    overflow: hidden;
   }
 
   .text__info {
     width: 353px;
+    max-height: 125px;
+
 
     font-family: Poppins;
     font-size: 14px;
@@ -216,7 +238,7 @@
   }
   .text__studies {
     width: 350px;
-    height: 21px;
+    /* height: 21px; */
 
     overflow: hidden;
 
@@ -296,14 +318,13 @@
     border-radius: 8px;
     gap: 14px;
 
-    width: 1240px;
+    /* width: 1240px; */
   }
   .text__container {
     position: relative;
     display: flex;
     flex-direction: column;
-
-    width: 100%;
+    width: 806px;
   }
 
   .section__title {
@@ -326,8 +347,8 @@
     gap: 14px;
     margin-left: 40px;
     margin-right: 22px;
-
-    width: 806px;
+    width: 679px;
+   
     max-height: 185px;
   }
   .text__info {
