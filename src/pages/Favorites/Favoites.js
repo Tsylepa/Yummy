@@ -42,7 +42,7 @@ const Favorites = () => {
 
             {load.favoriteRecipes.total > 0 ? (
               <>
-                <h1 className={css.title}>Favorites</h1>
+                <MainTitle text="Favorites" />
                 <ul style={{ zIndex: '1', position: 'relative' }}>
                   {/* {myFavoriteRecipes.payload.recipes.map(recipe => ( */}
                   {load.favoriteRecipes.recipes.map(recipe => (
