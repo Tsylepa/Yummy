@@ -6,11 +6,12 @@ const {
   logIn,
   logOut,
   fetchCurrentUser,
+  verification,
   updateUserName,
   updateUserAvatar,
   toggleTheme,
   addToShoppingList,
-  removeFromShoppingList
+  removeFromShoppingList,
 } = authOperations;
 
 const handlePending = state => {
@@ -106,6 +107,18 @@ const authSlice = createSlice({
         state.accessToken = null;
         state.refreshToken = null;
       })
+
+      // EMAIL VERIFICATION
+      .addCase(verification.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(verification.pending, handlePending)
+      .addCase(verification.rejected, handleRejected)
+
       // UPDATE USER NAME
       .addCase(updateUserName.pending, handlePending)
       .addCase(updateUserName.fulfilled, (state, { payload }) => {
@@ -135,32 +148,30 @@ const authSlice = createSlice({
       })
       .addCase(toggleTheme.rejected, handleRejected)
 
-       // ADD TO SHOPPING LIST
-       .addCase(addToShoppingList.fulfilled, (state, action) => {
-        state.user.shoppingList.push(action.payload)
-         state.isLoading = false;
-         state.error = null;
-       })
-       .addCase(addToShoppingList.pending, handlePending)
-       .addCase(addToShoppingList.rejected, handleRejected)
- 
- 
-        // REMOVE FROM SHOPPING LIST
-        .addCase(removeFromShoppingList.fulfilled, (state, action) => {
-         const ingredientIdToRemove = action.payload.ingredient._id;
-         state.user.shoppingList = state.user.shoppingList.filter(
-           item => item.ingredient._id !== ingredientIdToRemove
-         );
-         console.log(state.user.shoppingList)
-         state.isLoading = false;
-         state.error = null;
-       })
-       .addCase(removeFromShoppingList.pending, handlePending)
-       .addCase(removeFromShoppingList.rejected, handleRejected)
+      // ADD TO SHOPPING LIST
+      .addCase(addToShoppingList.fulfilled, (state, action) => {
+        state.user.shoppingList.push(action.payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addToShoppingList.pending, handlePending)
+      .addCase(addToShoppingList.rejected, handleRejected)
+
+      // REMOVE FROM SHOPPING LIST
+      .addCase(removeFromShoppingList.fulfilled, (state, action) => {
+        const ingredientIdToRemove = action.payload.ingredient._id;
+        state.user.shoppingList = state.user.shoppingList.filter(
+          item => item.ingredient._id !== ingredientIdToRemove
+        );
+        console.log(state.user.shoppingList);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(removeFromShoppingList.pending, handlePending)
+      .addCase(removeFromShoppingList.rejected, handleRejected),
 });
 
 export const { setIsLoggedin } = authSlice.actions;
 const authReducer = authSlice.reducer;
 
 export default authReducer;
-

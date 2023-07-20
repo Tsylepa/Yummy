@@ -44,12 +44,11 @@ export const register = createAsyncThunk(
 
 export const verification = createAsyncThunk(
   'auth/verifyEmail',
-  async ({ verificationCode }, { rejectWithValue }) => {
+  async (verificationCode, { rejectWithValue }) => {
     try {
-      const {
-        data: { data },
-      } = await instance.post(`/auth/verifyEmail/${verificationCode}`);
-      token.set(data.accessToken);
+      const { data } = await instance.post(
+        `/auth/verifyEmail/${verificationCode}`
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -152,7 +151,6 @@ export const updateUserAvatar = createAsyncThunk(
 export const addToShoppingList = createAsyncThunk(
   'auth/addToShoppingList',
   async (data, thunkAPI) => {
-    console.log(data);
     try {
       await instance.post('shoppingList', data);
       return data;
@@ -179,6 +177,7 @@ const operations = {
   register,
   logOut,
   logIn,
+  verification,
   fetchCurrentUser,
   toggleTheme,
   updateUserName,
