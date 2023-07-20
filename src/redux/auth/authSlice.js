@@ -9,6 +9,8 @@ const {
   updateUserName,
   updateUserAvatar,
   toggleTheme,
+  addToShoppingList,
+  removeFromShoppingList
 } = authOperations;
 
 const handlePending = state => {
@@ -131,10 +133,34 @@ const authSlice = createSlice({
       .addCase(toggleTheme.pending, (state, action) => {
         state.user.theme = action.meta.arg.theme;
       })
-      .addCase(toggleTheme.rejected, handleRejected),
+      .addCase(toggleTheme.rejected, handleRejected)
+
+       // ADD TO SHOPPING LIST
+       .addCase(addToShoppingList.fulfilled, (state, action) => {
+        state.user.shoppingList.push(action.payload)
+         state.isLoading = false;
+         state.error = null;
+       })
+       .addCase(addToShoppingList.pending, handlePending)
+       .addCase(addToShoppingList.rejected, handleRejected)
+ 
+ 
+        // REMOVE FROM SHOPPING LIST
+        .addCase(removeFromShoppingList.fulfilled, (state, action) => {
+         const ingredientIdToRemove = action.payload.ingredient._id;
+         state.user.shoppingList = state.user.shoppingList.filter(
+           item => item.ingredient._id !== ingredientIdToRemove
+         );
+         console.log(state.user.shoppingList)
+         state.isLoading = false;
+         state.error = null;
+       })
+       .addCase(removeFromShoppingList.pending, handlePending)
+       .addCase(removeFromShoppingList.rejected, handleRejected)
 });
 
 export const { setIsLoggedin } = authSlice.actions;
 const authReducer = authSlice.reducer;
 
 export default authReducer;
+

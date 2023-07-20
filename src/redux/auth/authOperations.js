@@ -150,6 +150,33 @@ export const updateUserAvatar = createAsyncThunk(
   }
 );
 
+// Add to ShoppingList
+export const addToShoppingList = createAsyncThunk(
+  "auth/addToShoppingList",
+  async (data, thunkAPI) => {
+    console.log(data)
+    try {
+    await instance.post('shoppingList', data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//Remove from ShoppingList
+export const removeFromShoppingList = createAsyncThunk(
+  "auth/removeFromShoppingList",
+  async (data, thunkAPI) => {
+    try {
+      await instance.delete('shoppingList', {data});
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const operations = {
   register,
   logOut,
@@ -158,6 +185,8 @@ const operations = {
   toggleTheme,
   updateUserName,
   updateUserAvatar,
+  addToShoppingList,
+  removeFromShoppingList
 };
 
 export default operations;
