@@ -36,11 +36,9 @@ const MyRecipes = () => {
       ) : (
         <ContainerBG>
           <div>
-            <MainTitle />
-
             {load.recipe.total > 0 ? (
               <>
-                <h1 className={css.title}>My recipes</h1>
+                <MainTitle text="My recipes" />
                 <ul style={{ zIndex: '1', position: 'relative' }}>
                   {/* {myRecipes.payload.recipes.map(recipe => ( */}
                   {load.recipe.recipes.map(recipe => (
