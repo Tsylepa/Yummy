@@ -11,7 +11,12 @@ import {
 
 const AddRecipe = () => {
   return (
-    <>
+    <section
+      style={{
+        position: 'relative',
+        zIndex: `1`,
+      }}
+    >
       <MainTitle text="Add recipe" />
       <Wrapper>
         <AddRecipeForm />
@@ -23,7 +28,7 @@ const AddRecipe = () => {
           <PopularRecipes />
         </Bar>
       </Wrapper>
-    </>
+    </section>
   );
 };
 
