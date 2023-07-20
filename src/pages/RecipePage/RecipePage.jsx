@@ -40,7 +40,7 @@ const RecipePage = ()=> {
     return (
         <>
         <RecipePageHero title={title} description={description} time={time} recipeId = {recipeId} favorites = {favorites}/>
-       <RecipeIngredientsList ingredients={ingredients}/>
+       <RecipeIngredientsList ingredients={ingredients} recipeId={recipeId}/>
         <RecipePreparation image={preview} preparationSteps={instructions.split('\r\n')}/>
     </>
     )
