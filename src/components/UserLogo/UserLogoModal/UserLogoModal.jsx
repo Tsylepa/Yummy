@@ -17,7 +17,7 @@ export const UserLogoModal = ({ isopenusermodal }) => {
 
   return (
     <>
-      <UserLogoModalContainer isopenusermodal={isopenusermodal}>
+      <UserLogoModalContainer open={isopenusermodal}>
         <EditProfileBtn onClick={handleShowInfo}>
           Edit profile
           <FiEdit2 size={14} />

@@ -43,6 +43,7 @@ const timeOptions = Array.from({ length: 24 }, (_, i) => {
 
 const measureOptions = [
   { value: 'tbs', label: 'tbs' },
+  { value: 'tsp', label: 'tsp' },
   { value: 'g', label: 'g' },
   { value: 'kg', label: 'kg' },
 ];
@@ -160,9 +161,10 @@ const measureSelectorStyles = {
 
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
+  const [submit, setSubmit] = useState(false);
   const [ingredientsQty, setIngredientsQty] = useState(3);
   const [ingredients, setIngredients] = useState(
-    Array.from({ length: ingredientsQty }, (_, i) => {
+    Array.from({ length: ingredientsQty }, () => {
       return { id: '', measure: [] };
     })
   );
@@ -189,7 +191,6 @@ const AddRecipeForm = () => {
   useEffect(() => {
     const addIngrderientField = () => {
       if (ingredients.length < ingredientsQty) {
-        console.log('newArr');
         const newArr = ingredients.push({ id: '', measure: [] });
         setIngredients(newArr);
       }
@@ -199,6 +200,18 @@ const AddRecipeForm = () => {
 
   const onChange = imageList => {
     setImage(imageList[0]);
+  };
+
+  const validate = values => {
+    if (!submit) return;
+    try {
+      recipeSchema.validateSync(values, { abortEarly: false });
+    } catch (errors) {
+      return errors.inner.reduce((acc, curr) => {
+        acc[curr.path] = curr.message;
+        return acc;
+      }, {});
+    }
   };
 
   const categoriesOptions = categoriesList.map(ctg => {
@@ -214,15 +227,15 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
-
-    values.ingredients.map(ingr => (ingr.measure = ingr.measure.join(' ')));
+    console.log(values);
+    setSubmit(true);
 
     formData.append('file', image.file);
     formData.append('title', values.title);
     formData.append('description', values.description);
     formData.append('category', values.category);
     formData.append('time', values.time);
-    formData.append('ingredients', JSON.stringify(values.ingredients));
+    formData.append('ingredients', JSON.stringify(ingredients));
     formData.append('instructions', values.instructions);
     dispatch(addRecipe(formData));
 
@@ -246,9 +259,9 @@ const AddRecipeForm = () => {
         ingredients,
         instructions: '',
       }}
-      validationSchema={recipeSchema}
       validateOnBlur={false}
       validateOnChange={false}
+      validate={validate}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, handleChange, setFieldValue, values }) => {
@@ -362,13 +375,9 @@ const AddRecipeForm = () => {
                         }}
                         options={ingredientsOptions}
                         onChange={selected => {
-                          setIngredients(prev =>
-                            prev.map((ing, idx) => {
-                              if (idx !== i) return ing;
-
-                              return { ...ing, id: selected.value };
-                            })
-                          );
+                          const updatedIngredients = ingredients;
+                          ingredients[i].id = selected.value;
+                          setIngredients(updatedIngredients);
                         }}
                         styles={ingredientsSelectorStyles}
                       />
@@ -401,14 +410,12 @@ const AddRecipeForm = () => {
                             setIngredients(prev =>
                               prev.map((ing, idx) => {
                                 if (idx !== i) return ing;
-                                {
-                                  const newArr = ing.measure;
-                                  newArr[1] = selected.value;
-                                  return { ...ing, measure: newArr };
-                                }
+
+                                const newArr = ing.measure;
+                                newArr[1] = selected.value;
+                                return { ...ing, measure: newArr };
                               })
                             );
-                            console.log(values.ingredients);
                           }}
                           styles={measureSelectorStyles}
                         />
@@ -455,6 +462,9 @@ const AddRecipeForm = () => {
             >
               Add
             </ButtonSkew>
+            <button type="button" onClick={() => console.log(values)}>
+              dddd
+            </button>
           </StyledForm>
         );
       }}
