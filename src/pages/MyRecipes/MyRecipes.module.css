@@ -17,7 +17,7 @@
   color: var(--input-text-color);
 
   /* Body / Small Text - Medium */
-  font-family: Poppins;
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -37,7 +37,6 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 650px;
-
 }
 
 .text {
@@ -84,7 +83,6 @@
     margin-top: 6px;
     margin-bottom: 14px;
 
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -107,7 +105,7 @@
 
     text-overflow: ellipsis;
     whitespace: nowrap;
-    font-family: Poppins;
+
     font-size: 8px;
     font-style: normal;
     font-weight: 400;
@@ -119,7 +117,7 @@
   }
   .block {
     color: var(--color-text-primary);
-    font-family: Poppins;
+
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
@@ -160,7 +158,6 @@
     color: var(--primary-color);
     background-color: var(--accent-color);
 
-    font-family: Poppins;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -204,7 +201,6 @@
     margin-left: 16px;
     margin-bottom: 28px;
 
-    font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -228,8 +224,6 @@
     width: 353px;
     max-height: 125px;
 
-
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -244,7 +238,7 @@
 
     text-overflow: ellipsis;
     whitespace: nowrap;
-    font-family: Poppins;
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -290,7 +284,6 @@
     color: var(--primary-color);
     background-color: var(--accent-color);
 
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -331,7 +324,6 @@
     margin-left: 40px;
     margin-bottom: 40px;
 
-    font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -348,11 +340,10 @@
     margin-left: 40px;
     margin-right: 22px;
     width: 679px;
-   
+
     max-height: 185px;
   }
   .text__info {
-    font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -364,7 +355,7 @@
 
     text-overflow: ellipsis;
     whitespace: nowrap;
-    font-family: Poppins;
+
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -405,7 +396,6 @@
     color: var(--primary-color);
     background-color: var(--accent-color);
 
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
