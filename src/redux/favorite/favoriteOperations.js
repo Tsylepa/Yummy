@@ -22,6 +22,7 @@ export const deleteFavorite = createAsyncThunk(
     try {
       const response = await instance.delete(`favorite/${recipeId}`);
       console.log(`delete favorite recipe`);
+      window.location.reload()
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
