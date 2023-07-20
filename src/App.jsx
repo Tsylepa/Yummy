@@ -16,6 +16,7 @@ const VerificationPage = lazy(() =>
   import('./pages/Verification/Verification')
 );
 const AddRecipe = lazy(() => import('./pages/AddRecipe/AddRecipe'));
+const ShoppingList = lazy(() => import('./pages/ShoppingList/ShoppingList'));
 const NoPage = lazy(() => import('./pages/404'));
 const SearchPage = lazy(() => import('pages/SearchPage/SearchPage'));
 const CategoriesPage = lazy(() => import('./pages/Categories/Categories'));
@@ -24,8 +25,8 @@ const CategoriesRecepiesPage = lazy(() =>
   import('./components/CategoriesCardsList/CategoriesCardsList')
 );
 
-const Favorites = lazy(()=> import("./pages/Favorites/Favoites"))
-const MyRecipes = lazy(()=> import("./pages/MyRecipes/MyRecipes"))
+const Favorites = lazy(() => import('./pages/Favorites/Favoites'));
+const MyRecipes = lazy(() => import('./pages/MyRecipes/MyRecipes'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -52,11 +53,12 @@ export const App = () => {
           <Route exact index element={<Navigate to="/main" />} />
           <Route path="/main" element={<Main />}></Route>
           <Route path="/add" element={<AddRecipe />} />
-          <Route path="/my" element={<MyRecipes />} />  
+          <Route path="/shopping-list" element={<ShoppingList />} />
+          <Route path="/my" element={<MyRecipes />} />
           <Route path="/verification" element={<VerificationPage />} />
           <Route path="/recipe/:recipeId" element={<RecipePage />} />
           <Route path="/favorite" element={<Favorites />} />
-          <Route path="/recipe" element={<MyRecipes />} />  
+          <Route path="/recipe" element={<MyRecipes />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/categories" element={<CategoriesPage />}>
             <Route

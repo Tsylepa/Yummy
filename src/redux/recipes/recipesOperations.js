@@ -85,3 +85,25 @@ export const addToShoppingList = createAsyncThunk(
     }
   }
 );
+// Remove from the ShoppingList
+export const removeFromShoppingList = createAsyncThunk(
+  'recipes/removeFromShoppingList',
+  async ({ ingredient, recipeId }, thunkAPI) => {
+    try {
+      const response = await instance.delete(`shoppingList`, {
+        data: {
+          ingredient: {
+            _id: ingredient._id,
+            name: ingredient.name,
+            desc: ingredient.desc,
+            img: ingredient.img,
+          },
+          recipeId: recipeId,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
