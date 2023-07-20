@@ -1,42 +1,84 @@
 import css from './MyRecipes.module.css';
 import { BiTrash } from 'react-icons/bi';
-
 import { ContainerBG } from 'components/ContainerBG/ContainerBG';
+import { useDispatch } from 'react-redux';
+import {
+  deleteRecipe,
+  getRecipeById,
+  getRecipeList,
+} from 'redux/recipes/recipesOperations';
+import { useEffect, useState } from 'react';
+// import { addToFavorite } from 'redux/favorite/favoriteOperations';
+
 
 const MyRecipes = () => {
-  const sectionTitle = 'Apple Frangipan Tart';
-  const info =
-    'Apple Frangipane Tart is a classic and elegant treat fit for any dessert table. A crisp, sweet-crust is filled with rich almond frangipane filling, baked with sliced apples and finished with apricot preserves.';
-  const studies =
-    'We threw a ladies Melbourne Cup lunch and this was our dessert. Super quick to prepare using store bought pastry.';
-  return (
-    <ContainerBG>
-      <div>
-        <h1 className={css.title}>My recipes</h1>
-        <ul>
-          <li className={css.item}>
-            <img className={css.img} alt=""></img>
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRecipeList())
+      .then(myRecipes => setMyRecipes(myRecipes))
+      .catch(err => console.log(err.message));
+  }, [dispatch]);
 
-            <div className={css.text__container}>
-              <h2 className={css.section__title}>{sectionTitle}</h2>
-              <div className={css.text}>
-                <p className={css.text__info}> {info}</p>
-                <p className={css.text__studies}> {studies}</p>
-                <span className={css.block}>20 min</span>
-              </div>
+  const [myRecipes, setMyRecipes] = useState([]);
+  // console.log(`page myRecipes: `, myRecipes);
+  // console.log(`page myRecipes/payload: `, myRecipes.payload);
 
-              <button className={css.BiTrash__btn} type="button">
-                <BiTrash style={{ width: '24px', height: '24px' }} />
-              </button>
-              <button className={css.btn} type="button">
-                See recipe
-              </button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </ContainerBG>
-  );
+  if (myRecipes.payload !== undefined) {
+    return (
+      <ContainerBG>
+        <div>
+          <h1 className={css.title}>My recipes</h1>
+          <ul>
+            {myRecipes.payload.recipes.map(recipe => (
+              // {/* {recipes.myRecipe.map(recipe => ( */}
+              <li key={recipe._id} className={css.item}>
+                <img className={css.img} src={recipe.preview} alt=""></img>
+                <div className={css.text__container}>
+                  <h2 className={css.section__title}>{recipe.title}</h2>
+                  <div className={css.text}>
+                    <p className={css.text__info}> {recipe.description}</p>
+                    <p className={css.text__studies}> {recipe.instructions}</p>
+                    <span className={css.block}>{recipe.time}</span>
+                  </div>
+
+                  <button
+                    className={css.BiTrash__btn}
+                    type="button"
+                    onClick={() => dispatch(deleteRecipe(recipe._id))}
+                  >
+                    <BiTrash style={{ width: '24px', height: '24px' }} />
+                  </button>
+
+                  {/* <button
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      backgroundColor: 'red',
+                    }}
+                    type="button"
+                    onClick={() => dispatch(addToFavorite(recipe._id))}
+                  ></button> */}
+                  <button
+                    className={css.btn}
+                    type="button"
+                    onClick={() => dispatch(getRecipeById(recipe._id))}
+                  >
+                    See recipe
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </ContainerBG>
+    );
+  } else {
+    return (
+      <p style={{ height: '50vw', margin: '50px' }}>
+        you have not added any recipe
+      </p>
+    );
+  }
 };
 
 export default MyRecipes;

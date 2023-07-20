@@ -8,35 +8,27 @@ import {
 } from './UserLogo.styled';
 import { UserLogoModal } from './UserLogoModal/UserLogoModal';
 import useUser from '../../hooks/useUser';
-import { useLocation } from 'react-router-dom';
 
 export const UserLogo = () => {
-  const [isOpenUserModal, setIsOpenUserModal] = useState(false);
+  const [isopenusermodal, setisopenusermodal] = useState(false);
   const {
-    user: { name: userName, avatarUrl },
+    user: { name: userName, avatar },
   } = useUser();
-  const location = useLocation();
-  const isDarkColorMain = location.pathname === '/';
-  const isDarkColorRecipe = location.pathname.includes('recipe');
 
-  const userAvatar = avatarUrl || null;
+  const userAvatar = avatar || null;
   return (
     <UserLogoBtnWrapper>
-      <UserLogoBtn
-        onClick={() => setIsOpenUserModal(!isOpenUserModal)}
-        darkcolormain={isDarkColorMain ? 'true' : 'false'}
-        darkcolorrecipe={isDarkColorRecipe ? 'true' : 'false'}
-      >
+      <UserLogoBtn onClick={() => setisopenusermodal(!isopenusermodal)}>
         <UserAvatarWrapper>
           {userAvatar ? (
-            <UserAvatarImg src={userAvatar} alt="user avatar" />
+            <UserAvatarImg src={avatar} alt="user avatar" />
           ) : (
             <FiUser size={30} color={'#C4C4C4'} />
           )}
         </UserAvatarWrapper>
         {userName ? userName : 'User'}
       </UserLogoBtn>
-      <UserLogoModal isOpenUserModal={isOpenUserModal} />
+      <UserLogoModal isopenusermodal={isopenusermodal} />
     </UserLogoBtnWrapper>
   );
 };

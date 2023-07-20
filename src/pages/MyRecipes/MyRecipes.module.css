@@ -1,12 +1,16 @@
+/* color: var(--input-text-color); */
+
 .img {
   border-radius: 8px;
 }
-
+.item {
+  background-color: var(--bg-recipe-color);
+}
 .block {
   position: absolute;
   bottom: 0;
 
-  color: #3e4462;
+  color: var(--input-text-color);
 
   /* Body / Small Text - Medium */
   font-family: Poppins;
@@ -20,11 +24,21 @@
 .title {
   margin-top: 100px;
   margin-bottom: 100px;
+
+  color: var(--input-text-color);
+}
+
+.section__title {
+  color: var(--input-text-color);
+}
+
+.text {
+  color: var(--input-text-color);
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .img {
-    content: url(https://via.placeholder.com/124x124);
+    /* content: url(https://via.placeholder.com/124x124); */
     background-color: green;
     width: 124px;
     height: 124px;
@@ -58,7 +72,6 @@
     margin-top: 6px;
     margin-bottom: 14px;
 
-    color: #3e4462;
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -78,7 +91,7 @@
     flex-shrink: 0;
 
     overflow: hidden;
-    color: #23262a;
+
     text-overflow: ellipsis;
     whitespace: nowrap;
     font-family: Poppins;
@@ -144,7 +157,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .img {
-    content: url(https://via.placeholder.com/228x232);
+    /* content: url(https://via.placeholder.com/228x232); */
     background-color: aqua;
     width: 228px;
     height: 232px;
@@ -160,7 +173,6 @@
 
     margin-bottom: 40px;
     border-radius: 8px;
-
   }
 
   .text__container {
@@ -175,7 +187,6 @@
     margin-left: 16px;
     margin-bottom: 28px;
 
-    color: #3e4462;
     font-family: Poppins;
     font-size: 24px;
     font-style: normal;
@@ -196,7 +207,6 @@
   .text__info {
     width: 353px;
 
-    color: #23262a;
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -209,7 +219,7 @@
     height: 21px;
 
     overflow: hidden;
-    color: #23262a;
+
     text-overflow: ellipsis;
     whitespace: nowrap;
     font-family: Poppins;
@@ -271,7 +281,7 @@
 }
 @media screen and (min-width: 1280px) {
   .img {
-    content: url(https://via.placeholder.com/324x318);
+    /* content: url(https://via.placeholder.com/324x318); */
     background-color: brown;
     height: 324px;
     width: 318px;
@@ -285,6 +295,8 @@
     margin-bottom: 50px;
     border-radius: 8px;
     gap: 14px;
+
+    width: 1240px;
   }
   .text__container {
     position: relative;
@@ -298,7 +310,6 @@
     margin-left: 40px;
     margin-bottom: 40px;
 
-    color: #3e4462;
     font-family: Poppins;
     font-size: 24px;
     font-style: normal;
@@ -317,8 +328,7 @@
     margin-right: 22px;
 
     width: 806px;
-
-    color: #23262a;
+    max-height: 185px;
   }
   .text__info {
     font-family: Poppins;

@@ -18,13 +18,33 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const getAllRecipes = async () => {
   try {
     const { data } = await instance.get('/recipes');
-
+    console.log('data', data);
     return data;
   } catch (error) {
     console.log(error);
   }
 };
 
+//
+export const getOwnRecipes = async()=> {
+  try {
+    const { data } = await instance.get('/ownRecipes');
+    console.log('ownRecipes :', data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getFavoriteRecipes = async () => {
+  try {
+    const { data } = await instance.get('/favorite');
+    console.log(`favorite API`, data)
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // GET RECIPES BY INGREDIENT
 export const getRecipesByIngredient = createAsyncThunk(
@@ -60,7 +80,6 @@ export const searchRecipes = createAsyncThunk(
   async ({ title }, thunkAPI) => {
     try {
       const { data } = await instance.get(`recipes/search/${title}`);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -72,7 +91,6 @@ export const searchRecipes = createAsyncThunk(
 export const getCategories = async () => {
   try {
     const { data } = await instance.get('/categoryList');
-
     return data;
   } catch (error) {
     console.log(error);
@@ -89,3 +107,16 @@ export const getIngredients = async () => {
     console.log(error);
   }
 };
+
+// GET POPULAR RECIPES
+export const getPopularRecipes = createAsyncThunk(
+  'recipes/popular',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`recipes/popular`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

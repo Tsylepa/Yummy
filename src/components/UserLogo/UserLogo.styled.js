@@ -42,3 +42,16 @@ export const UserAvatarImg = styled.img`
   width: 44px;
   height: 44px;
 `;
+
+export const ImageWrapper = styled.div`
+  flex: 0.4;
+  width: 280px;
+  height: 268px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+  }
+`;

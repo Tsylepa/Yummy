@@ -1,4 +1,4 @@
-import { Form, Field, ErrorMessage } from 'formik';
+import { Form, Field } from 'formik';
 import Select from 'react-select';
 import styled from 'styled-components';
 import mediaRule from 'utils/mediaRule';
@@ -6,6 +6,7 @@ import mediaRule from 'utils/mediaRule';
 export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 44px;
 `;
 
@@ -70,6 +71,19 @@ export const DescLabel = styled.label`
 export const DescSelect = styled(Select)`
   & .valueContainer {
     ${mediaRule('tablet', '', 'font-size: 14px')}
+  }
+
+  & .input {
+    display: none;
+  }
+
+  & .menu-list {
+    width: 100px;
+    height: 85px;
+
+    &::-webkit-scrollbar {
+      background-color: transparent;
+    }
   }
 `;
 
@@ -142,6 +156,27 @@ export const Ingredient = styled(Select)`
   }
 `;
 
+export const Measure = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 4px;
+  background-color: var(--input-bg-color);
+`;
+
+export const MeasureInput = styled(Field)`
+  background-color: transparent;
+  height: 27px;
+  width: 30px;
+  flex: 0.5;
+  padding: 0;
+  text-align: right;
+  border: none;
+  font: inherit;
+`;
+
 export const IngredientsButton = styled.button`
   display: flex;
   align-items: center;
@@ -162,6 +197,7 @@ export const Delete = styled(IngredientsButton)`
   width: 18px;
   height: 18px;
   margin-left: 18px;
+  color: var(--font-color);
   opacity: 1;
 `;
 
@@ -176,6 +212,7 @@ export const Instructions = styled(Field)`
   margin-top: 24px;
   padding: 10px 16px;
   font: inherit;
+  color: var(--primary-color);
   resize: none;
   border: none;
   border-radius: 6px;

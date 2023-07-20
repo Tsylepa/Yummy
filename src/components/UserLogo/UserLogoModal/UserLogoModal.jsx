@@ -5,7 +5,7 @@ import { LogoutBtn } from './LogoutBtn/LogoutBtn';
 import { UserInfoModal } from './UserInfoModal/UserInfoModal';
 import { LogoutModal } from './LogoutModal/LogoutModal';
 
-export const UserLogoModal = ({ isOpenUserModal }) => {
+export const UserLogoModal = ({ isopenusermodal }) => {
   const [showInfo, setShowInfo] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
 
@@ -17,7 +17,7 @@ export const UserLogoModal = ({ isOpenUserModal }) => {
 
   return (
     <>
-      <UserLogoModalContainer isOpenUserModal={isOpenUserModal}>
+      <UserLogoModalContainer isopenusermodal={isopenusermodal}>
         <EditProfileBtn onClick={handleShowInfo}>
           Edit profile
           <FiEdit2 size={14} />

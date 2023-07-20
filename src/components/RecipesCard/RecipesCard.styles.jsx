@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 export const StyledCards = styled.ul`
   display: flex;
@@ -18,7 +19,7 @@ export const StyledCards = styled.ul`
   }
 `;
 
-export const StyledCardsList = styled.li`
+export const StyledCardsList = styled(Link)`
   list-style: none;
 
   @media screen and (min-width: 1440px) {

@@ -11,5 +11,5 @@ export const StyledContainer = styled.div`
 
   ${mediaRule('mobile', 'tablet', 'width: 320px;')}
   ${mediaRule('tablet', 'desktop', 'width: 768px;  padding: 0 32px;')}
-  ${mediaRule('desktop', '', 'width: 1280px;  padding: 0 100px;')}
+  ${mediaRule('desktop', '', 'width: 1280px;  padding: 0 20px;')}
 `;

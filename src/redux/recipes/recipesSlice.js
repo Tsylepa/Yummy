@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addRecipe, deleteRecipe } from 'redux/recipes/recipesOperations';
+import {
+  addRecipe,
+  deleteRecipe,
+  getRecipeById,
+  addToShoppingList,
+  getRecipeList,
+} from 'redux/recipes/recipesOperations';
 
 const handlePending = state => {
   state.error = null;
@@ -14,6 +20,8 @@ const handleRejected = (state, action) => {
 const initialState = {
   isLoading: false,
   error: null,
+  recipeById: {},
+  recipe: [],
 };
 
 const recipesSlice = createSlice({
@@ -23,7 +31,8 @@ const recipesSlice = createSlice({
     builder
       // ADD RECIPE
       .addCase(addRecipe.fulfilled, (state, action) => {
-        state.all = [...state.all, action.payload];
+        // state.all = [...state.all, action.payload];
+        state.myRecipe = [action.payload];
         state.error = null;
         state.isLoading = false;
       })
@@ -36,7 +45,35 @@ const recipesSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteRecipe.pending, handlePending)
-      .addCase(deleteRecipe.rejected, handleRejected),
+      .addCase(deleteRecipe.rejected, handleRejected)
+
+      // GET RECIPY BY ID
+      .addCase(getRecipeById.fulfilled, (state, action) => {
+        const recipe = action.payload;
+        state.recipeById = { ...state.recipeById, [recipe._id]: recipe };
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getRecipeById.pending, handlePending)
+      .addCase(getRecipeById.rejected, handleRejected)
+
+      // ADD TO SHOPPING LIST
+      .addCase(addToShoppingList.fulfilled, (state, action) => {
+        const { ingredientId, shoppingListData } = action.payload;
+        state.recipeById[ingredientId].shoppingListData = shoppingListData;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addToShoppingList.pending, handlePending)
+      .addCase(addToShoppingList.rejected, handleRejected)
+      // my recipe
+      .addCase(getRecipeList.pending, handlePending)
+      .addCase(getRecipeList.fulfilled, (state, action) => {
+        state.recipe = action.payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getRecipeList.rejected, handleRejected),
 });
 
 const recipesReducer = recipesSlice.reducer;

@@ -1,22 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMainPageData } from '../../api/mainPage';
-
+import { getMainPageData } from '../../redux/mainPage/mainPageOperations';
 
 import {Container, CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, SeeAllBtn, SeeAllContainer,} from "./PreviewCategories.styled";
 
 
-import obj from "../../components/PreviewCategories/obj"
+
 
        const PreviewCategories = () => {
         const [cardColumns, setCardColumns] = useState(1);
 
-      //  const dispatch = useDispatch();
-      //  const recipes = useSelector((state) => state.mainPage.recipes);
-
-      //   useEffect(() => {
-      //   dispatch(fetchMainPageData());
-      //   }, [dispatch]); 
+        const dispatch = useDispatch();
+        const mainPageData = useSelector((state) => state.mainPage.data);
+        const isLoading = useSelector((state) => state.mainPage.isLoading);
+        const error = useSelector((state) => state.mainPage.error);
+      
+        useEffect(() => {
+          dispatch(getMainPageData());
+        }, [dispatch]);
       
         useEffect(() => {
           const handleResize = () => {
@@ -37,10 +38,18 @@ import obj from "../../components/PreviewCategories/obj"
             window.removeEventListener('resize', handleResize);
           };
         }, []);
+
+        if (isLoading) {
+          return <div>Loading...</div>;
+        }
+      
+        if (error) {
+          return <div>Error: {error}</div>;
+        }
       
       return (
         <Container>
-      {Object.entries(obj).map(([category, recipes]) => (
+      {Object.entries(mainPageData).map(([category, recipes]) => (
         <div key={category}>
           <CategoryTitle>{category}</CategoryTitle>
           

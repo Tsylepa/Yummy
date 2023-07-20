@@ -43,12 +43,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  padding-bottom: 40px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 .app {
+  color: var(--font-color);
   background-color: var(--body-color);
 }
 

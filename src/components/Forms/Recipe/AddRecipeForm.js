@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, ErrorMessage, Field } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
-import Select from 'react-select';
+import { Formik, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ImageUploading from 'react-images-uploading';
 import {
@@ -13,7 +12,6 @@ import {
   DescLabel,
   DescSelect,
   Input,
-  Hidden,
   Error,
   FormTitle,
   IngredientsHeader,
@@ -21,6 +19,8 @@ import {
   IngredientsWrapper,
   IngredientContainer,
   Ingredient,
+  Measure,
+  MeasureInput,
   Preparation,
   Instructions,
   ImageWrapper,
@@ -35,11 +35,9 @@ import { recipeSchema } from 'schemas/AddRecipeSchema';
 import { addRecipe } from 'redux/recipes/recipesOperations';
 import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
 
-const timeOptions = [
-  { value: '30 min', label: '30 min' },
-  { value: '60 min', label: '60 min' },
-  { value: '90 min', label: '90 min' },
-];
+const timeOptions = Array.from({ length: 24 }, (_, i) => {
+  return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
+});
 
 const measureOptions = [
   { value: 'tbs', label: 'tbs' },
@@ -94,6 +92,7 @@ const selectorStyles = {
   menuList: baseStyles => ({
     ...baseStyles,
     gap: 4,
+    maxHeight: 150,
     padding: '8px 26px 8px 14px',
   }),
   option: (_, state) => ({
@@ -119,7 +118,8 @@ const ingredientsSelectorStyles = {
     ...baseStyles,
     ...selectorStyles.menu(),
     position: 'absolute',
-    top: 60,
+    backgroundColor: 'var(--selector-menu-color)',
+    top: 50,
     right: 0,
     padding: 16,
   }),
@@ -138,13 +138,23 @@ const measureSelectorStyles = {
   ...ingredientsSelectorStyles,
   container: () => ({
     ...ingredientsSelectorStyles.container(),
-    position: 'relative',
-    flex: 0,
-    width: 84,
+    position: 'static',
+    backgroundColor: 'transparent',
+    flex: 0.5,
+    width: 50,
+    padding: 0,
+  }),
+  input: () => ({
+    display: 'none',
+  }),
+
+  singleValue: () => ({
+    width: 20,
+  }),
+  placeholder: () => ({
+    display: 'none',
   }),
 };
-
-console.log(ingredientsSelectorStyles);
 
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
@@ -173,6 +183,17 @@ const AddRecipeForm = () => {
     runEffect();
   }, []);
 
+  useEffect(() => {
+    const addIngrderientField = () => {
+      if (ingredients.length < ingredientsQty) {
+        console.log('newArr');
+        const newArr = ingredients.push({ id: '', measure: [] });
+        setIngredients(newArr);
+      }
+    };
+    addIngrderientField();
+  }, [ingredientsQty, ingredients]);
+
   const onChange = imageList => {
     setImage(imageList[0]);
   };
@@ -190,7 +211,7 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
-    console.log('hghfjf', values.ingredients);
+
     values.ingredients.map(ingr => (ingr.measure = ingr.measure.join(' ')));
 
     formData.append('file', image.file);
@@ -201,12 +222,14 @@ const AddRecipeForm = () => {
     formData.append('ingredients', JSON.stringify(values.ingredients));
     formData.append('instructions', values.instructions);
     dispatch(addRecipe(formData));
-    console.log('formData', formData);
+
     navigate('/my');
   };
 
   const handleDeleteIngredient = i => {
-    setIngredients(ingredients => ingredients.filter(ingr => ingr !== i));
+    const updatedIngredients = ingredients.filter((_, index) => index !== i);
+    setIngredients(updatedIngredients);
+    setIngredientsQty(updatedIngredients.length);
   };
 
   return (
@@ -221,6 +244,8 @@ const AddRecipeForm = () => {
         instructions: '',
       }}
       validationSchema={recipeSchema}
+      validateOnBlur={false}
+      validateOnChange={false}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, handleChange, setFieldValue, values }) => {
@@ -287,6 +312,8 @@ const AddRecipeForm = () => {
                     id="time"
                     classNames={{
                       valueContainer: () => 'valueContainer',
+                      menuList: () => 'menu-list',
+                      input: () => 'input',
                     }}
                     options={timeOptions}
                     onChange={selected => {
@@ -330,18 +357,18 @@ const AddRecipeForm = () => {
                         setIngredients(prev =>
                           prev.map((ing, idx) => {
                             if (idx !== i) return ing;
-                            {
-                              return { ...ing, id: selected.value };
-                            }
+
+                            return { ...ing, id: selected.value };
                           })
                         );
                       }}
                       styles={ingredientsSelectorStyles}
                     />
 
-                    <div>
-                      <Field
+                    <Measure>
+                      <MeasureInput
                         name="measureValue"
+                        autoComplete="off"
                         onChange={({ target }) => {
                           setIngredients(prev =>
                             prev.map((ing, idx) => {
@@ -377,7 +404,7 @@ const AddRecipeForm = () => {
                         }}
                         styles={measureSelectorStyles}
                       />
-                    </div>
+                    </Measure>
 
                     <ErrorMessage
                       name={`ingredients[${i}].id`}
@@ -388,7 +415,10 @@ const AddRecipeForm = () => {
                       component={Error}
                     />
 
-                    <Delete type="button">
+                    <Delete
+                      type="button"
+                      onClick={() => handleDeleteIngredient(i)}
+                    >
                       <Icon name="cross" width="18" height="18" />
                     </Delete>
                   </IngredientContainer>

@@ -6,7 +6,8 @@ const {
   logIn,
   logOut,
   fetchCurrentUser,
-  updateUserInfo,
+  updateUserName,
+  updateUserAvatar,
   toggleTheme,
 } = authOperations;
 
@@ -22,7 +23,8 @@ const handleRejected = (state, action) => {
 
 const initialState = {
   user: {},
-  token: null,
+  accessToken: null,
+  refreshToken: null,
   isLoggedIn: false,
   isLoading: true,
   error: null,
@@ -31,6 +33,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    setIsLoggedin(state) {
+      state.isLoggedIn = false;
+    },
+  },
   extraReducers: builder =>
     builder
       // REGISTER
@@ -56,7 +63,8 @@ const authSlice = createSlice({
         state.error = null;
         state.user = payload;
         state.isLoggedIn = true;
-        state.token = payload.token;
+        state.accessToken = payload.accessToken;
+        state.refreshToken = payload.refreshToken;
       })
       .addCase(logIn.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -68,20 +76,23 @@ const authSlice = createSlice({
         state.user = {};
         state.isLoggedIn = false;
         state.isLoading = false;
-        state.token = null;
+        state.accessToken = null;
+        state.refreshToken = null;
       })
       .addCase(logOut.rejected, (state, { payload }) => {
         state.user = {};
         state.isLoggedIn = false;
         state.isLoading = false;
-        state.token = null;
+        state.accessToken = null;
+        state.refreshToken = null;
         state.error = payload;
       })
 
       // FETCH CURRENT USER
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.token = action.payload.token;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -90,21 +101,28 @@ const authSlice = createSlice({
         handleRejected(state, action);
         state.user = {};
         state.isLoggedIn = false;
-        state.token = null;
+        state.accessToken = null;
+        state.refreshToken = null;
       })
-      // UPDATE USER
-      .addCase(updateUserInfo.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
+      // UPDATE USER NAME
+      .addCase(updateUserName.pending, handlePending)
+      .addCase(updateUserName.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.user = payload.user;
+        console.log(payload);
+        state.user = payload;
       })
-      .addCase(updateUserInfo.rejected, (state, { payload }) => {
+      .addCase(updateUserName.rejected, handleRejected)
+
+      // UPDATE USER AVATAR
+      .addCase(updateUserAvatar.pending, handlePending)
+      .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload;
+        state.error = null;
+        console.log(payload);
+        state.user = payload;
       })
+      .addCase(updateUserAvatar.rejected, handleRejected)
 
       // TOGGLE THEME
       .addCase(toggleTheme.fulfilled, state => {
@@ -116,5 +134,7 @@ const authSlice = createSlice({
       .addCase(toggleTheme.rejected, handleRejected),
 });
 
+export const { setIsLoggedin } = authSlice.actions;
 const authReducer = authSlice.reducer;
+
 export default authReducer;

@@ -8,13 +8,13 @@ export const UserLogoModalContainer = styled.div`
 
   display: flex;
   pointer-events: ${props => {
-    return props.isOpenUserModal ? 'auto' : 'none';
+    return props.isopenusermodal ? 'auto' : 'none';
   }};
   visibility: ${props => {
-    return props.isOpenUserModal ? 'visible' : 'hidden';
+    return props.isopenusermodal ? 'visible' : 'hidden';
   }};
   opacity: ${props => {
-    return props.isOpenUserModal ? '1' : '0';
+    return props.isopenusermodal ? '1' : '0';
   }};
   flex-direction: column;
   align-items: center;

@@ -3,9 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { getCategories } from '../../api/recipes';
 
 import CategoriesList from 'components/CategoriesList/CategoriesList';
-import CategoriesCardsList from 'components/CategoriesCardsList/CategoriesCardsList';
 import {
-  StyledCategories,
   StyledContainer,
   StyledText,
   StyledCategoriesPagesWraper,
