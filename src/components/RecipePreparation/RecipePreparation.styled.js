@@ -62,6 +62,7 @@ margin-bottom: 21px;
 &:last-child {
   margin-bottom: 0;
 }`)};
+
 `
 
 const RecipePreparationImage = styled.img`
@@ -82,9 +83,22 @@ margin-top: 53px;
 margin-bottom: 200px;
 `)};`
 
-
+const StepNumber = styled.span`
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    margin-right: 8px;
+  `
 
 
 
 export {RecipePreparationContainer, RecipePreparationTitle, RecipePreparationItem, 
-    RecipePreparationList, RecipePreparationImage}
+    RecipePreparationList, RecipePreparationImage, StepNumber}
