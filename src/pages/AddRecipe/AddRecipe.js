@@ -1,7 +1,13 @@
 import AddRecipeForm from 'components/Forms/Recipe/AddRecipeForm';
 import { MainTitle } from 'components/MainTitle/MainTitle';
-import PopularRecipes from 'components/PopularRecipes';
-import { Wrapper, SocialsList, Follow, FollwTitle } from './AddRecipe.styled';
+import PopularRecipes from 'components/PopularRecipes/PopularRecipes';
+import {
+  Wrapper,
+  Bar,
+  SocialsList,
+  Follow,
+  FollowTitle,
+} from './AddRecipe.styled';
 
 const AddRecipe = () => {
   return (
@@ -9,13 +15,13 @@ const AddRecipe = () => {
       <MainTitle text="Add recipe" />
       <Wrapper>
         <AddRecipeForm />
-        <div>
+        <Bar>
           <Follow>
-            <FollwTitle>Follow us</FollwTitle>
+            <FollowTitle>Follow us</FollowTitle>
             <SocialsList />
           </Follow>
           <PopularRecipes />
-        </div>
+        </Bar>
       </Wrapper>
     </>
   );

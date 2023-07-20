@@ -16,7 +16,7 @@ const InputButtonContainer = styled.div`
 
     ${mediaRule("tablet", "desktop", `
     position: absolute;
- top: 311px;
+ top: 275px;
     left: 22px;
     padding: 10px;
     width: 362px;
@@ -26,8 +26,8 @@ const InputButtonContainer = styled.div`
 
 ${mediaRule("desktop", "", `
 position: absolute;
- top: 462px;
-    left: 135px;
+ top: 325px;
+    left: 80px;
     padding: 10px;
     width: 426px;
     height: 52px;

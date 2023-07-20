@@ -8,14 +8,14 @@ export const recipeSchema = Yup.object().shape({
   category: Yup.string().required('Please select a category'),
   time: Yup.string().required('Please select cooking time'),
   thumb: Yup.mixed().required('Please upload a thumbnail image'),
-  ingredients: Yup.array()
-    .of(
-      Yup.object().shape({
-        // id: Yup.string().required('Please select an ingredient'),
-        measure: Yup.array().required('Please select a measure'),
-      })
-    )
-    .min(1, 'Please enter at least one ingredient'),
+  // ingredients: Yup.array()
+  //   .of(
+  //     Yup.object().shape({
+  //       id: Yup.string().required('Please select an ingredient'),
+  //       measure: Yup.array().required('Please select a measure'),
+  //     })
+  // )
+  // .min(1, 'Please enter at least one ingredient'),
   instructions: Yup.string().required('Please enter the recipe instructions'),
 });
 

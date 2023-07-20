@@ -12,9 +12,7 @@ const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
 const Main = lazy(() => import('./pages/Main/Main'));
 const Sigin = lazy(() => import('./pages/Signin/SigninPage'));
-const VerificationPage = lazy(() =>
-  import('./pages/Verification/Verification')
-);
+const VerificationPage = lazy(() => import('./pages/Verification/Verfication'));
 const AddRecipe = lazy(() => import('./pages/AddRecipe/AddRecipe'));
 const ShoppingList = lazy(() => import('./pages/ShoppingList/ShoppingList'));
 const NoPage = lazy(() => import('./pages/404'));
@@ -55,7 +53,6 @@ export const App = () => {
           <Route path="/add" element={<AddRecipe />} />
           <Route path="/shopping-list" element={<ShoppingList />} />
           <Route path="/my" element={<MyRecipes />} />
-          <Route path="/verification" element={<VerificationPage />} />
           <Route path="/recipe/:recipeId" element={<RecipePage />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/recipe" element={<MyRecipes />} />
@@ -77,6 +74,10 @@ export const App = () => {
           <Route path="/welcome" index element={<Welcome />} />
           <Route path="/register" element={<Auth />} />
           <Route path="/signin" element={<Sigin />} />
+          <Route
+            path="/verification/:verificationCode"
+            element={<VerificationPage />}
+          />
         </Route>
       </Routes>
     </Suspense>

@@ -154,7 +154,7 @@ margin-right: 30px;
 
 const IngredientTitle = styled.p`
 width: 0px;
-margin-right: 85px;
+margin-right: 102px;
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
@@ -210,21 +210,112 @@ line-height: normal;
 `
 
 const IngredientCheckbox = styled.input`
-margin-left: 28px;
-width: 15px;
-height: 15px;
-background-color: transparent;
+  margin-left: 28px;
+  width: 17.5px;
+  height: 17.5px;
+  background-color: transparent;
+  appearance: none;
+  position: relative;
+  border: 1px solid var(--recipe-border-color); 
+  border-radius: 3px;
+  outline: none;
+
+ 
+  &:checked::before {
+    content: "";
+    position: absolute;
+    left: 2.5px;
+    top: -5px;
+    width: 7px;
+    height: 14px;
+    border-style: solid;
+    border-width: 0 3px 3px 0;
+    border-color: var(--accent-color);
+    transform: rotate(36deg); 
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
 
 ${mediaRule("tablet", "desktop", `
 margin-left: 70px;
 width: 35px;
-height: 35px;
+  height: 35px;
+  background-color: transparent;
+  appearance: none;
+  position: relative;
+  border: 2px solid var(--recipe-border-color);
+  border-radius: 8px;
+  outline: none;
+
+  
+  &:checked::before {
+    content: "";
+    position: absolute;
+    left: 11px; 
+    top: 2px;
+    width: 7px;
+    height: 14px;
+    border-style: solid;
+    border-width: 0 3px 3px 0; 
+    border-color: var(--accent-color);
+    transform: rotate(43deg);; 
+  }
+
+ 
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
 `)};
 
 ${mediaRule("desktop", "", `
 margin-left: 130px;
 width: 35px;
-height: 35px;
+  height: 35px;
+  background-color: transparent;
+  appearance: none;
+  position: relative;
+  border: 2px solid var(--recipe-border-color);
+  border-radius: 8px;
+  outline: none;
+
+  
+  &:checked::before {
+    content: "";
+    position: absolute;
+    left: 11px; 
+    top: 2px;
+    width: 7px;
+    height: 14px;
+    border-style: solid;
+    border-width: 0 3px 3px 0; 
+    border-color: var(--accent-color);
+    transform: rotate(43deg);; 
+  }
+
+ 
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
 `)};`
 
 

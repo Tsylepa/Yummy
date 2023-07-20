@@ -7,7 +7,12 @@ export const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 800px;
   gap: 44px;
+`;
+
+export const ImageField = styled.div`
+  position: relative;
 `;
 
 export const ImageWrapper = styled.div`
@@ -18,6 +23,7 @@ export const ImageWrapper = styled.div`
   overflow: hidden;
   cursor: pointer;
 
+  ${mediaRule('desktop', '', 'width: 358px; height: 344px;')}
   img {
     width: 100%;
   }
@@ -96,8 +102,9 @@ export const Input = styled(Field)`
 
 export const Error = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   right: 0;
+  font-size: 12px;
   color: var(--error);
 `;
 
@@ -139,9 +146,15 @@ export const QtySelector = styled.div`
 export const IngredientContainer = styled.li`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 14px;
+`;
+
+export const IngredientErrorWrapper = styled.div`
+  display: flex;
   width: 100%;
+
+  flex-direction: column;
 `;
 
 export const Ingredient = styled(Select)`
@@ -186,6 +199,7 @@ export const IngredientsButton = styled.button`
   margin: 0;
   padding: 0;
   opacity: 0.3;
+  color: var(--font-color);
 
   &:hover {
     color: var(--accent-color);
@@ -196,6 +210,7 @@ export const IngredientsButton = styled.button`
 export const Delete = styled(IngredientsButton)`
   width: 18px;
   height: 18px;
+  align-self: center;
   margin-left: 18px;
   color: var(--font-color);
   opacity: 1;
@@ -212,7 +227,7 @@ export const Instructions = styled(Field)`
   margin-top: 24px;
   padding: 10px 16px;
   font: inherit;
-  color: var(--primary-color);
+  color: inherit;
   resize: none;
   border: none;
   border-radius: 6px;
@@ -221,4 +236,5 @@ export const Instructions = styled(Field)`
 
 export const InstructionsError = styled(Error)`
   bottom: -30px;
+  left: 0%;
 `;

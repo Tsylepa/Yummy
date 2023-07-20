@@ -13,7 +13,7 @@ import {
 } from '../../components/RecipeIngredientsList/RecipeIngredientList.styled';
 import Icon from 'components/IconComponent/Icon';
 import { Delete } from '../Forms/Recipe/AddRecipeForm.styled';
-import { removeFromShoppingList } from 'redux/recipes/recipesOperations';
+import { removeFromShoppingList } from '../../redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 import { ButtonSkewStyled } from 'components/ButtonSkew/ButtonSkew.styled';
 

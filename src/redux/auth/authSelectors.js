@@ -13,4 +13,5 @@ export const authSelectors = {
   getUser,
   getToken,
   getIsLoading,
+  getShoppingList
 };

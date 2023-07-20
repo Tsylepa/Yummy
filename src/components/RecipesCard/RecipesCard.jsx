@@ -1,24 +1,27 @@
 import {
   StyledCards,
-  StyledCardsList,
+  Card,
   StyledCardsWrapper,
   StyledCardsImg,
   StyledCardsTextWrapper,
   StyledCardsText,
 } from './RecipesCard.styles';
+import { Link } from 'react-router-dom';
 
 export const RecipesCard = ({ recipes }) => {
   return (
     <StyledCards>
       {recipes.map(({ _id, title, preview }) => (
-        <StyledCardsList to={`/recipe/${_id}`} key={_id.$oid}>
-          <StyledCardsWrapper>
-            <StyledCardsImg src={preview} alt={title} />
-            <StyledCardsTextWrapper>
-              <StyledCardsText>{title}</StyledCardsText>
-            </StyledCardsTextWrapper>
-          </StyledCardsWrapper>
-        </StyledCardsList>
+        <Card key={_id}>
+          <Link to={`/recipe/${_id}`}>
+            <StyledCardsWrapper>
+              <StyledCardsImg src={preview} alt={title} />
+              <StyledCardsTextWrapper>
+                <StyledCardsText>{title}</StyledCardsText>
+              </StyledCardsTextWrapper>
+            </StyledCardsWrapper>
+          </Link>
+        </Card>
       ))}
     </StyledCards>
   );

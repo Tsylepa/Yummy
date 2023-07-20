@@ -9,7 +9,7 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   opacity: 0.5;
-  z-index: 999;
+  z-index: 9999;
 `;
 
 export const Spinner = styled(ThreeCircles)``;

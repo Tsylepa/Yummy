@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ImageUploading from 'react-images-uploading';
 import {
   StyledForm,
+  ImageField,
   UploadBtn,
   Info,
   Desc,
@@ -34,6 +35,7 @@ import Icon from 'components/IconComponent/Icon';
 import { recipeSchema } from 'schemas/AddRecipeSchema';
 import { addRecipe } from 'redux/recipes/recipesOperations';
 import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
+import useUser from 'hooks/useUser';
 
 const timeOptions = Array.from({ length: 24 }, (_, i) => {
   return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
@@ -41,6 +43,7 @@ const timeOptions = Array.from({ length: 24 }, (_, i) => {
 
 const measureOptions = [
   { value: 'tbs', label: 'tbs' },
+  { value: 'tsp', label: 'tsp' },
   { value: 'g', label: 'g' },
   { value: 'kg', label: 'kg' },
 ];
@@ -158,15 +161,17 @@ const measureSelectorStyles = {
 
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
+  const [submit, setSubmit] = useState(false);
   const [ingredientsQty, setIngredientsQty] = useState(3);
   const [ingredients, setIngredients] = useState(
-    Array.from({ length: ingredientsQty }, (_, i) => {
+    Array.from({ length: ingredientsQty }, () => {
       return { id: '', measure: [] };
     })
   );
   const [ingredientsList, setIngredientsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const navigate = useNavigate();
+  const { user } = useUser();
 
   useEffect(() => {
     const runEffect = async () => {
@@ -186,7 +191,6 @@ const AddRecipeForm = () => {
   useEffect(() => {
     const addIngrderientField = () => {
       if (ingredients.length < ingredientsQty) {
-        console.log('newArr');
         const newArr = ingredients.push({ id: '', measure: [] });
         setIngredients(newArr);
       }
@@ -196,6 +200,18 @@ const AddRecipeForm = () => {
 
   const onChange = imageList => {
     setImage(imageList[0]);
+  };
+
+  const validate = values => {
+    if (!submit) return;
+    try {
+      recipeSchema.validateSync(values, { abortEarly: false });
+    } catch (errors) {
+      return errors.inner.reduce((acc, curr) => {
+        acc[curr.path] = curr.message;
+        return acc;
+      }, {});
+    }
   };
 
   const categoriesOptions = categoriesList.map(ctg => {
@@ -211,15 +227,14 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
-
-    values.ingredients.map(ingr => (ingr.measure = ingr.measure.join(' ')));
+    setSubmit(true);
 
     formData.append('file', image.file);
     formData.append('title', values.title);
     formData.append('description', values.description);
     formData.append('category', values.category);
     formData.append('time', values.time);
-    formData.append('ingredients', JSON.stringify(values.ingredients));
+    formData.append('ingredients', JSON.stringify(ingredients));
     formData.append('instructions', values.instructions);
     dispatch(addRecipe(formData));
 
@@ -243,9 +258,9 @@ const AddRecipeForm = () => {
         ingredients,
         instructions: '',
       }}
-      validationSchema={recipeSchema}
       validateOnBlur={false}
       validateOnChange={false}
+      validate={validate}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, handleChange, setFieldValue, values }) => {
@@ -254,7 +269,7 @@ const AddRecipeForm = () => {
         return (
           <StyledForm>
             <Info>
-              <div>
+              <ImageField>
                 <ImageUploading onChange={onChange}>
                   {({ onImageUpdate }) => (
                     <ImageWrapper onClick={onImageUpdate}>
@@ -268,8 +283,12 @@ const AddRecipeForm = () => {
                     </ImageWrapper>
                   )}
                 </ImageUploading>
-                <ErrorMessage name="thumb" component={Error} />
-              </div>
+                <ErrorMessage
+                  name="thumb"
+                  component={Error}
+                  style={{ bottom: -30, left: 0 }}
+                />
+              </ImageField>
               <Desc>
                 <DescField>
                   <DescLabel htmlFor="title">Enter item title</DescLabel>
@@ -345,83 +364,79 @@ const AddRecipeForm = () => {
               </IngredientsHeader>
               <IngredientsList>
                 {Array.from({ length: ingredientsQty }, (_, i) => (
-                  <IngredientContainer key={i}>
-                    <Ingredient
-                      id={`ingredients[${i}]`}
-                      classNames={{
-                        valueContainer: () => 'valueContainer',
-                        menu: () => 'menu',
-                      }}
-                      options={ingredientsOptions}
-                      onChange={selected => {
-                        setIngredients(prev =>
-                          prev.map((ing, idx) => {
-                            if (idx !== i) return ing;
-
-                            return { ...ing, id: selected.value };
-                          })
-                        );
-                      }}
-                      styles={ingredientsSelectorStyles}
-                    />
-
-                    <Measure>
-                      <MeasureInput
-                        name="measureValue"
-                        autoComplete="off"
-                        onChange={({ target }) => {
-                          setIngredients(prev =>
-                            prev.map((ing, idx) => {
-                              if (idx !== i) return ing;
-                              {
-                                const newArr = ing.measure;
-                                newArr[0] = target.value;
-                                return { ...ing, measure: newArr };
-                              }
-                            })
-                          );
-                        }}
-                      />
+                  <div key={i}>
+                    <IngredientContainer>
                       <Ingredient
-                        id={`measure[${i}]`}
-                        options={measureOptions}
+                        id={`ingredients[${i}]`}
                         classNames={{
                           valueContainer: () => 'valueContainer',
                           menu: () => 'menu',
                         }}
+                        options={ingredientsOptions}
                         onChange={selected => {
-                          setIngredients(prev =>
-                            prev.map((ing, idx) => {
-                              if (idx !== i) return ing;
-                              {
+                          const updatedIngredients = ingredients;
+                          ingredients[i].id = selected.value;
+                          setIngredients(updatedIngredients);
+                        }}
+                        styles={ingredientsSelectorStyles}
+                      />
+
+                      <Measure>
+                        <MeasureInput
+                          name="measureValue"
+                          autoComplete="off"
+                          onChange={({ target }) => {
+                            setIngredients(prev =>
+                              prev.map((ing, idx) => {
+                                if (idx !== i) return ing;
+                                {
+                                  const newArr = ing.measure;
+                                  newArr[0] = target.value;
+                                  return { ...ing, measure: newArr };
+                                }
+                              })
+                            );
+                          }}
+                        />
+                        <Ingredient
+                          id={`measure[${i}]`}
+                          options={measureOptions}
+                          classNames={{
+                            valueContainer: () => 'valueContainer',
+                            menu: () => 'menu',
+                          }}
+                          onChange={selected => {
+                            setIngredients(prev =>
+                              prev.map((ing, idx) => {
+                                if (idx !== i) return ing;
+
                                 const newArr = ing.measure;
                                 newArr[1] = selected.value;
                                 return { ...ing, measure: newArr };
-                              }
-                            })
-                          );
-                          console.log(values.ingredients);
-                        }}
-                        styles={measureSelectorStyles}
-                      />
-                    </Measure>
+                              })
+                            );
+                          }}
+                          styles={measureSelectorStyles}
+                        />
+                      </Measure>
 
+                      <Delete
+                        type="button"
+                        onClick={() => handleDeleteIngredient(i)}
+                      >
+                        <Icon name="cross" width="18" height="18" />
+                      </Delete>
+                    </IngredientContainer>
                     <ErrorMessage
                       name={`ingredients[${i}].id`}
                       component={Error}
+                      style={{ position: 'static' }}
                     />
                     <ErrorMessage
                       name={`ingredients[${i}].measure`}
                       component={Error}
                     />
-
-                    <Delete
-                      type="button"
-                      onClick={() => handleDeleteIngredient(i)}
-                    >
-                      <Icon name="cross" width="18" height="18" />
-                    </Delete>
-                  </IngredientContainer>
+                  </div>
                 ))}
               </IngredientsList>
             </IngredientsWrapper>
@@ -439,7 +454,11 @@ const AddRecipeForm = () => {
               <ErrorMessage name="instructions" component={InstructionsError} />
             </Preparation>
 
-            <ButtonSkew type="submit" variant="primary" disabled={isSubmitting}>
+            <ButtonSkew
+              type="submit"
+              variant={user.theme === 'light' ? 'primary' : 'primary-accent'}
+              disabled={isSubmitting}
+            >
               Add
             </ButtonSkew>
           </StyledForm>

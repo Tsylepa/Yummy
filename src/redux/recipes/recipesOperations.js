@@ -7,7 +7,7 @@ export const addRecipe = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { data } = await instance.post('recipes', body);
-      console.log(` ADD NEW RECIPE`, data);
+      window.location.reload();
       return { ...body, ...data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -21,7 +21,7 @@ export const deleteRecipe = createAsyncThunk(
   async (recipeId, thunkAPI) => {
     try {
       const { data } = await instance.delete(`recipes/${recipeId}`);
-      console.log(`DELETE RECIPE`, data);
+      window.location.reload();
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -35,7 +35,6 @@ export const getRecipeList = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await instance.get(`ownRecipes`);
-      console.log(`GET MY RECIPE LIST `, data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -63,45 +62,6 @@ export const getPopularRecipes = createAsyncThunk(
     try {
       const { data } = await instance.get(`recipes/popular`);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// Add to ShoppingList
-export const addToShoppingList = createAsyncThunk(
-  'recipes/addToShoppingList',
-  async ({ ingredient, recipeId, measure }, thunkAPI) => {
-    try {
-      const response = await instance.post(`shoppingList`, {
-        ingredient,
-        recipeId,
-        measure,
-      });
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-// Remove from the ShoppingList
-export const removeFromShoppingList = createAsyncThunk(
-  'recipes/removeFromShoppingList',
-  async ({ ingredient, recipeId }, thunkAPI) => {
-    try {
-      const response = await instance.delete(`shoppingList`, {
-        data: {
-          ingredient: {
-            _id: ingredient._id,
-            name: ingredient.name,
-            desc: ingredient.desc,
-            img: ingredient.img,
-          },
-          recipeId: recipeId,
-        },
-      });
-      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -9,11 +9,22 @@ import {
   RecipeLink,
   Title,
 } from './PopularRecipes.styled';
+import { useMediaQuery } from 'react-responsive';
 
 const PopularRecipes = () => {
   const [recipes, setRecipes] = useState([]);
-
+  const [limitedRecipes, setLimitedRecipes] = useState([]);
   const dispatch = useDispatch();
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
+
+  useEffect(() => {
+    const runEffect = () => {
+      isTablet
+        ? setLimitedRecipes(recipes.slice(0, 2))
+        : setLimitedRecipes(recipes.slice(0, 4));
+    };
+    runEffect();
+  }, [isTablet, recipes]);
 
   useEffect(() => {
     const fetchPopularRecipes = async () => {
@@ -32,7 +43,7 @@ const PopularRecipes = () => {
     <>
       <Title>Popular recipe</Title>
       <List>
-        {recipes.map(recipe => (
+        {limitedRecipes.map(recipe => (
           <RecipeItem key={recipe._id}>
             <RecipeLink to={`/recipe/${recipe._id}`}>
               <Image

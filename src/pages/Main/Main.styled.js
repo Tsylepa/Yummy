@@ -10,15 +10,17 @@ const BackgroundPicture = styled.div`
   top: 0px;
   left: 0px;
   background-image: url(${img});
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100vw;
+  height: 777px;
 
   ${mediaRule(
     'tablet',
     'desktop',
     `
+    height: 640px;
  background-image: url(${imgTab});
  `
   )};
@@ -26,16 +28,42 @@ const BackgroundPicture = styled.div`
   ${mediaRule(
     'desktop',
     '',
-    `
+    `height: 800px;
 background-image: url(${imgDesk});
+`
+  )};
+`;
+
+const BackgroundWrapper = styled.div`
+  margin-bottom: 73px;
+  position: relative;
+  width: 100%;
+  height: 625px;
+
+  background-size: contain;
+  ${mediaRule(
+    'tablet',
+    'desktop',
+    `
+ height: 566px; 
+`
+  )};
+  ${mediaRule(
+    'desktop',
+    '',
+    `
+
+ background-size: contain;
+ background-repeat: no-repeat;
+ height: 640px;
 `
   )};
 `;
 
 const MainTitle = styled.h2`
   margin-bottom: 14px;
-  padding-top: 70px;
-  font-size: 60px;
+  padding-top: 5px;
+  font-size: 55px;
   font-style: normal;
   font-weight: 400;
   line-height: 60px;
@@ -46,7 +74,7 @@ const MainTitle = styled.h2`
     'tablet',
     'desktop',
     `
-padding-top: 140px;
+padding-top: 100px;
 margin-right: 372px;
 margin-left: 32px;
 margin-bottom: 24px;
@@ -60,8 +88,8 @@ letter-spacing: -0.36px;
     'desktop',
     '',
     `
- padding-top: 175px;
- margin-left: 135px;
+ padding-top: 100px;
+ margin-left: 80px;
  width: 505px;
  text-align: left;
  font-style: normal;
@@ -77,32 +105,6 @@ const TitleSpan = styled.span`
   color: var(--accent-color);
 `;
 
-const BackgroundWrapper = styled.div`
-  margin-bottom: 73px;
-  position: relative;
-  width: 100%;
-  height: 777px;
-
-  background-size: contain;
-  ${mediaRule(
-    'tablet',
-    'desktop',
-    `
- height: 640px; 
-`
-  )};
-  ${mediaRule(
-    'desktop',
-    '',
-    `
-
- background-size: contain;
- background-repeat: no-repeat;
- height: 800px;
-`
-  )};
-`;
-
 const Paragraph = styled.p`
   display: flex;
   text-align: center;
@@ -110,7 +112,7 @@ const Paragraph = styled.p`
   width: 248px;
   height: 72px;
   justify-content: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.28px;
@@ -130,13 +132,14 @@ height: 54px;
     'desktop',
     '',
     `
-margin-left: 135px;
-width: 364px;
+margin-left: 80px;
+width: 405px;
 height: 72px;
 font-style: normal;
 line-height: 24px;
 letter-spacing: -0.36px;
 text-align: left;
+font-size: 18px;
 `
   )};
 `;

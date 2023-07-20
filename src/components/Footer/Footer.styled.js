@@ -4,12 +4,15 @@ import { NavLink } from 'react-router-dom';
 import { HiOutlineMail } from 'react-icons/hi';
 import { Form, Field } from 'formik';
 import variables from '../../css/variables.module.css';
-import imgBackgroundModileFirstMobile from '../../images/mobile/leaves-menu@1x_320-min.png';
-import imgBackgroundModileSecondMobile from '../../images/mobile/leaves-footer@1x_320-min.png';
-import imgBackgroundModileFirstTablet from '../../images/mobile/leaves-menu@2x_320-min.png';
-import imgBackgroundModileSecondTablet from '../../images/mobile/leaves-footer@2x_320-min.png';
-import imgBackgroundModileFirstDesktop from '../../images/mobile/leaves-menu@3x_320-min.png';
-import imgBackgroundModileSecondDesktop from '../../images/mobile/leaves-footer@3x_320-min.png';
+import imgBackgroundModileFirstMobile from 'images/mobile/leaves-menu@1x_320-min.png';
+import imgBackgroundModileSecondMobile from 'images/mobile/leaves-footer@1x_320-min.png';
+import imgBackgroundModileFirstTablet from 'images/tablet/leaves-menu@2x_768-min.png';
+import imgBackgroundModileSecondTablet from 'images/tablet/leaves-footer@2x_768-min.png';
+import imgBackgroundModileFirstDesktop from 'images/desktop/leaves-main@3x_1280.png';
+import imgBackgroundModileSecondDesktop from 'images/desktop/leaves-footer@3x_1280.png';
+import { ReactComponent as ErrorIcon } from 'images/svg/other/error-icon.svg';
+import { ReactComponent as WarningIcon } from 'images/svg/other/warning-icon.svg';
+import { ReactComponent as CorrectIcon } from 'images/svg/other/valid-icon.svg';
 
 export const Footerwrapper = styled.div`
   color: var(--footer-font-color);
@@ -34,7 +37,7 @@ export const Dolbaniylistochek = styled.div`
     width: 423px;
     height: 646px;
     top: -534px;
-    left: -85px;
+    left: -173px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -43,6 +46,7 @@ export const Dolbaniylistochek = styled.div`
     height: 852px;
     top: -705px;
     left: -110px;
+    transform: rotate(0deg);
   }
 `;
 export const Footerbackground = styled.div`
@@ -192,7 +196,7 @@ export const Footernav = styled.div`
 `;
 export const NavLinkStyled = styled(NavLink)`
   &.active {
-    color: var(--accent-color);
+    color: var(--subscribe-btn-color);
   }
 `;
 
@@ -250,6 +254,7 @@ export const Sudscribepage = styled.p`
     margin-bottom: 28px;
   }
 `;
+
 export const EmailIcon = styled(HiOutlineMail)`
   position: absolute;
   color: rgba(250, 250, 250, 0.8);
@@ -395,8 +400,86 @@ export const SubmitBtn = styled.button`
 export const LabelStyled = styled.label`
   position: relative;
 `;
+export const ErrorValidation = styled.span`
+  display: block;
+  margin-bottom: 5px;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e74a3b;
+
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    bottom: -23px;
+    left: 0;
+    margin-bottom: 0px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: -25px;
+  }
+`;
+export const WarningValidation = styled(ErrorValidation)`
+  color: #f6c23e;
+`;
+export const CorrectValidation = styled(ErrorValidation)`
+  color: #3cbc81;
+`;
+export const ErrorValidationIcon = styled(ErrorIcon)`
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  width: 16px;
+  height: 16px;
+
+  @media screen and (min-width: 768px) {
+    top: 15px;
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 20px;
+  }
+`;
+export const WarningValidationIcon = styled(WarningIcon)`
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 16px;
+  height: 16px;
+
+  @media screen and (min-width: 768px) {
+    top: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 20px;
+  }
+`;
+export const CorrectIconValidationIcon = styled(CorrectIcon)`
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  width: 16px;
+  height: 16px;
+
+  @media screen and (min-width: 768px) {
+    top: 15px;
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 20px;
+  }
+`;
 
 export const Underfooter = styled.div`
+  color: var(--font-color);
   background-color: var(--body-color);
 
   display: flex;
@@ -404,12 +487,6 @@ export const Underfooter = styled.div`
   justify-content: center;
   gap: 14px;
   height: 56px;
-
-  font-size: 10px;
-  font-weight: 500;
-  line-height: 10px;
-  letter-spacing: -0.01em;
-  text-align: left;
 
   font-size: 10px;
   font-weight: 500;

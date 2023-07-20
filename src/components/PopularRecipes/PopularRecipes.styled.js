@@ -12,7 +12,7 @@ export const List = styled.ul`
   display: grid;
   margin-top: 32px;
   justify-content: space-between;
-  ${mediaRule('tablet', 'desktop', 'grid-template-columns: 336px 336px')}
+  ${mediaRule('tablet', 'desktop', 'grid-template-columns: 336px 336px;')}
 `;
 
 export const RecipeItem = styled.li`
