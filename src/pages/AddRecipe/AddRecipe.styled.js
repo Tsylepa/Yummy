@@ -3,7 +3,11 @@ import mediaRule from 'utils/mediaRule';
 import Socials from 'components/Socials';
 
 export const Wrapper = styled.div`
-  ${mediaRule('desktop', '', 'display:flex; gap:120px;')}
+  ${mediaRule(
+    'desktop',
+    '',
+    'display:flex; gap:120px; justify-content: space-between;'
+  )}
 `;
 
 export const Follow = styled.div`
