@@ -23,9 +23,9 @@ const MyRecipes = () => {
   // console.log(`page myRecipes: `, myRecipes);
   // console.log(`page myRecipes/payload: `, myRecipes.payload);
 
-  const handleClickBtn = () => {
-    console.log(`handleCLick!`);
-  };
+  // const handleClickBtn = () => {
+  //   console.log(`handleCLick!`);
+  // };
 
   if (myRecipes.payload !== undefined) {
     return (
@@ -63,7 +63,6 @@ const MyRecipes = () => {
                     onClick={() => dispatch(addToFavorite(recipe._id))}
                   ></button> */}
 
-           
                   <Link to={`/recipe/${recipe._id}`}>
                     <button
                       className={css.btn}
@@ -75,8 +74,6 @@ const MyRecipes = () => {
                       See recipe
                     </button>
                   </Link>
-
-           
                 </div>
               </li>
             ))}
