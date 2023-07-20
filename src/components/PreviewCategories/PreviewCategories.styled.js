@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import mediaRule from "utils/mediaRule"
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Container = styled.div`
  margin-right:19px;
@@ -18,6 +18,7 @@ margin-top: 0px;
 `
 
 const CardList = styled.ul`
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -41,10 +42,16 @@ margin-top: 100px;
 margin-bottom: 20px
 `)};`
 
-const CardItem = styled(Link)`
-  position: relative;
-  width: 100%;
+const CardItem = styled(NavLink)`
 
+position: relative;
+  width: 100%;
+  &:hover {
+    cursor: pointer; 
+    border: 2px solid var(--accent-color);
+  }
+  
+    
   ${mediaRule("tablet", "desktop", `
     width: 328px;
    `)}
@@ -53,6 +60,7 @@ const CardItem = styled(Link)`
     width: 260px;
     height: 300px;
   `)};
+
 `;
 
 const CardImage = styled.img`
@@ -61,6 +69,7 @@ const CardImage = styled.img`
   border-radius: 8px;
 
   object-fit: cover;
+  
 `;
 
 const RecipeTitle = styled.h4`
