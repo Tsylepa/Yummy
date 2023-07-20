@@ -14,6 +14,7 @@ import authReducer from './auth/authSlice';
 import recipesReducer from './recipes/recipesSlice';
 import mainPageReducer from './mainPage/mainPageSlice';
 import favoriteReducer from './favorite/favoriteSlice';
+import searchedRecipesReducer from './searchedRecipes/searchedRecipesSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -32,13 +33,20 @@ const favoritePersistConfig = {
   key: 'favorite',
   storage,
 };
-
+const searchedRecipesPersistConfig = {
+  key: 'searchedRecipes',
+  storage,
+};
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     recipes: persistReducer(recipesPersistConfig, recipesReducer),
     mainPage: persistReducer(mainPagePersistConfig, mainPageReducer),
     favorite: persistReducer(favoritePersistConfig, favoriteReducer),
+    searchedRecipes: persistReducer(
+      searchedRecipesPersistConfig,
+      searchedRecipesReducer
+    ),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
