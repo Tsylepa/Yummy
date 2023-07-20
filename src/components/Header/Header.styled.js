@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
+import { ReactComponent as LogoIcon } from 'images/svg/logo/logo.svg';
 import { NavLink } from 'react-router-dom';
-import imgBackgroundModileFirstMobile from '../../images/leaves-menu@1x_320-min.png';
-import imgBackgroundModileFirstTablet from '../../images/leaves-menu@2x_320-min.png';
+import imgBackgroundModileFirstMobile from 'images/mobile/leaves-menu@1x_320-min.png';
+import imgBackgroundModileFirstTablet from 'images/tablet/leaves-menu@2x_768-min.png';
 
 export const Burger = styled.div`
   background-color: var(--menu-bg-color);
@@ -12,7 +12,7 @@ export const Burger = styled.div`
   background-repeat: no-repeat;
   background-size: 100% cover;
   background-position: 100% 68%;
-  
+
   position: absolute;
   top: 0px;
   left: 0px;
@@ -24,7 +24,7 @@ export const Burger = styled.div`
   padding-right: 16px;
   padding-bottom: 18px;
   padding-left: 16px;
-  
+
   transform: translateY(-150%);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
@@ -129,8 +129,7 @@ export const HeaderNav = styled.ul`
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0em;
-  
-  
+
   @media screen and (min-width: 1280px) {
     display: flex;
     margin-left: auto;
@@ -149,7 +148,7 @@ export const ThemeTogglerwrapper = styled.div`
   }
 `;
 export const OpenButton = styled.button`
-  color: var(--font-color)
+  color: var(--font-color);
 
   display: flex;
   margin-left: 24px;

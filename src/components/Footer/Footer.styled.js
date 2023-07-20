@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom';
 import { HiOutlineMail } from 'react-icons/hi';
 import { Form, Field } from 'formik';
 import variables from '../../css/variables.module.css';
-import imgBackgroundModileFirstMobile from '../../images/leaves-menu@1x_320-min.png';
-import imgBackgroundModileSecondMobile from '../../images/leaves-footer@1x_320-min.png';
-import imgBackgroundModileFirstTablet from '../../images/leaves-menu@2x_320-min.png';
-import imgBackgroundModileSecondTablet from '../../images/leaves-footer@2x_320-min.png';
-import imgBackgroundModileFirstDesktop from '../../images/leaves-menu@3x_320-min.png';
-import imgBackgroundModileSecondDesktop from '../../images/leaves-footer@3x_320-min.png';
-import { ReactComponent as ErrorIcon } from '../../images/svg/other/error-icon.svg';
-import { ReactComponent as WarningIcon } from '../../images/svg/other/warning-icon.svg';
-import { ReactComponent as CorrectIcon } from '../../images/svg/other/valid-icon.svg';
+import imgBackgroundModileFirstMobile from 'images/mobile/leaves-menu@1x_320-min.png';
+import imgBackgroundModileSecondMobile from 'images/mobile/leaves-footer@1x_320-min.png';
+import imgBackgroundModileFirstTablet from 'images/tablet/leaves-menu@2x_768-min.png';
+import imgBackgroundModileSecondTablet from 'images/tablet/leaves-footer@2x_768-min.png';
+import imgBackgroundModileFirstDesktop from 'images/desktop/leaves-main@3x_1280.png';
+import imgBackgroundModileSecondDesktop from 'images/desktop/leaves-footer@3x_1280.png';
+import { ReactComponent as ErrorIcon } from 'images/svg/other/error-icon.svg';
+import { ReactComponent as WarningIcon } from 'images/svg/other/warning-icon.svg';
+import { ReactComponent as CorrectIcon } from 'images/svg/other/valid-icon.svg';
 
 export const Footerwrapper = styled.div`
   color: var(--footer-font-color);

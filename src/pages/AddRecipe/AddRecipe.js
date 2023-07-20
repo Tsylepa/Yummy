@@ -1,6 +1,6 @@
 import AddRecipeForm from 'components/Forms/Recipe/AddRecipeForm';
 import { MainTitle } from 'components/MainTitle/MainTitle';
-import PopularRecipes from 'components/PopularRecipes';
+import PopularRecipes from 'components/PopularRecipes/PopularRecipes';
 import { Wrapper, SocialsList, Follow, FollwTitle } from './AddRecipe.styled';
 
 const AddRecipe = () => {
