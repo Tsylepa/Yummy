@@ -19,7 +19,6 @@ import {
   QtySelector,
   IngredientsWrapper,
   IngredientContainer,
-  IngredientErrorWrapper,
   Ingredient,
   Measure,
   MeasureInput,
@@ -256,12 +255,12 @@ const AddRecipeForm = () => {
         values.thumb = image || null;
 
         return (
-          <StyledForm validateOnBlur={false} validateOnChange={false}>
+          <StyledForm>
             <Info>
               <ImageField>
                 <ImageUploading onChange={onChange}>
                   {({ onImageUpdate }) => (
-                    <ImageWrapper onClick={onImageUpdate} noValidate>
+                    <ImageWrapper onClick={onImageUpdate}>
                       {image ? (
                         <img src={values.thumb.dataURL} alt="" />
                       ) : (
