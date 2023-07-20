@@ -1,8 +1,14 @@
 import { SigninForm } from 'components/SigninPageComponents/SigninForm';
 import { ContainerSigninPage, SigninPageSection } from './SigninPage.styled';
+import { useSelector } from 'react-redux';
+import { Loader } from 'components/Loader/Loader';
+import { getIsLoading } from 'redux/auth/authSelectors';
 
 const Signin = () => {
-  return (
+  const isLoading = useSelector(getIsLoading);
+  return isLoading ? (
+    <Loader />
+  ) : (
     <SigninPageSection>
       <ContainerSigninPage>
         <SigninForm />
