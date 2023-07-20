@@ -34,8 +34,10 @@ margin-bottom: 33,5px;
 `)};`
 
 const RecipePreparationList = styled.ul`
+width: 270px;
+
 ${mediaRule("desktop", "", `
-width: 710px;
+width: 696px;
 `)};`
 
 const RecipePreparationItem = styled.li`
@@ -75,7 +77,7 @@ margin-bottom: 200px;
 ${mediaRule("desktop", "", `
 position: absolute;
 top: -51px;
-left: 733px;
+left: 890px;
 margin-top: 53px;
 margin-bottom: 200px;
 `)};`
