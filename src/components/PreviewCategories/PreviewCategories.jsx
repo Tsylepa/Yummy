@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMainPageData } from '../../redux/mainPage/mainPageOperations';
 
 import {Container, CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, SeeAllBtn, SeeAllContainer,} from "./PreviewCategories.styled";
+import { Loader } from 'components/Loader/Loader';
 
 
 
@@ -40,7 +41,7 @@ import {Container, CardList, CardItem, CardImage, CategoryTitle, RecipeTitle, Se
         }, []);
 
         if (isLoading) {
-          return <div>Loading...</div>;
+          return <div><Loader/></div>;
         }
       
         if (error) {
