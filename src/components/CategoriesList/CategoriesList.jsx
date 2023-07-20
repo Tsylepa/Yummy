@@ -21,9 +21,9 @@ const CategoriesList = () => {
       } catch (error) {
         console.log(error.message);
       }
-      fetch();
     };
-  }, [dispatch]);
+    fetch();
+  }, [dispatch, categoryName]);
 
   useEffect(() => {
     getCategories()
