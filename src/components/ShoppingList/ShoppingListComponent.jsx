@@ -114,13 +114,3 @@ const ShoppingListComponent = () => {
 };
 
 export default ShoppingListComponent;
-// .addCase(getRecipeList.rejected, handleRejected)
-// // REMOVE FROM SHOPPING LIST
-// .addCase(removeFromShoppingList.pending, handlePending)
-// .addCase(removeFromShoppingList.rejected, handleRejected)
-// .addCase(removeFromShoppingList.fulfilled, (state, action) => {
-//   const updatedShoppingList = state.user.shoppingList.filter(
-//     product => product.ingredient._id !== action.payload.ingredient._id
-//   );
-//   state.user.shoppingList = updatedShoppingList;
-// }),
