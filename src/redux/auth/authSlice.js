@@ -124,7 +124,6 @@ const authSlice = createSlice({
       .addCase(updateUserName.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        console.log(payload);
         state.user = payload;
       })
       .addCase(updateUserName.rejected, handleRejected)
@@ -134,7 +133,6 @@ const authSlice = createSlice({
       .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        console.log(payload);
         state.user = payload;
       })
       .addCase(updateUserAvatar.rejected, handleRejected)
@@ -163,7 +161,6 @@ const authSlice = createSlice({
         state.user.shoppingList = state.user.shoppingList.filter(
           item => item.ingredient._id !== ingredientIdToRemove
         );
-        console.log(state.user.shoppingList);
         state.isLoading = false;
         state.error = null;
       })

@@ -18,7 +18,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 export const getAllRecipes = async () => {
   try {
     const { data } = await instance.get('/recipes');
-    console.log('data', data);
     return data;
   } catch (error) {
     console.log(error);
@@ -26,20 +25,18 @@ export const getAllRecipes = async () => {
 };
 
 //
-export const getOwnRecipes = async()=> {
+export const getOwnRecipes = async () => {
   try {
     const { data } = await instance.get('/ownRecipes');
-    console.log('ownRecipes :', data);
     return data;
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const getFavoriteRecipes = async () => {
   try {
     const { data } = await instance.get('/favorite');
-    console.log(`favorite API`, data)
     return data;
   } catch (error) {
     console.log(error);
