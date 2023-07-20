@@ -4,12 +4,13 @@ import { ContainerBG } from 'components/ContainerBG/ContainerBG';
 import { useDispatch } from 'react-redux';
 import {
   deleteRecipe,
-  getRecipeById,
+  // getRecipeById,
   getRecipeList,
 } from 'redux/recipes/recipesOperations';
 import { useEffect, useState } from 'react';
-// import { addToFavorite } from 'redux/favorite/favoriteOperations';
-
+import { Link } from 'react-router-dom';
+import { MainTitle } from 'components/MainTitle/MainTitle';
+import { getFavoriteRecipeById } from 'redux/favorite/favoriteOperations';
 
 const MyRecipes = () => {
   const dispatch = useDispatch();
@@ -20,17 +21,15 @@ const MyRecipes = () => {
   }, [dispatch]);
 
   const [myRecipes, setMyRecipes] = useState([]);
-  // console.log(`page myRecipes: `, myRecipes);
-  // console.log(`page myRecipes/payload: `, myRecipes.payload);
 
   if (myRecipes.payload !== undefined) {
     return (
       <ContainerBG>
         <div>
+          <MainTitle />
           <h1 className={css.title}>My recipes</h1>
-          <ul>
+          <ul style={{ zIndex: '1', position: 'relative' }}>
             {myRecipes.payload.recipes.map(recipe => (
-              // {/* {recipes.myRecipe.map(recipe => ( */}
               <li key={recipe._id} className={css.item}>
                 <img className={css.img} src={recipe.preview} alt=""></img>
                 <div className={css.text__container}>
@@ -46,25 +45,20 @@ const MyRecipes = () => {
                     type="button"
                     onClick={() => dispatch(deleteRecipe(recipe._id))}
                   >
-                    <BiTrash style={{ width: '24px', height: '24px' }} />
+                    <BiTrash className={css.BiTrash} />
                   </button>
 
-                  {/* <button
-                    style={{
-                      width: '24px',
-                      height: '24px',
-                      backgroundColor: 'red',
-                    }}
-                    type="button"
-                    onClick={() => dispatch(addToFavorite(recipe._id))}
-                  ></button> */}
-                  <button
-                    className={css.btn}
-                    type="button"
-                    onClick={() => dispatch(getRecipeById(recipe._id))}
-                  >
-                    See recipe
-                  </button>
+                  <Link to={`/recipe/${recipe._id}`}>
+                    <button
+                      className={css.btn}
+                      type="button"
+                      onClick={() =>
+                        dispatch(getFavoriteRecipeById(recipe._id))
+                      }
+                    >
+                      See recipe
+                    </button>
+                  </Link>
                 </div>
               </li>
             ))}

@@ -3,7 +3,15 @@ import mediaRule from 'utils/mediaRule';
 import Socials from 'components/Socials';
 
 export const Wrapper = styled.div`
-  ${mediaRule('desktop', '', 'display:flex; gap:120px;')}
+  ${mediaRule(
+    'desktop',
+    '',
+    'display:flex; gap:120px; justify-content: space-between;'
+  )}
+`;
+
+export const Bar = styled.div`
+  flex: 1;
 `;
 
 export const Follow = styled.div`
@@ -11,7 +19,7 @@ export const Follow = styled.div`
   ${mediaRule('', 'desktop', 'display: none;')}
 `;
 
-export const FollwTitle = styled.h4`
+export const FollowTitle = styled.h4`
   font-size: 24px;
   margin-bottom: 40px;
 `;

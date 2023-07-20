@@ -8,6 +8,7 @@ export const addRecipe = createAsyncThunk(
     try {
       const { data } = await instance.post('recipes', body);
       console.log(` ADD NEW RECIPE`, data);
+      window.location.reload()
       return { ...body, ...data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -22,6 +23,7 @@ export const deleteRecipe = createAsyncThunk(
     try {
       const { data } = await instance.delete(`recipes/${recipeId}`);
       console.log(`DELETE RECIPE`, data);
+      window.location.reload()
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

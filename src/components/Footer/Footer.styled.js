@@ -37,7 +37,7 @@ export const Dolbaniylistochek = styled.div`
     width: 423px;
     height: 646px;
     top: -534px;
-    left: -85px;
+    left: -173px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -46,6 +46,7 @@ export const Dolbaniylistochek = styled.div`
     height: 852px;
     top: -705px;
     left: -110px;
+    transform: rotate(0deg);
   }
 `;
 export const Footerbackground = styled.div`

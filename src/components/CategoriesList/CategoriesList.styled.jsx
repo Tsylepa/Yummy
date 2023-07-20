@@ -8,7 +8,6 @@ export const StyledCategoriesList = styled.li`
 
   text-decoration: none;
   text-transform: capitalize;
-  color: #e0e0e0;
   padding: 10px;
 `;
 
@@ -20,7 +19,6 @@ export const StyledContainer = styled.div`
 
 export const BaseNavLink = styled(NavLink)`
   text-decoration: none;
-  color: #e0e0e0;
   &:hover {
     color: var(--accent-color);
   }

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ImageUploading from 'react-images-uploading';
 import {
   StyledForm,
+  ImageField,
   UploadBtn,
   Info,
   Desc,
@@ -18,6 +19,7 @@ import {
   QtySelector,
   IngredientsWrapper,
   IngredientContainer,
+  IngredientErrorWrapper,
   Ingredient,
   Measure,
   MeasureInput,
@@ -34,6 +36,7 @@ import Icon from 'components/IconComponent/Icon';
 import { recipeSchema } from 'schemas/AddRecipeSchema';
 import { addRecipe } from 'redux/recipes/recipesOperations';
 import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
+import useUser from 'hooks/useUser';
 
 const timeOptions = Array.from({ length: 24 }, (_, i) => {
   return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
@@ -167,6 +170,7 @@ const AddRecipeForm = () => {
   const [ingredientsList, setIngredientsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const navigate = useNavigate();
+  const { user } = useUser();
 
   useEffect(() => {
     const runEffect = async () => {
@@ -252,12 +256,12 @@ const AddRecipeForm = () => {
         values.thumb = image || null;
 
         return (
-          <StyledForm>
+          <StyledForm validateOnBlur={false} validateOnChange={false}>
             <Info>
-              <div>
+              <ImageField>
                 <ImageUploading onChange={onChange}>
                   {({ onImageUpdate }) => (
-                    <ImageWrapper onClick={onImageUpdate}>
+                    <ImageWrapper onClick={onImageUpdate} noValidate>
                       {image ? (
                         <img src={values.thumb.dataURL} alt="" />
                       ) : (
@@ -268,8 +272,12 @@ const AddRecipeForm = () => {
                     </ImageWrapper>
                   )}
                 </ImageUploading>
-                <ErrorMessage name="thumb" component={Error} />
-              </div>
+                <ErrorMessage
+                  name="thumb"
+                  component={Error}
+                  style={{ bottom: -30, left: 0 }}
+                />
+              </ImageField>
               <Desc>
                 <DescField>
                   <DescLabel htmlFor="title">Enter item title</DescLabel>
@@ -345,83 +353,85 @@ const AddRecipeForm = () => {
               </IngredientsHeader>
               <IngredientsList>
                 {Array.from({ length: ingredientsQty }, (_, i) => (
-                  <IngredientContainer key={i}>
-                    <Ingredient
-                      id={`ingredients[${i}]`}
-                      classNames={{
-                        valueContainer: () => 'valueContainer',
-                        menu: () => 'menu',
-                      }}
-                      options={ingredientsOptions}
-                      onChange={selected => {
-                        setIngredients(prev =>
-                          prev.map((ing, idx) => {
-                            if (idx !== i) return ing;
-
-                            return { ...ing, id: selected.value };
-                          })
-                        );
-                      }}
-                      styles={ingredientsSelectorStyles}
-                    />
-
-                    <Measure>
-                      <MeasureInput
-                        name="measureValue"
-                        autoComplete="off"
-                        onChange={({ target }) => {
-                          setIngredients(prev =>
-                            prev.map((ing, idx) => {
-                              if (idx !== i) return ing;
-                              {
-                                const newArr = ing.measure;
-                                newArr[0] = target.value;
-                                return { ...ing, measure: newArr };
-                              }
-                            })
-                          );
-                        }}
-                      />
+                  <div key={i}>
+                    <IngredientContainer>
                       <Ingredient
-                        id={`measure[${i}]`}
-                        options={measureOptions}
+                        id={`ingredients[${i}]`}
                         classNames={{
                           valueContainer: () => 'valueContainer',
                           menu: () => 'menu',
                         }}
+                        options={ingredientsOptions}
                         onChange={selected => {
                           setIngredients(prev =>
                             prev.map((ing, idx) => {
                               if (idx !== i) return ing;
-                              {
-                                const newArr = ing.measure;
-                                newArr[1] = selected.value;
-                                return { ...ing, measure: newArr };
-                              }
+
+                              return { ...ing, id: selected.value };
                             })
                           );
-                          console.log(values.ingredients);
                         }}
-                        styles={measureSelectorStyles}
+                        styles={ingredientsSelectorStyles}
                       />
-                    </Measure>
 
+                      <Measure>
+                        <MeasureInput
+                          name="measureValue"
+                          autoComplete="off"
+                          onChange={({ target }) => {
+                            setIngredients(prev =>
+                              prev.map((ing, idx) => {
+                                if (idx !== i) return ing;
+                                {
+                                  const newArr = ing.measure;
+                                  newArr[0] = target.value;
+                                  return { ...ing, measure: newArr };
+                                }
+                              })
+                            );
+                          }}
+                        />
+                        <Ingredient
+                          id={`measure[${i}]`}
+                          options={measureOptions}
+                          classNames={{
+                            valueContainer: () => 'valueContainer',
+                            menu: () => 'menu',
+                          }}
+                          onChange={selected => {
+                            setIngredients(prev =>
+                              prev.map((ing, idx) => {
+                                if (idx !== i) return ing;
+                                {
+                                  const newArr = ing.measure;
+                                  newArr[1] = selected.value;
+                                  return { ...ing, measure: newArr };
+                                }
+                              })
+                            );
+                            console.log(values.ingredients);
+                          }}
+                          styles={measureSelectorStyles}
+                        />
+                      </Measure>
+
+                      <Delete
+                        type="button"
+                        onClick={() => handleDeleteIngredient(i)}
+                      >
+                        <Icon name="cross" width="18" height="18" />
+                      </Delete>
+                    </IngredientContainer>
                     <ErrorMessage
                       name={`ingredients[${i}].id`}
                       component={Error}
+                      style={{ position: 'static' }}
                     />
                     <ErrorMessage
                       name={`ingredients[${i}].measure`}
                       component={Error}
                     />
-
-                    <Delete
-                      type="button"
-                      onClick={() => handleDeleteIngredient(i)}
-                    >
-                      <Icon name="cross" width="18" height="18" />
-                    </Delete>
-                  </IngredientContainer>
+                  </div>
                 ))}
               </IngredientsList>
             </IngredientsWrapper>
@@ -439,7 +449,11 @@ const AddRecipeForm = () => {
               <ErrorMessage name="instructions" component={InstructionsError} />
             </Preparation>
 
-            <ButtonSkew type="submit" variant="primary" disabled={isSubmitting}>
+            <ButtonSkew
+              type="submit"
+              variant={user.theme === 'light' ? 'primary' : 'primary-accent'}
+              disabled={isSubmitting}
+            >
               Add
             </ButtonSkew>
           </StyledForm>

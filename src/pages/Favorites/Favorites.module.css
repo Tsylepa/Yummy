@@ -1,5 +1,54 @@
 /* color: var(--input-text-color); */
 
+.BiTrash {
+  width: 24px;
+  height: 24px;
+}
+
+.BiTrash__btn {
+  position: absolute;
+  right: 0%;
+
+  height: 24px;
+  width: 24px;
+
+  border-radius: 4px;
+  padding: 0;
+  border: 0;
+
+  color: var(--font-color);
+  background-color: var(--BiTrach-btn-color);
+}
+.BiTrash__btn:hover,
+.BiTrash__btn:focus {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+.btn {
+  position: absolute;
+  width: 87px;
+  height: 27px;
+
+  right: 0;
+  bottom: 0;
+
+  border-radius: 65px 156px 65px 155px;
+  border: 1px;
+
+  color: var(--primary-color);
+  background-color: var(--search-btn-color);
+
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--subscribe-btn-color);
+}
+
 .img {
   border-radius: 8px;
 }
@@ -13,7 +62,7 @@
   color: var(--input-text-color);
 
   /* Body / Small Text - Medium */
-  font-family: Poppins;
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -30,10 +79,14 @@
 
 .section__title {
   color: var(--input-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 150px;
 }
 
 .text {
   color: var(--input-text-color);
+  overflow: hidden;
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -50,6 +103,9 @@
     justify-content: center;
     align-items: center;
     gap: 14px;
+
+    width: 343px;
+    height: 152px;
 
     /* border: 1px solid red; */
   }
@@ -72,12 +128,13 @@
     margin-top: 6px;
     margin-bottom: 14px;
 
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 14px; /* 100% */
     letter-spacing: -0.24px;
+
+    max-width: 150px;
   }
 
   .text {
@@ -88,13 +145,14 @@
 
   .text__info {
     width: 163px;
+    max-height: 50px;
     flex-shrink: 0;
 
     overflow: hidden;
 
     text-overflow: ellipsis;
     whitespace: nowrap;
-    font-family: Poppins;
+
     font-size: 8px;
     font-style: normal;
     font-weight: 400;
@@ -105,53 +163,27 @@
     display: none;
   }
   .block {
-    color: var(--color-text-primary, #3e4462);
-    font-family: Poppins;
+    color: var(--color-text-primary);
+
     font-size: 10px;
     font-style: normal;
     font-weight: 500;
     line-height: 14px; /* 140% */
     letter-spacing: -0.24px;
   }
+  .BiTrash {
+    width: 18px;
+    height: 24px;
+  }
 
   .BiTrash__btn {
-    position: absolute;
-    right: 0%;
-
     height: 24px;
     width: 24px;
-
-    border-radius: 4px;
-    padding: 0;
-    border: 0;
-
-    color: var(--primary-color);
-    background-color: var(--accent-color);
   }
 
   .btn {
-    position: absolute;
     width: 87px;
     height: 27px;
-
-    right: 0;
-    bottom: 0;
-
-    border-radius: 65px 156px 65px 155px;
-    border: 1px;
-
-    color: var(--primary-color);
-    background-color: var(--accent-color);
-
-    font-family: Poppins;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  .btn:hover,
-  .btn:focus {
-    color: aqua;
   }
 }
 
@@ -187,17 +219,19 @@
     margin-left: 16px;
     margin-bottom: 28px;
 
-    font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px; /* 100% */
     letter-spacing: -0.24px;
+
+    max-width: 345px;
   }
 
   .text {
     display: flex;
     margin-left: 16px;
+    max-height: 125px;
     width: 404px;
     flex-direction: column;
     align-items: flex-start;
@@ -207,7 +241,6 @@
   .text__info {
     width: 353px;
 
-    font-family: Poppins;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -216,13 +249,13 @@
   }
   .text__studies {
     width: 350px;
-    height: 21px;
+    /* height: 21px; */
 
     overflow: hidden;
 
     text-overflow: ellipsis;
     whitespace: nowrap;
-    font-family: Poppins;
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -231,52 +264,15 @@
   }
 
   .BiTrash__btn {
-    position: absolute;
-    right: 0%;
-
     height: 38px;
     width: 38px;
-
-    border-radius: 4px;
-    padding: 0;
-    border: 0;
-
-    color: var(--primary-color);
-    background-color: var(--accent-color);
   }
 
-  /* .btn__skew {
-    position: absolute;
-    right: 0%;
-    bottom: 0;
-
-    width: 138px;
-    height: 45px;
-    flex-shrink: 0;
-  } */
   .btn {
-    position: absolute;
     width: 138px;
     height: 45px;
 
-    right: 0;
-    bottom: 0;
-
-    border-radius: 65px 156px 65px 155px;
-    border: 1px;
-
-    color: var(--primary-color);
-    background-color: var(--accent-color);
-
-    font-family: Poppins;
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  .btn:hover,
-  .btn:focus {
-    color: aqua;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -296,24 +292,26 @@
     border-radius: 8px;
     gap: 14px;
 
-    width: 1240px;
+    /* width: 1240px; */
   }
   .text__container {
     position: relative;
     display: flex;
     flex-direction: column;
+    width: 806px;
   }
 
   .section__title {
     margin-left: 40px;
     margin-bottom: 40px;
 
-    font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px; /* 100% */
     letter-spacing: -0.24px;
+
+    max-width: 650px;
   }
 
   .text {
@@ -324,12 +322,11 @@
     gap: 14px;
     margin-left: 40px;
     margin-right: 22px;
+    width: 679px;
 
-    width: 806px;
     max-height: 185px;
   }
   .text__info {
-    font-family: Poppins;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -341,7 +338,7 @@
 
     text-overflow: ellipsis;
     whitespace: nowrap;
-    font-family: Poppins;
+
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -350,46 +347,18 @@
   }
 
   .BiTrash__btn {
-    position: absolute;
     right: 5%;
 
     height: 44px;
     width: 44px;
-
-    border-radius: 4px;
-    padding: 0;
-    border: 0;
-
-    color: var(--primary-color);
-    background-color: var(--accent-color);
   }
 
-  /* .btn__skew {
-    position: absolute;
-    right: 5%;
-    bottom: 0;
-  } */
   .btn {
-    position: absolute;
     width: 172px;
     height: 59px;
     right: 5%;
     bottom: 0;
 
-    border-radius: 65px 156px 65px 155px;
-    border: 1px;
-
-    color: var(--primary-color);
-    background-color: var(--accent-color);
-
-    font-family: Poppins;
     font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  .btn:hover,
-  .btn:focus {
-    color: aqua;
   }
 }

@@ -5,9 +5,11 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
   deleteFavorite,
-  getFavoriteRecipeById,
+  // getFavoriteRecipeById,
   getFavoritesList,
 } from 'redux/favorite/favoriteOperations';
+import { Link } from 'react-router-dom';
+import { MainTitle } from 'components/MainTitle/MainTitle';
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -26,8 +28,9 @@ const Favorites = () => {
     return (
       <ContainerBG>
         <div>
-          <h1 className={css.title}>My Favorites recipes</h1>
-          <ul>
+          <MainTitle />
+          <h1 className={css.title}>Favorites</h1>
+          <ul style={{ zIndex: '1', position: 'relative' }}>
             {myFavoriteRecipes.payload.recipes.map(recipe => (
               // {/* {recipes.myRecipe.map(recipe => ( */}
               <li key={recipe._id} className={css.item}>
@@ -45,16 +48,19 @@ const Favorites = () => {
                     type="button"
                     onClick={() => dispatch(deleteFavorite(recipe._id))}
                   >
-                    <BiTrash style={{ width: '24px', height: '24px' }} />
+                    <BiTrash className={css.BiTrash} />
                   </button>
-
-                  <button 
-                    className={css.btn}
-                    type="button"
-                    onClick={() => dispatch(getFavoriteRecipeById(recipe._id))}
-                  >
-                    See recipe
-                  </button>
+                  <Link to={`/recipe/${recipe._id}`}>
+                    <button
+                      className={css.btn}
+                      type="button"
+                      // onClick={() =>
+                      //   dispatch(getFavoriteRecipeById(recipe._id))
+                      // }
+                    >
+                      See recipe
+                    </button>
+                  </Link>
                 </div>
               </li>
             ))}
