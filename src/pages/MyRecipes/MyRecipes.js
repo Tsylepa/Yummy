@@ -24,9 +24,9 @@ const MyRecipes = () => {
   // console.log(`page myRecipes: `, myRecipes);
   // console.log(`page myRecipes/payload: `, myRecipes.payload);
 
-  const handleClickBtn = () => {
-    console.log(`handleCLick!`);
-  };
+  // const handleClickBtn = () => {
+  //   console.log(`handleCLick!`);
+  // };
 
   if (myRecipes.payload !== undefined) {
     return (

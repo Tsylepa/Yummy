@@ -3,11 +3,8 @@ import { Outlet } from 'react-router-dom';
 import { getCategories } from '../../api/recipes';
 
 import CategoriesList from 'components/CategoriesList/CategoriesList';
-import {
-  StyledContainer,
-  StyledText,
-  StyledCategoriesPagesWraper,
-} from './Categories.styled';
+import { StyledContainer } from './Categories.styled';
+import { MainTitle } from 'components/MainTitle/MainTitle';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -19,13 +16,13 @@ const Categories = () => {
   }, []);
 
   return (
-    <StyledCategoriesPagesWraper>
-      <StyledText>Categories</StyledText>
+    <>
+      <MainTitle text="Categories" />
       <StyledContainer>
         <>{<CategoriesList categories={categories} />}</>
       </StyledContainer>
       <Outlet />
-    </StyledCategoriesPagesWraper>
+    </>
   );
 };
 
