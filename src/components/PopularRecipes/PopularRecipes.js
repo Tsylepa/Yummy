@@ -18,14 +18,13 @@ const PopularRecipes = () => {
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
 
   useEffect(() => {
-    console.log(isTablet);
     const runEffect = () => {
       isTablet
         ? setLimitedRecipes(recipes.slice(0, 2))
         : setLimitedRecipes(recipes.slice(0, 4));
     };
     runEffect();
-  }, [isTablet]);
+  }, [isTablet, recipes]);
 
   useEffect(() => {
     const fetchPopularRecipes = async () => {
