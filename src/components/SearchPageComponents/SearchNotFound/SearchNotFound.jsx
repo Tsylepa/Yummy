@@ -8,7 +8,7 @@ import {
   SearchNotFoundText,
 } from './SearchNotFound.styled';
 
-export default function SearchNotFound() {
+const SearchNotFound = () => {
   return (
     <SearchNotFoundWrapper>
       <SearchNotFoundImage>
@@ -24,4 +24,5 @@ export default function SearchNotFound() {
       <SearchNotFoundText>Try looking for something else..</SearchNotFoundText>
     </SearchNotFoundWrapper>
   );
-}
+};
+export default SearchNotFound;
