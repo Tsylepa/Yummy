@@ -49,22 +49,22 @@ const Header = () => {
         </BurgerHeader>
 
         <BurgerNav>
-          <NavLinkStyled to="/categories" onClick={handleMenu}>
+            <li><NavLinkStyled to="/categories" onClick={handleMenu}>
             Categories
-          </NavLinkStyled>
-          <NavLinkStyled to="/add" onClick={handleMenu}>
+            </NavLinkStyled></li>
+            <li><NavLinkStyled to="/add" onClick={handleMenu}>
             Add recipes
-          </NavLinkStyled>
-          <NavLinkStyled to="/recipe" onClick={handleMenu}>
+            </NavLinkStyled></li>
+            <li><NavLinkStyled to="/recipe" onClick={handleMenu}>
             My recipes
-          </NavLinkStyled>
-          <NavLinkStyled to="/favorite" onClick={handleMenu}>
+            </NavLinkStyled></li>
+            <li><NavLinkStyled to="/favorite" onClick={handleMenu}>
             Favorites
-          </NavLinkStyled>
-          <NavLinkStyled to="/shopping-list" onClick={handleMenu}>
+            </NavLinkStyled></li>
+            <li><NavLinkStyled to="/shopping-list" onClick={handleMenu}>
             Shopping list
-          </NavLinkStyled>
-          <NavLinkStyled to="/search" onClick={handleMenu}>
+            </NavLinkStyled></li>
+            <li><NavLinkStyled to="/search" onClick={handleMenu}>
             <Icon
               name="icon-search"
               fill="transparent"
@@ -72,10 +72,11 @@ const Header = () => {
               height="24px"
             ></Icon>
             Search
-          </NavLinkStyled>
+            </NavLinkStyled></li>
         </BurgerNav>
 
         <ThemeToggler />
+          
         </Burgerwrapper>
       </Burger>
 
@@ -85,19 +86,19 @@ const Header = () => {
         </Link>
 
         <HeaderNav>
-          <NavLinkStyled to="/categories">Categories</NavLinkStyled>
-          <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
-          <NavLinkStyled to="/recipe">My recipes</NavLinkStyled>
-          <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
-          <NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled>
-          <NavLinkStyled to="/search">
+          <li><NavLinkStyled to="/categories">Categories</NavLinkStyled></li>
+          <li><NavLinkStyled to="/add">Add recipes</NavLinkStyled></li>
+          <li><NavLinkStyled to="/recipe">My recipes</NavLinkStyled></li>
+          <li><NavLinkStyled to="/favorite">Favorites</NavLinkStyled></li>
+          <li><NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled></li>
+          <li><NavLinkStyled to="/search">
             <Icon
               name="icon-search"
               fill="transparent"
               width="24px"
               height="24px"
             ></Icon>
-          </NavLinkStyled>
+          </NavLinkStyled></li>
         </HeaderNav>
 
         <UserLogo />
@@ -105,6 +106,7 @@ const Header = () => {
         <ThemeTogglerwrapper>
         <ThemeToggler />
         </ThemeTogglerwrapper>
+
         <OpenButton onClick={handleMenu}>
           <Icon name="icon-Burger_menu" width="24px" height="16px"></Icon>
         </OpenButton>

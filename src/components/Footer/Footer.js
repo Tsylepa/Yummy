@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import operations from 'redux/auth/authOperations';
-import {
-  signupSchema,
-  ValidMessage,
-} from '../RegisterPageComponents/validationRegister';
+import subscribe from './operations';
+import { signupSchema, ValidMessage } from './validationEmail';
 import { Formik, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +26,7 @@ import {
   SubmitBtn,
   EmailIcon,
 } from './Footer.styled';
-import Socials from 'components/Socials';
+import Socials from 'components/Socials/Socials';
 
 const initialValue = {
   email: '',
@@ -39,7 +36,7 @@ const Footer = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
   const handleSubmit = (value, { resetForm }) => {
-    dispatch(operations.register(value));
+    dispatch(subscribe(value));
     setIsSubmit(false);
     resetForm();
   };
@@ -75,7 +72,7 @@ const Footer = () => {
 
             <Formik
               initialValues={initialValue}
-              validationSchema={signupSchema.email}
+              validationSchema={signupSchema}
               onSubmit={handleSubmit}
               validateOnChange={isSubmit}
               validateOnBlur={false}
