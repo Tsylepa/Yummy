@@ -227,7 +227,6 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(false);
-    console.log(values);
     setSubmit(true);
 
     formData.append('file', image.file);
@@ -462,9 +461,6 @@ const AddRecipeForm = () => {
             >
               Add
             </ButtonSkew>
-            <button type="button" onClick={() => console.log(values)}>
-              dddd
-            </button>
           </StyledForm>
         );
       }}

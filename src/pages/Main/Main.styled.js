@@ -10,7 +10,7 @@ const BackgroundPicture = styled.div`
   top: 0px;
   left: 0px;
   background-image: url(${img});
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100vw;
@@ -29,7 +29,6 @@ const BackgroundPicture = styled.div`
     'desktop',
     '',
     `height: 800px;
-    top: -44px;
 background-image: url(${imgDesk});
 `
   )};
