@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addRecipe, deleteRecipe,  getRecipeById, addToShoppingList, getRecipeList } from 'redux/recipes/recipesOperations';
+import {
+  addRecipe,
+  deleteRecipe,
+  getRecipeById,
+  addToShoppingList,
+  getRecipeList,
+} from 'redux/recipes/recipesOperations';
 
 const handlePending = state => {
   state.error = null;
@@ -26,7 +32,7 @@ const recipesSlice = createSlice({
       // ADD RECIPE
       .addCase(addRecipe.fulfilled, (state, action) => {
         // state.all = [...state.all, action.payload];
-        state.myRecipe = [action.payload]
+        state.myRecipe = [action.payload];
         state.error = null;
         state.isLoading = false;
       })
@@ -67,7 +73,7 @@ const recipesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getRecipeList.rejected, handleRejected)
+      .addCase(getRecipeList.rejected, handleRejected),
 });
 
 const recipesReducer = recipesSlice.reducer;

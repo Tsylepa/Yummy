@@ -48,7 +48,7 @@ const Favorites = () => {
                     <BiTrash style={{ width: '24px', height: '24px' }} />
                   </button>
 
-                  <button
+                  <button 
                     className={css.btn}
                     type="button"
                     onClick={() => dispatch(getFavoriteRecipeById(recipe._id))}

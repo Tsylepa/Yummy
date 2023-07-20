@@ -7,7 +7,7 @@ export const addRecipe = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { data } = await instance.post('recipes', body);
-      console.log(` ADD NEW RECIPE`,data)
+      console.log(` ADD NEW RECIPE`, data);
       return { ...body, ...data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -18,10 +18,10 @@ export const addRecipe = createAsyncThunk(
 // DELETE RECIPE
 export const deleteRecipe = createAsyncThunk(
   'recipes/deleteRecipe',
-  async ({ recipeId }, thunkAPI) => {
+  async (recipeId, thunkAPI) => {
     try {
       const { data } = await instance.delete(`recipes/${recipeId}`);
-      console.log(`DELETE RECIPE`,data)
+      console.log(`DELETE RECIPE`, data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -35,7 +35,7 @@ export const getRecipeList = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await instance.get(`ownRecipes`);
-      console.log(`GET MY RECIPE LIST `,data)
+      console.log(`GET MY RECIPE LIST `, data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -68,7 +68,6 @@ export const getPopularRecipes = createAsyncThunk(
     }
   }
 );
-
 
 // Add to ShoppingList
 export const addToShoppingList = createAsyncThunk(
