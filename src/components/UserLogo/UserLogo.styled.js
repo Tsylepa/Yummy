@@ -6,6 +6,11 @@ export const UserLogoBtnWrapper = styled.div`
   z-index: 2;
 
   margin-left: auto;
+  margin-right: 24px;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 50px;
+  }
 `;
 
 export const UserLogoBtn = styled.button`

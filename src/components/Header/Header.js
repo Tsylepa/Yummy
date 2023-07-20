@@ -36,7 +36,7 @@ const Header = () => {
 
   return (
     <>
-      <Burger style={hideOrShow}>
+      <Burger style={hideOrShow} position="fixed">
         <Burgerwrapper>
         <BurgerHeader>
           <Link to="/main" onClick={handleMenu}>
@@ -75,8 +75,9 @@ const Header = () => {
             </NavLinkStyled></li>
         </BurgerNav>
 
+        <ThemeTogglerwrapper>
         <ThemeToggler />
-          
+        </ThemeTogglerwrapper>    
         </Burgerwrapper>
       </Burger>
 

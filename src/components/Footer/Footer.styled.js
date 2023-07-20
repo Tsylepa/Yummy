@@ -24,28 +24,27 @@ export const Dolbaniylistochek = styled.div`
   position: absolute;
   background-image: url(${imgBackgroundModileFirstMobile});
   background-repeat: no-repeat;
-  background-size: 100%, cover;
+  background-size: contain;
   transform: rotate(90deg);
-  z-index: 0;
   width: 256px;
   height: 392px;
   top: -324px;
   left: -50px;
-
+  
   @media screen and (min-width: 768px) {
     background-image: url(${imgBackgroundModileFirstTablet});
     width: 423px;
     height: 646px;
     top: -534px;
-    left: -85px;
+    left: -175px;
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(${imgBackgroundModileFirstDesktop});
-    width: 558px;
-    height: 852px;
-    top: -705px;
-    left: -110px;
+    transform: rotate(0deg);
+    background-size: 558px 852px;
+    top: -645px;
+    left: 0px;
   }
 `;
 export const Footerbackground = styled.div`
@@ -55,7 +54,7 @@ export const Footerbackground = styled.div`
   background-color: var(--search-btn-color);
   padding-top: 28px;
   padding-bottom: 18px;
-
+  
   @media screen and (min-width: 768px) {
     padding-top: 50px;
     padding-left: 32px;
