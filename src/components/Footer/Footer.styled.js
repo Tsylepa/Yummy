@@ -49,6 +49,9 @@ export const Dolbaniylistochek = styled.div`
   }
 `;
 export const Footerbackground = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--search-btn-color);
   padding-top: 28px;
   padding-bottom: 18px;
