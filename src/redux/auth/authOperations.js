@@ -43,14 +43,12 @@ export const register = createAsyncThunk(
 );
 
 export const verification = createAsyncThunk(
-  'auth/verification',
-  async ({ email, verificationCode }, { rejectWithValue }) => {
+  'auth/verifyEmail',
+  async ({ verificationCode }, { rejectWithValue }) => {
     try {
       const {
         data: { data },
-      } = await instance.post(`/auth/verification/${verificationCode}`, {
-        email,
-      });
+      } = await instance.post(`/auth/verifyEmail/${verificationCode}`);
       token.set(data.accessToken);
       return data;
     } catch (error) {
@@ -152,11 +150,11 @@ export const updateUserAvatar = createAsyncThunk(
 
 // Add to ShoppingList
 export const addToShoppingList = createAsyncThunk(
-  "auth/addToShoppingList",
+  'auth/addToShoppingList',
   async (data, thunkAPI) => {
-    console.log(data)
+    console.log(data);
     try {
-    await instance.post('shoppingList', data);
+      await instance.post('shoppingList', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -166,10 +164,10 @@ export const addToShoppingList = createAsyncThunk(
 
 //Remove from ShoppingList
 export const removeFromShoppingList = createAsyncThunk(
-  "auth/removeFromShoppingList",
+  'auth/removeFromShoppingList',
   async (data, thunkAPI) => {
     try {
-      await instance.delete('shoppingList', {data});
+      await instance.delete('shoppingList', { data });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -186,7 +184,7 @@ const operations = {
   updateUserName,
   updateUserAvatar,
   addToShoppingList,
-  removeFromShoppingList
+  removeFromShoppingList,
 };
 
 export default operations;
