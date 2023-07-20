@@ -220,20 +220,21 @@ const IngredientCheckbox = styled.input`
   border: 1px solid var(--recipe-border-color); 
   border-radius: 3px;
   outline: none;
+  cursor: pointer;
 
  
   &:checked::before {
     content: "";
     position: absolute;
-    left: 2.5px;
-    top: -5px;
+    left: 12px;
+    top: 4px;
     width: 7px;
     height: 14px;
     border-style: solid;
     border-width: 0 3px 3px 0;
     border-color: var(--accent-color);
     transform: rotate(36deg); 
-  }
+     }
 
   &::after {
     content: "";
