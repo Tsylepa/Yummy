@@ -26,7 +26,7 @@ instance.interceptors.response.use(
       localStorage.setItem('refreshToken1', '');
       localStorage.setItem('accessToken1', '');
       instance.defaults.headers.common.Authorization = '';
-      window.location.replace('https://tsylepa.github.io/Yummy/signin');
+      window.location.replace('/');
     }
 
     return Promise.reject(error);

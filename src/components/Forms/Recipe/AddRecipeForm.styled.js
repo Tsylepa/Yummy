@@ -212,7 +212,7 @@ export const Instructions = styled(Field)`
   margin-top: 24px;
   padding: 10px 16px;
   font: inherit;
-  color: var(--primary-color);
+  color: inherit;
   resize: none;
   border: none;
   border-radius: 6px;
