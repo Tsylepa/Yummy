@@ -3,24 +3,28 @@ import mediaRule from "utils/mediaRule"
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-margin-top: 786px;
+ margin-right:19px;
+  margin-left: 6px;
+
 
 ${mediaRule("tablet", "desktop", `
-margin-top: 648pxpx;
+
+margin-left: 0px;
 `)}
 
 ${mediaRule("desktop", "", `
-margin-top: 838px;
-`)};
+margin-top: 0px;
+`)}; 
 `
 
 const CardList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+ 
 
   ${mediaRule("tablet", "desktop", `
-   gap: 32px;
+   gap: 20px;
   `)}
 
 ${mediaRule("desktop", "", `
@@ -34,7 +38,7 @@ margin-bottom: 32px;
 
 ${mediaRule("desktop", "", `
 margin-top: 100px;
-margin-bottom: 32px
+margin-bottom: 20px
 `)};`
 
 const CardItem = styled(Link)`
@@ -42,7 +46,7 @@ const CardItem = styled(Link)`
   width: 100%;
 
   ${mediaRule("tablet", "desktop", `
-    width: 336px;
+    width: 328px;
    `)}
 
   ${mediaRule("desktop", "", `
@@ -75,6 +79,7 @@ line-height: 20px;
 letter-spacing: -0.24px;
 padding-left: 16px;
 padding-top: 10px;
+color: var(--secondary-color);
 
 
 ${mediaRule("desktop", "", `

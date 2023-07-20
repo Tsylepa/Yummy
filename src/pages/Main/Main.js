@@ -11,14 +11,14 @@ import {BackgroundPicture, BackgroundWrapper, MainTitle, Paragraph, TitleSpan, O
 
 const Main = () => {
   return (
-    <><BackgroundPicture>
-    <BackgroundWrapper>
+    <><BackgroundPicture/>
+       <BackgroundWrapper>
     <MainTitle><TitleSpan>So</TitleSpan>Yummy</MainTitle>
     <Paragraph>"What to cook?" is not only a recipe app, it is, in fact, your cookbook. You can add your own recipes to save them for the future.</Paragraph>
    <ChooseYourBreakfast />
     <Search />
     </BackgroundWrapper>
-    </BackgroundPicture>
+    
     <PreviewCategories />
     <OtherCategoriesContainer>
         <OtherCategoriesBtn to = "/categories/Beef">Other categories</OtherCategoriesBtn>

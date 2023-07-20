@@ -6,6 +6,7 @@ import { getRecipeById } from "../../redux/recipes/recipesOperations"
 import {useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Loader } from "components/Loader/Loader";
 
 
 
@@ -23,7 +24,7 @@ const RecipePage = ()=> {
     }, [dispatch, recipeId]);
   
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <div><Loader/></div>;
     }
   
     if (error) {
