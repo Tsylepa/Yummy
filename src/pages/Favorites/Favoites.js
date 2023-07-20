@@ -9,6 +9,7 @@ import {
   getFavoritesList,
 } from 'redux/favorite/favoriteOperations';
 import { Link } from 'react-router-dom';
+import { MainTitle } from 'components/MainTitle/MainTitle';
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,9 @@ const Favorites = () => {
     return (
       <ContainerBG>
         <div>
+          <MainTitle />
           <h1 className={css.title}>Favorites</h1>
-          <ul>
+          <ul style={{ zIndex: '1', position: 'relative' }}>
             {myFavoriteRecipes.payload.recipes.map(recipe => (
               // {/* {recipes.myRecipe.map(recipe => ( */}
               <li key={recipe._id} className={css.item}>

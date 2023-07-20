@@ -58,7 +58,7 @@ export const DecorBoxCenter = styled.span`
   top: 27px;
   width: 6px;
   height: 6px;
-  background-color: var(--font-color);
+  background-color: var(--input-text-color);
   border-radius: 3px;
   transform: rotate(-25deg);
 
