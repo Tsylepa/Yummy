@@ -1,11 +1,18 @@
 import styled from 'styled-components';
 import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
 import { NavLink } from 'react-router-dom';
+import imgBackgroundModileFirstMobile from '../../images/leaves-menu@1x_320-min.png';
+import imgBackgroundModileFirstTablet from '../../images/leaves-menu@2x_320-min.png';
 
 export const Burger = styled.div`
   background-color: var(--menu-bg-color);
   color: var(--font-color);
 
+  background-image: url(${imgBackgroundModileFirstMobile});
+  background-repeat: no-repeat;
+  background-size: 100% cover;
+  background-position: 100% 68%;
+  
   position: absolute;
   top: 0px;
   left: 0px;
@@ -26,6 +33,13 @@ export const Burger = styled.div`
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
+
+  @media screen and (min-width: 768px) {
+    background-image: url(${imgBackgroundModileFirstTablet});
+    background-repeat: no-repeat;
+    background-size: 100% cover;
+    background-position: 97% 50%;
+  }
 `;
 export const Burgerwrapper = styled.div`
   margin: auto;
@@ -116,10 +130,10 @@ export const HeaderNav = styled.ul`
   line-height: 22px;
   letter-spacing: 0em;
   
+  
   @media screen and (min-width: 1280px) {
     display: flex;
     margin-left: auto;
-    align-items: center;
     gap: 30px;
   }
 
