@@ -9,6 +9,7 @@ import {
 } from 'redux/recipes/recipesOperations';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { MainTitle } from 'components/MainTitle/MainTitle';
 // import { addToFavorite } from 'redux/favorite/favoriteOperations';
 
 const MyRecipes = () => {
@@ -31,8 +32,9 @@ const MyRecipes = () => {
     return (
       <ContainerBG>
         <div>
+          <MainTitle />
           <h1 className={css.title}>My recipes</h1>
-          <ul>
+          <ul style={{ zIndex: '1', position: 'relative' }}>
             {myRecipes.payload.recipes.map(recipe => (
               // {/* {recipes.myRecipe.map(recipe => ( */}
               <li key={recipe._id} className={css.item}>
@@ -63,7 +65,6 @@ const MyRecipes = () => {
                     onClick={() => dispatch(addToFavorite(recipe._id))}
                   ></button> */}
 
-           
                   <Link to={`/recipe/${recipe._id}`}>
                     <button
                       className={css.btn}
@@ -75,8 +76,6 @@ const MyRecipes = () => {
                       See recipe
                     </button>
                   </Link>
-
-           
                 </div>
               </li>
             ))}
