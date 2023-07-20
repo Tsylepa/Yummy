@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export const StyledCards = styled.ul`
   display: flex;
@@ -7,6 +7,8 @@ export const StyledCards = styled.ul`
   gap: 33px;
   margin-top: 32px;
   opacity: 1;
+  z-index: 1;
+  position: relative;
 
   @media screen and (min-width: 768px) {
     flex-flow: row wrap;
@@ -16,6 +18,7 @@ export const StyledCards = styled.ul`
 
   @media screen and (min-width: 1440px) {
     gap: 100px 14px;
+    margin: 25px 0px 0px 0px;
   }
 `;
 
@@ -39,10 +42,12 @@ export const StyledCardsWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 336px;
+    height: 323px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 330px;
+    width: 300px;
+    height: 323px;
   }
 `;
 
@@ -57,7 +62,7 @@ export const StyledCardsImg = styled.img`
 export const StyledCardsTextWrapper = styled.div`
   position: absolute;
   bottom: 26px;
-  //   left: 18px;
+  left: 45px;
   width: 250px;
   padding: 16px;
   background-color: rgb(255, 255, 255);
@@ -65,6 +70,8 @@ export const StyledCardsTextWrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 300px;
+    left: 16px;
+    bottom: 26px;
   }
   @media screen and (min-width: 1440px) {
     bottom: 23px;
@@ -78,4 +85,5 @@ export const StyledCardsText = styled.p`
   color: rgb(62, 68, 98);
   line-height: 1.25;
   font-weight: 500;
+  text-align: center;
 `;
