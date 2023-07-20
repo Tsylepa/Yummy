@@ -91,8 +91,15 @@ export const removeFromShoppingList = createAsyncThunk(
   async ({ ingredient, recipeId }, thunkAPI) => {
     try {
       const response = await instance.delete(`shoppingList`, {
-        ingredient,
-        recipeId,
+        data: {
+          ingredient: {
+            _id: ingredient._id,
+            name: ingredient.name,
+            desc: ingredient.desc,
+            img: ingredient.img,
+          },
+          recipeId: recipeId,
+        },
       });
       return response.data;
     } catch (error) {

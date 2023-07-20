@@ -20,13 +20,17 @@ const ShoppingListComponent = () => {
   const shoppingList = useSelector(state => state.auth.user.shoppingList);
 
   const handleRemoveClick = (ingredient, recipeId) => {
-    console.log({ ingredient, recipeId });
-    dispatch(
-      removeFromShoppingList({
-        ingredient,
-        recipeId,
-      })
-    );
+    const product = {
+      ingredient: {
+        _id: ingredient._id,
+        name: ingredient.name,
+        desc: ingredient.desc,
+        img: ingredient.img,
+      },
+      recipeId: recipeId,
+    };
+
+    dispatch(removeFromShoppingList(product));
   };
   return (
     <div>
@@ -89,6 +93,17 @@ export default ShoppingListComponent;
 //     }
 //   }
 // );
+
+//   .addCase(removeFromShoppingList.pending, handlePending)
+//   .addCase(removeFromShoppingList.rejected, handleRejected)
+//   .addCase(removeFromShoppingList.fulfilled, (state, action) => {
+//     const updatedShoppingList = state.user.shoppingList.filter(
+//       product =>
+//         product.ingredient._id !== action.payload.ingredient._id ||
+//         product.recipeId !== action.payload.recipeId
+//     );
+//     state.user.shoppingList = updatedShoppingList;
+//   }),
 
 // export const getShoppingList = (state) => state.auth.user.shoppingList;
 
