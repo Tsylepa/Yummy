@@ -186,6 +186,7 @@ export const IngredientsButton = styled.button`
   margin: 0;
   padding: 0;
   opacity: 0.3;
+  color: var(--font-color);
 
   &:hover {
     color: var(--accent-color);

@@ -34,6 +34,7 @@ import Icon from 'components/IconComponent/Icon';
 import { recipeSchema } from 'schemas/AddRecipeSchema';
 import { addRecipe } from 'redux/recipes/recipesOperations';
 import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
+import useUser from 'hooks/useUser';
 
 const timeOptions = Array.from({ length: 24 }, (_, i) => {
   return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
@@ -167,6 +168,7 @@ const AddRecipeForm = () => {
   const [ingredientsList, setIngredientsList] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const navigate = useNavigate();
+  const { user } = useUser();
 
   useEffect(() => {
     const runEffect = async () => {
@@ -439,7 +441,11 @@ const AddRecipeForm = () => {
               <ErrorMessage name="instructions" component={InstructionsError} />
             </Preparation>
 
-            <ButtonSkew type="submit" variant="primary" disabled={isSubmitting}>
+            <ButtonSkew
+              type="submit"
+              variant={user.theme === 'light' ? 'primary' : 'primary-accent'}
+              disabled={isSubmitting}
+            >
               Add
             </ButtonSkew>
           </StyledForm>
