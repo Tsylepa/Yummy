@@ -29,7 +29,7 @@ const CardList = styled.ul`
   `)}
 
 ${mediaRule("desktop", "", `
-       gap: 10px;
+       gap: 5px;
       `)};
 `;
 
@@ -48,7 +48,7 @@ position: relative;
   width: 100%;
   &:hover {
     cursor: pointer; 
-    border: 2px solid var(--accent-color);
+    
   }
   
     
@@ -57,7 +57,7 @@ position: relative;
    `)}
 
   ${mediaRule("desktop", "", `
-    width: 260px;
+    width: 290px;
     height: 300px;
   `)};
 
@@ -65,7 +65,7 @@ position: relative;
 
 const CardImage = styled.img`
   width: 100%;
-  height: 323px;
+  height: 310px;
   border-radius: 8px;
 
   object-fit: cover;
@@ -94,8 +94,8 @@ color: var(--secondary-color);
 ${mediaRule("desktop", "", `
  position: absolute;
 top: 250px;
-left: 16px;
-width: 230px;
+left: 22px;
+width: 250px;
 height: 52px;
 background-color: var(--primary-color);
 border-radius: 8px;
