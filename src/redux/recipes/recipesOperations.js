@@ -71,10 +71,10 @@ export const getPopularRecipes = createAsyncThunk(
 // GET POPULAR RECIPES
 export const getRecipesByCategory = createAsyncThunk(
   'recipes/categories',
-  async ({ category }, thunkAPI) => {
+  async ({ categoryName }, thunkAPI) => {
     try {
-      const { data } = await instance.get(`recipes/categories/${category}`);
-      return data;
+      const response = await instance.get(`recipes/categories/${categoryName}`);
+      return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

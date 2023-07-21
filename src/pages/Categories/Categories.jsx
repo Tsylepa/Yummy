@@ -1,7 +1,9 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 import CategoriesList from 'components/CategoriesList/CategoriesList';
 import { StyledContainer } from './Categories.styled';
 import { MainTitle } from 'components/MainTitle/MainTitle';
+import { Loader } from 'components/Loader/Loader';
 
 const Categories = () => {
   return (
@@ -10,7 +12,9 @@ const Categories = () => {
       <StyledContainer>
         <CategoriesList />
       </StyledContainer>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

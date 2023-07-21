@@ -12,8 +12,10 @@ export const StyledCategoriesList = styled.li`
 export const StyledContainer = styled.ul`
   gap: 28px;
   display: flex;
-  flex-direction: row;
-  overflow-x: auto;
+  flex-wrap: nowrap;
+  margin-bottom: 32px;
+
+  ${mediaRule('tablet', '', 'margin-bottom: 50px;')}
 `;
 
 export const BaseNavLink = styled(NavLink)`

@@ -1,29 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAllRecipes } from '../../api/recipes';
-import { useDispatch } from 'react-redux';
-
-import { StyledContainer } from './CategoriesCardsList.styled';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getRecipesByCategory } from 'redux/recipes/recipesOperations';
 import RecipesCard from 'components/RecipesCard/RecipesCard';
 
 export const CategoriesCardsList = () => {
+  const { categoryName } = useParams();
   const dispatch = useDispatch();
-  const [recipes, setRecipes] = useState([]);
+  const recipes = useSelector(state => state.recipes.category);
 
   useEffect(() => {
-    getAllRecipes()
-      .then(recipes => setRecipes(recipes))
-      .catch(err => console.log(err.message));
-  }, [dispatch]);
+    dispatch(getRecipesByCategory({ categoryName }));
+  }, [dispatch, categoryName]);
 
-  const { categoryName } = useParams();
-  const newRecipes = recipes.filter(recip => recip.category === categoryName);
-
-  return (
-    <div>
-      <StyledContainer>{<RecipesCard recipes={newRecipes} />}</StyledContainer>
-    </div>
-  );
+  return recipes && <RecipesCard recipes={recipes} />;
 };
+
 export default CategoriesCardsList;
