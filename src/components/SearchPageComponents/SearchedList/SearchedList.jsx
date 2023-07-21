@@ -34,7 +34,7 @@ const SearchedList = ({ searchType, searchQuery }) => {
     <div>
       {load.searchedRecipes.length > 0 ? (
         <StyledContainer>
-          {<RecipesCard recipes={load.searchedRecipes} />}
+          <RecipesCard recipes={load.searchedRecipes} />
         </StyledContainer>
       ) : (
         ''

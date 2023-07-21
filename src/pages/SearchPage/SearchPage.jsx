@@ -3,7 +3,6 @@ import { MainTitle } from 'components/MainTitle/MainTitle';
 import { Wrapper } from 'pages/AddRecipe/AddRecipe.styled';
 import SearchTypeSelector from 'components/SearchPageComponents/SearchType/SearchType';
 import SearchForm from 'components/SearchPageComponents/SearchForm/SearchForm';
-import SearchNotFound from 'components/SearchPageComponents/SearchNotFound/SearchNotFound';
 import SearchedList from 'components/SearchPageComponents/SearchedList/SearchedList';
 
 const SearchPage = () => {
@@ -26,7 +25,6 @@ const SearchPage = () => {
         <SearchForm handleSearch={handleSearch} />
         <SearchTypeSelector handleSearchType={handleSearchType} />
         <SearchedList searchType={searchType} searchQuery={searchQuery} />
-        {searchQuery && <SearchNotFound />}
       </Wrapper>
     </>
   );

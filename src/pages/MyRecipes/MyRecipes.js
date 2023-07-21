@@ -8,21 +8,27 @@ import {
   getRecipeList,
 } from 'redux/recipes/recipesOperations';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MainTitle } from 'components/MainTitle/MainTitle';
 import { getFavoriteRecipeById } from 'redux/favorite/favoriteOperations';
 
 import { selectRecipeList } from 'redux/recipes/recipesSelectors';
 import { Loader } from 'components/Loader/Loader';
+import { ButtonSkewStyled } from 'components/ButtonSkew/ButtonSkew.styled';
 
 const MyRecipes = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getRecipeList())
       .then(myRecipes => setMyRecipes(myRecipes))
       .catch(err => console.log(err.message));
   }, [dispatch]);
 
+  const goToMainPage = () => {
+    navigate('/main');
+  };
   const [
     ,
     // myRecipes,
@@ -89,7 +95,18 @@ const MyRecipes = () => {
             ) : (
               <div style={{ textAlign: 'center', padding: '100px 0px' }}>
                 <h2>Your recipes will appear here when you add them.</h2>
-                <p>Bаши рецепты появятся здесь, когда вы их добавите.</p>
+                <ButtonSkewStyled
+                  type="button"
+                  data-variant="primary-accent"
+                  onClick={goToMainPage}
+                  style={{
+                    marginTop: '20px',
+                    transform: 'none',
+                    borderRadius: '22px 44px',
+                  }}
+                >
+                  Go to Main Page
+                </ButtonSkewStyled>
               </div>
             )}
           </div>
