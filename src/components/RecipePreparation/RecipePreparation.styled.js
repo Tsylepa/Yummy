@@ -9,9 +9,10 @@ margin-top: 96px;
 `)};
 
 ${mediaRule("desktop", "", `
-position: relative;
+display: flex;
+justify-content: space-between;
+ 
 margin-top: 101px;
-width: 757px;
 text-align: start;
 align-self: flex-start;
 `)};
@@ -37,7 +38,7 @@ const RecipePreparationList = styled.ul`
 width: 270px;
 
 ${mediaRule("desktop", "", `
-width: 696px;
+width: 860px;
 `)};`
 
 const RecipePreparationItem = styled.li`
@@ -76,11 +77,10 @@ margin-bottom: 200px;
 `)};
 
 ${mediaRule("desktop", "", `
-position: absolute;
-top: -51px;
-left: 890px;
-margin-top: 53px;
-margin-bottom: 200px;
+margin_bottom: 0px;
+margin-top: 0px;
+width 433px;
+height: 332px;
 `)};`
 
 const StepNumber = styled.span`
@@ -98,7 +98,16 @@ const StepNumber = styled.span`
     margin-right: 8px;
   `
 
+const RecipePreparationContent = styled.div`
+
+  ${mediaRule("desktop", "", `
+  flex-basis: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;`)};
+`;
+
 
 
 export {RecipePreparationContainer, RecipePreparationTitle, RecipePreparationItem, 
-    RecipePreparationList, RecipePreparationImage, StepNumber}
+    RecipePreparationList, RecipePreparationImage, StepNumber, RecipePreparationContent}

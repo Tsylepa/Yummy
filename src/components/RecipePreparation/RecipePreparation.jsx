@@ -1,10 +1,11 @@
-import { RecipePreparationContainer, RecipePreparationImage, RecipePreparationItem, RecipePreparationList, RecipePreparationTitle, StepNumber } from "./RecipePreparation.styled";
+import { RecipePreparationContainer, RecipePreparationContent, RecipePreparationImage, RecipePreparationItem, RecipePreparationList, RecipePreparationTitle, StepNumber } from "./RecipePreparation.styled";
 
 
 
 const RecipePreparation = ({ image, preparationSteps })=> {
     return(
         <RecipePreparationContainer>
+          <RecipePreparationContent>
             <RecipePreparationTitle>Recipe Preparation</RecipePreparationTitle>
             <RecipePreparationList>
         {preparationSteps.map((step, index) => {
@@ -16,9 +17,10 @@ const RecipePreparation = ({ image, preparationSteps })=> {
               </RecipePreparationItem>
             );
           }
-          return null; // Якщо рядок є пустим, повертаємо null
+          return null; 
         })}
       </RecipePreparationList>
+      </RecipePreparationContent>
       <RecipePreparationImage src={image} alt="Recipe" />
         </RecipePreparationContainer>
     )
