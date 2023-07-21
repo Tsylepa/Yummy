@@ -65,7 +65,7 @@ const Footer = () => {
             <Footernav>
               <NavLinkStyled to="/ingredients">Ingredients</NavLinkStyled>
               <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
-              <NavLinkStyled to="/recipe">My recipes</NavLinkStyled>
+              <NavLinkStyled to="/my">My recipes</NavLinkStyled>
               <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
               <NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled>
             </Footernav>
