@@ -34,7 +34,7 @@ const RecipePageHero = ({ title, description, time, recipeId }) => {
         <RecipePageTitle>{title}</RecipePageTitle>
         <RecipePageDescription>{description}</RecipePageDescription>
         <RecipePageButton type="button" onClick={handleClickBtn}>
-          {liked ? 'Remove from favorite' : 'Add to favorite recipes'}
+          {liked ? 'Remove from favorites' : 'Add to favorite recipes'}
         </RecipePageButton>
         <RecipePageTime>
           <Icon
