@@ -52,7 +52,6 @@ const AddRecipeForm = () => {
   const navigate = useNavigate();
   const { user } = useUser();
   const theme = user.theme;
-  console.log(theme);
 
   const timeOptions = Array.from({ length: 24 }, (_, i) => {
     return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
@@ -381,7 +380,6 @@ const AddRecipeForm = () => {
                         options={ingredientsOptions}
                         onChange={selected => {
                           const updatedIngredients = values.ingredients;
-                          console.log(values);
                           updatedIngredients[i].id = selected.value;
                           setIngredients(updatedIngredients);
                         }}
