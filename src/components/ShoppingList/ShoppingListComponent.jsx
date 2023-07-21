@@ -74,7 +74,7 @@ const ShoppingListComponent = () => {
               <RecipeIngredientListSubtitle style={{ marginTop: 0 }}>
                 <IngredientSpan>Products</IngredientSpan>
                 <NumberSpan>Number</NumberSpan>
-                <RemoveSpan>Remove</RemoveSpan>
+                <RemoveSpan style={{ marginLeft: '20px' }}>Remove</RemoveSpan>
               </RecipeIngredientListSubtitle>
               <ProductList>
                 {shoppingList.map(product => (
@@ -84,6 +84,7 @@ const ShoppingListComponent = () => {
                       background: 'transparent',
                       borderBottom: '1px solid #E0E0E0',
                       borderRadius: 0,
+                      alignItems: 'flex-start',
                     }}
                   >
                     {product.ingredient.img ? (
@@ -106,6 +107,9 @@ const ShoppingListComponent = () => {
                       onClick={() =>
                         handleRemoveClick(product.ingredient, product.recipeId)
                       }
+                      style={{
+                        margin: '0 auto auto auto',
+                      }}
                     >
                       <Icon name="cross" width="18" height="18" />
                     </Delete>
