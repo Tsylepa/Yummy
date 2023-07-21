@@ -100,13 +100,13 @@ height: 52px;
 background-color: var(--primary-color);
 border-radius: 8px;
 text-align: left;
-font-size: 16px;
+font-size: 13px;
 font-style: normal;
-font-weight: 500;
+font-weight: 400;
 line-height: 20px;
 letter-spacing: -0.24px;
-padding-left: 16px;
-padding-top: 10px;
+padding-left: 19px;
+padding-top: 8px;
 `)};`
 
 const SeeAllContainer = styled.div`
