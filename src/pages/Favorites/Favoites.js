@@ -8,18 +8,24 @@ import {
   // getFavoriteRecipeById,
   getFavoritesList,
 } from 'redux/favorite/favoriteOperations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MainTitle } from 'components/MainTitle/MainTitle';
 import { Loader } from 'components/Loader/Loader';
 import { selectFavoriteList } from 'redux/favorite/favoriteSelectors';
+import { ButtonSkewStyled } from 'components/ButtonSkew/ButtonSkew.styled';
 
 const Favorites = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getFavoritesList())
       .then(myFavoriteRecipes => setMyFavoriteRecipes(myFavoriteRecipes))
       .catch(err => console.log(err.message));
   }, [dispatch]);
+
+  const goToMainPage = () => {
+    navigate('/main');
+  };
 
   const [
     ,
@@ -91,9 +97,18 @@ const Favorites = () => {
                 <h2>
                   Your favorite recipes will appear here when you add them.
                 </h2>
-                <p>
-                  Bаши любимые рецепты появятся здесь, когда вы их добавите.
-                </p>
+                <ButtonSkewStyled
+                  type="button"
+                  data-variant="primary-accent"
+                  onClick={goToMainPage}
+                  style={{
+                    marginTop: '20px',
+                    transform: 'none',
+                    borderRadius: '22px 44px',
+                  }}
+                >
+                  Go to Main Page
+                </ButtonSkewStyled>
               </div>
             )}
           </div>
@@ -102,5 +117,32 @@ const Favorites = () => {
     </>
   );
 };
-
+// {shoppingList.isLoading ? (
+//         <Loader />
+//       ) : (
+//         <>
+//           {shoppingList.length === 0 ? (
+//             <div
+//               style={{
+//                 textAlign: 'center',
+//               }}
+//             >
+//               <p>
+//                 Your shopping list is currently empty. Start adding items to
+//                 your shopping list
+//               </p>
+//               <ButtonSkewStyled
+//                 type="button"
+//                 data-variant="primary-accent"
+//                 onClick={goToMainPage}
+//                 style={{
+//                   marginTop: '20px',
+//                   transform: 'none',
+//                   borderRadius: '22px 44px',
+//                 }}
+//               >
+//                 Go to Main Page
+//               </ButtonSkewStyled>
+//             </div>
+//           ) : (
 export default Favorites;

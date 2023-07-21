@@ -17,6 +17,7 @@ export const StyledContainer = styled.div`
   gap: 28px;
   display: flex;
   flex-direction: row;
+  overflow-x: auto;
 `;
 
 export const StyledText = styled.h2`

@@ -112,6 +112,7 @@ const AddRecipeForm = () => {
     menuList: baseStyles => ({
       ...baseStyles,
       gap: 4,
+      maxWidth: '100%',
       maxHeight: 150,
       padding: '8px 26px 8px 14px',
     }),
