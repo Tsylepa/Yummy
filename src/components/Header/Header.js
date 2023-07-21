@@ -75,9 +75,8 @@ const Header = () => {
             </NavLinkStyled></li>
         </BurgerNav>
 
-        <ThemeTogglerwrapper>
         <ThemeToggler />
-        </ThemeTogglerwrapper>    
+         
         </Burgerwrapper>
       </Burger>
 
