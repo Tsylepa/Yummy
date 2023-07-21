@@ -227,7 +227,7 @@ const IngredientCheckbox = styled.input`
     content: "";
     position: absolute;
     left: 12px;
-    top: 4px;
+    top: 20%;
     width: 7px;
     height: 14px;
     border-style: solid;
