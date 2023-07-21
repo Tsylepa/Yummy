@@ -66,8 +66,8 @@ const Footer = () => {
               <NavLinkStyled to="/ingredients">Ingredients</NavLinkStyled>
               <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
               <NavLinkStyled to="/recipe">My recipes</NavLinkStyled>
-              <NavLinkStyled to="/favorites">Favorites</NavLinkStyled>
-              <NavLinkStyled to="/shopping">Shopping list</NavLinkStyled>
+              <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
+              <NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled>
             </Footernav>
 
             <Formik

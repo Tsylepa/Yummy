@@ -11,21 +11,20 @@ export const Burger = styled.div`
   background-image: url(${imgBackgroundModileFirstMobile});
   background-repeat: no-repeat;
   background-size: 100% cover;
-  background-position: 100% 68%;
+  background-position: 100% 100%;
 
   position: absolute;
   top: 0px;
   left: 0px;
   z-index: 300;
   width: 100%;
-  height: auto;
-  min-height: 1000px;
+  height: 100%;
   padding-top: 18px;
   padding-right: 16px;
   padding-bottom: 18px;
   padding-left: 16px;
 
-  transform: translateY(-150%);
+  transform: translateY(-100%);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 
   font-size: 14px;
@@ -37,28 +36,28 @@ export const Burger = styled.div`
   @media screen and (min-width: 768px) {
     background-image: url(${imgBackgroundModileFirstTablet});
     background-repeat: no-repeat;
-    background-size: 100% cover;
-    background-position: 97% 50%;
+    background-size:  852px 558px;
+
+    padding-top: 18px;
+    padding-right: 16px;
+    padding-bottom: 18px;
+    padding-left: 16px;
   }
 `;
 export const Burgerwrapper = styled.div`
   margin: auto;
-  width: 288px;
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-  }
+  width: 100%;
 `;
 export const BurgerHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
 `;
 export const CloseButton = styled.button`
   color: var(--font-color);
 
   width: 28px;
   height: 28px;
+  margin-left: auto;
   padding: 4px 7px 4px 7px;
   background-color: transparent;
   border: transparent;
@@ -89,20 +88,10 @@ export const HeaderWraper = styled.div`
 
   display: flex;
   align-items: center;
-  width: 288px;
-  height: 40px;
-  justify-content: space-between;
-  margin-top: 14px;
-  margin-bottom: 50px;
+  width: 100%;
+  height: 46px;
+  margin-top: 18px;
   z-index: 1;
-
-  @media screen and (min-width: 768px) {
-    width: 704px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 1080px;
-  }
 `;
 export const LogoIconStyled = styled(LogoIcon)`
   width: 22px;
@@ -111,6 +100,7 @@ export const LogoIconStyled = styled(LogoIcon)`
   background-color: var(--accent-color);
   border-radius: 6px;
   padding: 6px;
+  margin-left: 0;
 
   @media screen and (min-width: 768px) {
     width: 30px;
@@ -151,7 +141,6 @@ export const OpenButton = styled.button`
   color: var(--font-color);
 
   display: flex;
-  margin-left: 24px;
   background-color: transparent;
   border: transparent;
 
@@ -159,8 +148,8 @@ export const OpenButton = styled.button`
     width: 32px;
     height: 32px;
     padding: 7px 3px;
-    margin-left: 50px;
   }
+
   @media screen and (min-width: 1280px) {
     display: none;
   }
