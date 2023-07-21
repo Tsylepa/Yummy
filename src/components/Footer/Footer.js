@@ -14,6 +14,7 @@ import {
   Underfooter,
   Logo,
   LogoPlus,
+  LinkStyled,
   Benefitslist,
   Li,
   NavLinkStyled,
@@ -49,10 +50,10 @@ const Footer = () => {
           <Footerstyled>
             <LogoPlus>
               <Logo>
-                <Link to="/main">
+                <LinkStyled to="/main">
                   <LogoIconStyled />
                   So Yummy
-                </Link>
+                </LinkStyled>
               </Logo>
               <Benefitslist>
                 <Li>Database of recipes that can be replenished</Li>

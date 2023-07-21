@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { ReactComponent as LogoIcon } from '../../images/svg/logo/logo.svg';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { HiOutlineMail } from 'react-icons/hi';
 import { Form, Field } from 'formik';
 import variables from '../../css/variables.module.css';
-import imgBackgroundModileFirstMobile from 'images/mobile/leaves-menu@1x_320-min.png';
+import imgBackgroundModileFirstMobile from 'images/mobile/leaves-main@1x_320-min.png';
 import imgBackgroundModileSecondMobile from 'images/mobile/leaves-footer@1x_320-min.png';
-import imgBackgroundModileFirstTablet from 'images/tablet/leaves-menu@2x_768-min.png';
+import imgBackgroundModileFirstTablet from 'images/tablet/leaves-main@2x_768-min.png';
 import imgBackgroundModileSecondTablet from 'images/tablet/leaves-footer@2x_768-min.png';
 import imgBackgroundModileFirstDesktop from 'images/desktop/leaves-main@3x_1280.png';
 import imgBackgroundModileSecondDesktop from 'images/desktop/leaves-footer@3x_1280.png';
@@ -16,7 +16,7 @@ import { ReactComponent as CorrectIcon } from 'images/svg/other/valid-icon.svg';
 
 export const Footerwrapper = styled.div`
   color: var(--footer-font-color);
-  position: absolute;
+  position: relative;
   width: 100%;
   left: 0;
 `;
@@ -24,30 +24,29 @@ export const Dolbaniylistochek = styled.div`
   position: absolute;
   background-image: url(${imgBackgroundModileFirstMobile});
   background-repeat: no-repeat;
-  background-size: contain;
-  transform: rotate(90deg);
-  width: 256px;
-  height: 392px;
-  top: -324px;
-  left: -50px;
+  background-size: cover;
+  filter: blur(4.5px);
+  top: -250px;
+  left: -2px;
+  width: 338px;
+  height: 454px;
 
   @media screen and (min-width: 768px) {
     background-image: url(${imgBackgroundModileFirstTablet});
-    width: 423px;
-    height: 646px;
-    top: -534px;
-    left: -175px;
+    top: -521px;
+    width: 608px;
+    height: 735px;
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(${imgBackgroundModileFirstDesktop});
-    transform: rotate(0deg);
-    background-size: 558px 852px;
-    top: -645px;
-    left: 0px;
+    top: -500px;
+    height: 611px px;
+    width: 640px;
   }
 `;
 export const Footerbackground = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,7 +83,7 @@ export const Footerstyled = styled.div`
   @media screen and (min-width: 1280px) {
     flex-wrap: nowrap;
     padding-bottom: 41px;
-    width: 1280px;
+    width: 100%;
   }
 `;
 
@@ -102,7 +101,7 @@ export const LogoPlus = styled.div`
 export const Logo = styled.div`
   display: flex;
   justify-content: center;
-
+  align-items: center;
   font-size: 18px;
   font-weight: 700;
   line-height: 18px;
@@ -119,7 +118,6 @@ export const Logo = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
     margin-bottom: 40px;
   }
 `;
@@ -140,6 +138,12 @@ export const LogoIconStyled = styled(LogoIcon)`
     margin-right: 12px;
   }
 `;
+
+export const LinkStyled = styled(Link)`
+  display: flex;
+  align-items: center;
+`;
+
 export const Benefitslist = styled.ul`
   display: none;
 
@@ -218,7 +222,7 @@ export const FormStyled = styled(Form)`
 
   @media screen and (min-width: 1280px) {
     flex-direction: column;
-    align-content: flex-start;
+    align-items: flex-start;
     gap: 0;
     margin-left: 0;
     width: 340px;

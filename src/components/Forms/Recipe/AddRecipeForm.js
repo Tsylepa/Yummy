@@ -37,128 +37,6 @@ import { addRecipe } from 'redux/recipes/recipesOperations';
 import { ButtonSkew } from 'components/ButtonSkew/ButtonSkew';
 import useUser from 'hooks/useUser';
 
-const timeOptions = Array.from({ length: 24 }, (_, i) => {
-  return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
-});
-
-const measureOptions = [
-  { value: 'tbs', label: 'tbs' },
-  { value: 'tsp', label: 'tsp' },
-  { value: 'g', label: 'g' },
-  { value: 'kg', label: 'kg' },
-];
-
-const selectorStyles = {
-  container: () => ({
-    position: 'relative',
-  }),
-  control: () => ({
-    display: 'flex',
-    width: '100%',
-    border: 'none',
-    cursor: 'pointer',
-  }),
-  valueContainer: baseStyles => ({
-    ...baseStyles,
-    textAlign: 'right',
-    fontSize: 12,
-    fontWeight: 400,
-    padding: '0 8px',
-    lineHeight: 1,
-  }),
-  input: baseStyles => ({
-    ...baseStyles,
-    textAlign: 'right',
-    justifySelf: 'right',
-    padding: 0,
-    margin: 0,
-  }),
-  placeholder: baseStyles => ({
-    ...baseStyles,
-    margin: 0,
-  }),
-  indicatorSeparator: () => ({ display: 'none' }),
-  dropdownIndicator: () => ({
-    display: 'flex',
-    alignItems: 'center',
-    color: 'var(--accent-color)',
-  }),
-  menu: baseStyles => ({
-    ...baseStyles,
-    position: 'absolute',
-    width: '100%',
-    top: 24,
-    right: 0,
-    boxShadow:
-      '0px 6.518518447875977px 7.8222222328186035px 0px rgba(0, 0, 0, 0.03)',
-  }),
-  menuList: baseStyles => ({
-    ...baseStyles,
-    gap: 4,
-    maxHeight: 150,
-    padding: '8px 26px 8px 14px',
-  }),
-  option: (_, state) => ({
-    color: state.isFocused && 'var(--accent-color)',
-    borderRadius: 4,
-    fontSize: 12,
-    opacity: 0.5,
-    cursor: 'pointer',
-  }),
-};
-
-const ingredientsSelectorStyles = {
-  ...selectorStyles,
-  container: () => ({
-    ...selectorStyles.container(),
-    backgroundColor: 'var(--input-bg-color)',
-    borderRadius: 4,
-    fontSize: 14,
-    padding: 16,
-    flex: 3,
-  }),
-  menu: baseStyles => ({
-    ...baseStyles,
-    ...selectorStyles.menu(),
-    position: 'absolute',
-    backgroundColor: 'var(--selector-menu-color)',
-    top: 50,
-    right: 0,
-    padding: 16,
-  }),
-  valueContainer: baseStyles => ({
-    ...baseStyles,
-    padding: 0,
-  }),
-  input: baseStyles => ({
-    ...baseStyles,
-    margin: 0,
-    padding: 0,
-  }),
-};
-
-const measureSelectorStyles = {
-  ...ingredientsSelectorStyles,
-  container: () => ({
-    ...ingredientsSelectorStyles.container(),
-    position: 'static',
-    backgroundColor: 'transparent',
-    flex: 0.5,
-    width: 50,
-    padding: 0,
-  }),
-  input: () => ({
-    display: 'none',
-  }),
-
-  singleValue: () => ({
-    width: 20,
-  }),
-  placeholder: () => ({
-    display: 'none',
-  }),
-};
-
 const AddRecipeForm = () => {
   const [image, setImage] = useState(null);
   const [submit, setSubmit] = useState(false);
@@ -172,6 +50,132 @@ const AddRecipeForm = () => {
   const [categoriesList, setCategoriesList] = useState([]);
   const navigate = useNavigate();
   const { user } = useUser();
+  const theme = user.theme;
+  console.log(theme);
+
+  const timeOptions = Array.from({ length: 24 }, (_, i) => {
+    return { label: `${(i + 1) * 5} min`, value: `${(i + 1) * 5} min` };
+  });
+
+  const measureOptions = [
+    { value: 'tbs', label: 'tbs' },
+    { value: 'tsp', label: 'tsp' },
+    { value: 'g', label: 'g' },
+    { value: 'kg', label: 'kg' },
+  ];
+
+  const selectorStyles = {
+    container: () => ({
+      position: 'relative',
+    }),
+    control: () => ({
+      display: 'flex',
+      width: '100%',
+      border: 'none',
+      cursor: 'pointer',
+    }),
+    valueContainer: baseStyles => ({
+      ...baseStyles,
+      textAlign: 'right',
+      fontSize: 12,
+      fontWeight: 400,
+      padding: '0 8px',
+      lineHeight: 1,
+    }),
+    input: baseStyles => ({
+      ...baseStyles,
+      textAlign: 'right',
+      justifySelf: 'right',
+      padding: 0,
+      margin: 0,
+    }),
+    placeholder: baseStyles => ({
+      ...baseStyles,
+      margin: 0,
+    }),
+    indicatorSeparator: () => ({ display: 'none' }),
+    dropdownIndicator: () => ({
+      display: 'flex',
+      alignItems: 'center',
+      color: 'var(--accent-color)',
+    }),
+    menu: baseStyles => ({
+      ...baseStyles,
+      position: 'absolute',
+      width: '100%',
+      top: 24,
+      right: 0,
+      backgroundColor: 'var(--selector-menu-color)',
+      boxShadow:
+        '0px 6.518518447875977px 7.8222222328186035px 0px rgba(0, 0, 0, 0.03)',
+    }),
+    menuList: baseStyles => ({
+      ...baseStyles,
+      gap: 4,
+      maxHeight: 150,
+      padding: '8px 26px 8px 14px',
+    }),
+    option: (_, state) => ({
+      color: state.isFocused && theme === 'light' && 'var(--accent-color)',
+      borderRadius: 4,
+      fontSize: 12,
+      opacity: theme === 'dark' && state.isFocused ? 1 : 0.5,
+      cursor: 'pointer',
+      transition: 'all 350ms cubic-bezier(0.4, 0, 0.2, 1)',
+    }),
+  };
+
+  const ingredientsSelectorStyles = {
+    ...selectorStyles,
+    container: () => ({
+      ...selectorStyles.container(),
+      backgroundColor: 'var(--input-bg-color)',
+      borderRadius: 4,
+      fontSize: 14,
+      padding: 16,
+      flex: 3,
+    }),
+    menu: baseStyles => ({
+      ...baseStyles,
+      ...selectorStyles.menu(),
+      position: 'absolute',
+      backgroundColor: 'var(--selector-menu-color)',
+      top: 50,
+      right: 0,
+      padding: 16,
+    }),
+    valueContainer: baseStyles => ({
+      ...baseStyles,
+      padding: 0,
+    }),
+    input: baseStyles => ({
+      ...baseStyles,
+      margin: 0,
+      padding: 0,
+    }),
+  };
+
+  const measureSelectorStyles = {
+    ...ingredientsSelectorStyles,
+    container: () => ({
+      ...ingredientsSelectorStyles.container(),
+      position: 'static',
+      backgroundColor: 'transparent',
+      flex: 0.5,
+      width: 50,
+      padding: 0,
+    }),
+    input: () => ({
+      display: 'none',
+    }),
+
+    singleValue: () => ({
+      width: 20,
+    }),
+    placeholder: () => ({
+      display: 'none',
+    }),
+  };
 
   useEffect(() => {
     const runEffect = async () => {
