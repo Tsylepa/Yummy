@@ -7,6 +7,7 @@ import {
   StyledForm,
   ImageField,
   UploadBtn,
+  Picture,
   Info,
   Desc,
   DescField,
@@ -279,7 +280,7 @@ const AddRecipeForm = () => {
                   {({ onImageUpdate }) => (
                     <ImageWrapper onClick={onImageUpdate}>
                       {image ? (
-                        <img src={values.thumb.dataURL} alt="" />
+                        <Picture src={values.thumb.dataURL} alt="" />
                       ) : (
                         <UploadBtn>
                           <Icon name="camera" width="64" height="64" />
@@ -379,8 +380,9 @@ const AddRecipeForm = () => {
                         }}
                         options={ingredientsOptions}
                         onChange={selected => {
-                          const updatedIngredients = ingredients;
-                          ingredients[i].id = selected.value;
+                          const updatedIngredients = values.ingredients;
+                          console.log(values);
+                          updatedIngredients[i].id = selected.value;
                           setIngredients(updatedIngredients);
                         }}
                         styles={ingredientsSelectorStyles}
