@@ -3,7 +3,7 @@ import mediaRule from "utils/mediaRule"
 
 const RecipeIngredientListSubtitle = styled.div`
 width: 270px;
-margin-top: 300px;
+margin-top: 330px;
 height: 42px;
 background-color: var(--accent-color);
 display: flex;
@@ -226,8 +226,8 @@ const IngredientCheckbox = styled.input`
   &:checked::before {
     content: "";
     position: absolute;
-    left: 12px;
-    top: 4px;
+    left: 20%;
+    top: -10%;
     width: 7px;
     height: 14px;
     border-style: solid;
