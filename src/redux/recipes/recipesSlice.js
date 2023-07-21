@@ -33,7 +33,7 @@ const recipesSlice = createSlice({
       // ADD RECIPE
       .addCase(addRecipe.fulfilled, (state, action) => {
         // state.all = [...state.all, action.payload];
-        state.myRecipe = [action.payload];
+        state.recipe = [action.payload];
         state.error = null;
         state.isLoading = false;
       })
