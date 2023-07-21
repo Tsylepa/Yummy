@@ -15,6 +15,7 @@ import { ReactComponent as WarningIcon } from 'images/svg/other/warning-icon.svg
 import { ReactComponent as CorrectIcon } from 'images/svg/other/valid-icon.svg';
 
 export const Footerwrapper = styled.div`
+  margin-top: auto;
   color: var(--footer-font-color);
   position: relative;
   width: 100%;
