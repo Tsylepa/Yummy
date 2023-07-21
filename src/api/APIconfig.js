@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://soyummy-backend-kmc6.onrender.com/api',
+  baseURL: 'http://localhost:3001/api',
 });
 
 instance.interceptors.response.use(
@@ -15,7 +15,6 @@ instance.interceptors.response.use(
         });
         error.config.headers.Authorization = `Bearer ${data.accessToken}`;
         instance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
-        localStorage.setItem('refreshToken1', data.refreshToken);
         localStorage.setItem('accessToken1', data.accessToken);
 
         return instance(error.config);
@@ -26,7 +25,7 @@ instance.interceptors.response.use(
       localStorage.setItem('refreshToken1', '');
       localStorage.setItem('accessToken1', '');
       instance.defaults.headers.common.Authorization = '';
-      window.location.replace('https://tsylepa.github.io/Yummy/signin');
+      window.location.replace('/Yummy/signin');
     }
 
     return Promise.reject(error);
