@@ -72,3 +72,19 @@ code {
   background: var(--scrollbar-color);
   border-radius: 4px;
 }
+
+.modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #0000005b;
+  z-index: 99999;
+}
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
