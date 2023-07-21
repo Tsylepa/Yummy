@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import subscribe from './operations';
 import { signupSchema, ValidMessage } from './validationEmail';
 import { Formik, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
 
 import {
   Dolbaniylistochek,
