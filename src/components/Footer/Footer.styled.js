@@ -27,23 +27,23 @@ export const Dolbaniylistochek = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   filter: blur(4.5px);
-  top: -250px;
+  top: -190px;
   left: -2px;
-  width: 338px;
-  height: 454px;
+  width: 256px;
+  height: 392px;
 
   @media screen and (min-width: 768px) {
     background-image: url(${imgBackgroundModileFirstTablet});
-    top: -521px;
-    width: 608px;
-    height: 735px;
+    top: -351px;
+    width: 423px;
+    height: 646px;
   }
 
   @media screen and (min-width: 1280px) {
     background-image: url(${imgBackgroundModileFirstDesktop});
-    top: -500px;
-    height: 611px px;
-    width: 640px;
+    top: -420px;
+    width: 558px;
+    height: 852px;
   }
 `;
 export const Footerbackground = styled.div`
