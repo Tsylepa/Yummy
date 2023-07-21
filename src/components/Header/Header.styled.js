@@ -91,7 +91,7 @@ export const NavLinkStyled = styled(NavLink)`
 
 export const HeaderWraper = styled.div`
   color: var(--input-text-color);
-
+  font-weight: 500;
   display: flex;
   align-items: center;
   width: 100%;

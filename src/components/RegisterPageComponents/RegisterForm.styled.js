@@ -35,7 +35,7 @@ export const FormStyled = styled(Form)`
 
 export const FormTitle = styled.h1`
   font-family: ${variables['--poppins-semiBold']};
-  font-weight: 600;
+  font-weight: 500;
   font-size: 24px;
   line-height: 1.17;
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Section = styled.section`
   padding: 100px 0;
@@ -20,7 +20,7 @@ export const Image = styled.img`
   margin: 0 auto 14px;
 
   @media screen and (min-width: 768px) {
-    width: 498px; 
+    width: 498px;
     height: 327px;
     margin: 0 auto 32px;
   }
@@ -37,7 +37,7 @@ export const BoldText = styled.p`
 
   font-size: 18px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 20px;
   letter-spacing: -0.36px;
   text-align: center;

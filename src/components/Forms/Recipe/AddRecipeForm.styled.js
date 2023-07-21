@@ -117,7 +117,7 @@ export const Error = styled.div`
 
 export const FormTitle = styled.p`
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.48px;
 `;
 

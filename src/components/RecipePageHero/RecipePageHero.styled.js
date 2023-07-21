@@ -43,7 +43,7 @@ const RecipePageTitle = styled.h3`
   text-align: center;
   font-size: 24px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 24px;
   letter-spacing: -0.48px;
 
@@ -56,7 +56,7 @@ width: 505px;
 margin-bottom: 24px;
 font-size: 35px;
 font-style: normal;
-font-weight: 600;
+font-weight: 500;
 line-height: 35px;
 letter-spacing: -0.88px;
 `
@@ -70,7 +70,7 @@ margin-top: 102px;
 width: 505px;
 font-size: 44px;
 font-style: normal;
-font-weight: 600;
+font-weight: 500;
 line-height: 44px;
 letter-spacing: -0.88px;
 `

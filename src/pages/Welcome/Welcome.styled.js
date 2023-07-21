@@ -103,7 +103,7 @@ export const LogoIconStyled = styled(LogoIcon)`
 export const WelcomeTitle = styled.h1`
   margin-bottom: 14px;
   font-family: ${variables['--poppins-semiBold']};
-  font-weight: 600;
+  font-weight: 500;
   font-size: 24px;
   line-height: 1;
   letter-spacing: -0.02em;

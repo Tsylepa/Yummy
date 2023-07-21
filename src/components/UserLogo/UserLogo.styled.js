@@ -24,7 +24,7 @@ export const UserLogoBtn = styled.button`
   background-color: transparent;
 
   font-family: ${variables['--poppins-semiBold']};
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 1.7;
   color: var(--font-color);
