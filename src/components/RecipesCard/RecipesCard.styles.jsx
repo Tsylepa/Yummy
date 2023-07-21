@@ -1,49 +1,28 @@
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import mediaRule from 'utils/mediaRule';
 
 export const StyledCards = styled.ul`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   gap: 33px;
   margin-top: 32px;
   opacity: 1;
+  position: relative;
 
-  @media screen and (min-width: 768px) {
-    flex-flow: row wrap;
-    gap: 32px;
-    margin-top: 50px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    gap: 100px 14px;
-  }
+  ${mediaRule('tablet', 'desktop', 'grid-template-columns: repeat(2, 1fr)')}
+  ${mediaRule('desktop', '', 'grid-template-columns: repeat(4, 1fr)')}
 `;
 
-export const StyledCardsList = styled(Link)`
-  list-style: none;
-
-  @media screen and (min-width: 1440px) {
-    width: calc((100% - 42px) / 4);
-  }
-`;
+export const Card = styled.li``;
 
 export const StyledCardsWrapper = styled.div`
   position: relative;
-  width: 343px;
-  height: 323px;
+
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.14) 0px 1px 1px,
     rgba(0, 0, 0, 0.2) 0px 2px 1px;
   cursor: pointer;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-
-  @media screen and (min-width: 768px) {
-    width: 336px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 330px;
-  }
 `;
 
 export const StyledCardsImg = styled.img`
@@ -57,20 +36,12 @@ export const StyledCardsImg = styled.img`
 export const StyledCardsTextWrapper = styled.div`
   position: absolute;
   bottom: 26px;
-  //   left: 18px;
-  width: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
   padding: 16px;
   background-color: rgb(255, 255, 255);
   border-radius: 8px;
-
-  @media screen and (min-width: 768px) {
-    width: 300px;
-  }
-  @media screen and (min-width: 1440px) {
-    bottom: 23px;
-    left: 16px;
-    width: 268px;
-  }
 `;
 
 export const StyledCardsText = styled.p`
@@ -78,4 +49,8 @@ export const StyledCardsText = styled.p`
   color: rgb(62, 68, 98);
   line-height: 1.25;
   font-weight: 500;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

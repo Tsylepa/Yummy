@@ -3,7 +3,7 @@ import {
   addRecipe,
   deleteRecipe,
   getRecipeById,
-  addToShoppingList,
+  getRecipesByCategory,
   getRecipeList,
 } from 'redux/recipes/recipesOperations';
 
@@ -22,6 +22,7 @@ const initialState = {
   error: null,
   recipeById: {},
   recipe: [],
+  category: [],
 };
 
 const recipesSlice = createSlice({
@@ -57,15 +58,6 @@ const recipesSlice = createSlice({
       .addCase(getRecipeById.pending, handlePending)
       .addCase(getRecipeById.rejected, handleRejected)
 
-      // ADD TO SHOPPING LIST
-      .addCase(addToShoppingList.fulfilled, (state, action) => {
-        const { ingredientId, shoppingListData } = action.payload;
-        state.recipeById[ingredientId].shoppingListData = shoppingListData;
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(addToShoppingList.pending, handlePending)
-      .addCase(addToShoppingList.rejected, handleRejected)
       // my recipe
       .addCase(getRecipeList.pending, handlePending)
       .addCase(getRecipeList.fulfilled, (state, action) => {
@@ -73,7 +65,16 @@ const recipesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getRecipeList.rejected, handleRejected),
+      .addCase(getRecipeList.rejected, handleRejected)
+
+      // BY CATEGORY
+      .addCase(getRecipesByCategory.fulfilled, (state, action) => {
+        state.category = action.payload.data;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getRecipesByCategory.pending, handlePending)
+      .addCase(getRecipesByCategory.rejected, handleRejected),
 });
 
 const recipesReducer = recipesSlice.reducer;

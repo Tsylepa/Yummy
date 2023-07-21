@@ -30,7 +30,7 @@ export const Dolbaniylistochek = styled.div`
   height: 392px;
   top: -324px;
   left: -50px;
-  
+
   @media screen and (min-width: 768px) {
     background-image: url(${imgBackgroundModileFirstTablet});
     width: 423px;
@@ -54,7 +54,7 @@ export const Footerbackground = styled.div`
   background-color: var(--search-btn-color);
   padding-top: 28px;
   padding-bottom: 18px;
-  
+
   @media screen and (min-width: 768px) {
     padding-top: 50px;
     padding-left: 32px;

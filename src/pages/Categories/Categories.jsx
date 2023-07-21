@@ -1,31 +1,21 @@
-import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { getCategories } from '../../api/recipes';
-
+import { Suspense } from 'react';
 import CategoriesList from 'components/CategoriesList/CategoriesList';
-import {
-  StyledContainer,
-  StyledText,
-  StyledCategoriesPagesWraper,
-} from './Categories.styled';
+import { StyledContainer } from './Categories.styled';
+import { MainTitle } from 'components/MainTitle/MainTitle';
+import { Loader } from 'components/Loader/Loader';
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    getCategories()
-      .then(categories => setCategories(categories))
-      .catch(err => console.log(err.message));
-  }, []);
-
   return (
-    <StyledCategoriesPagesWraper>
-      <StyledText>Categories</StyledText>
+    <>
+      <MainTitle text="Categories" />
       <StyledContainer>
-        <>{<CategoriesList categories={categories} />}</>
+        <CategoriesList />
       </StyledContainer>
-      <Outlet />
-    </StyledCategoriesPagesWraper>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </>
   );
 };
 

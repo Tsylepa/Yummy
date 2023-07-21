@@ -34,8 +34,10 @@ margin-bottom: 33,5px;
 `)};`
 
 const RecipePreparationList = styled.ul`
+width: 270px;
+
 ${mediaRule("desktop", "", `
-width: 710px;
+width: 696px;
 `)};`
 
 const RecipePreparationItem = styled.li`
@@ -60,6 +62,7 @@ margin-bottom: 21px;
 &:last-child {
   margin-bottom: 0;
 }`)};
+
 `
 
 const RecipePreparationImage = styled.img`
@@ -75,14 +78,27 @@ margin-bottom: 200px;
 ${mediaRule("desktop", "", `
 position: absolute;
 top: -51px;
-left: 733px;
+left: 890px;
 margin-top: 53px;
 margin-bottom: 200px;
 `)};`
 
-
+const StepNumber = styled.span`
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    margin-right: 8px;
+  `
 
 
 
 export {RecipePreparationContainer, RecipePreparationTitle, RecipePreparationItem, 
-    RecipePreparationList, RecipePreparationImage}
+    RecipePreparationList, RecipePreparationImage, StepNumber}

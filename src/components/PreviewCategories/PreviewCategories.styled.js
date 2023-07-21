@@ -1,26 +1,31 @@
 import styled from "styled-components"
 import mediaRule from "utils/mediaRule"
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Container = styled.div`
-margin-top: 786px;
+ margin-right:19px;
+  margin-left: 6px;
+
 
 ${mediaRule("tablet", "desktop", `
-margin-top: 648pxpx;
+
+margin-left: 0px;
 `)}
 
 ${mediaRule("desktop", "", `
-margin-top: 838px;
-`)};
+margin-top: 0px;
+`)}; 
 `
 
 const CardList = styled.ul`
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+ 
 
   ${mediaRule("tablet", "desktop", `
-   gap: 32px;
+   gap: 20px;
   `)}
 
 ${mediaRule("desktop", "", `
@@ -34,21 +39,28 @@ margin-bottom: 32px;
 
 ${mediaRule("desktop", "", `
 margin-top: 100px;
-margin-bottom: 32px
+margin-bottom: 20px
 `)};`
 
-const CardItem = styled(Link)`
-  position: relative;
-  width: 100%;
+const CardItem = styled(NavLink)`
 
+position: relative;
+  width: 100%;
+  &:hover {
+    cursor: pointer; 
+    border: 2px solid var(--accent-color);
+  }
+  
+    
   ${mediaRule("tablet", "desktop", `
-    width: 336px;
+    width: 328px;
    `)}
 
   ${mediaRule("desktop", "", `
     width: 260px;
     height: 300px;
   `)};
+
 `;
 
 const CardImage = styled.img`
@@ -57,6 +69,7 @@ const CardImage = styled.img`
   border-radius: 8px;
 
   object-fit: cover;
+  
 `;
 
 const RecipeTitle = styled.h4`
@@ -75,6 +88,7 @@ line-height: 20px;
 letter-spacing: -0.24px;
 padding-left: 16px;
 padding-top: 10px;
+color: var(--secondary-color);
 
 
 ${mediaRule("desktop", "", `

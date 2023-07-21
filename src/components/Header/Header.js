@@ -15,7 +15,7 @@ import {
   ThemeTogglerwrapper,
   OpenButton,
   CloseButton,
-  } from './Header.styled';
+} from './Header.styled';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,45 +38,61 @@ const Header = () => {
     <>
       <Burger style={hideOrShow} position="fixed">
         <Burgerwrapper>
-        <BurgerHeader>
-          <Link to="/main" onClick={handleMenu}>
-            <LogoIconStyled />
-          </Link>
+          <BurgerHeader>
+            <Link to="/main" onClick={handleMenu}>
+              <LogoIconStyled />
+            </Link>
 
-          <CloseButton onClick={handleMenu}>
-            <Icon name="icon-Exit" width="14px" height="14px" fill="var(--font-color)"></Icon>
-          </CloseButton>
-        </BurgerHeader>
+            <CloseButton onClick={handleMenu}>
+              <Icon
+                name="icon-Exit"
+                width="14px"
+                height="14px"
+                fill="var(--font-color)"
+              ></Icon>
+            </CloseButton>
+          </BurgerHeader>
 
-        <BurgerNav>
-            <li><NavLinkStyled to="/categories" onClick={handleMenu}>
-            Categories
-            </NavLinkStyled></li>
-            <li><NavLinkStyled to="/add" onClick={handleMenu}>
-            Add recipes
-            </NavLinkStyled></li>
-            <li><NavLinkStyled to="/recipe" onClick={handleMenu}>
-            My recipes
-            </NavLinkStyled></li>
-            <li><NavLinkStyled to="/favorite" onClick={handleMenu}>
-            Favorites
-            </NavLinkStyled></li>
-            <li><NavLinkStyled to="/shopping-list" onClick={handleMenu}>
-            Shopping list
-            </NavLinkStyled></li>
-            <li><NavLinkStyled to="/search" onClick={handleMenu}>
-            <Icon
-              name="icon-search"
-              fill="transparent"
-              width="24px"
-              height="24px"
-            ></Icon>
-            Search
-            </NavLinkStyled></li>
-        </BurgerNav>
+          <BurgerNav>
+            <li>
+              <NavLinkStyled to="/categories" onClick={handleMenu}>
+                Categories
+              </NavLinkStyled>
+            </li>
+            <li>
+              <NavLinkStyled to="/add" onClick={handleMenu}>
+                Add recipes
+              </NavLinkStyled>
+            </li>
+            <li>
+              <NavLinkStyled to="/my" onClick={handleMenu}>
+                My recipes
+              </NavLinkStyled>
+            </li>
+            <li>
+              <NavLinkStyled to="/favorite" onClick={handleMenu}>
+                Favorites
+              </NavLinkStyled>
+            </li>
+            <li>
+              <NavLinkStyled to="/shopping-list" onClick={handleMenu}>
+                Shopping list
+              </NavLinkStyled>
+            </li>
+            <li>
+              <NavLinkStyled to="/search" onClick={handleMenu}>
+                <Icon
+                  name="icon-search"
+                  fill="transparent"
+                  width="24px"
+                  height="24px"
+                ></Icon>
+                Search
+              </NavLinkStyled>
+            </li>
+          </BurgerNav>
 
-        <ThemeToggler />
-         
+          <ThemeToggler />
         </Burgerwrapper>
       </Burger>
 
@@ -86,25 +102,37 @@ const Header = () => {
         </Link>
 
         <HeaderNav>
-          <li><NavLinkStyled to="/categories">Categories</NavLinkStyled></li>
-          <li><NavLinkStyled to="/add">Add recipes</NavLinkStyled></li>
-          <li><NavLinkStyled to="/recipe">My recipes</NavLinkStyled></li>
-          <li><NavLinkStyled to="/favorite">Favorites</NavLinkStyled></li>
-          <li><NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled></li>
-          <li><NavLinkStyled to="/search">
-            <Icon
-              name="icon-search"
-              fill="transparent"
-              width="24px"
-              height="24px"
-            ></Icon>
-          </NavLinkStyled></li>
+          <li>
+            <NavLinkStyled to="/categories">Categories</NavLinkStyled>
+          </li>
+          <li>
+            <NavLinkStyled to="/add">Add recipes</NavLinkStyled>
+          </li>
+          <li>
+            <NavLinkStyled to="/my">My recipes</NavLinkStyled>
+          </li>
+          <li>
+            <NavLinkStyled to="/favorite">Favorites</NavLinkStyled>
+          </li>
+          <li>
+            <NavLinkStyled to="/shopping-list">Shopping list</NavLinkStyled>
+          </li>
+          <li>
+            <NavLinkStyled to="/search">
+              <Icon
+                name="icon-search"
+                fill="transparent"
+                width="24px"
+                height="24px"
+              ></Icon>
+            </NavLinkStyled>
+          </li>
         </HeaderNav>
 
         <UserLogo />
 
         <ThemeTogglerwrapper>
-        <ThemeToggler />
+          <ThemeToggler />
         </ThemeTogglerwrapper>
 
         <OpenButton onClick={handleMenu}>
