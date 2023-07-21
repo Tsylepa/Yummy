@@ -58,5 +58,5 @@
   --selector-menu-color: var(--accent-color);
 
   --bg-recipe-color: #2a2c36;
-  --BiTrach-btn-color: #1e1f28;
+  --BiTrach-btn-color: var(--accent-color);
 }
