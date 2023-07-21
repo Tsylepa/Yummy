@@ -8,6 +8,8 @@ import PublicRoute from './routes/PublicRoute';
 import { Loader } from 'components/Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useUser from 'hooks/useUser';
+
 const Welcome = lazy(() => import('./pages/Welcome/Welcome'));
 const Auth = lazy(() => import('./pages/Register/Register'));
 const Main = lazy(() => import('./pages/Main/Main'));
@@ -28,10 +30,11 @@ const MyRecipes = lazy(() => import('./pages/MyRecipes/MyRecipes'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const { accessToken } = useUser();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
+  }, [dispatch, accessToken]);
 
   return (
     <Suspense fallback={<Loader />}>

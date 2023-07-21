@@ -13,12 +13,11 @@ instance.interceptors.response.use(
         const { data } = await instance.post('/auth/refresh', {
           refreshToken,
         });
-        error.config.headers.Authorization = `Bearer ${data.accessToken}`;
         instance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
         localStorage.setItem('refreshToken1', data.refreshToken);
         localStorage.setItem('accessToken1', data.accessToken);
-
-        return instance(error.config);
+        window.location.reload();
+        return Promise.reject(error);
       } catch (error) {
         return Promise.reject(error);
       }
@@ -27,7 +26,5 @@ instance.interceptors.response.use(
       localStorage.setItem('accessToken1', '');
       instance.defaults.headers.common.Authorization = '';
     }
-
-    return Promise.reject(error);
   }
 );
