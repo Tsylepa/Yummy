@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import {
-  FormWrapper,
+  // FormWrapper,
   Form,
-  SearchFormField,
-  SearchFormButton,
+  // SearchFormField,
+  // SearchFormButton,
 } from './SearchForm.styled';
+import {
+  Button,
+  Input,
+  InputButtonContainer,
+} from 'components/Search/Search.styled';
 
 const SearchForm = ({ handleSearch }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -19,17 +24,32 @@ const SearchForm = ({ handleSearch }) => {
   };
 
   return (
-    <FormWrapper>
-      <Form onSubmit={handleSubmit}>
-        <SearchFormField
+    <Form onSubmit={handleSubmit}>
+      <InputButtonContainer
+        style={{
+          position: 'unset',
+          top: 'unset',
+          left: 'unset',
+          marginBottom: '24px',
+        }}
+      >
+        <Input
           type="text"
           placeholder="Search..."
           value={searchQuery}
           onChange={handleChange}
         />
-        <SearchFormButton type="submit">Search</SearchFormButton>
-      </Form>
-    </FormWrapper>
+        <Button
+          type="submit"
+          style={{
+            backgroundColor: ' var(--accent-color)',
+            borderColor: ' var(--accent-color)',
+          }}
+        >
+          Search
+        </Button>
+      </InputButtonContainer>
+    </Form>
   );
 };
 export default SearchForm;

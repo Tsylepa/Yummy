@@ -21,7 +21,7 @@ const SearchPage = () => {
   return (
     <>
       <MainTitle text="Search" />
-      <Wrapper>
+      <Wrapper style={{ display: 'block' }}>
         <SearchForm handleSearch={handleSearch} />
         <SearchTypeSelector handleSearchType={handleSearchType} />
         <SearchedList searchType={searchType} searchQuery={searchQuery} />
