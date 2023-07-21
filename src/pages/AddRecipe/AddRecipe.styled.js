@@ -3,6 +3,8 @@ import mediaRule from 'utils/mediaRule';
 import Socials from 'components/Socials';
 
 export const Wrapper = styled.div`
+  z-index: 1;
+  position: relative;
   ${mediaRule(
     'desktop',
     '',
