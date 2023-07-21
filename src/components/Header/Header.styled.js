@@ -3,6 +3,7 @@ import { ReactComponent as LogoIcon } from 'images/svg/logo/logo.svg';
 import { NavLink } from 'react-router-dom';
 import imgBackgroundModileFirstMobile from 'images/mobile/leaves-menu@1x_320-min.png';
 import imgBackgroundModileFirstTablet from 'images/tablet/leaves-menu@2x_768-min.png';
+import mediaRule from 'utils/mediaRule';
 
 export const Burger = styled.div`
   background-color: var(--menu-bg-color);
@@ -36,7 +37,7 @@ export const Burger = styled.div`
   @media screen and (min-width: 768px) {
     background-image: url(${imgBackgroundModileFirstTablet});
     background-repeat: no-repeat;
-    background-size:  852px 558px;
+    background-size: 852px 558px;
 
     padding-top: 18px;
     padding-right: 16px;
@@ -45,8 +46,12 @@ export const Burger = styled.div`
   }
 `;
 export const Burgerwrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: auto;
   width: 100%;
+  height: 100%;
 `;
 export const BurgerHeader = styled.div`
   display: flex;
@@ -67,17 +72,18 @@ export const BurgerNav = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 32px;
-
-  margin: auto;
-  margin-top: 124px;
-  margin-bottom: 203px;
-
   font-size: 18px;
-  line-height: 18px;
+  line-height: 1;
   letter-spacing: -0.02em;
+
+  ${mediaRule('tablet', 'desktop', 'font-size:24px; letter-spacing: -0.48px;')}
 `;
 
 export const NavLinkStyled = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
   &.active {
     color: var(--accent-color);
   }

@@ -8,6 +8,7 @@ import {
 } from './UserLogo.styled';
 import { UserLogoModal } from './UserLogoModal/UserLogoModal';
 import useUser from '../../hooks/useUser';
+import { useLocation } from 'react-router';
 
 export const UserLogo = () => {
   const [isopenusermodal, setisopenusermodal] = useState(false);
@@ -16,6 +17,9 @@ export const UserLogo = () => {
   } = useUser();
 
   const userAvatar = avatar || null;
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <UserLogoBtnWrapper>
       <UserLogoBtn onClick={() => setisopenusermodal(!isopenusermodal)}>
@@ -26,7 +30,14 @@ export const UserLogo = () => {
             <FiUser size={30} color={'#C4C4C4'} />
           )}
         </UserAvatarWrapper>
-        {userName ? userName : 'User'}
+        <span
+          style={{
+            color:
+              currentPath === '/main' ? 'var(--secondary-color)' : 'inherit',
+          }}
+        >
+          {userName ? userName : 'User'}
+        </span>
       </UserLogoBtn>
       <UserLogoModal isopenusermodal={isopenusermodal} />
     </UserLogoBtnWrapper>

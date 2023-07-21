@@ -20,6 +20,7 @@ export const ImageWrapper = styled.div`
   width: 280px;
   height: 268px;
   border-radius: 8px;
+  object-fit: cover;
   overflow: hidden;
   cursor: pointer;
 
@@ -27,6 +28,12 @@ export const ImageWrapper = styled.div`
   img {
     width: 100%;
   }
+`;
+
+export const Picture = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const UploadBtn = styled.button`

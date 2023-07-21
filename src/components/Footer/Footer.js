@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import subscribe from './operations';
 import { signupSchema, ValidMessage } from './validationEmail';
 import { Formik, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
 
 import {
   Dolbaniylistochek,
@@ -14,6 +13,7 @@ import {
   Underfooter,
   Logo,
   LogoPlus,
+  LinkStyled,
   Benefitslist,
   Li,
   NavLinkStyled,
@@ -49,10 +49,10 @@ const Footer = () => {
           <Footerstyled>
             <LogoPlus>
               <Logo>
-                <Link to="/main">
+                <LinkStyled to="/main">
                   <LogoIconStyled />
                   So Yummy
-                </Link>
+                </LinkStyled>
               </Logo>
               <Benefitslist>
                 <Li>Database of recipes that can be replenished</Li>
