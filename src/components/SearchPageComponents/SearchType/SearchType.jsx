@@ -1,6 +1,9 @@
 import React from 'react';
-import Select from 'react-select';
-import { SearchTypeWrapper, SearchTypeText } from './SearchType.styled';
+import {
+  SearchTypeText,
+  SearchTypeWrapper,
+  SelectControl,
+} from './SearchType.styled';
 
 const options = [
   { value: 'title', label: 'Title' },
@@ -16,7 +19,7 @@ const SearchTypeSelector = ({ handleSearchType }) => {
     <SearchTypeWrapper>
       <SearchTypeText>Search by:</SearchTypeText>
       <div>
-        <Select
+        <SelectControl
           classNamePrefix="Select"
           options={options}
           placeholder="Title"

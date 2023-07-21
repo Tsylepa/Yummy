@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import Select from 'react-select';
 
 export const SearchTypeWrapper = styled.div`
@@ -24,7 +24,7 @@ export const SearchTypeText = styled.p`
 
   color: #001833;
   font-family: var(--poppins-regular);
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -44,7 +44,6 @@ export const SearchTypeText = styled.p`
 export const SelectControl = styled(Select)`
   .Select__control {
     width: 146px;
-    height: 34px;
 
     padding-left: 8px;
     padding-right: 8px;
@@ -53,12 +52,11 @@ export const SelectControl = styled(Select)`
     font-family: var(--poppins-regular);
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     line-height: normal;
     letter-spacing: -0.24px;
     opacity: 0.5;
 
-    color: #000;
     border-radius: 6px 6px 6px 6px;
     border-color: black;
     border: none;
@@ -66,20 +64,20 @@ export const SelectControl = styled(Select)`
     cursor: pointer;
 
     @media screen and (min-width: 768px) {
-    width: 175px;
-    height: 41px;
-        
-    font-size: 14px;
-    letter-spacing: -0.28px;
+      width: 175px;
+      height: 41px;
+
+      font-size: 14px;
+      letter-spacing: -0.28px;
     }
 
     @media screen and (min-width: 1280px) {
-    width: 198px;
-    height: 49px;
+      width: 198px;
+      height: 49px;
 
-    font-size: 14px;
-    letter-spacing: -0.28px;
-  }
+      font-size: 14px;
+      letter-spacing: -0.28px;
+    }
   }
 
   .Select__menu {
@@ -101,10 +99,11 @@ export const SelectControl = styled(Select)`
     margin-bottom: 6px;
     font-family: var(--poppins-regular);
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 0.7;
     letter-spacing: 0.02em;
-    color: grey;
+    opacity: 0.5;
+    color: #001833;
     border-radius: 6px 6px 6px 6px;
     border: none;
     height: 28px;
@@ -117,7 +116,7 @@ export const SelectControl = styled(Select)`
     }
 
     @media screen and (min-width: 768px) {
-        font-size: 14px;
+      font-size: 14px;
     }
   }
 `;
