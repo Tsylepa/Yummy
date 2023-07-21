@@ -11,13 +11,13 @@ border-radius: 8px;
 align-items: center;
 
 ${mediaRule("tablet", "desktop", `
-margin-top: 435px;
+margin-top: 495px;
 width: 696px;
 height: 60px;
 `)};
 
 ${mediaRule("desktop", "", `
-margin-top: 435px;
+margin-top: 495px;
 width: 1240px;
 height: 60px;
 `)};
@@ -262,7 +262,7 @@ width: 35px;
     content: "";
     position: absolute;
     left: 11px; 
-    top: 2px;
+    top: 4px;
     width: 7px;
     height: 14px;
     border-style: solid;
@@ -299,7 +299,7 @@ width: 35px;
     content: "";
     position: absolute;
     left: 11px; 
-    top: 2px;
+    top: 4px;
     width: 7px;
     height: 14px;
     border-style: solid;
