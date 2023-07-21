@@ -3,7 +3,7 @@ import mediaRule from "utils/mediaRule"
 
 const RecipeIngredientListSubtitle = styled.div`
 width: 270px;
-margin-top: 300px;
+margin-top: 330px;
 height: 42px;
 background-color: var(--accent-color);
 display: flex;
