@@ -21,7 +21,7 @@
 }
 .BiTrash__btn:hover,
 .BiTrash__btn:focus {
-  background-color: var(--accent-color);
+  background-color: var(--subscribe-btn-color);
   color: var(--primary-color);
 }
 
