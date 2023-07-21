@@ -48,7 +48,7 @@ position: relative;
   width: 100%;
   &:hover {
     cursor: pointer; 
-    border: 2px solid var(--accent-color);
+    
   }
   
     
