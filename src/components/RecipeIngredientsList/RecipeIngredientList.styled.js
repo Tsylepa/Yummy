@@ -226,8 +226,8 @@ const IngredientCheckbox = styled.input`
   &:checked::before {
     content: "";
     position: absolute;
-    left: 12px;
-    top: 20%;
+    left: 20%;
+    top: -10%;
     width: 7px;
     height: 14px;
     border-style: solid;
